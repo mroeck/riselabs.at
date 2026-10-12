@@ -6,6 +6,8 @@ projects:
   - global-building-data-initiative
 people:
   - martin-roeck
+partners:
+  - epfl
 title: "GBDI is now an association"
 summary: "The Global Building Data Initiative has been established as an association under Austrian law, with RISE in a founding role."
 ---

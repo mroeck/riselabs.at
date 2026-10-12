@@ -73,6 +73,25 @@ collections:
     output: true
     permalink: /partners/:name/
 
+# Which layout each kind of content uses.
+#
+# This block is load-bearing. Without it the files in _projects, _people,
+# _publications and _partners have no layout at all, and Jekyll renders their
+# raw content with no stylesheet, no navigation and no header — which is
+# exactly what happened on the first upload. Nothing in those files sets a
+# layout individually, by design: the layout belongs to the collection.
+defaults:
+  - scope: { path: "", type: "projects" }
+    values: { layout: "project" }
+  - scope: { path: "", type: "people" }
+    values: { layout: "person" }
+  - scope: { path: "", type: "publications" }
+    values: { layout: "publication" }
+  - scope: { path: "", type: "partners" }
+    values: { layout: "partner" }
+  - scope: { path: "", type: "posts" }
+    values: { layout: "post" }
+
 plugins:
   - jekyll-seo-tag
   - jekyll-feed

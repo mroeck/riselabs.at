@@ -5,6 +5,9 @@ projects:
   - global-building-data-initiative
 people:
   - martin-roeck
+partners:
+  - epfl
+  - climateworks
 title: "A global buildings database, openly published"
 summary: "Whole life carbon, energy performance and material intensity for buildings worldwide — the dataset behind GBDI, released on Zenodo."
 ---

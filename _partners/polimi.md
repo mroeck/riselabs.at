@@ -5,7 +5,7 @@ country: "Italy"
 type: "university"
 website: "https://www.polimi.it"
 logo: "polimi.svg"   # PLACEHOLDER wordmark — replace with the real logo
-# coords: [48.21, 16.37]   # for the future map: latitude, longitude
+coords: [45.464, 9.19]   # latitude, longitude — places this partner on the map
 ---
 
 <!-- Optional: a paragraph about the collaboration shows on this page. -->

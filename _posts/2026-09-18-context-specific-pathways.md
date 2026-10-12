@@ -5,6 +5,10 @@ projects:
   - analysis-of-life-cycle-greenhouse
 people:
   - martin-roeck
+partners:
+  - ku-leuven
+  - tu-graz
+  - iiasa
 title: "Context-specific emissions pathways for EU buildings, in Nature Communications"
 summary: "New work with KU Leuven, TU Graz and IIASA on what different decarbonisation pathways mean for the European building stock to 2050."
 ---

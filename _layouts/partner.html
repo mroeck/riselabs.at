@@ -17,7 +17,7 @@ layout: default
     {%- if page.type %}<dt>Type</dt><dd>{{ page.type }}</dd>{% endif -%}
     {%- if page.city %}<dt>City</dt><dd>{{ page.city }}</dd>{% endif -%}
     {%- if page.country %}<dt>Country</dt><dd>{{ page.country }}</dd>{% endif -%}
-    {%- if page.website %}<dt>Website</dt><dd><a href="{{ page.website }}">{{ page.website | remove: "https://" | remove: "http://" }}</a></dd>{% endif -%}
+    {%- if page.website and page.website != "" %}<dt>Website</dt><dd><a href="{{ page.website }}">{{ page.website | remove: "https://" | remove: "http://" }}</a></dd>{% endif -%}
   </dl>
 
   {{ content }}
@@ -26,13 +26,20 @@ layout: default
   {%- assign as_partner = site.projects | where_exp: "p", "p.partners contains page.slug" -%}
   {%- assign all_projects = as_client | concat: as_partner -%}
   {%- assign pubs = site.publications | where_exp: "p", "p.partners contains page.slug" | sort: "year" | reverse -%}
+  {%- comment -%}
+    News & events naming this partner. This was missing: the layout computed
+    projects and publications but never passed posts to related.html, so no
+    partner page has ever shown a News tab — while the Together column on
+    /partners/ counted news items, which is how the two disagreed.
+  {%- endcomment -%}
+  {%- assign news = site.posts | where_exp: "p", "p.partners contains page.slug" -%}
 
   {%- if as_client.size > 0 %}
   <h2>Projects we do for them</h2>
   {% include projectlist.html projects=as_client %}
   {%- endif %}
 
-  {% include related.html projects=as_partner pubs=pubs
+  {% include related.html projects=as_partner pubs=pubs posts=news
      projects_title="Projects we do together" pubs_title="Publications" %}
 
   <p class="muted small" style="margin-top:2.5rem;">

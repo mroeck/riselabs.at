@@ -108,3 +108,27 @@
   role: "Senior Digital Lead in Sustainability"
   org: "Ramboll"
   context: "LinkedIn recommendation, October 2024"
+
+- id: barbara-rodriguez-droguett
+  quote: >-
+    We thought about reaching out to GBDI as a partner because of the need for
+    international alignment from the outset. Ensuring that the data architecture
+    for the Chilean WLC tool is compatible with global standards from day one
+    prevents future technical problems and ensures data integration.
+
+
+    The added value lies in the standardization of data structures. If we adopt
+    the GBDI framework, the project avoids the "silo" effect, making Chilean
+    data comparable and valuable to the international research efforts. On a
+    second point, this also places the Chilean construction industry on the
+    global map, showcasing how a Latin American country can lead in open-access
+    carbon reporting.
+  name: "Dr. Bárbara Rodríguez Droguett"
+  role: "Coordinadora, Magíster en Tecnologías de la Edificación"
+  org: "Facultad de Arquitectura y Urbanismo, Universidad de Chile"
+  # Supplied in the Chile project information sheet, October 2026. Unlike the
+  # others this is about the GBDI partnership rather than about Martin, and it
+  # is the only recent one — worth confirming she is happy for it to appear
+  # here before this goes live, since the others were already public on
+  # LinkedIn and this one was not.
+  context: "On the GBDI partnership, 2026 · Chile"

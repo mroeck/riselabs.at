@@ -1,0 +1,65 @@
+{%- comment -%}
+  Where our partners are, on an Equal Earth projection.
+
+  Equal Earth is equal-area: every country takes screen space in proportion to
+  its real area. On a map whose whole point is "we work in these places",
+  Mercator would inflate Europe and shrink Africa — saying something we do not
+  mean. The outline is generated from Natural Earth 110m data; see
+  worldmap-paths.html.
+
+  Markers are placed by a script, because projecting latitude and longitude
+  needs trigonometry and Liquid has none. Without JavaScript the map simply
+  does not appear — the table below it is the real content, and it is complete.
+
+  A partner appears here as soon as its file carries a `coords: [lat, lon]`
+  line. Nothing else to maintain.
+
+  Note for future edits: do NOT select the partners with `where_exp`. A
+  commented-out `# coords:` line is nil, and neither a bare truth test nor
+  `coords.size == 2` filtered it out reliably — the result was `"lat":,"lon":`
+  in the JSON, which broke every pin on the map silently. Walking the list and
+  emitting only complete entries is the version that works.
+{%- endcomment -%}
+
+{%- assign sorted = site.partners | sort: "name" -%}
+
+{%- assign placed = 0 -%}
+{%- assign countries = "" -%}
+{%- for p in sorted -%}
+  {%- if p.coords[0] and p.coords[1] -%}
+    {%- assign placed = placed | plus: 1 -%}
+    {%- if p.country -%}{%- assign countries = countries | append: p.country | append: "|" -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign country_count = countries | split: "|" | uniq | size -%}
+
+{%- if placed > 0 %}
+
+<figure class="worldmap" data-worldmap hidden>
+  <svg viewBox="0 0 1000 487" role="img"
+       aria-label="World map showing where RISE partner organisations are based">
+    <g class="wm-land">
+      {%- include worldmap-paths.html -%}
+    </g>
+    <g class="wm-pins" data-pins></g>
+  </svg>
+  <figcaption class="muted small">
+    {{ placed }} partner organisations in {{ country_count }} countries.
+    Equal Earth projection — equal-area, so every country is shown at its true
+    relative size.
+  </figcaption>
+</figure>
+
+<script type="application/json" data-partner-points>
+[
+{%- assign first = true -%}
+{%- for p in sorted -%}
+{%- if p.coords[0] and p.coords[1] -%}
+{%- unless first %},{% endunless -%}
+{"n":{{ p.name | jsonify }},"c":{{ p.city | default: "" | jsonify }},"k":{{ p.country | default: "" | jsonify }},"lat":{{ p.coords[0] }},"lon":{{ p.coords[1] }}}
+{%- assign first = false -%}
+{%- endif -%}
+{%- endfor -%}
+]
+</script>
+{%- endif %}

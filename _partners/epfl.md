@@ -5,7 +5,7 @@ country: "Switzerland"
 type: "university"
 website: "https://www.epfl.ch"
 logo: "epfl.png"
-# coords: [48.21, 16.37]   # for the future map: latitude, longitude
+coords: [46.52, 6.632]   # latitude, longitude — places this partner on the map
 ---
 
 <!-- Optional: a paragraph about the collaboration shows on this page. -->
