@@ -1301,3 +1301,41 @@ table.listing td.t-partner .t-logo,
 
 /* a long DOI is one unbreakable token and pushed the page sideways on a phone */
 .doi { overflow-wrap: anywhere; }
+
+/* ---------- partner world map ---------- */
+
+.worldmap { margin: 0 0 2.2rem; }
+.worldmap svg { display: block; width: 100%; height: auto; }
+
+/* The land is a quiet ground; the pins are the content. */
+.wm-land path {
+  fill: var(--surface);
+  stroke: var(--rule);
+  stroke-width: .6;
+  vector-effect: non-scaling-stroke;
+}
+
+:root[data-theme="light"] .wm-land path {
+  fill: #eef1f5;
+  stroke: rgba(0, 23, 48, .18);
+}
+
+.wm-pin circle {
+  fill: var(--magenta);
+  fill-opacity: .82;
+  stroke: var(--bg);
+  stroke-width: 1.2;
+  transition: fill-opacity .15s ease;
+}
+.wm-pin:hover circle { fill-opacity: 1; }
+
+.wm-count {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-size: 7px;
+  font-weight: 700;
+  fill: #ffffff;
+  pointer-events: none;
+}
+
+.worldmap figcaption { margin-top: .7rem; max-width: 60ch; }

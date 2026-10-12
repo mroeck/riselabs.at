@@ -143,7 +143,89 @@
     });
   }
 
+  /* ---------- partner world map ---------- */
+
+  /* Projects partner coordinates onto the Equal Earth basemap. The same
+     formula generated the outline (Šavrič, Patterson & Jenny 2018), so the
+     pins land where the countries are.
+
+     Several partners share a city — four are in Brussels, three in Copenhagen,
+     four in London — so pins are grouped by position and the group carries a
+     count. Twenty-two separate dots stacked on Brussels would read as one. */
+
+  var EE = { A1: 1.340264, A2: -0.081106, A3: 0.000893, A4: 0.003796 };
+
+  function project(lat, lon) {
+    var lam = lon * Math.PI / 180;
+    var phi = Math.max(-90, Math.min(90, lat)) * Math.PI / 180;
+    var th = Math.asin(Math.sqrt(3) / 2 * Math.sin(phi));
+    var t2 = th * th, t6 = t2 * t2 * t2;
+    var den = EE.A1 + 3 * EE.A2 * t2 + t6 * (7 * EE.A3 + 9 * EE.A4 * t2);
+    return {
+      x: (2 * Math.sqrt(3) * lam * Math.cos(th)) / (3 * den),
+      y: th * (EE.A1 + EE.A2 * t2 + t6 * (EE.A3 + EE.A4 * t2))
+    };
+  }
+
+  // the extent the basemap was generated with, so pins share its coordinates
+  var XMAX = project(0, 180).x, YMAX = project(90, 0).y;
+  var MAPW = 1000, MAPH = 487;
+
+  function setupMap(fig) {
+    var holder = document.querySelector("[data-partner-points]");
+    var pins = fig.querySelector("[data-pins]");
+    if (!holder || !pins) return;
+
+    var points;
+    try { points = JSON.parse(holder.textContent); } catch (e) { return; }
+    if (!points || !points.length) return;
+
+    var groups = {};
+    points.forEach(function (p) {
+      var k = p.lat.toFixed(2) + "," + p.lon.toFixed(2);
+      (groups[k] = groups[k] || []).push(p);
+    });
+
+    var NS = "http://www.w3.org/2000/svg";
+    Object.keys(groups).forEach(function (k) {
+      var here = groups[k], first = here[0];
+      var pt = project(first.lat, first.lon);
+      var cx = (pt.x / XMAX + 1) / 2 * MAPW;
+      var cy = (1 - pt.y / YMAX) / 2 * MAPH;
+
+      var g = document.createElementNS(NS, "g");
+      g.setAttribute("class", "wm-pin");
+
+      var c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", cx.toFixed(1));
+      c.setAttribute("cy", cy.toFixed(1));
+      // area, not radius, grows with the count — a radius that scaled linearly
+      // would make four partners look like sixteen
+      c.setAttribute("r", (4.5 * Math.sqrt(here.length)).toFixed(1));
+      g.appendChild(c);
+
+      var where = [first.c, first.k].filter(Boolean).join(", ");
+      var names = here.map(function (p) { return p.n; }).join(" · ");
+      var t = document.createElementNS(NS, "title");
+      t.textContent = where ? where + " — " + names : names;
+      g.appendChild(t);
+
+      if (here.length > 1) {
+        var n = document.createElementNS(NS, "text");
+        n.setAttribute("x", cx.toFixed(1));
+        n.setAttribute("y", (cy + 0.1).toFixed(1));
+        n.setAttribute("class", "wm-count");
+        n.textContent = here.length;
+        g.appendChild(n);
+      }
+      pins.appendChild(g);
+    });
+
+    fig.hidden = false;   // only now is there anything to see
+  }
+
   function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-worldmap]"), setupMap);
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
