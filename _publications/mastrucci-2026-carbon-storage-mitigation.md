@@ -1,0 +1,14 @@
+---
+title: "Carbon storage and mitigation potential of structural wood and biochar-based concrete in global urban building scenarios"
+kind: article
+authors: "Mastrucci A, Steinberger-Maierhofer D, Zhong X, Alaux N, Creutzig F, Maczek F, Quade M, Röck M, Sheng D, Gidden MJ, van Ruijven B"
+year: 2026
+journal: "Environmental Research Letters"
+doi: "10.1088/1748-9326/ae9f73"
+people:
+  - martin-roeck
+# projects:                      # one or more, by filename
+#   - project-filename
+---
+
+<!-- Optional: a paragraph about this publication shows on its page. -->
