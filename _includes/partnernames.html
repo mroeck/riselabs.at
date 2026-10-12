@@ -1,0 +1,10 @@
+{%- comment -%}
+  Partner names as inline links, for the facts block.
+  Expects: include.keys
+{%- endcomment -%}
+{%- for key in include.keys -%}
+  {%- assign pa = site.partners | where: "slug", key | first -%}
+  {%- if pa -%}<a href="{{ pa.url | relative_url }}">{{ pa.name }}</a>
+  {%- else -%}{{ key }}{%- endif -%}
+  {%- unless forloop.last %}, {% endunless -%}
+{%- endfor -%}

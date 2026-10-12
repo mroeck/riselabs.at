@@ -1,0 +1,19 @@
+{%- comment -%}
+  People as small cards. Expects: include.people
+{%- endcomment -%}
+<ul class="people">
+  {%- for person in include.people -%}
+  <li>
+    <a href="{{ person.url | relative_url }}">
+      {%- if person.portrait -%}
+      <img src="{{ person.portrait | relative_url }}" alt="" loading="lazy">
+      {%- endif -%}
+      <span class="person-txt">
+        <span class="who">{{ person.name }}</span>
+        {%- if person.role %}<span class="what">{{ person.role }}</span>{% endif -%}
+        {%- if person.org %}<span class="where">{{ person.org }}</span>{% endif -%}
+      </span>
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>

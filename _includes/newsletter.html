@@ -1,0 +1,58 @@
+{%- comment -%}
+  Newsletter signup. Two ways to wire it, set in _config.yml:
+
+    newsletter_url     a link to your public Buttondown page
+                       (https://buttondown.com/riseregenerate)
+                       → renders a button; subscribing happens on Buttondown
+
+    newsletter_action  the API embed endpoint
+                       (https://buttondown.com/api/emails/embed-subscribe/riseregenerate)
+                       → renders a form; subscribing happens here
+
+  These are different URLs and not interchangeable: posting a form to the
+  page URL does not subscribe anyone. If both are set, the form wins and the
+  page link sits beneath it.
+
+  With neither set the block falls back to an email link, so the page never
+  shows a control that cannot work.
+{%- endcomment -%}
+<div class="newsletter">
+  <div>
+    <h2>Stay in the loop</h2>
+    <p class="muted">Occasional notes on what we publish, where policy is
+    moving, and when we are hiring. No more than a few times a year.</p>
+  </div>
+
+  {%- if site.newsletter_action %}
+  <div>
+    <form class="nl-form embeddable-buttondown-form"
+          action="{{ site.newsletter_action }}" method="post" target="_blank">
+      <label class="visually-hidden" for="nl-email">Email address</label>
+      <input id="nl-email" type="email" name="email" required
+             placeholder="you@organisation.org" autocomplete="email">
+      <input type="hidden" name="embed" value="1">
+      <button type="submit">Subscribe</button>
+    </form>
+    {%- if site.newsletter_url %}
+    <p class="nl-alt muted small">
+      Or <a href="{{ site.newsletter_url }}">read the archive and subscribe on
+      Buttondown</a>.
+    </p>
+    {%- endif %}
+  </div>
+
+  {%- elsif site.newsletter_url %}
+  <p class="nl-fallback">
+    <a class="cta" href="{{ site.newsletter_url }}">Subscribe</a>
+    <span class="muted small">Opens our newsletter page, where you can also
+    read past issues.</span>
+  </p>
+
+  {%- else %}
+  <p class="nl-fallback">
+    <a class="cta" href="mailto:{{ site.email }}?subject=Newsletter">Ask to be added</a>
+    <span class="muted small">Set <code>newsletter_url</code> or
+    <code>newsletter_action</code> in <code>_config.yml</code>.</span>
+  </p>
+  {%- endif %}
+</div>

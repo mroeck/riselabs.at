@@ -1,0 +1,25 @@
+{%- comment -%}
+  Home hero: headline over a slow crossfade of three images, one per pillar.
+  Images are listed in _data/hero.yml. Without JavaScript the first image
+  stays, which is a complete hero on its own.
+{%- endcomment -%}
+<section class="hero-full" data-hero>
+  <div class="hero-media" aria-hidden="true">
+    {%- for slide in site.data.hero -%}
+    <img src="{{ slide.file | relative_url }}" alt=""
+         {% unless forloop.first %}class="off"{% endunless %}
+         {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+    {%- endfor -%}
+  </div>
+
+  <div class="hero-inner wrap">
+    <h1>Beyond sustainability.<br>Towards regeneration.</h1>
+    <p class="standfirst">RISE is a globally active research institute based in
+    Vienna, Austria, working on the deep decarbonisation of the built
+    environment — in European policy, in international collaborations, and with
+    the practitioners already building differently.</p>
+    <p class="hero-cta">
+      <a href="{{ '/approach/' | relative_url }}">Our approach →</a>
+    </p>
+  </div>
+</section>

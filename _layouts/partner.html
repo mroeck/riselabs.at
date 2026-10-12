@@ -1,0 +1,43 @@
+---
+layout: default
+---
+<div class="page-head wrap narrow">
+  {%- if page.type %}<p class="post-type">{{ page.type }}</p>{% endif -%}
+  <h1>{{ page.name }}</h1>
+  {%- if page.city or page.country %}
+  <p class="lede">{{ page.city }}{% if page.city and page.country %}, {% endif %}{{ page.country }}</p>
+  {%- endif -%}
+</div>
+
+<main id="content">
+<section class="band">
+<div class="wrap narrow post-body">
+
+  <dl class="facts">
+    {%- if page.type %}<dt>Type</dt><dd>{{ page.type }}</dd>{% endif -%}
+    {%- if page.city %}<dt>City</dt><dd>{{ page.city }}</dd>{% endif -%}
+    {%- if page.country %}<dt>Country</dt><dd>{{ page.country }}</dd>{% endif -%}
+    {%- if page.website %}<dt>Website</dt><dd><a href="{{ page.website }}">{{ page.website | remove: "https://" | remove: "http://" }}</a></dd>{% endif -%}
+  </dl>
+
+  {{ content }}
+
+  {%- assign as_client  = site.projects | where_exp: "p", "p.clients contains page.slug" -%}
+  {%- assign as_partner = site.projects | where_exp: "p", "p.partners contains page.slug" -%}
+  {%- assign all_projects = as_client | concat: as_partner -%}
+  {%- assign pubs = site.publications | where_exp: "p", "p.partners contains page.slug" | sort: "year" | reverse -%}
+
+  {%- if as_client.size > 0 %}
+  <h2>Projects we do for them</h2>
+  {% include projectlist.html projects=as_client %}
+  {%- endif %}
+
+  {% include related.html projects=as_partner pubs=pubs
+     projects_title="Projects we do together" pubs_title="Publications" %}
+
+  <p class="muted small" style="margin-top:2.5rem;">
+    <a href="{{ '/partners/' | relative_url }}">← All partners</a>
+  </p>
+</div>
+</section>
+</main>

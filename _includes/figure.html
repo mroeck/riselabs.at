@@ -1,0 +1,21 @@
+{%- comment -%}
+  A figure with a caption, a source line and a download link.
+
+    include.file     path to the image
+    include.number   optional — "Figure 1"
+    include.caption  the caption
+    include.source   optional — where it is from
+    include.wide     optional — "true" to break past the text column
+{%- endcomment -%}
+<figure class="fig{% if include.wide == 'true' %} wide{% endif %}">
+  <a href="{% include url.html u=include.file %}" class="fig-link">
+    <img src="{% include url.html u=include.file %}"
+         alt="{{ include.caption | strip_html }}" loading="lazy" decoding="async">
+  </a>
+  <figcaption>
+    {%- if include.number %}<span class="fig-num">{{ include.number }}</span>{% endif -%}
+    {{ include.caption }}
+    {%- if include.source %}<span class="fig-src">{{ include.source }}</span>{% endif -%}
+    <a class="fig-dl" href="{% include url.html u=include.file %}" download>Download</a>
+  </figcaption>
+</figure>

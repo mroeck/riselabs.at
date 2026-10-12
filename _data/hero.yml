@@ -1,0 +1,12 @@
+# Home hero images, shown as a slow crossfade — one per brand pillar.
+#
+# These are cropped to a wide band to match the hero's proportions. Replacing
+# one means supplying an image of roughly 2.2:1; a portrait photo will be cut
+# to a thin horizontal slice by the browser, which rarely keeps the part you
+# cared about.
+- file: /assets/img/hero/wlc-trajectory.jpg
+  pillar: System change
+- file: /assets/img/hero/paraglider-wing.jpg
+  pillar: We are nature
+- file: /assets/img/hero/indicate-community.jpg
+  pillar: Stronger together

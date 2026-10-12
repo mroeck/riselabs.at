@@ -1,0 +1,97 @@
+# ---------------------------------------------------------------------------
+# What we offer. Each entry renders as one block on /services/.
+#
+#   title     short name of the service
+#   strand    which strand of the Approach it serves: up | wide | deep
+#             (shown as a small label, and links back to /approach/)
+#   lede      one or two sentences. What the client actually gets.
+#   includes  the concrete pieces of work. Keep these as things, not adjectives.
+#   example   slug of a project in _projects/ that proves it. The project title
+#             and its one-line summary are pulled in automatically, so there is
+#             nothing to keep in sync. Leave blank if there is no public example.
+#   note      optional caveat, shown smaller
+#   for       who typically commissions it
+# ---------------------------------------------------------------------------
+
+- title: "Commissioned research and policy evidence"
+  strand: up
+  lede: >-
+    The analysis behind a regulation, a target or an impact assessment —
+    done to a standard that survives consultation and peer review.
+  includes:
+    - "Baseline and scenario modelling for building stocks, national or EU-wide"
+    - "Benchmark and limit-value derivation, with the sensitivity analysis behind it"
+    - "Evidence and technical input for legislative processes and impact assessments"
+    - "Method development where no accepted method yet exists"
+  example: analysis-of-life-cycle-greenhouse
+  audience: "European Commission, national ministries and agencies, international organisations"
+
+- title: "Data infrastructure and benchmarking programmes"
+  strand: wide
+  lede: >-
+    Setting up the data capability an organisation or a country needs to
+    govern whole life carbon, rather than producing one more study.
+  includes:
+    - "Design of building LCA databases, data models and reporting schemas"
+    - "National data collection programmes, from sampling design to governance"
+    - "Statistical analysis of EPD and building assessment data"
+    - "Open-source tooling, dashboards and trackers in Python"
+  example: indicate-life
+  audience: "Governments setting benchmarks, data initiatives, funders and philanthropies"
+
+- title: "Independent review and expert opinion"
+  strand: up
+  lede: >-
+    A second, disinterested reading of an assessment, a dataset or a claim —
+    written so it can be shown to a board, a regulator or a counterparty.
+  includes:
+    - "Review of assessment methods, tools and benchmark proposals"
+    - "Data quality and reproducibility appraisal"
+    - "Expert statements and technical opinions"
+    - "Critical review of life cycle assessment studies"
+  example: iea-ebc-annex-72
+  note: >-
+    We take review work only where we have no stake in the outcome, and we say
+    so in writing when we do.
+  audience: "Public authorities, standardisation and industry bodies, investors"
+
+- title: "Strategy and roadmapping"
+  strand: up
+  lede: >-
+    Turning a target into a sequence of decisions: how impacts get measured,
+    what success looks like, and what has to change in what order to get there.
+  includes:
+    - "Advice on assessment methods: what to measure, how, and with what data"
+    - "Benchmarking a portfolio against comparable stock"
+    - "Target development, from a budget-based rationale to usable limit values"
+    - "Decarbonisation roadmaps and implementation strategy, with interim targets and indicators"
+    - "Alignment with the EPBD, the EU Taxonomy and reporting duties"
+    - "Sufficiency and reuse strategies, where building less is on the table"
+  example: supporting-the-development-of-a
+  audience: "Public authorities and large public building portfolio holders, cities and regions, industry associations"
+
+- title: "Training, workshops and keynotes"
+  strand: wide
+  lede: >-
+    Building the capability inside your team, or making the case to the room
+    that has to decide.
+  includes:
+    - "Method training for national teams and assessment practitioners"
+    - "Executive briefings on what the coming requirements actually demand"
+    - "Workshop design and facilitation for consortia and stakeholder processes"
+    - "Keynotes and conference contributions"
+  example: indicate
+  audience: "National consortia, professional bodies, conference and event organisers"
+
+- title: "Research partnerships"
+  strand: deep
+  lede: >-
+    Joining a consortium as a research partner, where the work is genuinely
+    open-ended and the output is knowledge rather than a deliverable to a brief.
+  includes:
+    - "Partner or work package lead in Horizon Europe, LIFE and national programmes"
+    - "Co-supervision of doctoral and masters research"
+    - "Collaboration with practice networks testing radical alternatives"
+    - "Joint publication and open data work"
+  example: collaborative-carbon
+  audience: "Universities, research institutes, practice networks, funders"

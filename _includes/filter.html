@@ -1,0 +1,12 @@
+{%- comment -%}
+  A filter box for a list. Hidden until JavaScript enables it, so it never
+  appears as a control that does nothing.
+    include.target       CSS selector of the list to filter
+    include.placeholder  prompt text
+{%- endcomment -%}
+<div class="filter" hidden>
+  <input type="search" data-filter="{{ include.target }}"
+         placeholder="{{ include.placeholder | default: 'Filter…' }}"
+         aria-label="{{ include.placeholder | default: 'Filter the list' }}">
+  <span class="count muted small" data-count aria-live="polite"></span>
+</div>

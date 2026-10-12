@@ -1,0 +1,110 @@
+# ---------------------------------------------------------------------------
+# Testimonials. Nothing renders while this file is empty, so the section
+# simply does not appear until there is something real in it.
+#
+#   id      short slug, used by a page to pick particular quotes and set
+#           their order — see index.md, which shows three of these
+#   quote   the words, verbatim. No ellipses that change the meaning.
+#   name    who said it
+#   role    their role AT THE TIME, not their current headline — see the note
+#           on Brigitte Jacquemont below for why that distinction matters
+#   org     their organisation at the time
+#   context shown smaller. Used here to say where the quote came from and
+#           when. All five are LinkedIn recommendations written to Martin
+#           personally in 2024, before RISE existed, so naming the source
+#           keeps that honest rather than letting them read as RISE client
+#           references.
+#   url     optional link to the person or organisation
+#
+# Transcribed from screenshots of Martin's LinkedIn recommendations.
+# Check each one against the original before publishing — see the notes.
+# ---------------------------------------------------------------------------
+
+- quote: >-
+    As a Policy Officer at DG ENERGY, I had the pleasure of working with Martin
+    on several projects he conducted for the European Commission, where his
+    expertise in Life Cycle Sustainability Assessment of Buildings proved
+    invaluable. Martin consistently demonstrated a deep understanding of the
+    subject matter, contributing valuable insights to every study. His work was
+    always of the highest quality and delivered with exceptional clarity.
+
+
+    Beyond his technical skills, Martin is a hard-working professional with a
+    positive attitude. I highly recommend him for any future opportunities.
+  id: brigitte-jacquemont
+  name: "Brigitte Jacquemont"
+  # Her LinkedIn headline now reads "Circular economy & waste prevention —
+  # French Ministry for Ecology". Deliberately NOT used: the quote is about
+  # work she commissioned while at DG ENERGY, and pairing it with her current
+  # employer would imply the French ministry is endorsing RISE. Her role at
+  # the time is both more accurate and more relevant.
+  role: "Policy Officer"
+  org: "European Commission, DG ENERGY"
+  context: "LinkedIn recommendation, August 2024"
+
+- quote: >-
+    I have the pleasure of working with Martin on the whole life carbon data
+    initiative INDICATE where we support European countries in developing the
+    necessary building LCA infrastructure and data foundation to implement
+    whole life carbon policies in construction.
+
+
+    Martin is an inspiring data scientist who has a unique ability to
+    understand how building LCAs can create climate policy and industry action
+    and is a skilled communicator. I enjoy working with Martin for his
+    strategic mindset and ability to put the newest scientific knowledge into
+    play. At the same time he is a great team player.
+  id: simone-kongsbak
+  name: "Simone Kongsbak"
+  # Her headline reads "Partner at Smith Innovation and co-funder of Smith
+  # Commons" — "co-funder" is almost certainly a typo for "co-founder" on
+  # her profile. Rather than reproduce or silently correct someone else's
+  # typo, this uses the part that is unambiguous. Add the second role back
+  # if she confirms the spelling.
+  role: "Partner"
+  org: "Smith Innovation"
+  context: "LinkedIn recommendation, October 2024 · INDICATE"
+
+- quote: >-
+    I met Martin a few years ago and found a great partner with whom we worked
+    hard bringing whole life carbon of buildings on top of the policy agenda.
+    Martin is a fantastic partner at work: he combines bottomless scientific
+    knowledge of carbon in buildings with the ability to organise and steer
+    complex studies with strategic implications. I would like to support Martin
+    in the next steps of his professional career, as we also continue our
+    fruitful collaboration!
+  id: xavier-le-den
+  name: "Xavier Le Den"
+  role: "Managing Director"
+  org: "Ramboll Management Consulting Belgium"
+  context: "LinkedIn recommendation, October 2024"
+
+- quote: >-
+    Martin in short: highly qualified, responsible and reliable, an intuitive
+    team player with a healthy sense of humour. It has been a pleasure to
+    collaborate over the last two years on reducing embodied emissions in
+    construction. Curious to see the outcomes of your research and would be
+    happy to work together in the future. Thanks Martin!
+  id: rutger-broer
+  name: "Rutger Broer"
+  role: "Project Manager, Industrial Transformation and Lead Markets"
+  org: "Agora Industry"
+  context: "LinkedIn recommendation, August 2024"
+
+# Confirmed complete; the only thing missing in the original was the full
+# stop at the end. The dash before "and we quickly developed" is an em dash
+# here, typed as a hyphen in the original — the only other change.
+- quote: >-
+    I had the pleasure of working with Martin on a project with the ambitious
+    aim of establishing embodied carbon benchmarks for buildings in Europe and
+    setting a pathway for reduction of carbon in the built environment.
+    Although we worked together remotely, Martin was a constant source of
+    insight, professionalism, and enthusiasm — and we quickly developed a close
+    collaboration. His leadership and deep understanding of the field was
+    instrumental to the success of our work, and he has an exceptional ability
+    to make complex concepts tangible.
+  id: andreas-sorensen
+  name: "Andreas Sørensen"
+  role: "Senior Digital Lead in Sustainability"
+  org: "Ramboll"
+  context: "LinkedIn recommendation, October 2024"

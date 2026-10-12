@@ -1,0 +1,134 @@
+# ---------------------------------------------------------------------------
+# Legal disclosure (Impressum / Offenlegung).
+#
+# Filled from RISE_Company-Information.docx, version January 2026.
+#
+# Austrian law, three overlapping sets of duties:
+#   ECG §5        — provider identity and contact, for any commercial website
+#   UGB §14       — registered Firma, legal form, seat, Firmenbuch no. + court.
+#                   RISE is an e.U., so this applies in full, and because the
+#                   registered Firma differs from the owner's civil name, the
+#                   owner has to be named too.
+#   MedienG §25   — media owner, business purpose, seat; plus editorial
+#                   direction ("Blattlinie") once a site carries content beyond
+#                   presenting the business itself. News and commentary count,
+#                   so this site is treated as the larger case.
+#
+# Bank details are deliberately NOT here. They belong on invoices, not on a
+# public page — a published IBAN is a standing invitation to direct-debit
+# fraud and invoice-redirection scams.
+#
+# The page renders only the fields that are filled in, so a blank line is
+# omitted rather than printed as an empty label.
+# ---------------------------------------------------------------------------
+
+# --- who ------------------------------------------------------------------
+
+# Medieninhaber und Diensteanbieter: the Firma exactly as registered.
+name: "RISE Institute for Regenerative Spatial Systems Science e.U."
+
+legal_form: "Eingetragenes Einzelunternehmen"
+
+# Required because the registered Firma is not the owner's civil name.
+owner: "Dr. Martin Röck"
+
+# Shown under the owner's name. Left blank because the heading above
+# already says "Inhaber"; fill it if a different role should appear.
+owner_role: ""
+
+# Only if a trading name differs from the registered Firma. It does not —
+# "RISE" is simply the short form — so this stays blank.
+trading_as: ""
+
+# --- where ----------------------------------------------------------------
+#
+# Per the company information document this is the registered address, which
+# makes it the right address for both UGB §14 (Sitz) and ECG §5 (an address
+# where documents can be served).
+
+address_lines:
+  - "Climate Lab"
+  - "Spittelauer Lände 45"
+  - "1090 Wien"
+  - "Austria"
+
+# Seat, stated separately only when it differs from the address above.
+seat: ""
+
+# --- contact --------------------------------------------------------------
+#
+# ECG §5 needs more than email alone: the case law asks for a second,
+# direct channel. The private mobile number has been removed at your
+# request and LinkedIn stands in as the second channel.
+#
+# Be aware this is the weaker option. A phone number or a contact form on
+# this site is unambiguous; a LinkedIn page is a third-party platform that
+# a visitor may need an account to use, so whether it counts as "direct"
+# has not been tested. Two ways to put this beyond doubt whenever you want:
+# a business number separate from your private one (a VoIP line costs
+# little), or a contact form here — say the word and I will add one.
+
+email: "office@riselabs.at"
+phone: ""
+linkedin_url: "https://www.linkedin.com/company/rise-regenerate/"
+contact_form_url: ""
+
+# --- registration and tax -------------------------------------------------
+
+firmenbuch_no: "FN 631958 a"
+firmenbuch_court: "Handelsgericht Wien"
+uid: "ATU76939878"
+zvr: ""              # not applicable, RISE is not a Verein
+
+# --- trade law ------------------------------------------------------------
+#
+# STILL TO CONFIRM — the one thing the company document does not settle.
+#
+# Being registered as an e.U. does not by itself mean the activity is a
+# Gewerbe. Pure research can fall outside the Gewerbeordnung as "Neue
+# Selbständige". But the company document describes RISE as a "research and
+# consulting firm", and paid consulting is normally a Gewerbe — usually
+# Unternehmensberatung. If it is, then three things are mandatory here:
+# the Gewerbe, the supervisory authority, and WKO membership (which follows
+# automatically from holding a Gewerbe).
+#
+# One question to your accountant or the WKO. If the answer is yes,
+# uncomment the three lines below; the authority is fixed by the 1090
+# address. If the answer is no, leave them blank — stating them would be
+# wrong — and either way set trade_law_checked to true to clear the notice.
+
+# Set true on your assessment that the work does not fall under the
+# Gewerbeordnung — research rather than a regulated trade. Provisional
+# until your accountant confirms it. If the answer comes back the other
+# way, uncomment the three lines below and the section reappears.
+trade_law_checked: true
+
+gewerbe: ""
+# gewerbe: "Unternehmensberatung einschließlich Unternehmensorganisation"
+gewerbebehoerde: ""
+# gewerbebehoerde: "Magistratisches Bezirksamt für den 9. Bezirk"
+wko: ""
+# wko: "Wirtschaftskammer Wien"
+berufsrecht_url: "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10007517"
+
+# --- media law (MedienG §25) ----------------------------------------------
+
+# Unternehmensgegenstand — business purpose. Drawn from the company
+# description so the two documents say the same thing.
+purpose: >-
+  Forschung und Beratung zur Transformation hin zu regenerativen Systemen
+  räumlicher Produktion. Quantitative Lebenszyklus-Nachhaltigkeitsbewertung
+  (LCSA) von Gebäuden und Infrastruktur sowie Beratung von Politik und
+  Industrie auf dieser Grundlage.
+
+# Blattlinie — basic editorial direction, required once a site publishes
+# beyond self-presentation.
+blattlinie: >-
+  Information über die Forschungstätigkeit, Projekte und Publikationen von
+  RISE sowie über wissenschaftliche und politische Entwicklungen zu
+  Klimaschutz, Ressourcennutzung und Transformation im Gebäudesektor.
+
+# Beteiligungsverhältnisse — ownership.
+ownership: >-
+  Alleininhaber ist Dr. Martin Röck. Es bestehen keine Beteiligungen Dritter
+  und keine Treuhandverhältnisse.

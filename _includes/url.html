@@ -1,0 +1,6 @@
+{%- comment -%}
+  Outputs a URL, leaving absolute ones alone. Jekyll's relative_url would
+  turn "https://example.org/x" into "/https://example.org/x".
+  Usage: {% include url.html u=some.file %}
+{%- endcomment -%}
+{%- if include.u contains "://" -%}{{ include.u }}{%- else -%}{{ include.u | relative_url }}{%- endif -%}

@@ -1,0 +1,58 @@
+---
+layout: default
+---
+<div class="page-head wrap narrow">
+  <p class="post-date">
+    <span class="post-type">{{ page.kind }}</span> &nbsp;·&nbsp; {{ page.year }}
+  </p>
+  <h1>{{ page.title }}</h1>
+  <p class="lede">{{ page.authors }}</p>
+</div>
+
+<main id="content">
+<section class="band">
+<div class="wrap narrow post-body">
+
+  <dl class="facts">
+    {%- if page.journal %}<dt>Published in</dt><dd>{{ page.journal }}</dd>{% endif -%}
+    <dt>Year</dt><dd>{{ page.year }}</dd>
+    {%- if page.doi %}<dt>DOI</dt><dd><a href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a></dd>{% endif -%}
+    {%- if page.url_external %}<dt>Link</dt><dd><a href="{{ page.url_external }}">{{ page.url_external }}</a></dd>{% endif -%}
+    {%- if page.note %}<dt>Note</dt><dd>{{ page.note }}</dd>{% endif -%}
+  </dl>
+
+  {{ content }}
+
+  {%- if page.outputs.size > 0 %}
+  <h2 id="downloads">Downloads</h2>
+  {%- for out in page.outputs -%}
+    {%- if out.embed %}{% include pdf.html file=out.file title=out.title note=out.note %}
+    {%- else %}<p class="doc-line"><a href="{% include url.html u=out.file %}">{{ out.title }}</a>
+      {%- if out.note %} <span class="muted">— {{ out.note }}</span>{% endif -%}</p>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- endif %}
+
+  {%- assign authors = site.people | where_exp: "x", "page.people contains x.slug" -%}
+  {%- if authors.size > 0 %}
+  <h2>RISE authors</h2>
+  {% include peoplelist.html people=authors %}
+  {%- endif %}
+
+  {%- assign projs = site.projects | where_exp: "x", "page.projects contains x.slug" -%}
+  {%- if projs.size > 0 %}
+  <h2>{% if projs.size > 1 %}From these projects{% else %}From the project{% endif %}</h2>
+  {% include projectlist.html projects=projs %}
+  {%- endif %}
+
+  {%- if page.partners.size > 0 %}
+  <h2>Affiliations</h2>
+  {% include partners.html keys=page.partners %}
+  {%- endif %}
+
+  <p class="muted small" style="margin-top:2.5rem;">
+    <a href="{{ '/publications/' | relative_url }}">← All publications</a>
+  </p>
+</div>
+</section>
+</main>

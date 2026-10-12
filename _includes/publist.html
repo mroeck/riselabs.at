@@ -1,0 +1,22 @@
+{%- comment -%}
+  A list of publications, newest first. Expects: include.pubs
+  include.sections="true" breaks them into kind sections.
+{%- endcomment -%}
+{%- assign pubs = include.pubs | sort: "year" | reverse -%}
+{%- if include.sections == "true" -%}
+  {%- assign kinds = "article,book,report,data" | split: "," -%}
+  {%- assign names = "Journal articles,Books and chapters,Reports,Data and tools" | split: "," -%}
+  {%- for k in kinds -%}
+    {%- assign group = pubs | where: "kind", k -%}
+    {%- if group.size > 0 %}
+<h2>{{ names[forloop.index0] }}</h2>
+<ul class="pubs">
+  {%- for pub in group %}{% include pubitem.html pub=pub %}{% endfor -%}
+</ul>
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+<ul class="pubs">
+  {%- for pub in pubs %}{% include pubitem.html pub=pub %}{% endfor -%}
+</ul>
+{%- endif -%}

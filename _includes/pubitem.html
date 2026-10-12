@@ -1,0 +1,20 @@
+{%- comment -%}
+  One publication, formatted as a citation. Expects: include.pub
+  Any RISE person's `cite` name is underlined automatically.
+{%- endcomment -%}
+{%- assign p = include.pub -%}
+{%- assign a = p.authors -%}
+{%- for person in site.people -%}
+  {%- if person.cite -%}
+    {%- capture wrapped %}<span class="self">{{ person.cite }}</span>{% endcapture -%}
+    {%- assign a = a | replace: person.cite, wrapped -%}
+  {%- endif -%}
+{%- endfor -%}
+<li>
+  {{ a }}.
+  <a class="pub-title" href="{{ p.url | relative_url }}">{{ p.title }}</a>.
+  {%- if p.journal %} <span class="venue">{{ p.journal }}</span>,{% endif %}
+  {{ p.year }}.
+  {%- if p.doi %} <a class="doi" href="https://doi.org/{{ p.doi }}">https://doi.org/{{ p.doi }}</a>{% endif -%}
+  {%- if p.note %} <em class="muted">— {{ p.note }}</em>{% endif -%}
+</li>

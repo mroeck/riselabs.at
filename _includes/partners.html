@@ -1,0 +1,25 @@
+{%- comment -%}
+  Partner tiles: logo on white, then the name (logos are not always legible
+  as names), then city and country in a smaller second line.
+  Expects: include.keys (filenames in _partners/)
+{%- endcomment -%}
+<ul class="partners">
+  {%- for key in include.keys -%}
+    {%- assign pa = site.partners | where: "slug", key | first -%}
+    <li>
+      {%- if pa -%}
+        <a href="{{ pa.url | relative_url }}">
+          {%- if pa.logo -%}
+          <span class="pa-logo"><img src="{{ '/assets/img/partners/' | append: pa.logo | relative_url }}" alt="" loading="lazy"></span>
+          {%- endif -%}
+          <span class="pa-name">{{ pa.name }}</span>
+          {%- if pa.city or pa.country -%}
+          <span class="pa-where">{{ pa.city }}{% if pa.city and pa.country %}, {% endif %}{{ pa.country }}</span>
+          {%- endif -%}
+        </a>
+      {%- else -%}
+        <span class="unknown">{{ key }}</span>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ul>

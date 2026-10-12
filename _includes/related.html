@@ -1,0 +1,56 @@
+{%- comment -%}
+  Related content in tabs, in the order: All, News & events, Projects,
+  Publications, People. Without JavaScript every panel shows, stacked.
+
+    include.posts / include.projects / include.pubs / include.people
+    include.posts_title etc. override the headings
+{%- endcomment -%}
+{%- assign has_posts  = include.posts.size    | default: 0 -%}
+{%- assign has_projs  = include.projects.size | default: 0 -%}
+{%- assign has_pubs   = include.pubs.size     | default: 0 -%}
+{%- assign has_people = include.people.size   | default: 0 -%}
+{%- assign total = has_posts | plus: has_projs | plus: has_pubs | plus: has_people -%}
+
+{%- if total > 0 %}
+<div class="tabs" data-tabs>
+  <div class="tabbar" data-tabbar role="tablist" aria-label="Related content">
+    <button type="button" role="tab" data-for="all" aria-selected="true">All</button>
+    {%- if has_posts > 0 %}<button type="button" role="tab" data-for="news">News &amp; events <span>{{ has_posts }}</span></button>{% endif -%}
+    {%- if has_projs > 0 %}<button type="button" role="tab" data-for="projects">Projects <span>{{ has_projs }}</span></button>{% endif -%}
+    {%- if has_pubs > 0 %}<button type="button" role="tab" data-for="publications">Publications <span>{{ has_pubs }}</span></button>{% endif -%}
+    {%- if has_people > 0 %}<button type="button" role="tab" data-for="people">People <span>{{ has_people }}</span></button>{% endif -%}
+  </div>
+
+  {%- if has_posts > 0 %}
+  <section data-panel="news">
+    <h2>{{ include.posts_title | default: "News &amp; events" }}</h2>
+    {% include newslist.html posts=include.posts %}
+    <p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
+  </section>
+  {%- endif %}
+
+  {%- if has_projs > 0 %}
+  <section data-panel="projects">
+    <h2>{{ include.projects_title | default: "Projects" }}</h2>
+    {% include projectlist.html projects=include.projects %}
+    <p class="more"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
+  </section>
+  {%- endif %}
+
+  {%- if has_pubs > 0 %}
+  <section data-panel="publications">
+    <h2>{{ include.pubs_title | default: "Publications" }}</h2>
+    {% include publist.html pubs=include.pubs %}
+    <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
+  </section>
+  {%- endif %}
+
+  {%- if has_people > 0 %}
+  <section data-panel="people">
+    <h2>{{ include.people_title | default: "People" }}</h2>
+    {% include peoplelist.html people=include.people %}
+    {%- if site.team_page %}<p class="more"><a href="{{ '/team/' | relative_url }}">The whole team →</a></p>{% endif %}
+  </section>
+  {%- endif %}
+</div>
+{%- endif -%}

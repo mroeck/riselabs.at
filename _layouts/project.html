@@ -1,0 +1,107 @@
+---
+layout: default
+---
+<div class="page-head wrap narrow">
+  <p class="post-date">
+    <span class="post-type">{{ page.status }}</span> &nbsp;·&nbsp; {{ page.years }}
+  </p>
+  <h1>{{ page.title }}</h1>
+  {%- if page.summary %}<p class="lede">{{ page.summary }}.</p>{% endif -%}
+
+  {%- if page.tags.size > 0 %}
+  <p class="tags">
+    {%- for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor -%}
+  </p>
+  {%- endif -%}
+</div>
+
+<main id="content">
+
+{%- if page.hero %}
+<section class="band" style="padding-top:0;border-top:0;">
+  <div class="wrap">
+    {% include figure.html file=page.hero caption=page.hero_caption wide="true" %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="band">
+<div class="wrap narrow post-body">
+
+  {%- if page.outputs.size > 0 or page.figures.size > 0 %}
+  <p class="jump">
+    {%- if page.outputs.size > 0 %}<a href="#outputs">Outputs</a>{% endif -%}
+    {%- if page.outputs.size > 0 and page.figures.size > 0 %} &nbsp;·&nbsp; {% endif -%}
+    {%- if page.figures.size > 0 %}<a href="#figures">Figures</a>{% endif -%}
+  </p>
+  {%- endif %}
+
+  <dl class="facts">
+    {%- if page.project_title %}<dt>Project title</dt><dd>{{ page.project_title }}</dd>{% endif -%}
+    {%- if page.years %}<dt>Duration</dt><dd>{{ page.years }}</dd>{% endif -%}
+    {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
+    {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
+    {%- if page.clients.size > 0 -%}
+    <dt>Client</dt><dd>{% include partnernames.html keys=page.clients %}</dd>
+    {%- endif -%}
+    {%- if page.partners.size > 0 or page.partners_note -%}
+    <dt>Collaborators</dt>
+    <dd>
+      {%- if page.partners.size > 0 %}{% include partnernames.html keys=page.partners %}{% endif -%}
+      {%- if page.partners_note %}{% if page.partners.size > 0 %}, {% endif %}{{ page.partners_note }}{% endif -%}
+    </dd>
+    {%- endif -%}
+    {%- if page.link %}<dt>Website</dt><dd><a href="{{ page.link }}">{{ page.link }}</a></dd>{% endif -%}
+  </dl>
+
+  {{ content }}
+
+  {%- if page.outputs.size > 0 %}
+  <h2 id="outputs">Outputs</h2>
+  {% include deliverables.html items=page.outputs %}
+  {%- endif %}
+
+  {%- if page.figures.size > 0 %}
+  <h2 id="figures">Figures</h2>
+  {%- for f in page.figures -%}
+    {% include figure.html file=f.file number=f.number caption=f.caption source=f.source %}
+  {%- endfor -%}
+  {%- endif %}
+
+  {%- assign team = site.people | where_exp: "x", "page.people contains x.slug" -%}
+  {%- if team.size > 0 %}
+  <h2>Our experts on this project</h2>
+  {% include peoplelist.html people=team %}
+  {%- endif %}
+
+  {%- assign pubs = site.publications | where_exp: "x", "x.projects contains page.slug" | sort: "year" | reverse -%}
+  {%- if pubs.size > 0 %}
+  <h2>Publications on this project</h2>
+  {% include publist.html pubs=pubs %}
+  <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
+  {%- endif %}
+
+  {%- if page.clients.size > 0 %}
+  <h2>{% if page.clients.size > 1 %}Clients{% else %}Client{% endif %}</h2>
+  {% include partners.html keys=page.clients %}
+  {%- endif %}
+
+  {%- if page.partners.size > 0 %}
+  <h2>Collaborators</h2>
+  {% include partners.html keys=page.partners %}
+  {%- if page.partners_note %}<p class="muted small">{{ page.partners_note }}</p>{% endif %}
+  <p class="more"><a href="{{ '/partners/' | relative_url }}">All partners →</a></p>
+  {%- endif %}
+
+  {%- assign updates = site.posts | where_exp: "x", "x.projects contains page.slug" -%}
+  {%- if updates.size > 0 %}
+  <h2>News &amp; events</h2>
+  {% include newslist.html posts=updates %}
+  {% endif -%}
+
+  <p class="muted small" style="margin-top:2.5rem;">
+    <a href="{{ '/projects/' | relative_url }}">← All projects</a>
+  </p>
+</div>
+</section>
+</main>

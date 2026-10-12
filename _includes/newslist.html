@@ -1,0 +1,30 @@
+{%- comment -%}
+  Renders a list of news items.
+  include.posts   the posts to show
+  include.years   "true" to break the list by year (used on the archive)
+
+  Featured posts sort to the top. Nothing here needs editing to add news —
+  add a file to _posts/ instead.
+{%- endcomment -%}
+{%- assign items = include.posts -%}
+<ul class="posts">
+  {%- assign current_year = "" -%}
+  {%- for post in items -%}
+    {%- if include.years == "true" -%}
+      {%- assign y = post.date | date: "%Y" -%}
+      {%- if y != current_year -%}
+        {%- assign current_year = y -%}
+        <li class="year-break"><span>{{ y }}</span></li>
+      {%- endif -%}
+    {%- endif -%}
+  <li>
+    <p class="meta">
+      {%- if post.type %}<span class="type">{{ post.type }}</span>{% endif -%}
+      <span class="date">{{ post.date | date: "%d %B %Y" }}</span>
+      {%- if post.featured %}<span class="pin">Featured</span>{% endif -%}
+    </p>
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    {%- if post.summary %}<p class="sum">{{ post.summary }}</p>{% endif -%}
+  </li>
+  {%- endfor -%}
+</ul>

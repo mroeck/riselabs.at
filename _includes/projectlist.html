@@ -1,0 +1,14 @@
+{%- comment -%}
+  Compact project list. Expects: include.projects
+{%- endcomment -%}
+<ul class="projects compact">
+  {%- for pr in include.projects -%}
+  <li>
+    <p class="meta"><span class="date">{{ pr.years }}</span>
+      {%- if pr.funder %}<span class="funder">{{ pr.funder }}</span>{% endif -%}
+    </p>
+    <h3><a href="{{ pr.url | relative_url }}">{{ pr.title }}</a></h3>
+    {%- if pr.summary %}<p class="sum">{{ pr.summary }}.</p>{% endif -%}
+  </li>
+  {%- endfor -%}
+</ul>

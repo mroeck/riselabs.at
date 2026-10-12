@@ -1,0 +1,29 @@
+{%- comment -%}
+  An embedded PDF: readable in the page, and downloadable.
+
+    include.file    path or URL to the PDF
+    include.title   what it is called
+    include.note    optional — "95 pages, 3 MB"
+    include.height  optional — viewer height, default 42rem
+
+  Inline PDF viewing is unreliable on phones, so the download link is always
+  shown and the viewer carries its own fallback for browsers that refuse.
+{%- endcomment -%}
+<figure class="doc">
+  <div class="doc-bar">
+    <div>
+      <p class="doc-title">{{ include.title }}</p>
+      {%- if include.note %}<p class="doc-note">{{ include.note }}</p>{% endif -%}
+    </div>
+    <a class="doc-dl" href="{% include url.html u=include.file %}" download>Download PDF</a>
+  </div>
+
+  <div class="doc-view" style="height: {{ include.height | default: '42rem' }};">
+    <object data="{% include url.html u=include.file %}" type="application/pdf">
+      <div class="doc-fallback">
+        <p>Your browser cannot display the PDF here.</p>
+        <p><a href="{% include url.html u=include.file %}">Open {{ include.title }}</a></p>
+      </div>
+    </object>
+  </div>
+</figure>

@@ -1,0 +1,60 @@
+{%- comment -%}
+  How much we work with one partner, as three counts.
+
+    include.pa    a partner document
+
+  Projects  — where they are named as client or as collaborator, counted once
+              even if they are both
+  Papers    — publications listing them among the co-author affiliations
+  News      — posts that name them directly, plus posts attached to a project
+              they are on. Posts do not usually carry a `partners` field, so
+              without the indirect route this column would read zero for
+              everyone, which tells the reader nothing.
+
+  A zero renders as a dash: an empty cell reads as missing data, a dash reads
+  as none, and those are different claims.
+{%- endcomment -%}
+
+{%- assign slug = include.pa.slug -%}
+
+{%- assign as_client  = site.projects | where_exp: "p", "p.clients contains slug" -%}
+{%- assign as_partner = site.projects | where_exp: "p", "p.partners contains slug" -%}
+
+{%- comment -%} counted once if they are client and collaborator both {%- endcomment -%}
+{%- assign n_projects = 0 -%}
+{%- assign their_projects = "" | split: "," -%}
+{%- for p in site.projects -%}
+  {%- if p.clients contains slug or p.partners contains slug -%}
+    {%- assign n_projects = n_projects | plus: 1 -%}
+    {%- assign one = p.slug | split: "," -%}
+    {%- assign their_projects = their_projects | concat: one -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign pubs = site.publications | where_exp: "p", "p.partners contains slug" -%}
+{%- assign n_pubs = pubs.size -%}
+
+{%- assign n_news = 0 -%}
+{%- for post in site.posts -%}
+  {%- assign counted = false -%}
+  {%- if post.partners contains slug -%}
+    {%- assign counted = true -%}
+  {%- else -%}
+    {%- for ps in post.projects -%}
+      {%- if their_projects contains ps -%}{%- assign counted = true -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if counted -%}{%- assign n_news = n_news | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+
+<span class="tally">
+  <span class="tally-n{% if n_projects == 0 %} is-zero{% endif %}"
+        title="{{ n_projects }} project{% unless n_projects == 1 %}s{% endunless %}">
+    {% if n_projects == 0 %}–{% else %}{{ n_projects }}{% endif %}</span>
+  <span class="tally-n{% if n_pubs == 0 %} is-zero{% endif %}"
+        title="{{ n_pubs }} publication{% unless n_pubs == 1 %}s{% endunless %}">
+    {% if n_pubs == 0 %}–{% else %}{{ n_pubs }}{% endif %}</span>
+  <span class="tally-n{% if n_news == 0 %} is-zero{% endif %}"
+        title="{{ n_news }} news item{% unless n_news == 1 %}s{% endunless %}">
+    {% if n_news == 0 %}–{% else %}{{ n_news }}{% endif %}</span>
+</span>

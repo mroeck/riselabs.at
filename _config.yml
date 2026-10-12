@@ -1,0 +1,86 @@
+title: RISE
+tagline: towards regenerative spatial systems
+description: >-
+  RISE is a research institute in Vienna working on how the built environment
+  can operate within planetary boundaries — and what has to change to get there.
+
+url: "https://riselabs.at"
+baseurl: ""
+lang: en
+
+email: office@riselabs.at
+linkedin: "https://www.linkedin.com/company/rise-regenerate/"
+scholar: "https://scholar.google.com/citations?user=v0Pwb1cAAAAJ&hl=de"
+
+# Underlined automatically wherever it appears in a publication line.
+author_cite: "Röck M"
+
+# Setting this makes the "Datenschutz" link appear in the footer and the
+# data-protection section appear at the foot of the Impressum.
+privacy_url: "/datenschutz/"
+
+# The team page is hidden for now: the team is still forming and the page was
+# thin. Nothing has been deleted. To bring it back: set this to true, remove
+# `published: false` from team.md, put the Team entry back in `nav` below, and
+# remove `published: false` from the people in _people/ who are ready.
+team_page: false
+
+# Newsletter. Two different URLs, doing two different jobs:
+#   newsletter_url    = the public Buttondown page — renders a button
+#   newsletter_action = the API embed endpoint — renders a form on the page
+# Set either or both. With both, the form shows and the page link sits under
+# it. Comment both out and the block falls back to an email link.
+# newsletter_url: "https://buttondown.com/riseregenerate"
+newsletter_action: "https://buttondown.com/api/emails/embed-subscribe/riseregenerate"
+
+nav:
+  - title: Home
+    url: /
+  - title: Approach
+    url: /approach/
+  - title: Services
+    url: /services/
+  - title: Projects
+    url: /projects/
+  - title: Publications
+    url: /publications/
+  # - title: Team        # hidden; see team_page above
+  #   url: /team/
+  - title: Partners
+    url: /partners/
+  - title: News
+    url: /news/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+permalink: /news/:year/:title/
+
+# Each file in _projects/ becomes its own page at /projects/<filename>/
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+  people:
+    output: true
+    permalink: /team/:name/
+  publications:
+    output: true
+    permalink: /publications/:name/
+  partners:
+    output: true
+    permalink: /partners/:name/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - docs          # the guidance documents, not part of the public site
+  - _preview      # local preview output, never published

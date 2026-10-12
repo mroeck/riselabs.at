@@ -1,0 +1,75 @@
+{%- comment -%}
+  Testimonials from _data/testimonials.yml.
+
+    include.heading   section heading, default "What people say"
+    include.only      optional comma-separated list of ids. Shows just those,
+                      in the order written here rather than the order of the
+                      data file. Omit it to show all of them.
+
+  Every entry in the data file needs an `id`, because that is what this
+  selects on.
+
+  Renders nothing when there is nothing to show, so the section appears only
+  once the data file has something real in it — and an id that matches
+  nothing is skipped rather than printed as an empty card.
+
+  Note for future edits: do not try to build an array of selected entries
+  with `concat`. A Liquid hash cannot be wrapped into a one-item array
+  (`hit | split: ""` silently turns it into a list of characters), which
+  rendered 2,199 empty quote cards on the home page. Looping over the ids
+  and looking each one up is the way that works.
+{%- endcomment -%}
+
+{%- assign all = site.data.testimonials -%}
+{%- if all and all.size > 0 -%}
+
+  {%- if include.only and include.only != "" -%}
+    {%- assign keys = include.only | split: "," -%}
+  {%- else -%}
+    {%- assign keys = all | map: "id" -%}
+  {%- endif -%}
+
+  {%- comment -%} count first, so an all-misses list renders no section {%- endcomment -%}
+  {%- assign found = 0 -%}
+  {%- for key in keys -%}
+    {%- assign k = key | strip -%}
+    {%- assign hit = all | where: "id", k | first -%}
+    {%- if hit -%}{%- assign found = found | plus: 1 -%}{%- endif -%}
+  {%- endfor -%}
+
+  {%- if found > 0 %}
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">{{ include.heading | default: "What people say" }}</p>
+    <div class="quotes">
+      {%- for key in keys -%}
+      {%- assign k = key | strip -%}
+      {%- assign q = all | where: "id", k | first -%}
+      {%- if q %}
+      <figure class="quote">
+        {%- comment -%}
+          Paragraph tags are kept, not stripped: several of these quotes run to
+          two paragraphs, and removing <p> ran them together into one block.
+          The quotation marks are attached to the first and last paragraph in
+          CSS instead of to the blockquote itself.
+        {%- endcomment -%}
+        <blockquote>{{ q.quote | markdownify }}</blockquote>
+        <figcaption>
+          {%- if q.url and q.url != "" -%}
+          <a href="{% include url.html u=q.url %}">{{ q.name }}</a>
+          {%- else -%}
+          {{ q.name }}
+          {%- endif -%}
+          {%- if q.role and q.role != "" %}<br><span class="muted">{{ q.role }}{% if q.org and q.org != "" %}, {{ q.org }}{% endif %}</span>
+          {%- elsif q.org and q.org != "" %}<br><span class="muted">{{ q.org }}</span>{% endif %}
+          {%- if q.context and q.context != "" %}<br><span class="muted small">{{ q.context }}</span>{% endif %}
+        </figcaption>
+      </figure>
+      {%- endif -%}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+  {%- endif -%}
+
+{%- endif -%}

@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<div class="page-head wrap narrow">
+  <div class="person-head">
+    {%- if page.portrait -%}
+    <img class="portrait" src="{{ page.portrait | relative_url }}" alt="{{ page.name }}">
+    {%- endif -%}
+    <div>
+      <h1>{{ page.name }}</h1>
+      {%- if page.role %}<p class="post-type">{{ page.role }}{% if page.org %} · {{ page.org }}{% endif %}</p>{% endif -%}
+      {%- if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif -%}
+      <p class="person-links">
+        {%- if page.email %}<a href="mailto:{{ page.email }}">{{ page.email }}</a>{% endif -%}
+        {%- for l in page.links %} <a href="{{ l.url }}">{{ l.title }}</a>{% endfor -%}
+      </p>
+    </div>
+  </div>
+</div>
+
+<main id="content">
+<section class="band">
+<div class="wrap narrow post-body">
+
+  {{ content }}
+
+  {%- assign mine = site.projects | where_exp: "p", "p.people contains page.slug" -%}
+  {%- assign pubs = site.publications | where_exp: "p", "p.people contains page.slug" | sort: "year" | reverse -%}
+  {%- assign news = site.posts | where_exp: "p", "p.people contains page.slug" -%}
+
+  {% include related.html projects=mine pubs=pubs posts=news
+     projects_title="Projects" pubs_title="Publications" %}
+
+  {%- if site.team_page %}
+  <p class="muted small" style="margin-top:2.5rem;">
+    <a href="{{ '/team/' | relative_url }}">← The team</a>
+  </p>
+  {%- endif %}
+</div>
+</section>
+</main>

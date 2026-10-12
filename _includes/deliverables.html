@@ -1,0 +1,26 @@
+{%- comment -%}
+  Project outputs as cards: thumbnail, title, note, and a link that opens in
+  a new tab. Files normally live with their publisher — only the thumbnail is
+  hosted here.
+    include.items  a list of {title, url, thumb, note}
+{%- endcomment -%}
+<ul class="deliverables">
+  {%- for d in include.items -%}
+  <li>
+    <a href="{% include url.html u=d.url %}" target="_blank" rel="noopener">
+      <span class="dl-thumb">
+        {%- if d.thumb -%}
+        <img src="{{ d.thumb | relative_url }}" alt="" loading="lazy">
+        {%- else -%}
+        <span class="dl-noimg" aria-hidden="true">PDF</span>
+        {%- endif -%}
+      </span>
+      <span class="dl-txt">
+        <span class="dl-title">{{ d.title }}</span>
+        {%- if d.note %}<span class="dl-note">{{ d.note }}</span>{% endif -%}
+        <span class="dl-open">Open ↗</span>
+      </span>
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>
