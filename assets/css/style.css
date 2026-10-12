@@ -1,0 +1,1303 @@
+/* RISE — interim site
+   Palette and type follow the RISE CI Manual v1.2:
+   navy #001730, magenta #f92d84, purple #751094 (gradient only), pink #ffe1ee.
+   Circular is licensed, so Figtree stands in as the closest open match. */
+
+/* ---------- Figtree, self-hosted ----------
+   Served from this site rather than from Google Fonts. A Google Fonts
+   stylesheet makes every visitor's browser contact Google and discloses
+   their IP address, which is the most common GDPR complaint against small
+   European sites; self-hosting removes the transfer and one DNS round trip.
+
+   Figtree is licensed under the SIL Open Font License 1.1 — see
+   assets/fonts/LICENSE.txt. Only the five styles the site actually uses are
+   included. If you start using another weight, add its files from the
+   @fontsource/figtree package and a block here, or it will fall back to the
+   system sans-serif. */
+
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-ext-600-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-ext-700-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-ext-500-italic.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/figtree-latin-500-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* ---------- colour tokens ----------
+
+   Two layers, deliberately:
+
+   1. BRAND CONSTANTS — the CI colours themselves. These never change,
+      in any theme. Anything that must be the RISE magenta or the RISE
+      navy whatever the page is doing uses these.
+
+   2. SEMANTIC TOKENS — what a colour is *for*: page background, body
+      text, the accent, a rule. These are the ones the theme swaps.
+
+   A light theme therefore redefines eight values and nothing else. The
+   next stage of CI work can repoint the semantic layer at a new palette
+   without touching a single rule in this file.
+
+   Contrast was checked, not eyeballed. Every text pairing below meets
+   WCAG AA (4.5:1 for body text):
+
+     dark    white on navy 18.0   magenta on navy 4.9   muted on navy 8.8
+     light   navy on white 18.0   accent on white 5.6   muted on white 6.3
+                                  accent on blush 4.6   muted on blush 5.2
+*/
+
+:root {
+  /* 1. brand constants, per the RISE CI Manual v1.2 */
+  --navy:    #001730;
+  --magenta: #f92d84;
+  --purple:  #751094;   /* gradient only, per the manual */
+  --blush:   #ffe1ee;
+
+  /* 2. semantic tokens — dark theme, the default */
+  --bg:          #001730;   /* = navy */
+  --surface:     #0a2347;   /* raised panels */
+  --ink:         #ffffff;
+  --ink-soft:    #a9b6c6;
+  --accent:      #f92d84;   /* = magenta; legible on navy at 4.9:1 */
+  --accent-hover:#ff6ba6;
+  --rule:        rgba(255, 255, 255, 0.13);
+  --surface-2:   rgba(255, 255, 255, 0.03);   /* row hover, code */
+  --field-bg:    #0a2347;   /* text inputs; see the light theme for why */
+  --tile-edge:   transparent;   /* white logo tiles need no edge on navy */
+
+  /* buttons: white on magenta is only 3.7:1, which fails AA, so the
+     dark theme sets navy on magenta (4.9:1) instead */
+  --btn-bg:      #f92d84;
+  --btn-ink:     #001730;
+  --btn-bg-hover:#ff6ba6;
+
+  --measure: 40rem;
+  --wide:    64rem;
+
+  --font: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, sans-serif;
+}
+
+/* Light theme. Only the semantic layer moves.
+
+   The accent is the CI magenta shifted along the magenta-to-purple axis
+   until it is legible as text on white (#f92d84 manages only 3.7:1).
+   It is a blend of two CI colours, so it stays in the family rather than
+   introducing a sixth colour from nowhere. The pure magenta is still used
+   for fills and rules, where contrast rules for text do not apply.
+
+   Blush finally earns its place here as the raised-panel colour — the CI
+   manual reserves it for light use. */
+
+:root[data-theme="light"] {
+  --bg:          #ffffff;
+  --surface:     #ffe1ee;   /* = blush */
+  --ink:         #001730;   /* = navy */
+  --ink-soft:    #52616f;
+  --accent:      #be208b;   /* magenta 55% / purple 45% */
+  --accent-hover:#9d198f;
+  --rule:        rgba(0, 23, 48, 0.14);
+  --surface-2:   rgba(0, 23, 48, 0.04);
+
+  --btn-bg:      #be208b;
+  --btn-ink:     #ffffff;   /* 5.6:1 */
+  --btn-bg-hover:#9d198f;
+
+  /* A blush-filled input reads as highlighted or errored rather than empty,
+     so fields stay white and are defined by their border instead. */
+  --field-bg:    #ffffff;
+
+  /* Logo tiles and figures are white by design — they are the paper the
+     artwork sits on. On a white page they need an edge or they dissolve. */
+  --tile-edge:   rgba(0, 23, 48, 0.12);
+}
+
+/* The toggle only ever sets data-theme explicitly, so there is no stored
+   preference to apply before first paint and no flash of the wrong theme. */
+
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--wide); margin: 0 auto; padding: 0 1.5rem; }
+.narrow { max-width: var(--measure); }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--bg); padding: .5rem .75rem; z-index: 20; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent-hover); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- header ---------- */
+
+.site-header { padding: 1.6rem 0; }
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.brand img { display: block; height: 30px; width: auto; }
+
+.site-nav ul {
+  list-style: none; display: flex; flex-wrap: wrap;
+  gap: 1.6rem; margin: 0; padding: 0;
+}
+.site-nav li { margin: 0; }
+
+.site-nav a {
+  font-size: .95rem; font-weight: 500;
+  color: var(--ink-soft); text-decoration: none;
+  padding-bottom: 2px; border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* ---------- hero ---------- */
+
+/* full-bleed image bed with the headline over it */
+.hero-full {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  padding: 6rem 0 3.2rem;
+  overflow: hidden;
+
+  /* The band is shaped to the hero photograph rather than to a fixed height,
+     so the frame shows close to whole instead of being re-cropped by the
+     browser. min-height keeps the text room on a narrow screen, where the
+     ratio alone would give a band far too short; max-height stops the hero
+     eating a wide screen and pushing everything below the fold. */
+  /* width must be stated: with aspect-ratio set and min-height winning on a
+     narrow screen, the box otherwise derives its *width* from that height and
+     runs 980px wide inside a 390px phone, scrolling the whole page sideways */
+  width: 100%;
+  aspect-ratio: 2200 / 982;
+  min-height: 30rem;
+  max-height: 78vh;
+}
+
+.hero-media { position: absolute; inset: 0; z-index: -2; background: var(--navy); }
+
+.hero-media img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  /* .42 was tuned for photographs. The trajectory chart is fine detail on a
+     pale slide and disappears at that level, so the bed sits a little
+     brighter and the gradient below does the work of keeping text legible. */
+  opacity: .44;
+  transition: opacity 1.6s ease-in-out;
+}
+.hero-media img.off { opacity: 0; }
+
+/* keeps the text legible over any frame */
+.hero-full::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(to top, rgba(0,23,48,.96) 8%, rgba(0,23,48,.55) 48%, rgba(0,23,48,.72) 100%),
+    radial-gradient(52rem 30rem at 14% 112%, rgba(249,45,132,.34) 0%, rgba(249,45,132,0) 64%);
+}
+
+/* The hero keeps its dark image bed in both themes — a pale wash over the
+   same photographs would leave dark text fighting the imagery. So its text
+   is pinned light here rather than inherited from --ink, which flips. */
+.hero-inner { width: 100%; color: #ffffff; }
+
+/* The headline is the brand magenta in BOTH themes. The bed behind it stays
+   navy either way, where #f92d84 reaches 4.9:1 — comfortably past the 3:1
+   large text needs — so there is no reason for the two themes to differ here,
+   and the asymmetry only existed because light mode asked for colour first.
+
+   The link uses the same brand magenta rather than the pale pink that used to
+   sit here, which was a tint invented for legibility and belonged to no
+   palette. It is underlined, so colour is not the only thing marking it. */
+.hero-full h1 { color: var(--magenta); }
+.hero-full a { color: var(--magenta); }
+.hero-full a:hover { color: #ffffff; }
+
+/* Same reasoning for the pull-quote: it is large text, so the brand magenta
+   clears the 3:1 bar on white, and it gives the light pages a colour moment
+   mid-scroll instead of a long run of navy on white. */
+:root[data-theme="light"] .claim { color: var(--magenta); }
+
+.hero-full h1 {
+  font-size: clamp(1.9rem, 5.6vw, 3.3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin: 0 0 1.2rem;
+  /* the headline carries its own line break; this only stops a long
+     replacement headline from running the full width of the page */
+  max-width: 26ch;
+  text-wrap: pretty;
+}
+
+.hero-full .standfirst {
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  color: #cdd8e4;   /* fixed: the hero bed is dark in both themes */
+  max-width: 54ch;
+  margin: 0;
+}
+
+.hero-cta { margin: 1.4rem 0 0; font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media img { transition: none; }
+}
+
+/* ---------- sections ---------- */
+
+main { padding-bottom: 1rem; }
+
+.band { padding: 3.6rem 0; border-top: 1px solid var(--rule); }
+.band:first-of-type { border-top: 0; }
+
+.page-head { padding: 2.5rem 0 1rem; }
+
+h1, h2, h3 { letter-spacing: -0.022em; }
+
+.page-head h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 600;
+  margin: 0 0 .8rem;
+}
+
+h2 { font-size: 1.3rem; font-weight: 600; margin: 0 0 1rem; }
+h3 { font-size: 1.05rem; font-weight: 600; margin: 2rem 0 .5rem; }
+
+p, li { margin: 0 0 1.05rem; }
+ul, ol { padding-left: 1.25rem; }
+li { margin-bottom: .5rem; }
+strong { font-weight: 600; }
+
+.lede {
+  font-size: 1.18rem;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+
+.muted { color: var(--ink-soft); }
+.small { font-size: .86rem; }
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: .88rem;
+  margin: 0 0 .6rem;
+}
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+/* pull-quote used once per page at most */
+.claim {
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.32;
+  max-width: 28ch;
+  margin: 0;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--accent);
+}
+
+/* ---------- three-column grid (the scaling logic, footer) ---------- */
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+}
+
+@media (max-width: 48rem) { .cols { grid-template-columns: 1fr; gap: 1.8rem; } }
+
+.cols h3 { margin-top: 0; }
+
+.cols .num {
+  display: block;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: .88rem;
+  margin-bottom: .35rem;
+}
+
+/* ---------- entry lists (projects, publications, news) ---------- */
+
+.entrylist ul { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+
+.entrylist li {
+  padding: .9rem 0;
+  border-top: 1px solid var(--rule);
+  font-size: .95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.entrylist li a { overflow-wrap: anywhere; }
+.entrylist h2 { margin: 2.6rem 0 .4rem; }
+
+.entrylist .self,
+.entrylist .org {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+/* ---------- news ---------- */
+
+.posts { list-style: none; padding: 0; margin: 0; }
+
+.posts li {
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* year dividers on the archive */
+.posts li.year-break {
+  border-top: 0;
+  padding: 2rem 0 .2rem;
+}
+.posts li.year-break:first-child { padding-top: 0; }
+.posts li.year-break span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink-soft);
+}
+
+.posts .meta {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  flex-wrap: wrap;
+  margin: 0 0 .3rem;
+  font-size: .82rem;
+  font-weight: 500;
+}
+
+/* what kind of update this is */
+.posts .type {
+  color: var(--accent);
+  text-transform: lowercase;
+}
+
+.posts .date { color: var(--ink-soft); }
+
+.posts .pin {
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: .05rem .4rem;
+  font-size: .74rem;
+}
+
+.posts h3 { margin: 0 0 .3rem; font-size: 1.08rem; }
+.posts h3 a { color: var(--ink); text-decoration: none; }
+.posts h3 a:hover { color: var(--accent); }
+.posts .sum { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+
+.post-body { max-width: var(--measure); }
+.post-date { color: var(--ink-soft); font-size: .9rem; font-weight: 500; }
+.post-type { color: var(--accent); font-weight: 600; font-size: .9rem; }
+
+/* ---------- project list and project pages ---------- */
+
+.projects { list-style: none; padding: 0; margin: 0 0 1rem; }
+
+.projects li {
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.projects .meta {
+  display: flex; gap: .7rem; flex-wrap: wrap;
+  margin: 0 0 .3rem; font-size: .82rem; font-weight: 500;
+}
+.projects .date { color: var(--accent); }
+.projects .funder { color: var(--ink-soft); }
+
+.projects h3 { margin: 0 0 .3rem; font-size: 1.08rem; }
+.projects h3 a { color: var(--ink); text-decoration: none; }
+.projects h3 a:hover { color: var(--accent); }
+
+.projects .sum { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+.projects .role { margin: .3rem 0 0; font-size: .88rem; color: var(--ink-soft); }
+
+/* key facts on a project page */
+.facts {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: .1rem 1.2rem;
+  margin: 0 0 2rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: .93rem;
+}
+.facts dt { color: var(--ink-soft); font-weight: 500; }
+.facts dd { margin: 0; }
+.facts dd a { overflow-wrap: anywhere; }
+
+@media (max-width: 34rem) {
+  .facts { grid-template-columns: 1fr; gap: 0; }
+  .facts dt { margin-top: .7rem; }
+}
+
+/* ---------- tags, jump links ---------- */
+
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 0; }
+
+.tag {
+  font-size: .78rem; font-weight: 500;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: .12rem .5rem;
+}
+
+.jump {
+  font-size: .88rem; font-weight: 500;
+  margin: 0 0 1.4rem;
+}
+
+/* ---------- embedded documents ---------- */
+
+.doc { margin: 1.8rem 0 2.4rem; }
+
+.doc-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap;
+  padding: .85rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-bottom: 0;
+  border-radius: 2px 2px 0 0;
+}
+
+.doc-title { margin: 0; font-weight: 600; font-size: .98rem; }
+.doc-note { margin: .1rem 0 0; font-size: .84rem; color: var(--ink-soft); }
+
+.doc-dl {
+  flex: 0 0 auto;
+  padding: .45rem .9rem;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-size: .86rem; font-weight: 600;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.doc-dl:hover { background: var(--btn-bg-hover); color: var(--btn-ink); }
+
+.doc-view {
+  border: 1px solid var(--rule);
+  border-radius: 0 0 2px 2px;
+  background: #fff;
+  overflow: hidden;
+}
+.doc-view object { width: 100%; height: 100%; display: block; border: 0; }
+
+.doc-fallback {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+  background: var(--surface);
+}
+
+/* phones rarely render an inline PDF — show the bar, hide the dead frame */
+@media (max-width: 40rem) {
+  .doc-view { display: none; }
+  .doc-bar { border-bottom: 1px solid var(--rule); border-radius: 2px; }
+}
+
+.doc-line {
+  padding: .7rem 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+  font-size: .95rem;
+}
+
+/* ---------- figures ---------- */
+
+.fig { margin: 2rem 0; }
+
+.fig-link { display: block; }
+
+.fig img {
+  display: block; width: 100%; height: auto;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+.fig figcaption {
+  margin-top: .6rem;
+  font-size: .86rem;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.fig-num { font-weight: 600; color: var(--ink); margin-right: .35rem; }
+.fig-src { display: block; margin-top: .15rem; font-size: .8rem; }
+.fig-dl { margin-left: .5rem; font-size: .8rem; font-weight: 500; }
+
+/* ---------- people ---------- */
+
+.people {
+  list-style: none; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: .8rem;
+  margin: 1.2rem 0 0;
+}
+.people li { margin: 0; }
+
+.people a {
+  display: flex; align-items: center; gap: .85rem;
+  padding: .7rem .85rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.people a:hover { border-color: var(--accent); }
+
+.people img {
+  width: 3rem; height: 3rem; flex: 0 0 auto;
+  border-radius: 50%; object-fit: cover;
+}
+
+.person-txt { min-width: 0; }
+.people .who { display: block; font-weight: 600; font-size: .95rem; }
+.people .what { display: block; color: var(--ink-soft); font-size: .85rem; }
+
+/* a person's own page */
+.person-head { display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap; }
+.person-head > div { flex: 1 1 18rem; min-width: 0; }
+
+.person-head .portrait {
+  width: 8.5rem; height: 8.5rem; flex: 0 0 auto;
+  border-radius: 2px; object-fit: cover;
+}
+
+.person-links { margin: .9rem 0 0; font-size: .9rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* the lessons list, ported from the personal site */
+.lessons { margin: 1.5rem 0 0; }
+.lessons dt { font-weight: 600; font-size: 1rem; margin-top: 1.7rem; }
+.lessons dt:first-child { margin-top: 0; }
+.lessons dd {
+  margin: .3rem 0 0;
+  padding-left: .95rem;
+  border-left: 2px solid var(--rule);
+  color: var(--ink-soft);
+}
+
+/* ---------- partners ---------- */
+
+.partners {
+  list-style: none; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .6rem;
+  margin: 1.1rem 0 0;
+}
+.partners li { margin: 0; }
+
+.partners a, .partners .unknown {
+  display: flex; flex-direction: column;
+  width: 11.5rem;
+  background: #fff;
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--navy);
+  overflow: hidden;
+}
+.partners a:hover { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.partners .pa-logo {
+  display: flex; align-items: center; justify-content: center;
+  height: 3.6rem; padding: .7rem .9rem .4rem;
+}
+.partners .pa-logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; }
+
+.partners .pa-name {
+  padding: 0 .8rem;
+  font-size: .86rem; font-weight: 600; line-height: 1.25;
+  text-align: center;
+}
+.partners .pa-where {
+  padding: .15rem .8rem .7rem;
+  font-size: .74rem; color: #5d6368; line-height: 1.3;
+  text-align: center;
+}
+.partners .unknown {
+  background: var(--surface); color: var(--ink-soft); font-weight: 400;
+  padding: 1rem; text-align: center;
+}
+
+/* ---------- publication links ---------- */
+
+.pub-title { font-weight: 600; color: var(--ink); text-decoration: none; }
+.pub-title:hover { color: var(--accent); text-decoration: underline; }
+
+.projects.compact li { padding: .8rem 0; }
+
+/* ---------- call to action ---------- */
+
+.cta {
+  display: inline-block;
+  margin-top: .6rem;
+  padding: .7rem 1.3rem;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-weight: 600;
+  font-size: .95rem;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.cta:hover { background: var(--btn-bg-hover); color: var(--btn-ink); }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  padding: 2.4rem 0 3rem;
+  font-size: .92rem;
+}
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.6rem;
+}
+
+@media (max-width: 48rem) { .foot-grid { grid-template-columns: 1fr; gap: 1.4rem; } }
+
+.foot-mark { height: 24px; width: auto; display: block; margin-bottom: .7rem; }
+.site-footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+
+/* ---------- tabs ---------- */
+
+.tabs { margin-top: 2.6rem; }
+
+.tabbar { display: none; }
+
+.tabs-on .tabbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: .55rem;
+}
+
+.tabbar button {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -.6rem;
+  padding: .35rem .7rem .55rem;
+  font: inherit;
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.tabbar button:hover { color: var(--ink); }
+.tabbar button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.tabbar button span {
+  display: inline-block;
+  margin-left: .35rem;
+  font-size: .78rem;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* with tabs on, each panel supplies its own heading only in the "all" view */
+.tabs-on [data-panel] > h2:first-child { font-size: 1.05rem; color: var(--ink-soft); }
+
+.more { margin: 1rem 0 0; font-size: .9rem; font-weight: 500; }
+
+/* ---------- filter ---------- */
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin: 0 0 1.4rem;
+}
+
+.filter input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: .55rem .8rem;
+  font: inherit;
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--field-bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+.filter input::placeholder { color: var(--ink-soft); }
+.filter input:focus { border-color: var(--accent); outline: none; }
+.filter .count { flex: 0 0 auto; font-variant-numeric: tabular-nums; }
+
+/* ---------- deliverable cards ---------- */
+
+.deliverables {
+  list-style: none; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: .8rem;
+  margin: 1.3rem 0 0;
+}
+.deliverables li { margin: 0; }
+
+.deliverables a {
+  display: flex; gap: .9rem; height: 100%;
+  padding: .8rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.deliverables a:hover { border-color: var(--accent); }
+
+.dl-thumb {
+  flex: 0 0 auto;
+  width: 3.4rem; height: 4.6rem;
+  background: #fff;
+  border-radius: 1px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.dl-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dl-noimg { font-size: .7rem; font-weight: 700; color: var(--ink-soft); letter-spacing: .04em; }
+
+.dl-txt { display: flex; flex-direction: column; gap: .2rem; min-width: 0; }
+.dl-title { font-weight: 600; font-size: .95rem; line-height: 1.35; }
+.dl-note { font-size: .82rem; color: var(--ink-soft); }
+.dl-open { margin-top: auto; font-size: .82rem; color: var(--accent); font-weight: 500; }
+
+/* ---------- listing table ---------- */
+
+table.listing { width: 100%; border-collapse: collapse; font-size: .93rem; }
+table.listing th {
+  text-align: left; padding: .5rem .7rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft); font-size: .8rem; font-weight: 600;
+}
+table.listing td {
+  padding: .6rem .7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+/* The logo alone did not say who a partner was — several of these marks are
+   symbols rather than wordmarks — so the name sits beside it. */
+table.listing td.t-partner { width: 19rem; }
+
+table.listing td.t-partner a {
+  display: flex; align-items: center; gap: .8rem;
+  text-decoration: none; color: inherit;
+}
+
+table.listing td.t-partner .t-logo {
+  flex: 0 0 6.5rem;
+  display: flex; align-items: center; justify-content: center;
+  height: 3rem; padding: .35rem .5rem;
+  background: #fff; border-radius: 2px;
+}
+table.listing td.t-partner .t-logo img { max-height: 100%; max-width: 100%; width: auto; }
+
+table.listing td.t-partner .t-name { font-weight: 600; line-height: 1.25; }
+table.listing td.t-partner a:hover .t-name { color: var(--accent); }
+table.listing tr:hover td { background: var(--surface-2); }
+
+@media (max-width: 34rem) {
+  table.listing td.t-partner { width: auto; }
+  table.listing td.t-partner a { flex-direction: column; align-items: flex-start; gap: .4rem; }
+  table.listing th:nth-child(2), table.listing td:nth-child(2) { display: none; }
+}
+
+
+/* ---------- key findings on a project page ---------- */
+
+/* authored as a markdown list inside <div class="findings" markdown="1"> */
+.findings ul { list-style: none; padding: 0; margin: 1.3rem 0 1.6rem; }
+
+.findings li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.findings li::before {
+  content: "";
+  position: absolute; left: 0; top: .62em;
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+/* the lead sentence carries the point; the rest explains it */
+.findings li > strong:first-child,
+.findings li > p:first-child > strong:first-child {
+  display: block;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: -0.012em;
+  margin-bottom: .15rem;
+}
+
+.findings li p { margin: 0; }
+.findings li p + p { margin-top: .5rem; }
+
+
+/* ---------- home sections ---------- */
+
+.pillars h3 { font-size: 1.1rem; margin-bottom: .4rem; }
+
+.band-note {
+  color: var(--ink-soft);
+  max-width: 54ch;
+  margin: 0 0 1.2rem;
+}
+
+.cta-band { background: var(--surface); }
+
+/* ---------- newsletter ---------- */
+
+.newsletter {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  padding: 1.6rem;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 2px;
+}
+.newsletter h2 { margin: 0 0 .4rem; }
+.newsletter p { margin: 0; }
+
+.nl-form { display: flex; gap: .6rem; flex-wrap: wrap; }
+.nl-form input {
+  flex: 1 1 14rem; min-width: 0;
+  padding: .6rem .8rem;
+  font: inherit; font-size: .95rem;
+  color: var(--ink);
+  background: var(--field-bg);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+.nl-form input:focus { border-color: var(--accent); outline: none; }
+.nl-form button {
+  flex: 0 0 auto;
+  padding: .6rem 1.2rem;
+  font: inherit; font-size: .95rem; font-weight: 600;
+  color: var(--btn-ink); background: var(--btn-bg);
+  border: 0; border-radius: 2px; cursor: pointer;
+}
+.nl-form button:hover { background: var(--btn-bg-hover); }
+
+.nl-fallback { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.nl-fallback .cta { margin-top: 0; }
+.nl-alt { margin: .7rem 0 0; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- footer alignment ---------- */
+
+.foot-grid { align-items: end; }
+.foot-mark { height: 30px; }
+
+/* ---------- legal pages ---------- */
+
+.foot-legal a { color: var(--ink-soft); }
+.foot-legal a:hover { color: var(--ink); }
+.foot-legal span { margin: 0 .3rem; opacity: .5; }
+
+.legal h1 { margin-bottom: .4rem; }
+
+.legal h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  margin: 2.2rem 0 .35rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* the English reading of each German legal heading */
+.legal .gloss {
+  font-weight: 400;
+  font-size: .86rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.legal p { margin: 0 0 .9rem; }
+
+/* shown only while mandatory fields are still unfilled */
+.legal-warn {
+  background: rgba(249, 45, 132, .12);
+  border-left: 3px solid var(--accent);
+  padding: .9rem 1.1rem;
+  margin: 1.4rem 0 0;
+  font-size: .95rem;
+}
+.legal-warn code {
+  background: var(--surface-2);
+  padding: .1rem .3rem;
+  border-radius: 3px;
+  font-size: .9em;
+}
+
+/* ---------- services ---------- */
+
+/* each service is a two-column block: the offer, and the proof beside it */
+.svc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 52rem) {
+  .svc-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+}
+
+.service .eyebrow a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(249, 45, 132, .4);
+}
+.service .eyebrow a:hover { border-bottom-color: var(--accent); }
+
+.svc-main h2 { margin: 0 0 .5rem; font-size: 1.45rem; letter-spacing: -0.02em; }
+
+.svc-lede {
+  font-size: 1.08rem;
+  font-weight: 500;
+  margin: 0 0 1.1rem;
+  max-width: 44ch;
+}
+
+.svc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 48ch;
+}
+
+.svc-list li {
+  position: relative;
+  padding-left: 1.15rem;
+  margin-bottom: .4rem;
+  color: var(--ink-soft);
+}
+
+.svc-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .72em;
+  width: .42rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.svc-note { margin-top: 1rem; max-width: 46ch; font-style: italic; }
+
+/* the proof column */
+.svc-side {
+  border-left: 1px solid var(--rule);
+  padding-left: 1.4rem;
+}
+
+@media (max-width: 52rem) {
+  .svc-side {
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+    padding: 1.1rem 0 0;
+  }
+}
+
+.svc-label {
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 .3rem;
+}
+
+.svc-side p + .svc-label { margin-top: 1.5rem; }
+
+.svc-example { margin: 0 0 .35rem; font-weight: 500; line-height: 1.35; }
+.svc-example a { text-decoration: none; }
+.svc-example a:hover { text-decoration: underline; }
+
+/* ---------- testimonials ---------- */
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 2rem;
+}
+
+.quote {
+  margin: 0;
+  background: var(--surface);
+  border-radius: 4px;
+  padding: 1.6rem 1.6rem 1.3rem;
+}
+
+.quote blockquote {
+  margin: 0 0 1rem;
+  font-size: 1.04rem;
+  line-height: 1.5;
+}
+
+.quote blockquote p { margin: 0 0 .8rem; }
+.quote blockquote p:last-child { margin-bottom: 0; }
+
+/* quotation marks sit on the first and last paragraph, so a two-paragraph
+   quote still opens and closes once rather than around every paragraph */
+.quote blockquote p:first-child::before { content: "\201C"; }
+.quote blockquote p:last-child::after   { content: "\201D"; }
+
+.quote figcaption {
+  font-size: .92rem;
+  font-weight: 500;
+  padding-top: .9rem;
+  border-top: 1px solid var(--rule);
+}
+.quote figcaption .muted { font-weight: 400; }
+
+/* a collaborator's own organisation, under their role on the team card */
+.people .where {
+  display: block;
+  font-size: .82rem;
+  color: var(--ink-soft);
+  opacity: .85;
+}
+
+#teamlist h2 {
+  margin: 2.8rem 0 .3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+  font-size: 1.15rem;
+}
+#teamlist h2 + .muted { margin-top: 0; max-width: 44ch; }
+
+/* ---------- partner tally ---------- */
+
+/* three counts per partner: projects · publications · news */
+.tally { display: inline-flex; gap: .3rem; }
+
+.tally-n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.65rem;
+  padding: .12rem .3rem;
+  border-radius: 3px;
+  background: rgba(249, 45, 132, .16);
+  font-size: .82rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+
+/* a dash is a claim of none, so it should not look like a filled count */
+.tally-n.is-zero {
+  background: transparent;
+  color: var(--ink-soft);
+  font-weight: 400;
+  opacity: .6;
+}
+
+.t-tally { white-space: nowrap; }
+.tally-key { margin: 0 0 1.2rem; max-width: 52ch; }
+.tally-key .k { white-space: nowrap; }
+
+/* ---------- theme toggle ---------- */
+
+/* One logo file per theme; the stylesheet shows the right one. */
+.logo-light { display: none; }
+:root[data-theme="light"] .logo-dark  { display: none; }
+:root[data-theme="light"] .logo-light { display: block; }
+
+.theme-toggle {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .45rem .8rem .45rem .6rem;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .28);
+}
+
+.theme-toggle:hover { border-color: var(--accent); }
+
+/* a half-filled circle: the usual shorthand for "switch appearance" */
+.tt-icon {
+  width: .85rem;
+  height: .85rem;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  background: linear-gradient(to right, currentColor 50%, transparent 50%);
+}
+
+:root[data-theme="light"] .theme-toggle {
+  box-shadow: 0 2px 14px rgba(0, 23, 48, .14);
+}
+
+@media (max-width: 34rem) {
+  /* the label is the first thing to go on a narrow screen */
+  .theme-toggle { right: .8rem; bottom: .8rem; padding: .5rem; }
+  .tt-label { position: absolute; left: -9999px; }
+}
+
+@media print {
+  .theme-toggle { display: none; }
+}
+
+/* White surfaces that carry artwork — partner tiles, figures, the PDF
+   viewer, deliverable thumbnails — are white in both themes, because they
+   are the paper the artwork sits on. On the light page they would otherwise
+   dissolve into the background, so they take an edge there. */
+.partners a,
+table.listing td.t-partner .t-logo,
+.dl-thumb {
+  border: 1px solid var(--tile-edge);
+}
+
+/* a long DOI is one unbreakable token and pushed the page sideways on a phone */
+.doi { overflow-wrap: anywhere; }

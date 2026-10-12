@@ -1,0 +1,31 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+sitemap: false
+---
+
+<div class="page-head wrap narrow">
+  <h1>Page not found</h1>
+  <p class="lede">That address does not exist, or the page has moved.</p>
+</div>
+
+<main id="content">
+<section class="band">
+<div class="wrap narrow">
+
+<p>A few places to try:</p>
+
+<ul>
+  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+  <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
+  <li><a href="{{ '/publications/' | relative_url }}">Publications</a></li>
+  <li><a href="{{ '/news/' | relative_url }}">News</a></li>
+</ul>
+
+<p>If you followed a link from somewhere else and it brought you here, we
+would like to know: <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+
+</div>
+</section>
+</main>
