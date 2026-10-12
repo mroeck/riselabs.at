@@ -2,6 +2,7 @@
 layout: default
 title: Home
 permalink: /
+wip: true   # shows the "Page in progress" note by the theme toggle
 ---
 
 {% include hero.html %}
@@ -71,13 +72,34 @@ permalink: /
   <div class="wrap">
     <p class="eyebrow">We work with</p>
     {%- comment -%} hand-picked, in this order; the full list is on /partners/ {%- endcomment -%}
-    {%- assign shown = "worldgbc,smith-innovation,bpie,iiasa,ec-dg-grow,unep,laudes,global-industry-hub" | split: "," -%}
+    {%- assign shown = "worldgbc,smith-innovation,bpie,iiasa,ec-dg-grow,unep,laudes,global-industry-hub,epfl,ku-leuven" | split: "," -%}
     {% include partners.html keys=shown %}
     <p class="more"><a href="{{ '/partners/' | relative_url }}">All partners →</a></p>
   </div>
 </section>
 
 {% include testimonials.html only="brigitte-jacquemont,xavier-le-den,simone-kongsbak" %}
+
+{%- comment -%}
+  Somewhere to go after the quotes. A reader convinced by them should be able
+  to reach the argument or the offer without scrolling back to the nav.
+{%- endcomment -%}
+<section class="band">
+  <div class="wrap narrow">
+    <div class="onward">
+      <a href="{{ '/approach/' | relative_url }}">
+        <span class="onward-t">How we work</span>
+        <span class="onward-d muted">The three strands, the post-growth
+        question, and the methods behind the numbers.</span>
+      </a>
+      <a href="{{ '/services/' | relative_url }}">
+        <span class="onward-t">What we offer</span>
+        <span class="onward-d muted">Commissioned research, data
+        infrastructure, independent review, strategy and training.</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="band cta-band">
   <div class="wrap narrow">
