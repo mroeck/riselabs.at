@@ -1244,11 +1244,33 @@ table.listing tr:hover td { background: var(--surface-2); }
 :root[data-theme="light"] .logo-dark  { display: none; }
 :root[data-theme="light"] .logo-light { display: block; }
 
-.theme-toggle {
+/* the fixed cluster: work-in-progress note, then the theme toggle */
+.corner {
   position: fixed;
   right: 1.1rem;
   bottom: 1.1rem;
   z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.wip {
+  margin: 0;
+  padding: .45rem .8rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .28);
+  white-space: nowrap;
+}
+
+:root[data-theme="light"] .wip { box-shadow: 0 2px 14px rgba(0, 23, 48, .14); }
+
+.theme-toggle {
   display: inline-flex;
   align-items: center;
   gap: .45rem;
@@ -1280,13 +1302,16 @@ table.listing tr:hover td { background: var(--surface-2); }
 }
 
 @media (max-width: 34rem) {
-  /* the label is the first thing to go on a narrow screen */
-  .theme-toggle { right: .8rem; bottom: .8rem; padding: .5rem; }
+  /* on a phone the two would fill the width, so the toggle sheds its label
+     and the note shortens rather than wrapping across the screen */
+  .corner { right: .8rem; bottom: .8rem; gap: .4rem; }
+  .theme-toggle { padding: .5rem; }
   .tt-label { position: absolute; left: -9999px; }
+  .wip { font-size: .76rem; padding: .4rem .65rem; }
 }
 
 @media print {
-  .theme-toggle { display: none; }
+  .corner { display: none; }
 }
 
 /* White surfaces that carry artwork — partner tiles, figures, the PDF
@@ -1339,3 +1364,35 @@ table.listing td.t-partner .t-logo,
 }
 
 .worldmap figcaption { margin-top: .7rem; max-width: 60ch; }
+
+/* ---------- onward links ---------- */
+
+/* Two routes out of the home page after the testimonials: the argument, or
+   the offer. Sized as blocks rather than inline links, because at this point
+   on the page a reader is deciding where to go next, not skimming. */
+.onward {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+
+@media (max-width: 40rem) { .onward { grid-template-columns: 1fr; } }
+
+.onward a {
+  display: block;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  text-decoration: none;
+  color: inherit;
+}
+.onward a:hover { border-color: var(--accent); }
+
+.onward-t {
+  display: block;
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+.onward-t::after { content: " →"; color: var(--accent); }
+
+.onward-d { display: block; font-size: .9rem; line-height: 1.45; }

@@ -294,8 +294,9 @@ Optional: a paragraph about the collaboration.
 | Field | Required | Notes |
 |---|---|---|
 | `name` | yes | |
-| `type` | yes | In use: `university`, `public authority`, `consultancy`, `foundation`, `network`, `international organisation`, `research institute`, `think tank`, `architecture practice`. Reuse an existing one where it fits |
+| `type` | yes | In use: `university`, `public authority`, `consultancy`, `foundation`, `network`, `international organisation`, `research institute`, `think tank`, `architecture practice`, `industry association`. Reuse an existing one where it fits |
 | `city`, `country` | no | Shown under the name |
+| `coords` | no | `[latitude, longitude]` — puts the partner on the world map. Leave it out and they appear in the table only |
 | `website` | no | Their site. **Must be `website`, not `url`** — see the warning below |
 | `logo` | no | A filename inside `assets/img/partners/` |
 
@@ -325,10 +326,14 @@ A partner appears on `/partners/` automatically. The home page shows a
 
 The **Together** column on `/partners/` counts what each partnership has
 produced — projects, publications, news — and is calculated from the
-cross-references, never typed in. News counts a post that names the partner
-directly *or* one attached to a project they are on. A dash means none yet.
-If a number looks wrong, the cause is a missing or misspelled reference on
-the project or publication, not on the partner.
+cross-references, never typed in. A dash means none yet. If a number looks
+wrong, the cause is a missing or misspelled reference on the project,
+publication or post, not on the partner file.
+
+**A post counts for a partner only when the post names them**, in its
+`partners:` list. So when you write a news item, list the organisations it is
+about — otherwise the partner's page will not show it and the column will read
+as a dash. That is the whole mechanism; there is no inference from projects.
 
 ---
 
@@ -471,6 +476,18 @@ writing. It names an identifiable person and their employer in a commercial
 context. Attribute them with the role they held **when they said it**, not
 their current job — implying a present employer endorses RISE when they
 haven't is both misleading and the kind of thing people object to.
+
+---
+
+## 11a. The "Page in progress" note
+
+The magenta pill in the bottom corner, next to the theme toggle, is switched
+on per page: `wip: true` in that page's front matter. It is on the home page
+only at the moment.
+
+Remove the line when the page is finished. There is no site-wide switch, on
+purpose — a disclaimer that nobody can remember how to turn off tends to stay
+up for a year.
 
 ---
 

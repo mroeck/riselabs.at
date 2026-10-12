@@ -18,7 +18,7 @@ content editing, `03-editing-the-site.md` is the one you want.
 | `/projects/` | `projects.md` | Filterable list of all projects |
 | `/publications/` | `publications.md` | Filterable list of all publications |
 | `/team/` | `team.md` | **Hidden for now.** The team, then core collaborators — see §7 |
-| `/partners/` | `partners.md` | Filterable alphabetical list of partners, with a count of projects, publications and news per partner |
+| `/partners/` | `partners.md` | Equal Earth world map, then a filterable alphabetical list with a count of projects, publications and news per partner |
 | `/news/` | `news.md` | All news and events |
 | `/impressum/` | `impressum.md` | Legal disclosure (ECG, UGB, MedienG) |
 | `/datenschutz/` | `datenschutz.md` | Privacy policy (GDPR) |
@@ -154,6 +154,7 @@ show it:
 | `projects: [indicate-life]` | a publication | the INDICATE LIFE page, under publications |
 | `clients: [ec-dg-env]` | a project | the DG ENV partner page, under "as client" |
 | `projects: [gbdi]` | a news post | the GBDI project page, under updates |
+| `partners: [uct]` | a news post | UCT's partner page, under News & events |
 
 Person and partner pages each end with a tabbed panel — **All · News &
 events · Projects · Publications · People** — assembled entirely from these
