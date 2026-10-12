@@ -70,7 +70,8 @@ permalink: /
 <section class="band">
   <div class="wrap">
     <p class="eyebrow">We work with</p>
-    {%- assign shown = "epfl,ku-leuven,ramboll,bpie,iiasa,ucl,worldgbc,tu-delft" | split: "," -%}
+    {%- comment -%} hand-picked, in this order; the full list is on /partners/ {%- endcomment -%}
+    {%- assign shown = "worldgbc,smith-innovation,bpie,iiasa,ec-dg-grow,unep,laudes,global-industry-hub" | split: "," -%}
     {% include partners.html keys=shown %}
     <p class="more"><a href="{{ '/partners/' | relative_url }}">All partners →</a></p>
   </div>

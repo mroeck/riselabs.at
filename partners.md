@@ -16,6 +16,8 @@ permalink: /partners/
 
 <!-- Nothing here is edited by hand. Each partner is a file in _partners/. -->
 
+{% include worldmap.html %}
+
 {% include filter.html target="#partnertable" placeholder="Filter partners by name, city or country…" %}
 
 <p class="muted small tally-key">The <strong>Together</strong> column counts

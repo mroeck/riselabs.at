@@ -147,6 +147,27 @@ for slug, (fm, body, f) in coll["partners"].items():
     if fm.get("slug") and fm["slug"] != slug:
         P("data", f"_partners/{slug}.md", f"`slug` says '{fm['slug']}' but the filename says '{slug}'")
 
+# --------------------------------------------------- every page has a layout
+# A collection document with no layout is rendered by Jekyll as raw text: no
+# stylesheet, no navigation, no header. It looks fine locally and broken live.
+rules = {(r.get("scope") or {}).get("type"): (r.get("values") or {}).get("layout")
+         for r in (cfg.get("defaults") or [])}
+for cname, items in coll.items():
+    for slug, (fm, body, f) in items.items():
+        if not fm.get("layout") and not rules.get(cname):
+            P("layout", f"_{cname}/{slug}.md",
+              "no layout, and _config.yml has no defaults rule for "
+              f"`{cname}` — Jekyll will render this as unstyled raw text")
+            break
+for slug, (fm, body, f) in posts.items():
+    if not fm.get("layout") and not rules.get("posts"):
+        P("layout", f"_posts/{slug}.md", "no layout and no defaults rule for posts")
+        break
+for cname in coll:
+    lay = rules.get(cname)
+    if lay and not (SITE / "_layouts" / f"{lay}.html").exists():
+        P("layout", "_config.yml", f"`{cname}` defaults to layout `{lay}`, which does not exist")
+
 # ----------------------------------------- front matter that Jekyll shadows
 # Jekyll gives every document its own url, path, id, collection, date,
 # excerpt, content and output. A front matter key of the same name is

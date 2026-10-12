@@ -12,6 +12,8 @@ Three guides in `docs/` (excluded from the built site):
 | `01-publishing-on-github.md` | Getting it online, the custom domain, failed builds |
 | `02-site-map-and-structure.md` | What file produces what page, and how pages link |
 | `03-editing-the-site.md` | Handbook for whoever updates the site. Start here |
+| `04-roadmap.md` | What is not done, including the collaboration network graph |
+| `newsletter-page-copy.md` | Text for the Buttondown subscribe page |
 
 Before publishing a change, run `python3 docs-check.py` from this folder. It
 catches broken cross-references, missing images and reserved field names —
