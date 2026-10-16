@@ -103,3 +103,5 @@ exclude:
   - Gemfile.lock
   - docs          # the guidance documents, not part of the public site
   - _preview      # local preview output, never published
+  - docs-check.py    # site checker — tooling, not a page
+  - make-figures.py  # redraws the CollaborativeCarbon charts
