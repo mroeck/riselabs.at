@@ -40,4 +40,11 @@ GBDI outgrew the project that started it. It is now an association under
 Austrian law with its own governance, and it continues as a standing
 initiative rather than a funded piece of work.
 
+In October 2026 it became a founding member of
+[CLEAR](/news/2026/clear-coalition-launch/), the Coalition for Life cycle Emissions
+Alignment and Reporting, convened by RICS to quantify where the leading carbon
+assessment methods diverge and then harmonise them. That work addresses the
+problem the database runs into from the other side: an open data commons is
+only as useful as the comparability of what goes into it.
+
 More at [gbdi.io](https://www.gbdi.io).

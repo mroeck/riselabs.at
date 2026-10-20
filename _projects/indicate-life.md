@@ -2,8 +2,8 @@
 title: "INDICATE LIFE — National Building LCA Data and Policy Accelerator"
 status: "current"
 years: "2024–2027"
-funder: "EU LIFE Clean Energy Transition"
-role: "Team lead and work package lead"
+funder: "Co-funded by the European Union LIFE programme"
+role: "Project partner — technical work package lead"
 summary: "Helps national consortia generate the building LCA data their governments need to set whole life carbon benchmarks and targets"
 link: "https://www.indicatedata.com/"
 hero: "/assets/img/indicate-life-hero.jpg"
@@ -17,7 +17,7 @@ partners:
   - bpie
   - smith-innovation
   - worldgbc
-partners_note: "with national consortia in Austria, Hungary, Italy and Luxembourg"
+partners_note: "co-ordinated by Smith Innovation, with national consortia in Austria, Hungary, Italy and Luxembourg"
 ---
 
 Helps national consortia generate the building LCA data their governments need to set whole life carbon benchmarks and targets.
@@ -45,4 +45,11 @@ Austria, Hungary, Italy and Luxembourg, under the EU LIFE Clean Energy
 Transition programme — following the [pilot](/projects/indicate/) in Ireland,
 Spain and Czechia.
 
-More at [indicatedata.com](https://www.indicatedata.com/).
+<h2>Who is behind it</h2>
+
+INDICATE LIFE is co-ordinated by **Smith Innovation**, with **BPIE**,
+**KU Leuven**, **RISE** and the **World Green Building Council** as project
+partners providing technical and political support. It is co-funded by the
+European Union LIFE programme.
+
+More at [indicatedata.com](https://www.indicatedata.com/indicate-life-about).

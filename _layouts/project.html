@@ -68,6 +68,16 @@ layout: default
   {%- endfor -%}
   {%- endif %}
 
+  {%- comment -%}
+    Only projects that have produced something citable carry this block —
+    set cite_year in the front matter to switch it on.
+  {%- endcomment -%}
+  {%- if page.cite_year -%}
+  {%- assign cite_title = page.cite_title | default: page.project_title | default: page.title -%}
+  {% include citeas.html label="study" authors=page.cite_authors year=page.cite_year
+     title=cite_title where=page.cite_where doi=page.cite_doi url=page.link %}
+  {%- endif %}
+
   {%- assign team = site.people | where_exp: "x", "page.people contains x.slug" -%}
   {%- if team.size > 0 %}
   <h2>Our experts on this project</h2>

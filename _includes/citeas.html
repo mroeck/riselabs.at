@@ -1,0 +1,23 @@
+{%- comment -%}
+  A "cite this" block, in the spirit of Our World in Data: the citation
+  already formatted, so nobody has to assemble it from the page.
+
+    include.authors  "Röck, M., Hujvan, A., …" — falls back to RISE
+    include.year     publication year
+    include.title    the work's own title
+    include.where    publisher, journal, or who it was produced for
+    include.doi      bare DOI, without the https://doi.org/ prefix
+    include.url      a link to use when there is no DOI
+    include.label    what to call it: "study", "project", "dataset"
+
+  The copy button is added by the script and is absent without JavaScript,
+  where the text is selectable anyway.
+{%- endcomment -%}
+{%- assign who = include.authors | default: "RISE" -%}
+{%- capture citation -%}
+{{ who }} ({{ include.year }}). {{ include.title }}.{% if include.where %} {{ include.where }}.{% endif %}{% if include.doi %} https://doi.org/{{ include.doi }}{% elsif include.url %} {{ include.url }}{% endif %}
+{%- endcapture -%}
+<div class="citeas" data-citeas>
+  <p class="citeas-h">Cite this {{ include.label | default: "work" }}</p>
+  <p class="citeas-t" data-citeas-text>{{ citation | strip }}</p>
+</div>

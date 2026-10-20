@@ -1,0 +1,31 @@
+{%- comment -%}
+  Data and tools as cards. Expects: include.pubs — publications with
+  `kind: data`.
+
+  These are not a separate kind of content. Each one is already a publication
+  with its own page, DOI and citation; this view exists because a dataset or a
+  piece of software listed as the fourth section of a publications page is, in
+  practice, hidden. Two optional fields in the publication's front matter are
+  used here when present:
+
+    state   "available", "in development" — what a reader can expect
+    repo    link to the source code, where there is any
+{%- endcomment -%}
+{%- assign items = include.pubs | sort: "year" | reverse -%}
+<ul class="tools">
+  {%- for t in items -%}
+  <li>
+    <span class="tool-top">
+      {%- if t.state %}<span class="tool-state">{{ t.state }}</span>{% endif -%}
+      <span class="tool-year">{{ t.year }}</span>
+    </span>
+    <a class="tool-title" href="{{ t.url | relative_url }}">{{ t.title }}</a>
+    {%- if t.summary %}<span class="tool-sum muted">{{ t.summary }}</span>{% endif -%}
+    <span class="tool-links">
+      {%- if t.doi %}<a href="https://doi.org/{{ t.doi }}">DOI</a>{% endif -%}
+      {%- if t.repo %}<a href="{{ t.repo }}">Source</a>{% endif -%}
+      {%- if t.link %}<a href="{{ t.link }}">Use it</a>{% endif -%}
+    </span>
+  </li>
+  {%- endfor -%}
+</ul>
