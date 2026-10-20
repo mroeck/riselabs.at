@@ -1,0 +1,35 @@
+# Partner logos still missing, for add-logos.py.
+#
+# One line per logo:   slug  <space>  direct URL to the image file
+# Lines starting with # are ignored, so fill these in as you find them.
+#
+# The URL must point at the image itself, not the page it sits on. Prefer the
+# organisation's press, brand or media kit page. A large transparent PNG is
+# ideal; an SVG needs converting by hand (the script will tell you).
+#
+# Then:  python3 add-logos.py           (checks the list)
+#        python3 add-logos.py --write   (downloads and wires them in)
+#
+# slug                      website to look on
+# ------------------------  --------------------------------------------------
+# aeee                      https://aeee.in
+# agora-industrie           https://www.agora-industrie.de
+# cbmf                      (no website recorded — China Building Materials Federation)
+# clt-europe                https://www.clteurope.org
+# cohabitat                 https://www.cohabitat.io/en
+# dut                       https://www.dut.ac.za
+# ebp-chile                 (no website recorded — EBP Chile)
+# energy-foundation-china   https://www.efchina.org
+# greentech-knowledge       (no website recorded — Greentech Knowledge Solutions)
+# greenwich                 https://www.gre.ac.uk
+# ifeu                      https://www.ifeu.de
+# igbc                      https://igbc.in
+# iit-bombay                https://www.iitb.ac.in
+# tut                       https://www.tut.ac.za
+# uct                       https://www.uct.ac.za
+# universidad-de-chile      https://www.uchile.cl
+# usp                       https://www.usp.br
+#
+# Universities almost always publish a brand/identity page with downloadable
+# marks, and usually have rules about which version to use on a third-party
+# site. Worth two minutes each rather than grabbing whatever the homepage has.

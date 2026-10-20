@@ -3,6 +3,7 @@ layout: post
 type: event
 projects:
   - global-building-data-initiative
+  - gbdi-china-and-india-cooperation
 people:
   - martin-roeck
 partners:
@@ -10,10 +11,9 @@ partners:
   - energy-foundation-china
 title: "Green procurement of low-carbon concrete — what came out of the Beijing seminar"
 summary: "Sixty participants from government, industry and research on how public procurement can pull low-carbon building materials into the market, and what China plans to put into procurement evaluation next."
-# Photographs: the China Building Materials Federation published around seven
-# pictures from the day on its own write-up. They are CBMF's, so they need
-# permission before they appear here — ask the organisers for two or three,
-# then uncomment the hero line and add the file to assets/img/posts/.
+# Photographs: cleared for use, but this sandbox cannot reach cbmf.org. The
+# Federation's write-up carries about seven pictures from the day — save two
+# or three to assets/img/posts/ and uncomment, keeping the credit line.
 # hero: /assets/img/posts/cbmf-beijing-seminar.jpg
 # hero_caption: "The seminar on green procurement of low-carbon concrete, Beijing, 22 September 2026. Photo: China Building Materials Federation."
 ---
@@ -69,3 +69,11 @@ That last point is where this connects to our own work. Procurement is one of
 the few levers that moves a material market rather than a single project — but
 a limit value only bites if someone is buying against it, and a carbon
 footprint only travels across a border if the two sides count it the same way.
+
+This work is part of the
+[GBDI China and India Cooperation Incubator](/projects/gbdi-china-and-india-cooperation/),
+which extends the global building data work into the two markets that will add
+the most floor area this century.
+
+<p class="muted small">Source: <a href="https://www.cbmf.org/en/c/2026/09/23/24104.shtml">China
+Building Materials Federation</a>, 23 September 2026.</p>
