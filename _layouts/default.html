@@ -18,6 +18,22 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
         href="{{ '/assets/fonts/figtree-latin-400-normal.woff2' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {%- comment -%}
+    The remembered theme is applied before first paint, so a visitor who chose
+    light does not get a flash of dark on every page. This has to be inline
+    and early; a deferred script runs too late to prevent the flash.
+
+    Storage can throw — private windows, blocked site data — so it is wrapped,
+    and the page renders in the default dark theme if anything goes wrong.
+  {%- endcomment -%}
+  <script>
+    try {
+      var t = localStorage.getItem("rise-theme");
+      if (t === "light" || t === "dark") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    } catch (e) {}
+  </script>
   {%- seo title=false -%}
   {%- feed_meta -%}
 </head>
@@ -36,11 +52,40 @@
       <img class="logo-dark" src="{{ '/assets/img/rise-logo-white.png' | relative_url }}" alt="RISE">
       <img class="logo-light" src="{{ '/assets/img/rise-logo-navy.png' | relative_url }}" alt="RISE">
     </a>
-    <nav class="site-nav" aria-label="Main">
+    {%- comment -%}
+      The menu button. Hidden on wide screens by CSS, and hidden entirely
+      until the script runs, so a visitor without JavaScript keeps the open
+      navigation rather than a button that cannot open anything.
+    {%- endcomment -%}
+    <button type="button" class="nav-toggle" data-nav-toggle hidden
+            aria-expanded="false" aria-controls="sitenav">
+      <span class="burger" aria-hidden="true"></span>
+      <span class="nav-toggle-label">Menu</span>
+    </button>
+
+    {%- comment -%}
+      Entries with `items` in _config.yml render as groups; entries with a
+      `url` render as plain links. An empty group — About, while the team
+      page is hidden — is skipped rather than rendered as a dead button.
+    {%- endcomment -%}
+    <nav class="site-nav" id="sitenav" aria-label="Main">
       <ul>
         {%- for item in site.nav -%}
           {%- unless item.url == "/" -%}
-          <li><a href="{{ item.url | relative_url }}"{% if page.url contains item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+            {%- if item.items -%}
+              {%- if item.items.size > 0 -%}
+              <li class="has-sub">
+                <button type="button" class="sub-toggle" aria-expanded="false">{{ item.title }}</button>
+                <ul class="sub">
+                  {%- for sub in item.items -%}
+                  <li><a href="{{ sub.url | relative_url }}"{% if page.url contains sub.url %} aria-current="page"{% endif %}>{{ sub.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+              {%- endif -%}
+            {%- else -%}
+              <li><a href="{{ item.url | relative_url }}"{% if page.url contains item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+            {%- endif -%}
           {%- endunless -%}
         {%- endfor -%}
       </ul>

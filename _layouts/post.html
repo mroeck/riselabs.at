@@ -4,12 +4,35 @@ layout: default
 <div class="page-head wrap narrow">
   <p class="post-date">{% if page.type %}<span class="post-type">{{ page.type }}</span> &nbsp;·&nbsp; {% endif %}{{ page.date | date: "%d %B %Y" }}</p>
   <h1>{{ page.title }}</h1>
+  {%- if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif -%}
 </div>
 
 <main id="content">
+
+{%- comment -%}
+  Every post should carry at least one image. For a post about a project or a
+  paper, lift a figure from it; for an event, a photograph of the room or the
+  people. `hero` is the one at the top; `figures` is a list for any others.
+{%- endcomment -%}
+{%- if page.hero %}
+<section class="band" style="padding-top:0;border-top:0;">
+  <div class="wrap">
+    {% include figure.html file=page.hero caption=page.hero_caption wide="true" %}
+  </div>
+</section>
+{%- endif %}
+
 <section class="band">
 <div class="wrap narrow post-body">
   {{ content }}
+
+  {%- if page.figures.size > 0 %}
+  <h2 id="figures">Figures</h2>
+  {%- for f in page.figures -%}
+    {% include figure.html file=f.file number=f.number caption=f.caption source=f.source %}
+  {%- endfor -%}
+  {%- endif %}
+
   <p class="muted small" style="margin-top:2.5rem;"><a href="{{ '/news/' | relative_url }}">← All news</a></p>
 </div>
 </section>

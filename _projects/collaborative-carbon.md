@@ -13,6 +13,10 @@ tags:
   - sufficiency
 link: "https://www.collaborative-carbon.com"
 project_title: "CollaborativeCarbon: Whole Life Carbon Assessments for Collaborative Housing across Europe"
+cite_authors: "Röck, M., Hujvan, A., Degel, J., Pendlmayr, M., & Zilker, M."
+cite_year: 2026
+cite_where: "RISE × einszueins"
+cite_doi: "10.5281/zenodo.19452986"
 outputs:
 - title: "Synthesis, factsheets, dashboards and supporting data"
   note: "Complete study materials · RISE × einszueins, 2026 · DOI 10.5281/zenodo.19452986"
@@ -190,10 +194,7 @@ floor area metrics, embodied carbon results, bill-of-quantities materials and
 BIM models — is available on reasonable request, at
 [martin.roeck@riselabs.at](mailto:martin.roeck@riselabs.at).
 
-<h2>Cite this work</h2>
+<!-- The citation is no longer written out here: it is built from the cite_*
+     fields in the front matter and rendered by the project layout, the same
+     way it is on every publication page. -->
 
-Röck, M., Hujvan, A., Degel, J., Pendlmayr, M., & Zilker, M. (2026).
-*CollaborativeCarbon: Whole Life Carbon Assessments for Collaborative Housing
-across Europe.* RISE × einszueins.
-[https://doi.org/10.5281/zenodo.19452986](https://doi.org/10.5281/zenodo.19452986) ·
-[www.collaborative-carbon.com](https://www.collaborative-carbon.com)

@@ -237,19 +237,116 @@ a:hover { color: var(--accent-hover); }
 
 .brand img { display: block; height: 30px; width: auto; }
 
-.site-nav ul {
-  list-style: none; display: flex; flex-wrap: wrap;
-  gap: 1.6rem; margin: 0; padding: 0;
+/* Navigation.
+   The same markup serves two layouts. Wide: groups sit in the bar, their
+   panels drop beneath. Narrow: the whole list lives behind the menu button,
+   which is what stopped eight links wrapping onto a second line on a phone. */
+
+.site-nav > ul {
+  list-style: none; display: flex; align-items: center;
+  gap: 1.5rem; margin: 0; padding: 0;
 }
 .site-nav li { margin: 0; }
 
-.site-nav a {
-  font-size: .95rem; font-weight: 500;
+.site-nav a,
+.sub-toggle {
+  font-size: .95rem; font-weight: 500; font-family: inherit;
   color: var(--ink-soft); text-decoration: none;
-  padding-bottom: 2px; border-bottom: 2px solid transparent;
+  padding-bottom: 2px; border: 0; border-bottom: 2px solid transparent;
+  background: none; cursor: pointer; line-height: 1.4;
 }
-.site-nav a:hover { color: var(--ink); }
+.site-nav a:hover,
+.sub-toggle:hover { color: var(--ink); }
 .site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+.sub-toggle::after {
+  content: "";
+  display: inline-block;
+  width: .36em; height: .36em;
+  margin-left: .42em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-.15em) rotate(45deg);
+}
+.sub-toggle[aria-expanded="true"] { color: var(--ink); }
+.sub-toggle[aria-expanded="true"]::after { transform: translateY(.1em) rotate(-135deg); }
+
+.has-sub { position: relative; }
+
+.site-nav .sub {
+  list-style: none; margin: 0; padding: .5rem 0;
+  position: absolute; top: calc(100% + .7rem); left: -.9rem;
+  min-width: 11rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .3);
+  z-index: 40;
+  display: none;
+}
+:root[data-theme="light"] .site-nav .sub { box-shadow: 0 8px 28px rgba(0, 23, 48, .13); }
+.sub-toggle[aria-expanded="true"] + .sub { display: block; }
+.site-nav .sub li { display: block; }
+.site-nav .sub a {
+  display: block; padding: .4rem .9rem;
+  border-bottom: 0;
+}
+.site-nav .sub a[aria-current="page"] { border-bottom: 0; color: var(--accent); }
+
+/* the menu button — the burger is three rules that become a cross when open */
+.nav-toggle {
+  display: none; align-items: center; gap: .5rem;
+  font: inherit; font-size: .9rem; font-weight: 500;
+  color: var(--ink); background: none; border: 0;
+  padding: .35rem 0; cursor: pointer;
+}
+.burger { position: relative; display: block; width: 18px; height: 12px; }
+.burger::before, .burger::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform .18s ease, top .18s ease;
+}
+.burger::before { top: 0; box-shadow: 0 5px 0 currentColor; }
+.burger::after  { top: 10px; }
+.nav-toggle[aria-expanded="true"] .burger::before { top: 5px; box-shadow: none; transform: rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .burger::after  { top: 5px; transform: rotate(-45deg); }
+
+@media (max-width: 52rem) {
+  .nav-toggle { display: inline-flex; }
+
+  .site-nav {
+    display: none;
+    position: absolute; top: 100%; right: 0; left: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: .9rem 1.2rem 1.3rem;
+    z-index: 40;
+  }
+  .site-nav.open { display: block; }
+
+  .site-nav > ul { display: block; }
+  .site-nav > ul > li { padding: .45rem 0; }
+
+  /* on a phone the groups are always open — a second tap to reach Approach
+     is one tap too many when the whole menu is already a deliberate act. The
+     group name stays, as a label rather than a control. */
+  .sub-toggle {
+    pointer-events: none;
+    font-size: .75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em;
+    color: var(--ink-soft); padding: 0 0 .25rem;
+  }
+  .sub-toggle::after { display: none; }
+  .site-nav .sub {
+    display: block; position: static;
+    border: 0; box-shadow: none; background: none;
+    padding: 0; min-width: 0;
+  }
+  .site-nav .sub a { padding: .4rem 0; }
+
+  .site-header .bar { position: relative; }
+}
 
 /* ---------- hero ---------- */
 
@@ -1396,3 +1493,73 @@ table.listing td.t-partner .t-logo,
 .onward-t::after { content: " →"; color: var(--accent); }
 
 .onward-d { display: block; font-size: .9rem; line-height: 1.45; }
+
+/* ---------- cite this ---------- */
+
+/* The citation already assembled, so nobody has to build it from the page.
+   Set in the monospace-ish measure of a reference rather than body prose. */
+.citeas {
+  margin: 2.4rem 0 0;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+
+.citeas-h {
+  margin: 0 0 .45rem;
+  font-size: .78rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ink-soft);
+}
+
+.citeas-t {
+  margin: 0;
+  font-size: .9rem; line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.citeas-copy {
+  margin-top: .7rem;
+  font: inherit; font-size: .8rem; font-weight: 500;
+  color: var(--accent); background: none;
+  border: 0; padding: 0; cursor: pointer;
+}
+.citeas-copy:hover { text-decoration: underline; }
+
+/* ---------- data & tools ---------- */
+
+.tools { list-style: none; padding: 0; margin: 1.4rem 0 0; display: grid; gap: .9rem; }
+
+.tools li {
+  margin: 0;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  display: block;
+}
+.tools li:hover { border-color: var(--accent); }
+
+.tool-top {
+  display: flex; align-items: baseline; gap: .6rem;
+  margin-bottom: .35rem;
+}
+.tool-state {
+  font-size: .72rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--accent);
+}
+.tool-year { font-size: .8rem; color: var(--ink-soft); }
+
+.tool-title {
+  display: block;
+  font-weight: 600; font-size: 1.02rem; line-height: 1.35;
+  color: var(--ink); text-decoration: none;
+}
+.tool-title:hover { color: var(--accent); }
+
+.tool-sum { display: block; margin-top: .3rem; font-size: .9rem; line-height: 1.5; }
+
+.tool-links { display: flex; gap: 1rem; margin-top: .6rem; }
+.tool-links a { font-size: .82rem; font-weight: 500; }

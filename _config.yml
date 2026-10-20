@@ -33,23 +33,41 @@ team_page: false
 # newsletter_url: "https://buttondown.com/riseregenerate"
 newsletter_action: "https://buttondown.com/api/emails/embed-subscribe/riseregenerate"
 
+# Navigation.
+#
+# Two shapes are allowed. A top-level entry with a `url` is a plain link; one
+# with `items` is a group that opens a panel. Groups keep the bar to five
+# words, which is what stopped it wrapping onto two lines on a phone.
+#
+# Home is deliberately present and deliberately skipped by the header — the
+# logo is the link home. It stays here because other includes read this list.
 nav:
   - title: Home
     url: /
-  - title: Approach
-    url: /approach/
-  - title: Services
-    url: /services/
-  - title: Projects
-    url: /projects/
-  - title: Publications
-    url: /publications/
-  # - title: Team        # hidden; see team_page above
-  #   url: /team/
-  - title: Partners
-    url: /partners/
-  - title: News
-    url: /news/
+  - title: About
+    items:
+      - title: Approach
+        url: /approach/
+      - title: Services
+        url: /services/
+      - title: Partners
+        url: /partners/
+      # - title: Team     # hidden; see team_page above
+      #   url: /team/
+  - title: Impact
+    items:
+      - title: Projects
+        url: /projects/
+      - title: Publications
+        url: /publications/
+      - title: Data & tools
+        url: /tools/
+  - title: Media
+    items:
+      - title: News
+        url: /news/
+      - title: Events
+        url: /events/
 
 markdown: kramdown
 kramdown:

@@ -19,6 +19,18 @@ layout: default
     {%- if page.doi %}<dt>DOI</dt><dd><a href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a></dd>{% endif -%}
     {%- if page.url_external %}<dt>Link</dt><dd><a href="{{ page.url_external }}">{{ page.url_external }}</a></dd>{% endif -%}
     {%- if page.note %}<dt>Note</dt><dd>{{ page.note }}</dd>{% endif -%}
+    {%- comment -%}
+      A link out to PlumX rather than the PlumX widget. The widget is a
+      script from plu.mx, which would make every visitor's browser contact
+      Elsevier and hand over their IP address and the page they are on —
+      the same thing the self-hosted fonts exist to avoid, and it would
+      need a privacy section and almost certainly a consent banner. A link
+      sends nothing until somebody chooses to follow it.
+    {%- endcomment -%}
+    {%- if page.doi %}
+    <dt>Metrics</dt>
+    <dd><a href="https://plu.mx/plum/a/?doi={{ page.doi | uri_escape }}">PlumX</a></dd>
+    {%- endif -%}
   </dl>
 
   {{ content }}
@@ -32,6 +44,9 @@ layout: default
     {%- endif -%}
   {%- endfor -%}
   {%- endif %}
+
+  {% include citeas.html label=page.kind authors=page.authors year=page.year
+     title=page.title where=page.journal doi=page.doi url=page.url_external %}
 
   {%- assign authors = site.people | where_exp: "x", "page.people contains x.slug" -%}
   {%- if authors.size > 0 %}
