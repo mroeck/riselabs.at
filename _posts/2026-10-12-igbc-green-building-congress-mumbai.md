@@ -1,11 +1,18 @@
 ---
 layout: post
 type: event
+projects:
+  - gbdi-china-and-india-cooperation
 people:
   - martin-roeck
 partners:
   - igbc
   - worldgbc
+# Pictures: cleared for use, but this sandbox cannot reach the source. The
+# congress is in November — a photograph from the panel will be the right
+# image once it has happened. Until then the event artwork would do.
+# hero: /assets/img/posts/igbc-congress-2026.jpg
+# hero_caption: ""
 title: "Upcoming: Leadership Panel at IGBC Green Building Congress 2026, Mumbai"
 summary: "Martin Röck joins the opening Leadership Panel on global pathways to green, resilient and net-zero built environments, 26 November in Mumbai."
 ---
@@ -38,3 +45,13 @@ was set up to close, and it is why we keep showing up in these rooms.
 The Congress is convened by the Indian Green Building Council, part of the
 Confederation of Indian Industry, with participation from the World Green
 Building Council and the Government of Maharashtra as partner state.
+
+This is part of the
+[GBDI China and India Cooperation Incubator](/projects/gbdi-china-and-india-cooperation/),
+which extends the global building data work into the two markets that will add
+the most floor area this century.
+
+<p class="muted small">Source:
+<a href="https://www.greenbuildingcongress.com/">greenbuildingcongress.com</a>
+· <a href="https://worldgbc.org/event/indiagbc-green-building-congress-2026/">World
+Green Building Council</a>.</p>

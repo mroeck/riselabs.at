@@ -7,8 +7,8 @@ journal: "Zenodo"
 doi: "10.5281/zenodo.8366478"
 people:
   - martin-roeck
-# projects:                      # one or more, by filename
-#   - project-filename
+projects:
+  - supporting-the-development-of-a
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
