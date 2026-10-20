@@ -9,7 +9,7 @@ people:
   - martin-roeck
 projects:
   - analysis-of-life-cycle-greenhouse
-  - indicate-life
+  - supporting-the-development-of-a
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
