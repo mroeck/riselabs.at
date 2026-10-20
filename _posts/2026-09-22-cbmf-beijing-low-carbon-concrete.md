@@ -8,31 +8,64 @@ people:
 partners:
   - cbmf
   - energy-foundation-china
-title: "Green procurement of low-carbon concrete — seminar in Beijing"
-summary: "On moving from embodied carbon targets to material choices, at a seminar on how public procurement can pull low-carbon building materials into the market."
+title: "Green procurement of low-carbon concrete — what came out of the Beijing seminar"
+summary: "Sixty participants from government, industry and research on how public procurement can pull low-carbon building materials into the market, and what China plans to put into procurement evaluation next."
+# Photographs: the China Building Materials Federation published around seven
+# pictures from the day on its own write-up. They are CBMF's, so they need
+# permission before they appear here — ask the organisers for two or three,
+# then uncomment the hero line and add the file to assets/img/posts/.
+# hero: /assets/img/posts/cbmf-beijing-seminar.jpg
+# hero_caption: "The seminar on green procurement of low-carbon concrete, Beijing, 22 September 2026. Photo: China Building Materials Federation."
 ---
 
-The China Building Materials Federation and the Energy Foundation convened a
-**Seminar on Green Procurement of Low-Carbon Concrete** on **22 September
-2026** in Beijing — a hybrid session with simultaneous interpretation and
-around thirty participants on site.
+The China Building Materials Federation convened a **Seminar on Green
+Procurement of Low-Carbon Concrete** in Beijing on **22 September 2026**, with
+support from the Energy Foundation. More than sixty people attended, from
+government, international organisations, research institutes, industry
+associations, construction firms and materials producers.
 
-Martin Röck spoke on **"From Embodied Carbon Targets to Material Choices:
-Accelerating the Uptake of Low-Carbon Building Materials"**.
+Martin Röck spoke on environmental data, low-carbon development and
+sustainable built environments — on what it takes to get from an embodied
+carbon target to an actual material choice on an actual project.
 
-<h2>The rest of the programme</h2>
+<h2>The argument of the day</h2>
 
-The seminar put international and Chinese procurement practice side by side.
-Sol Reeve (UNIDO) opened on international public procurement policy for
-low-carbon materials; Liang Yang of the Ministry of Housing and Urban-Rural
-Development presented China's green building materials procurement policies
-and what they have produced so far; Jiang Kefu (CNBM Zhejiang Sanshi Southern
-New Materials) set out the green building material evaluation system.
+Liu Jianhua, Resident Vice President of the CBMF, framed procurement as "an
+important bridge connecting technological innovation with market demand" —
+the point being that market mechanisms and application demand, not laboratory
+progress, are what decide whether green transformation happens.
 
-The panel brought together China State Construction Engineering Corporation,
-HUBEXO, the China Institute of Building Standard Design & Research, the China
-Academy of Building Research and the Rocky Mountain Institute.
+Yu Xia of the Energy Foundation was blunt about what stands in the way:
+low-carbon concrete still faces unresolved problems in standards, in
+engineering use, in how the market perceives it, and in cost.
 
-Procurement is one of the few levers that moves material markets rather than
-individual projects, which is why it keeps coming up in our work on benchmarks
-and targets: a limit value only bites if someone is buying against it.
+Liang Yang of the Ministry of Housing and Urban-Rural Development gave the
+keynote on China's green building materials procurement policy and what it has
+achieved in government projects so far, arguing for tighter control across the
+whole process and for widening the policy's scope. Sol Reeve of UNIDO set
+international public procurement alongside it as a driver of low-carbon
+materials markets, and Dr Xia Jingliang of CABR Technology covered the design,
+standards and applications of low-carbon concrete, including the technical
+obstacles and what gets past them.
+
+The panel — Stephen Hamil of HUBEXO, Jiang Kefu of Zhejiang Sanshi South New
+Materials, Xu Tao of China IPPR and the China Institute of Building Standard
+Design & Research, Zhang Aimin of China Construction Eighth Engineering
+Division, and Li Wei of the Rocky Mountain Institute — worked through
+procurement practice, standards, engineering application and how to coordinate
+a supply chain that currently has no reason to move first.
+
+<h2>What was agreed</h2>
+
+Green procurement was treated as two things at once: a policy tool for
+expanding demand, and a mechanism for getting upstream and downstream industry
+to act together. The concrete next steps named were adding low-carbon
+indicators, carbon footprints and environmental information into construction
+procurement evaluation; improving low-carbon concrete standards and
+disclosure; and aligning domestic environmental information rules with
+international ones.
+
+That last point is where this connects to our own work. Procurement is one of
+the few levers that moves a material market rather than a single project — but
+a limit value only bites if someone is buying against it, and a carbon
+footprint only travels across a border if the two sides count it the same way.
