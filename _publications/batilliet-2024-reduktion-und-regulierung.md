@@ -7,8 +7,12 @@ journal: "Agora Industrie"
 doi: "10.5281/zenodo.13285202"
 people:
   - martin-roeck
-# projects:                      # one or more, by filename
-#   - project-filename
+projects:
+  - agora-leitmaerkte-embodied-carbon
+partners:
+  - agora-industrie
+  - ifeu
+  - ramboll
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
