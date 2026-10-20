@@ -213,6 +213,38 @@ for slug, (fm, body, f) in coll["partners"].items():
     logo = fm.get("logo")
     if not logo:
         N("partners", f"{slug} has no logo")
+
+# Every project, publication and post should carry at least one image: a
+# figure from the work for a project or paper, a photograph for an event.
+# This is a note rather than an error — a page without one still builds, it
+# just reads as a wall of text, which is what this is here to prevent.
+def _has_picture(fm, body):
+    if fm.get("hero") or (fm.get("figures") or []):
+        return True
+    # a figure written straight into the body counts too
+    return "<figure" in body or "![" in body
+
+# Reported as one line per kind rather than one per page: sixty separate
+# notes would bury everything else, and the useful number here is the gap.
+_want_pics = {
+    "projects":     ("project", "a figure from the work — intervention logic, key results"),
+    "publications": ("publication", "a selection of figures from the paper"),
+    "posts":        ("post", "a figure from the project or paper, or a photograph for an event"),
+}
+for kind, (singular, wanted) in _want_pics.items():
+    if kind == "posts":
+        items = {p.stem: split_fm(p) for p in sorted((SITE / "_posts").glob("*.md"))}
+        bare = [s for s, (fm, body) in items.items() if not _has_picture(fm or {}, body)]
+        total = len(items)
+    else:
+        items = coll.get(kind, {})
+        bare = [s for s, (fm, body, f) in items.items() if not _has_picture(fm, body)]
+        total = len(items)
+    if bare:
+        shown = ", ".join(sorted(bare)[:6])
+        more = f", +{len(bare) - 6} more" if len(bare) > 6 else ""
+        N("figures", f"{len(bare)} of {total} {kind} have no image — wanted: "
+                     f"{wanted}\n      {shown}{more}")
         continue
     path = "/assets/img/partners/" + logo
     referenced.add(path)
@@ -271,10 +303,28 @@ for p, t in all_text:
         elif target not in pages:
             P("link", str(p.relative_to(SITE)), f"links to {target}, which no page produces")
 
-# nav entries
+# nav entries. An entry is either a link (`url`) or a group (`items`); a
+# group's children are links. Both shapes are checked, and a group with no
+# children is flagged, because the header silently skips it.
+def _check_nav(entry, parent=None):
+    where = f"nav item '{entry.get('title', '?')}'"
+    if parent:
+        where = f"nav item '{parent}' > '{entry.get('title', '?')}'"
+    if "items" in entry:
+        kids = entry.get("items") or []
+        if not kids:
+            N("config", f"nav group '{entry.get('title','?')}' has no visible items "
+                        "and is skipped by the header — fine if its pages are hidden")
+        for kid in kids:
+            _check_nav(kid, entry.get("title"))
+    elif "url" in entry:
+        if entry["url"] not in pages:
+            P("config", "_config.yml", f"{where} points at {entry['url']}, no such page")
+    else:
+        P("config", "_config.yml", f"{where} has neither a url nor items")
+
 for item in cfg.get("nav", []):
-    if item["url"] not in pages:
-        P("config", "_config.yml", f"nav item '{item['title']}' points at {item['url']}, no such page")
+    _check_nav(item)
 
 # ------------------------------------------------------------- jekyll/config
 if "{%- seo" in (SITE / "_layouts/default.html").read_text() or "{% seo" in (SITE / "_layouts/default.html").read_text():

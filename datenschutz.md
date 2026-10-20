@@ -15,10 +15,11 @@ description: >-
   block-level HTML.
 
   This describes what the site actually does as built — no cookies, no
-  analytics, self-hosted fonts, one external processor for the newsletter.
-  If that changes, this page has to change with it. In particular, adding
-  any embed (a video, a map, a social widget) or any analytics tool means
-  a new section here, and usually a consent banner too.
+  analytics, self-hosted fonts, one external processor for the newsletter,
+  and one stored preference (the theme). If that changes, this page has to
+  change with it. In particular, adding any embed (a video, a map, a social
+  widget) or any analytics tool means a new section here, and usually a
+  consent banner too.
 {%- endcomment -%}
 
 <div class="page-head wrap narrow">
@@ -52,6 +53,27 @@ Voraussetzungen des Art. 37 DSGVO nicht vorliegen.</p>
 keine Werbe- oder Social-Media-Dienste ein. Schriftarten werden lokal von
 diesem Server ausgeliefert und nicht von Dritten nachgeladen. Personenbezogene
 Daten werden nur in den unten beschriebenen Fällen verarbeitet.</p>
+
+<h2>Gespeicherte Einstellung <span class="gloss">[stored preference]</span></h2>
+
+<p>Wenn Sie über die Schaltfläche am unteren Bildschirmrand zwischen dem
+dunklen und dem hellen Erscheinungsbild wechseln, wird diese Auswahl in der
+lokalen Browser-Speicherung (<em>localStorage</em>) Ihres Geräts unter dem
+Schlüssel <code>rise-theme</code> abgelegt. Gespeichert wird ausschließlich
+das Wort <code>dark</code> oder <code>light</code>.</p>
+
+<p>Diese Speicherung erfolgt ausschließlich auf Ihre ausdrückliche Handlung
+hin und dient allein dazu, Ihre Auswahl beim nächsten Seitenaufruf
+beizubehalten. Es findet keine Übertragung an uns oder an Dritte statt, es
+werden keine Kennungen vergeben und es erfolgt keinerlei Wiedererkennung oder
+Analyse Ihres Nutzungsverhaltens. Da es sich um eine von Ihnen selbst
+veranlasste Einstellung handelt, ist hierfür keine gesonderte Einwilligung
+erforderlich (§ 165 Abs. 3 TKG 2021).</p>
+
+<p>Sie können den Eintrag jederzeit löschen, indem Sie die Websitedaten in
+Ihrem Browser entfernen. Wird die Speicherung durch Ihre Browser-Einstellungen
+unterbunden, funktioniert die Umschaltung weiterhin — die Auswahl gilt dann
+nur für die aktuelle Seite.</p>
 
 <h2>Hosting und Server-Logs <span class="gloss">[hosting and server logs]</span></h2>
 

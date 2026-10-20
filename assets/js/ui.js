@@ -119,27 +119,120 @@
      flips the data-theme attribute on <html>, which is all the stylesheet
      needs.
 
-     Nothing is stored on the visitor's device — no cookie, no localStorage,
-     deliberately. The consequence is that the choice lasts for the page the
-     visitor is on and resets when they navigate, because a static site has
-     nowhere else to keep it. To make it persist, store the value here and
-     read it back in a small inline script in <head> before first paint. */
+     The choice is remembered on the visitor's device, in localStorage under
+     "rise-theme". That is the one thing this site stores, it holds a single
+     word, and it is written only when the visitor presses the button — so it
+     is a preference they set, not something that tracks them. It never
+     leaves the browser. The matching read is an inline script in <head>, so
+     the remembered theme is applied before first paint; without it every
+     page would flash dark before turning light.
+
+     Storage throws in some privacy modes, so every access is wrapped. If it
+     fails the toggle still works for the current page and simply forgets. */
+
+  var THEME_KEY = "rise-theme";
 
   function setupTheme(btn) {
     var root = document.documentElement;
 
-    function apply(theme) {
+    function apply(theme, remember) {
       root.setAttribute("data-theme", theme);
       var light = theme === "light";
       btn.setAttribute("aria-pressed", light ? "true" : "false");
       btn.title = light ? "Switch to the dark theme" : "Switch to the light theme";
       var label = btn.querySelector(".tt-label");
       if (label) label.textContent = light ? "Dark" : "Light";
+      if (remember) {
+        try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+      }
     }
+
+    // the <head> script may already have applied a remembered theme; reflect
+    // it in the button before showing it, or the label would read backwards
+    apply(root.getAttribute("data-theme") === "light" ? "light" : "dark", false);
 
     btn.hidden = false;   // only now is the control real
     btn.addEventListener("click", function () {
-      apply(root.getAttribute("data-theme") === "light" ? "dark" : "light");
+      apply(root.getAttribute("data-theme") === "light" ? "dark" : "light", true);
+    });
+  }
+
+  /* ---------- navigation ---------- */
+
+  /* One markup structure serves both layouts. On a wide screen the groups sit
+     in the bar and their panels drop beneath; on a narrow one the whole list
+     lives behind the menu button. The JavaScript is the same either way:
+     buttons toggle aria-expanded, and CSS decides what that looks like. */
+
+  function setupNav(btn) {
+    var nav = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!nav) return;
+
+    function openNav(open) {
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      nav.classList.toggle("open", open);
+      if (!open) closeSubs();
+    }
+
+    function closeSubs(except) {
+      Array.prototype.forEach.call(nav.querySelectorAll(".sub-toggle"), function (t) {
+        if (t !== except) t.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    btn.hidden = false;
+    btn.addEventListener("click", function () {
+      openNav(btn.getAttribute("aria-expanded") !== "true");
+    });
+
+    Array.prototype.forEach.call(nav.querySelectorAll(".sub-toggle"), function (t) {
+      t.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = t.getAttribute("aria-expanded") !== "true";
+        closeSubs(t);
+        t.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    });
+
+    // a click outside, or Escape, closes whatever is open
+    // the click lands on the icon inside the button, so test the button's
+    // subtree rather than the button itself — otherwise this closes the menu
+    // on the very click that opened it
+    document.addEventListener("click", function (e) {
+      if (!nav.contains(e.target) && !btn.contains(e.target)) {
+        closeSubs();
+        openNav(false);
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { closeSubs(); openNav(false); btn.focus(); }
+    });
+  }
+
+  /* ---------- cite this ---------- */
+
+  /* The copy button is added here rather than in the markup, so a visitor
+     without JavaScript sees selectable text instead of a dead control.
+     Clipboard access can be refused, in which case the label says so and the
+     text is still there to select. */
+
+  function setupCite(box) {
+    var text = box.querySelector("[data-citeas-text]");
+    if (!text || !navigator.clipboard) return;
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "citeas-copy";
+    btn.textContent = "Copy citation";
+    box.appendChild(btn);
+
+    btn.addEventListener("click", function () {
+      navigator.clipboard.writeText(text.textContent.trim()).then(function () {
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy citation"; }, 2000);
+      }, function () {
+        btn.textContent = "Press Ctrl/Cmd+C to copy";
+      });
     });
   }
 
@@ -227,6 +320,8 @@
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-worldmap]"), setupMap);
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-nav-toggle]"), setupNav);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-citeas]"), setupCite);
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);

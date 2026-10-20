@@ -294,8 +294,9 @@ Optional: a paragraph about the collaboration.
 | Field | Required | Notes |
 |---|---|---|
 | `name` | yes | |
-| `type` | yes | In use: `university`, `public authority`, `consultancy`, `foundation`, `network`, `international organisation`, `research institute`, `think tank`, `architecture practice`. Reuse an existing one where it fits |
+| `type` | yes | In use: `university`, `public authority`, `consultancy`, `foundation`, `network`, `international organisation`, `research institute`, `think tank`, `architecture practice`, `industry association`. Reuse an existing one where it fits |
 | `city`, `country` | no | Shown under the name |
+| `coords` | no | `[latitude, longitude]` — puts the partner on the world map. Leave it out and they appear in the table only |
 | `website` | no | Their site. **Must be `website`, not `url`** — see the warning below |
 | `logo` | no | A filename inside `assets/img/partners/` |
 
@@ -325,10 +326,14 @@ A partner appears on `/partners/` automatically. The home page shows a
 
 The **Together** column on `/partners/` counts what each partnership has
 produced — projects, publications, news — and is calculated from the
-cross-references, never typed in. News counts a post that names the partner
-directly *or* one attached to a project they are on. A dash means none yet.
-If a number looks wrong, the cause is a missing or misspelled reference on
-the project or publication, not on the partner.
+cross-references, never typed in. A dash means none yet. If a number looks
+wrong, the cause is a missing or misspelled reference on the project,
+publication or post, not on the partner file.
+
+**A post counts for a partner only when the post names them**, in its
+`partners:` list. So when you write a news item, list the organisations it is
+about — otherwise the partner's page will not show it and the column will read
+as a dash. That is the whole mechanism; there is no inference from projects.
 
 ---
 
@@ -474,6 +479,18 @@ haven't is both misleading and the kind of thing people object to.
 
 ---
 
+## 11a. The "Page in progress" note
+
+The magenta pill in the bottom corner, next to the theme toggle, is switched
+on per page: `wip: true` in that page's front matter. It is on the home page
+only at the moment.
+
+Remove the line when the page is finished. There is no site-wide switch, on
+purpose — a disclaimer that nobody can remember how to turn off tends to stay
+up for a year.
+
+---
+
 ## 11b. Light and dark
 
 Dark is the primary theme and what every page loads with. The toggle in the
@@ -554,3 +571,78 @@ restore it. Nothing is ever lost.
 **Still stuck.** Note what you changed and what you expected, and ask. A
 broken page in a branch costs nothing; a wrong claim on a live page costs
 more.
+
+---
+
+## 15. Images are not optional
+
+**Every project, publication and post should carry at least one image.** The
+checker reports how many do not, grouped by kind, so the gap stays visible.
+
+What each kind wants:
+
+| Kind | What to show |
+| --- | --- |
+| Project | The intervention logic, or the key result. A diagram of what the project actually did beats a stock photograph |
+| Publication | A selection of figures from the paper itself |
+| Post | For a project or paper, reuse one of its figures. For an event, a photograph of the room or the people |
+
+Three fields do this, and they work the same on projects, publications and
+posts:
+
+```yaml
+hero: /assets/img/figures/my-figure.png
+hero_caption: "What it shows. Source, licence if someone else's."
+figures:
+  - file: /assets/img/figures/another.png
+    number: Figure 2
+    caption: What this one shows.
+    source: Where it came from.
+```
+
+`hero` is the one at the top. `figures` is the list further down. You can also
+write a `<figure class="fig">` straight into the body if it needs to sit at a
+particular point in the argument — the CollaborativeCarbon project does this.
+
+**When asking a partner or a project for material, ask for the figures at the
+same time**, and ask what licence they come under. Agora's figures are CC BY
+4.0 and can be reused with attribution; most publishers' are not. A caption
+naming the source is the minimum.
+
+## 16. Cite this
+
+Publication pages build a citation block automatically from their front
+matter. Projects do too, but only when you set `cite_year` — so a project with
+nothing citable does not get an empty box:
+
+```yaml
+cite_authors: "Röck, M., & Someone, A."   # defaults to RISE
+cite_year: 2026
+cite_title: "..."                          # defaults to project_title
+cite_where: "Publisher or commissioner"
+cite_doi: "10.5281/zenodo.0000000"
+```
+
+## 17. Data & tools
+
+`/tools/` is not a new kind of content. It shows the publications whose
+`kind` is `data`, because a dataset listed as the fourth section of a
+publications page is effectively buried. Two optional fields in those files
+appear on the cards:
+
+```yaml
+state: "available"              # or "in development"
+repo: "https://github.com/..."  # where the source lives
+```
+
+To add a dataset or a tool, add a publication with `kind: data`. It appears in
+both places automatically.
+
+## 18. Navigation
+
+The menu is built from the `nav` block in `_config.yml`. An entry with a `url`
+is a plain link; an entry with `items` is a group that opens a panel. Groups
+exist so the bar stays on one line on a phone.
+
+A group whose items are all hidden is skipped rather than rendered as a dead
+button — which is what happens to About while the team page is hidden.
