@@ -8,8 +8,8 @@ people:
   - martin-roeck
 partners:
   - epfl
-title: "GBDI is now an association"
-summary: "The Global Building Data Initiative has been established as an association under Austrian law, with RISE in a founding role."
+title: "GBDI non-profit association founded"
+summary: "The Global Building Data Initiative has been established as a non-profit association under Austrian law, with RISE in a founding role."
 ---
 
 <!-- CHECK THE DATE AND WORDING BEFORE THIS GOES LIVE.
@@ -22,9 +22,10 @@ a governance structure, and the ability to hold funding and employ staff
 directly.
 
 For RISE this changes little day to day and quite a lot structurally. The two
-teams will continue to sit alongside each other in Vienna, and some colleagues
-will hold contracts with both. But GBDI can now grow on its own terms, as an
-open data commons answerable to its community rather than to any single
-research project.
+teams will continue to work together closely, with more and more of the GBDI team moving to Vienna in the future, some colleagues
+will hold contracts with both organizations. GBDI can now grow on its own terms, as an
+open data commons accountable to its community and partners. 
+
+A new tiered collaboration model for GBDI partners will be presented in the coming months.
 
 More on the initiative at [gbdi.io](https://www.gbdi.io).
