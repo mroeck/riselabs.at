@@ -20,7 +20,7 @@ permalink: /publications/
 <p class="muted">Full lists via
 <a href="{{ site.scholar }}">Google Scholar</a> and
 <a href="https://orcid.org/0000-0003-2940-1230">ORCID</a>.
-Open access copies are available on request.</p>
+Open access or available on request.</p>
 
 {% include filter.html target="#publist" placeholder="Filter by author, title, journal or year…" %}
 
