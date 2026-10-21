@@ -14,15 +14,16 @@ wip: true   # shows the "Page in progress" note by the theme toggle
     <p class="eyebrow">What we stand for</p>
     <div class="cols pillars">
       <div>
-        <h3>System change</h3>
+        <h3>Systemic decarbonisation</h3>
         <p class="muted">Reducing and removing the emissions and resource use
         locked into how we build — and redistributing what the built
         environment takes and gives.</p>
       </div>
       <div>
-        <h3>We are nature</h3>
-        <p class="muted">Reconnecting with the systems we are part of, rather
-        than managing them from outside.</p>
+        <h3>Planetary boundaries</h3>
+        <p class="muted">Healthy ecosystems are the foundation for sustainable
+        development and resilient societies. We help understand where the
+        balance is.</p>
       </div>
       <div>
         <h3>Stronger together</h3>
