@@ -27,7 +27,7 @@ wip: true   # shows the "Page in progress" note by the theme toggle
       </div>
       <div>
         <h3>Stronger together</h3>
-        <p class="muted">Collective action, solidarity and systems of care —
+        <p class="muted">Capacity-building, collective action, and open science —
         because effective climate action is never done alone.</p>
       </div>
     </div>
