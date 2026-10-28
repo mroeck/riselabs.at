@@ -5,8 +5,8 @@ years: "2024–2028"
 funder: "UNEP / GlobalABC"
 role: "Lead Advisor, Embodied Carbon"
 summary: "The annual global stocktake of the sector's emissions and progress"
-hero: "/assets/img/projects/embodied-carbon-world.png"
-hero_caption: "Embodied carbon emissions per m2 by world region."
+hero: "/assets/img/projects/gsr-2025-2026.jpg"
+hero_caption: "Global Status Report for Buildings and Construction 2025-2026."
 themes:
   - building-stock
   - policy-regulation

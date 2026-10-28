@@ -5,8 +5,8 @@ years: "2021–2024"
 funder: "European Commission DG ENV"
 role: "Team lead and task lead"
 summary: "Provided the archetype modelling behind the EU's roadmap for bringing down whole life carbon"
-hero: "/assets/img/projects/eu-stock-by-country.png"
-hero_caption: "Building stock composition by country across the EU."
+hero: "/assets/img/projects/modelling-framework.png"
+hero_caption: "Reduction solutions applied to a building LCA model, scaled up with a building stock model."
 themes:
   - policy-regulation
   - whole-life-carbon
