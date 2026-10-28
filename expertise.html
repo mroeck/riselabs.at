@@ -30,8 +30,14 @@ permalink: /expertise/
 
 {%- for x in site.data.expertise %}
 <div class="xfield" id="{{ x.title | slugify }}">
-  <div class="xfield-img{% unless x.image %} xfield-img-empty{% endunless %}">
-    {%- if x.image %}<img src="{{ x.image | relative_url }}" alt="" loading="lazy">{% endif -%}
+  {%- comment -%}
+    Fields all carry an image now. The fallback stays for any field added
+    later without one, so the page never shows an empty box.
+  {%- endcomment -%}
+  {%- assign xi = x.image -%}
+  {%- unless xi %}{% capture xi %}{% include stockimg.html key=x.title %}{% endcapture %}{% endunless -%}
+  <div class="xfield-img">
+    <img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">
   </div>
   <div class="xfield-body">
     <h2>{{ x.title }}</h2>

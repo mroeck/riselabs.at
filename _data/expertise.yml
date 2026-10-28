@@ -18,6 +18,7 @@
 # ---------------------------------------------------------------------------
 
 - title: "Whole life carbon assessment and benchmarking"
+  image: /assets/img/stock/concrete-blue-grey.jpg
   strand: up
   # image: /assets/img/expertise/whole-life-carbon.jpg
   lede: >-
@@ -34,6 +35,7 @@
   audience: "Public authorities, portfolio holders, industry bodies, funders"
 
 - title: "Building stock modelling and scenarios"
+  image: /assets/img/stock/glass-facade-sky.jpg
   strand: up
   # image: /assets/img/expertise/building-stock.jpg
   lede: >-
@@ -53,6 +55,7 @@
   audience: "European Commission, national ministries and agencies, international organisations"
 
 - title: "Policy evidence and advisory"
+  image: /assets/img/stock/concrete-forms-sky.jpg
   strand: up
   # image: /assets/img/expertise/policy-evidence.jpg
   lede: >-
@@ -72,6 +75,7 @@
   audience: "Public authorities and large public portfolio holders, cities and regions, industry associations"
 
 - title: "Open data infrastructure"
+  image: /assets/img/stock/ceiling-terracotta-lines.jpg
   strand: wide
   # image: /assets/img/expertise/open-data.jpg
   lede: >-
@@ -88,6 +92,7 @@
   audience: "Governments setting benchmarks, data initiatives, funders and philanthropies"
 
 - title: "Methods, standards and harmonisation"
+  image: /assets/img/stock/white-stair-soffit.jpg
   strand: up
   # image: /assets/img/expertise/methods-standards.jpg
   lede: >-
@@ -107,6 +112,7 @@
   audience: "Public authorities, standardisation and industry bodies, investors"
 
 - title: "Teaching and capacity building"
+  image: /assets/img/stock/facade-terracotta-curves.jpg
   strand: wide
   # image: /assets/img/expertise/teaching.jpg
   lede: >-

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Resolves a picture for something that has none of its own.
+
+    include.key  a stable string for this item, normally its slug or title
+
+  The same key always returns the same photograph: the choice is made from
+  the key's own length, not from a counter or the build order, so a card does
+  not change picture when an unrelated project is added. Collisions between
+  two items are possible and harmless, but where two of them would sit side
+  by side it is better to set a real image and not rely on this.
+
+  Returns a bare site path, as written in _data/stock.yml. The caller
+  applies relative_url and supplies the markup.
+{%- endcomment -%}
+{%- assign stock = site.data.stock -%}
+{%- assign i = include.key | default: "rise" | size | modulo: stock.size -%}
+{{ stock[i].file }}

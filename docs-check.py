@@ -365,6 +365,19 @@ for f in ("CNAME", ".gitignore", "404.html", "README.md", "Gemfile"):
     if not (SITE / f).exists():
         N("repo", f"no {f}")
 
+# ---------------------------------------------------------------- stock images
+stock = (yaml.safe_load((SITE / "_data/stock.yml").read_text()) or [])
+if not stock:
+    P("stock", "_data/stock.yml", "no stock images listed; the fallback has nothing to pick")
+for i, s in enumerate(stock):
+    if not s.get("file"):
+        P("stock", "_data/stock.yml", f"entry {i} has no `file`")
+        continue
+    if not (SITE / s["file"].lstrip("/")).exists():
+        P("stock", "_data/stock.yml", f"missing file {s['file']}")
+    if not s.get("alt"):
+        N("_data/stock.yml", f"{s['file']} has no `alt`")
+
 # ------------------------------------------------------------ related projects
 # `related` names other projects by slug. A typo would simply render nothing,
 # so it is checked here. Self-references are flagged too: the layout drops

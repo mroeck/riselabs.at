@@ -12,10 +12,15 @@
   {%- for p in include.projects -%}
   <li data-themes="{{ p.themes | join: ' ' }}">
     <a href="{{ p.url | relative_url }}">
+      {%- comment -%}
+        A project with no picture of its own falls back to stock imagery
+        rather than an empty box. See _data/stock.yml.
+      {%- endcomment -%}
       {%- if p.hero -%}
       <span class="pcard-img"><img src="{{ p.hero | relative_url }}" alt="" loading="lazy"></span>
       {%- else -%}
-      <span class="pcard-img pcard-img-empty"></span>
+      {%- capture pstock %}{% include stockimg.html key=p.slug %}{% endcapture -%}
+      <span class="pcard-img"><img src="{{ pstock | strip | relative_url }}" alt="" loading="lazy"></span>
       {%- endif -%}
       <span class="pcard-meta">{{ p.years }}</span>
       <span class="pcard-title">{{ p.title }}</span>
