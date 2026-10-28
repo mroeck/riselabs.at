@@ -15,6 +15,12 @@ clients:
   - unep
 people:
   - martin-roeck
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - analysis-of-life-cycle-greenhouse
+  - global-whole-life-carbon-tracker
 ---
 
 <!-- DRAFT - written from this project's own front matter, the public
@@ -22,12 +28,14 @@ people:
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
 
+<h2>Context</h2>
+
 The Global Status Report is the sector's annual stocktake: where emissions
 from buildings and construction stand, and whether anything is moving. It is
 produced under the Global Alliance for Buildings and Construction, convened by
 UNEP.
 
-<h2>Our role</h2>
+<h2>Objectives</h2>
 
 We advise on the embodied carbon side - the emissions from making and moving
 materials and from construction itself, as distinct from the energy a building

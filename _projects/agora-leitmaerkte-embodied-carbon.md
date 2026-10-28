@@ -40,78 +40,74 @@ partners:
   - agora-industrie
   - ifeu
   - ramboll
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - towards-embodied-carbon-benchmarks-for
 ---
 
-<!-- The study is published in German only. This page summarises it in
-     English; quoted figures are from the publication page and the study
-     itself. A header figure is available under CC BY 4.0 - see the commented
-     `hero` lines in the front matter. -->
+<!-- Concluded project. The text follows the structure of the German
+     publication page: Einleitung becomes Context, Kernergebnisse becomes
+     Insights. The study itself is published in German only; this is the
+     English account of it.
 
-Germany's building sector is one of the largest consumers of cement, steel and
-brick in Europe. That makes it a problem - and, read differently, a lever: a
-buyer big enough to create a market for materials that barely have one yet.
+     A header figure is available under CC BY 4.0 - see the commented `hero`
+     lines in the front matter.
 
-This study, produced with Agora Industrie, ifeu and Ramboll, quantified how
-much carbon is locked into German construction and set out how demand-side
-regulation could pull near-zero-emission materials into the mainstream rather
-than waiting for supply to arrive on its own.
+     TO CHECK: ifeu give the project runtime as September 2023 to July 2024.
+     This page says 2022-2024. One of the two is wrong. -->
 
-<h2>Objectives</h2>
+<h2>Context</h2>
 
-<div class="findings" markdown="1">
+Demand for climate-friendly products is what will decide whether industry
+reaches climate neutrality by mid-century. Supply-side support can build the
+plants; only demand makes the case for running them.
 
-- **Quantify the embodied emissions.** Establish how much CO₂ German
-  construction embodies each year, and what has to happen to it on the way to
-  climate neutrality in 2045.
-- **Test the lead-market argument.** Work out whether building regulation can
-  give material producers the demand signal they need to invest in near-zero
-  production.
-- **Design the instrument.** Set out a staged, implementable path from
-  transparency to binding limits, aligned with what the EU is already doing.
+The building sector is one of the largest consumers of basic materials such as
+cement and steel, which is precisely what qualifies it to go first. Parts of
+the construction industry are already working to create demand for near-zero
+and circular materials. Those efforts now need to be scaled, so that the
+appetite for climate-neutral materials is large and certain enough for
+producers to keep investing in the transition.
 
-</div>
+The sequence matters. Embodied carbon emissions in building materials have to
+be determined and made transparent first. Limit values on the CO₂ intensity of
+materials used in new construction can then be phased in, stimulating demand
+and clearing the barriers that new low-emission products run into. These
+demand-side measures should be coordinated across Germany and the EU with
+supply-side instruments such as Klimaschutzverträge, which address the other
+half of the problem.
 
-<h2>What we found</h2>
+This study, produced with Agora Industrie, ifeu and Ramboll, sets out what
+that policy framework could look like.
 
-<div class="findings" markdown="1">
-
-- **Embodied emissions are most of the problem for a new building.**
-  Producing the steel, concrete and brick, and processing them on site,
-  accounts for up to 90% of the life cycle CO₂ emissions of a new building.
-  German embodied emissions ran to roughly 73 million tonnes CO₂-equivalent
-  in 2023, and have to be very nearly eliminated by 2045.
-- **The cost objection does not survive contact with the numbers.**
-  Near-zero-emission steel and concrete currently cost up to a third more than
-  conventional material. But material is a small share of what a building
-  costs: the effect on the total is comparable to ordinary design decisions,
-  such as the choice of facade. On current trajectories, low-carbon
-  construction reaches cost parity around 2040 and undercuts conventional
-  construction by 2050.
-- **Demand-side regulation is what makes the investment case.** A producer
-  deciding whether to rebuild a plant for near-zero production needs to know
-  the demand will be there. Limit values on the carbon intensity of materials
-  in new construction supply exactly that, and they work with supply-side
-  instruments such as Klimaschutzverträge rather than instead of them.
-
-</div>
-
-<h2>What we recommended</h2>
-
-A three-step sequence, in that order, because each step depends on the one
-before it:
+<h2>Insights</h2>
 
 <div class="findings" markdown="1">
 
-- **Measure and disclose first.** Determine the embodied emissions of
-  building materials and make them transparent. Nothing can be limited that
-  is not yet counted.
-- **Phase in limits on carbon intensity.** Introduce limit values for new
-  construction in stages, in line with the revised EU Energy Performance of
-  Buildings Directive, with a classification scheme modelled on the
-  efficiency classes people already understand from energy certificates.
-- **Coordinate demand with supply, and modernise building law.** Align the
-  demand-side measures across Germany and the EU with supply-side support,
-  and clear the regulatory obstacles to circular and low-carbon practice -
-  recycling, reuse, and the shift from mineral to renewable materials.
+- **Embodied carbon is now most of a new building's footprint.** Producing
+  steel, concrete and brick, and processing them on site, currently accounts
+  for up to 90% of the life cycle CO₂ emissions of a new building. In Germany
+  these embodied emissions came to roughly 73 million tonnes CO₂-equivalent in
+  2023. Reaching climate neutrality efficiently means avoiding almost all of
+  them by 2045.
+- **Switching materials is what creates the business case for industry.**
+  Moving to climate-friendly building materials gives producers a long-term
+  commercial basis for investing in near-zero production technology, which
+  makes it a key to the industrial transition rather than a consequence of it.
+  A cost-efficient and durable strategy pairs climate-neutral materials with
+  circular and more efficient building practice: recycling and reusing
+  materials, and shifting from mineral to renewable ones.
+- **The cost objection does not survive contact with the numbers.** Near-zero
+  steel and concrete still cost up to a third more than conventional material,
+  but they raise construction costs only as much as ordinary non-climate
+  decisions do, such as the choice of facade. Costs can reach parity with
+  conventional materials by 2040 and fall below them by 2050.
+- **No single instrument is enough.** Phasing in progressively stricter limit
+  values, as the revised EU Energy Performance of Buildings Directive
+  requires, is central. But cutting emissions substantially as early as 2030
+  also needs modernised building law, to create room and incentive for
+  circular, climate-friendly construction.
 
 </div>

@@ -24,15 +24,9 @@ outputs:
 # and a url. Only outputs anyone may read belong here.
 figures:
 - file: /assets/img/projects/wlc-scenario-explorer.png
-  number: Figure 2
+  number: Figure 1
   caption: The WLC Scenario Explorer, the open tool built from this
     study's stock model.
-- file: /assets/img/figures/wlc-trajectory.jpg
-  number: Figure 1
-  caption: Whole life carbon trajectory for the EU building stock under the current-policy
-    scenario, by life cycle module.
-  source: Photographed from a presentation of the study. Replace with the figure
-    exported from source when available.
 clients:
   - ec-dg-grow
 people:
@@ -45,35 +39,36 @@ partners:
   - iiasa
   - aau-build
   - polimi
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - collaborative-carbon
+  - global-status-report-for-buildings
+  - global-whole-life-carbon-tracker
+  - reliving-scaling-renovation
+  - supporting-the-development-of-a
 ---
 
-<!-- This project page is the worked example. The others are still stubs.
-     Everything above the first paragraph is front matter: change a value
-     there and the page updates. Body text goes here, in markdown. -->
+<!-- Concluded project, so the text runs Context then Insights, with a third
+     section for where the results actually landed. -->
+
+<h2>Context</h2>
 
 Buildings and construction account for roughly 40% of greenhouse gas emissions
 in the EU, but until recently there was no agreed quantification of how those
 emissions are distributed across the life cycle of the stock, nor of how
-different policy choices would change them by 2050.
+different policy choices would change them by 2050. Without that, the revision
+of the Energy Performance of Buildings Directive would have been argued on
+assertion rather than evidence.
 
-We led the analytical work to close that gap: a bottom-up model of the EU27
-building stock, built from archetype buildings and harmonised material and
-energy flow data, run forward under a set of policy scenarios.
+DG GROW commissioned the analysis to close that gap. We led the analytical
+work: a bottom-up model of the EU27 building stock, built from archetype
+buildings and harmonised material and energy flow data, run forward to 2050
+under a set of policy scenarios, and assembled from open archetypes so that
+national teams could repeat it rather than start over.
 
-<h2>Objectives</h2>
-
-<div class="findings" markdown="1">
-
-- **Establish the baseline.** Quantify where emissions sit across the life cycle
-  of the EU27 building stock today, at a resolution policy can act on.
-- **Model the plausible futures.** Run the stock forward to 2050 under current
-  policy and under more ambitious combinations of levers.
-- **Make the method reusable.** Build it from open archetypes and harmonised
-  data so national teams can repeat it rather than start over.
-
-</div>
-
-<h2>What we found</h2>
+<h2>Insights</h2>
 
 <div class="findings" markdown="1">
 
@@ -94,7 +89,7 @@ energy flow data, run forward under a set of policy scenarios.
 
 </div>
 
-<h2>Where it landed</h2>
+<h2>Impact</h2>
 
 The results informed the evidence base for the revised Energy Performance of
 Buildings Directive, which now requires whole life carbon disclosure for all

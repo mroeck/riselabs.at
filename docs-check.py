@@ -289,7 +289,9 @@ for f in sorted(on_disk - referenced):
 # ------------------------------------------------------------- internal links
 pages = {"/"}
 hidden_pages = set()
-for p in SITE.glob("*.md"):
+# Both extensions: Jekyll builds a top-level page from either, and the pages
+# that are pure layout deliberately live in .html so kramdown never sees them.
+for p in sorted(list(SITE.glob("*.md")) + list(SITE.glob("*.html"))):
     fm, _ = split_fm(p)
     if not fm or not fm.get("permalink"):
         continue
@@ -362,6 +364,18 @@ for coll_name in ("projects", "people", "publications", "partners"):
 for f in ("CNAME", ".gitignore", "404.html", "README.md", "Gemfile"):
     if not (SITE / f).exists():
         N("repo", f"no {f}")
+
+# ------------------------------------------------------------ related projects
+# `related` names other projects by slug. A typo would simply render nothing,
+# so it is checked here. Self-references are flagged too: the layout drops
+# them, but they are always a mistake.
+for slug, (pr, _body, _f) in coll["projects"].items():
+    for other in (pr.get("related") or []):
+        if other == slug:
+            P("related", f"_projects/{slug}.md", "lists itself in `related`")
+        elif other not in coll["projects"]:
+            P("related", f"_projects/{slug}.md",
+              f"`related` names {other}, which is not a project")
 
 # -------------------------------------------------------- markdown vs. html
 #

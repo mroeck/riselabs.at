@@ -4,7 +4,7 @@ city: "Milan"
 country: "Italy"
 type: "university"
 website: "https://www.polimi.it"
-logo: "polimi.svg"   # PLACEHOLDER wordmark - replace with the real logo
+logo: "polimi.svg"
 coords: [45.464, 9.19]   # latitude, longitude - places this partner on the map
 ---
 

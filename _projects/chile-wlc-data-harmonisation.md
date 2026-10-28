@@ -20,11 +20,19 @@ themes:
   - data-benchmarks
   - global-south
   - whole-life-carbon
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - gbdi-china-and-india-cooperation
+  - global-building-data-initiative
 ---
 
 <!-- DRAFT - written from the project information sheet supplied in October
      2026. The framing and the facts come from that document; check the dates
      and the description of the partners' roles before relying on it. -->
+
+<h2>Context</h2>
 
 Chile's construction sector is expanding, and the country has set ambitious
 decarbonisation goals. What was missing was the machinery in between: a
@@ -32,7 +40,7 @@ standardised method and an open tool for measuring emissions across the whole
 life cycle, and credible benchmarks to measure against. The project was
 launched under the CORFO Chile Public Goods Call to build exactly that.
 
-<h2>What we do</h2>
+<h2>Objectives</h2>
 
 - **Align the data architecture from day one.** The Chilean tool is built on
   the Open Building Data Format, so its data is structured the way the global

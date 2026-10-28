@@ -38,6 +38,13 @@ partners:
   - clt-europe
   - cohabitat
 partners_note: "TU Delft's contribution was through its CO-Lab Research group"
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - analysis-of-life-cycle-greenhouse
+  - reliving-scaling-renovation
+  - towards-embodied-carbon-benchmarks-for
 ---
 
 <!-- Figures are drawn from the values given in the final-results write-up.
@@ -45,6 +52,8 @@ partners_note: "TU Delft's contribution was through its CO-Lab Research group"
      other six of the twelve have no published figure yet. If the synthesis
      deck has all twelve, add them to the ROWS list in make-figures.py at the
      site root and re-run it to redraw the chart. -->
+
+<h2>Context</h2>
 
 Collaborative housing - co-housing, housing cooperatives, community land
 trusts - is usually argued for on social and economic grounds, and that case
@@ -97,7 +106,7 @@ behind it. The answer is more useful than the one the sector expected.
 
 </div>
 
-<h2>What we found</h2>
+<h2>Insights</h2>
 
 <figure class="fig">
   <a href="/assets/img/figures/collabcarbon-embodied-carbon.svg" class="fig-link">

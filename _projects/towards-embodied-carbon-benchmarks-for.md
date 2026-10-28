@@ -18,7 +18,19 @@ people:
 partners:
   - ramboll
   - aau-build
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - agora-leitmaerkte-embodied-carbon
+  - collaborative-carbon
+  - iea-ebc-annex-72
+  - indicate
+  - indicate-life
 ---
+
+
+<h2>Context</h2>
 
 Established a first European baseline for embodied carbon from real building data, and a budget-based way to set targets against it.
 
@@ -27,7 +39,7 @@ Established a first European baseline for embodied carbon from real building dat
      appears in the list. -->
 
 
-<h2>What we did</h2>
+<h2>Insights</h2>
 
 - **Assembled real building data.** A European dataset of embodied carbon from
   assessed buildings, rather than from modelled archetypes.
