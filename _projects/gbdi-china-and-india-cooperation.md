@@ -16,6 +16,12 @@ people:
   - martin-roeck
 partners:
   - epfl
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - chile-wlc-data-harmonisation
+  - global-building-data-initiative
 ---
 
 <!-- DRAFT - written from this project's own front matter, the public
@@ -23,13 +29,15 @@ partners:
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
 
+<h2>Context</h2>
+
 Most of the floor area of the coming decades will be built in China and
 India. The data infrastructure for whole life carbon was not built with those
 markets in mind, and the methods that work in Europe carry assumptions -
 about material supply, construction practice, grid intensity and building
 lifespan - that do not travel unexamined.
 
-<h2>What we are doing</h2>
+<h2>Objectives</h2>
 
 - **Building the relationships first.** Working with researchers, industry and
   policy actors in both countries rather than arriving with a finished method.

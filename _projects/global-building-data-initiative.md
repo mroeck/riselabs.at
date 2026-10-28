@@ -18,6 +18,13 @@ people:
 partners:
   - usp
   - epfl
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - chile-wlc-data-harmonisation
+  - gbdi-china-and-india-cooperation
+  - global-whole-life-carbon-tracker
 ---
 
 <!-- DRAFT - written from this project's own front matter, the public
@@ -25,12 +32,14 @@ partners:
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
 
+<h2>Context</h2>
+
 Building life cycle assessment has been done tens of thousands of times. Very
 little of it is comparable, and almost none of it is public. Every benchmark
 study starts by assembling its own dataset, which is why benchmarks disagree
 and why most countries still have none.
 
-<h2>What we did</h2>
+<h2>Insights</h2>
 
 - **Built an open data commons.** A structured, openly licensed database of
   resource use and upfront embodied carbon for new buildings, designed so
@@ -40,7 +49,7 @@ and why most countries still have none.
 - **Made contribution possible.** Routes for national teams, researchers and
   industry to add their own data rather than only consume someone else's.
 
-<h2>Where it went</h2>
+<h2>Impact</h2>
 
 GBDI outgrew the project that started it. It is now an association under
 Austrian law with its own governance, and it continues as a standing

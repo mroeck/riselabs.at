@@ -1,6 +1,39 @@
 ---
 layout: default
 ---
+{%- comment -%}
+  The project image sits behind the title rather than below it. The gradient
+  in .hero-full::after is what keeps the text legible over any frame, so the
+  picture can be a photograph or a chart without the heading becoming hard to
+  read. A project with no image falls back to the plain head.
+{%- endcomment -%}
+{%- if page.hero -%}
+<section class="hero-full proj-hero">
+  <div class="hero-media" aria-hidden="true">
+    <img src="{{ page.hero | relative_url }}" alt="" fetchpriority="high">
+  </div>
+  <div class="hero-inner wrap narrow">
+  <p class="post-date">
+    <span class="post-type">{{ page.status }}</span> &nbsp;·&nbsp; {{ page.years }}
+  </p>
+  <h1>{{ page.title }}</h1>
+  {%- if page.summary %}<p class="lede">{{ page.summary }}.</p>{% endif -%}
+
+  {%- comment -%} themes come from _data/themes.yml, by slug {%- endcomment -%}
+  {%- if page.themes.size > 0 %}
+  <p class="tags">
+    {%- for t in page.themes -%}
+      {%- assign th = site.data.themes | where: "slug", t | first -%}
+      <span class="tag">{{ th.name | default: t }}</span>
+    {%- endfor -%}
+  </p>
+  {%- endif -%}
+  </div>
+</section>
+{%- if page.hero_caption %}
+<p class="hero-cap wrap narrow">{{ page.hero_caption }}</p>
+{%- endif %}
+{%- else -%}
 <div class="page-head wrap narrow">
   <p class="post-date">
     <span class="post-type">{{ page.status }}</span> &nbsp;·&nbsp; {{ page.years }}
@@ -18,31 +51,61 @@ layout: default
   </p>
   {%- endif -%}
 </div>
+{%- endif -%}
 
 <main id="content">
-
-{%- if page.hero %}
-<section class="band" style="padding-top:0;border-top:0;">
-  <div class="wrap">
-    {% include figure.html file=page.hero caption=page.hero_caption wide="true" %}
-  </div>
-</section>
-{%- endif %}
 
 <section class="band">
 <div class="wrap narrow post-body">
 
-  {%- if page.outputs.size > 0 or page.figures.size > 0 %}
-  <p class="jump">
-    {%- if page.outputs.size > 0 %}<a href="#outputs">Outputs</a>{% endif -%}
-    {%- if page.outputs.size > 0 and page.figures.size > 0 %} &nbsp;·&nbsp; {% endif -%}
-    {%- if page.figures.size > 0 %}<a href="#figures">Figures</a>{% endif -%}
-  </p>
-  {%- endif %}
+  {%- comment -%}
+    Page order, deliberately: the project text comes first, because that is
+    what a reader came for. The administrative detail follows it rather than
+    standing in front of it, and everything after that is material the reader
+    may want once the project itself has been understood.
 
-  <dl class="facts">
+      1. the project text
+      2. the facts box, with the citation inside it
+      3. outputs and downloads, then figures
+      4. publications on this project
+      5. our experts
+      6. client
+      7. collaborators
+      8. news and events
+  {%- endcomment -%}
+
+  {%- comment -%}
+    Section links. Only sections that exist on this page are listed, so a
+    thin project does not advertise empty headings. The groups match how
+    someone actually arrives at a project page: what it was, what it
+    produced, what was written about it, and who did it.
+  {%- endcomment -%}
+  {%- assign jump_pubs = site.publications | where_exp: "x", "x.projects contains page.slug" -%}
+  {%- assign jump_posts = site.posts | where_exp: "x", "x.projects contains page.slug" -%}
+  {%- assign jump_team = site.people | where_exp: "x", "page.people contains x.slug" -%}
+  {%- assign rel_out = site.projects | where_exp: "x", "page.related contains x.slug" -%}
+  {%- assign rel_in = site.projects | where_exp: "x", "x.related contains page.slug" -%}
+  {%- assign jump_rel = rel_out | concat: rel_in | uniq | sort: "years" | reverse -%}
+  <p class="jump">
+    <a href="#project-info">Project</a>
+    {%- if page.outputs.size > 0 or page.figures.size > 0 %} &nbsp;·&nbsp; <a href="#outputs">Results</a>{% endif -%}
+    {%- if jump_team.size > 0 or page.partners.size > 0 or page.clients.size > 0 %} &nbsp;·&nbsp; <a href="#team">Team</a>{% endif -%}
+    {%- if jump_pubs.size > 0 or jump_posts.size > 0 or jump_rel.size > 0 %} &nbsp;·&nbsp; <a href="#related">Related</a>{% endif -%}
+  </p>
+
+  <div id="project-info">
+  {{ content }}
+
+  {%- comment -%}
+    The facts box. The citation sits inside it as a final row rather than in
+    a block of its own, so everything needed to reference the project is in
+    one place. The row only appears when cite_year is set, and the copy
+    button is added by the script to the [data-citeas] element.
+  {%- endcomment -%}
+  <dl class="facts facts-after">
     {%- if page.project_title %}<dt>Project title</dt><dd>{{ page.project_title }}</dd>{% endif -%}
     {%- if page.years %}<dt>Duration</dt><dd>{{ page.years }}</dd>{% endif -%}
+    {%- if page.funder %}<dt>Funder</dt><dd>{{ page.funder }}</dd>{% endif -%}
     {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
     {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
     {%- if page.clients.size > 0 -%}
@@ -56,62 +119,109 @@ layout: default
     </dd>
     {%- endif -%}
     {%- if page.link %}<dt>Website</dt><dd><a href="{{ page.link }}">{{ page.link }}</a></dd>{% endif -%}
+    {%- if page.cite_year -%}
+    {%- assign cite_title = page.cite_title | default: page.project_title | default: page.title -%}
+    {%- assign who = page.cite_authors | default: "RISE" -%}
+    {%- capture citation -%}
+{{ who }} ({{ page.cite_year }}). {{ cite_title }}.{% if page.cite_where %} {{ page.cite_where }}.{% endif %}{% if page.cite_doi %} https://doi.org/{{ page.cite_doi }}{% elsif page.link %} {{ page.link }}{% endif %}
+    {%- endcapture -%}
+    <dt>Cite as</dt>
+    <dd class="facts-cite" data-citeas><span data-citeas-text>{{ citation | strip }}</span></dd>
+    {%- endif -%}
   </dl>
+  </div>
 
-  {{ content }}
+  {%- comment -%}
+    Outputs, then the figures that belong with them: documents, data and
+    images from the project itself.
+  {%- endcomment -%}
+  {%- if page.outputs.size > 0 or page.figures.size > 0 %}
+  <h2 id="outputs">Results</h2>
+  {%- endif %}
 
   {%- if page.outputs.size > 0 %}
-  <h2 id="outputs">Outputs</h2>
   {% include deliverables.html items=page.outputs %}
   {%- endif %}
 
   {%- if page.figures.size > 0 %}
-  <h2 id="figures">Figures</h2>
   {%- for f in page.figures -%}
     {% include figure.html file=f.file number=f.number caption=f.caption source=f.source %}
   {%- endfor -%}
   {%- endif %}
 
   {%- comment -%}
-    Only projects that have produced something citable carry this block -
-    set cite_year in the front matter to switch it on.
+    The people, in the order asked for: our experts, then the collaborators
+    we worked with, then the client who commissioned it. The #team anchor
+    sits on the first of the three.
   {%- endcomment -%}
-  {%- if page.cite_year -%}
-  {%- assign cite_title = page.cite_title | default: page.project_title | default: page.title -%}
-  {% include citeas.html label="study" authors=page.cite_authors year=page.cite_year
-     title=cite_title where=page.cite_where doi=page.cite_doi url=page.link %}
-  {%- endif %}
-
   {%- assign team = site.people | where_exp: "x", "page.people contains x.slug" -%}
   {%- if team.size > 0 %}
-  <h2>Our experts on this project</h2>
+  <h2 id="team">Our experts</h2>
   {% include peoplelist.html people=team %}
   {%- endif %}
 
-  {%- assign pubs = site.publications | where_exp: "x", "x.projects contains page.slug" | sort: "year" | reverse -%}
-  {%- if pubs.size > 0 %}
-  <h2>Publications on this project</h2>
-  {% include publist.html pubs=pubs %}
-  <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
-  {%- endif %}
-
-  {%- if page.clients.size > 0 %}
-  <h2>{% if page.clients.size > 1 %}Clients{% else %}Client{% endif %}</h2>
-  {% include partners.html keys=page.clients %}
-  {%- endif %}
-
   {%- if page.partners.size > 0 %}
-  <h2>Collaborators</h2>
+  <h2{% if team.size == 0 %} id="team"{% endif %}>Collaborators</h2>
   {% include partners.html keys=page.partners %}
   {%- if page.partners_note %}<p class="muted small">{{ page.partners_note }}</p>{% endif %}
   <p class="more"><a href="{{ '/partners/' | relative_url }}">All partners →</a></p>
   {%- endif %}
 
+  {%- if page.clients.size > 0 %}
+  <h2{% if team.size == 0 and page.partners.size == 0 %} id="team"{% endif %}>{% if page.clients.size > 1 %}Clients{% else %}Client{% endif %}</h2>
+  {% include partners.html keys=page.clients %}
+  {%- endif %}
+
+  {%- comment -%}
+    Related material, as tabs: the same pattern the people pages use. The
+    panels are not hidden in the markup, so without JavaScript the section
+    reads as a plain sequence of headings instead of collapsing to nothing.
+
+    Related projects are resolved in both directions: a project listed in
+    this page's `related`, or any project whose own `related` names this one.
+    That way a connection only has to be written in one of the two files and
+    it still appears on both.
+  {%- endcomment -%}
+  {%- assign pubs = site.publications | where_exp: "x", "x.projects contains page.slug" | sort: "year" | reverse -%}
   {%- assign updates = site.posts | where_exp: "x", "x.projects contains page.slug" -%}
-  {%- if updates.size > 0 %}
-  <h2>News &amp; events</h2>
-  {% include newslist.html posts=updates %}
-  {% endif -%}
+  {%- assign rel_out = site.projects | where_exp: "x", "page.related contains x.slug" -%}
+  {%- assign rel_in = site.projects | where_exp: "x", "x.related contains page.slug" -%}
+  {%- assign related = rel_out | concat: rel_in | uniq | sort: "years" | reverse -%}
+  {%- if pubs.size > 0 or updates.size > 0 or related.size > 0 %}
+  <div class="tabs" data-tabs id="related">
+    <h2>Related</h2>
+    <div class="tabbar" data-tabbar role="tablist" aria-label="Related to this project">
+      <button type="button" role="tab" data-for="all" aria-selected="true">All</button>
+      {%- if updates.size > 0 %}<button type="button" role="tab" data-for="posts">Posts <span>{{ updates.size }}</span></button>{% endif -%}
+      {%- if pubs.size > 0 %}<button type="button" role="tab" data-for="publications">Publications <span>{{ pubs.size }}</span></button>{% endif -%}
+      {%- if related.size > 0 %}<button type="button" role="tab" data-for="projects">Projects <span>{{ related.size }}</span></button>{% endif -%}
+    </div>
+
+    {%- if updates.size > 0 %}
+    <section data-panel="posts" id="posts">
+      <h3>Posts</h3>
+      {% include newslist.html posts=updates %}
+      <p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
+    </section>
+    {%- endif %}
+
+    {%- if pubs.size > 0 %}
+    <section data-panel="publications" id="publications">
+      <h3>Publications on this project</h3>
+      {% include publist.html pubs=pubs %}
+      <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
+    </section>
+    {%- endif %}
+
+    {%- if related.size > 0 %}
+    <section data-panel="projects">
+      <h3>Related projects</h3>
+      {% include projectlist.html projects=related %}
+      <p class="more"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
+    </section>
+    {%- endif %}
+  </div>
+  {%- endif %}
 
   <p class="muted small" style="margin-top:2.5rem;">
     <a href="{{ '/projects/' | relative_url }}">← All projects</a>

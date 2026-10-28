@@ -21,7 +21,16 @@ partners:
   - smith-innovation
   - worldgbc
 partners_note: "co-ordinated by Smith Innovation, with national consortia in Austria, Hungary, Italy and Luxembourg"
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - indicate
+  - towards-embodied-carbon-benchmarks-for
 ---
+
+
+<h2>Context</h2>
 
 Helps national consortia generate the building LCA data their governments need to set whole life carbon benchmarks and targets.
 
@@ -30,7 +39,7 @@ Helps national consortia generate the building LCA data their governments need t
      appears in the list. -->
 
 
-<h2>What we do</h2>
+<h2>Objectives</h2>
 
 - **Fund and support national consortia.** Local teams of researchers,
   industry and government who build their country's building LCA dataset

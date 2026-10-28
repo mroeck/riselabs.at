@@ -39,6 +39,12 @@ partners:
   - no-objectives
   - artelia
 partners_note: "the Re:Living experiment is being tested with IBA'27, DGJ Architektur and Transsolar"
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - analysis-of-life-cycle-greenhouse
+  - collaborative-carbon
 ---
 
 <!-- Written from the Living Places project page and the green paper itself.
@@ -46,6 +52,8 @@ partners_note: "the Re:Living experiment is being tested with IBA'27, DGJ Archit
      RISE's role - the paper names Martin as an author but does not break down
      who did what, so "impact hierarchy and potential quantification" is
      inferred from the project name you gave rather than from a source. -->
+
+<h2>Context</h2>
 
 Renovation is where the largest opportunity in the built environment sits, and
 it is the one that consistently fails to scale. It stays fragmented, gets
@@ -81,7 +89,7 @@ actually be worth.
 
 </div>
 
-<h2>A hierarchy for action</h2>
+<h2>Objectives</h2>
 
 The paper's central device, in strict order of preference:
 

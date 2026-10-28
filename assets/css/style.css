@@ -639,6 +639,44 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .facts dd { margin: 0; }
 .facts dd a { overflow-wrap: anywhere; }
 
+/* The facts box now sits below the project text rather than above it, so it
+   needs air at the top and reads as a summary of what was just described. */
+.facts-after { margin: 2.6rem 0 2rem; }
+
+/* The citation lives as the last row of the facts box. It is smaller than the
+   rows above because it is reference material rather than a fact to scan, and
+   the copy button the script adds sits under it on its own line. */
+.facts-cite { font-size: .86rem; line-height: 1.5; color: var(--ink-soft); }
+.facts-cite .citeas-copy { display: block; margin-top: .55rem; }
+
+/* ---------------------------------------------------- project page header */
+/* The project image sits behind the title. It reuses the home hero's frame
+   and gradient, but shorter, because a project head carries a title, a lede
+   and a row of tags rather than a full standfirst and a call to action. */
+.proj-hero {
+  aspect-ratio: auto;
+  min-height: 22rem;
+  max-height: 34rem;
+  padding: 5rem 0 2.4rem;
+}
+/* White, not the magenta the home hero uses: a project title is long and sits
+   over a busier frame, where magenta on photograph loses too much contrast. */
+.proj-hero h1 { color: #ffffff; font-size: clamp(1.75rem, 1.1rem + 2.1vw, 2.9rem); }
+.proj-hero .lede { color: rgba(255,255,255,.92); max-width: 44rem; }
+.proj-hero .post-date { margin-bottom: .6rem; }
+.proj-hero .tags { margin-top: 1rem; }
+/* Brighter than the home hero's .44: there the image is a bed behind a short
+   headline, here it is the project's own picture and should read as one. */
+.proj-hero .hero-media img { opacity: .58; object-position: top left; }
+
+/* The caption belongs to the image but cannot sit on top of it, so it goes
+   directly underneath, where an attribution line is still clearly attached. */
+.hero-cap {
+  margin: .75rem auto 0;
+  font-size: .82rem; line-height: 1.5;
+  color: var(--ink-soft);
+}
+
 @media (max-width: 34rem) {
   .facts { grid-template-columns: 1fr; gap: 0; }
   .facts dt { margin-top: .7rem; }

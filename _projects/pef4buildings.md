@@ -27,6 +27,12 @@ partners:
   - vito
   - ku-leuven
   - tu-graz
+# Related projects, by slug. The link is written on both sides for
+# readability, but the layout also resolves it in reverse, so naming a
+# project on one side alone is enough to make it appear on both.
+related:
+  - iea-ebc-annex-72
+  - supporting-the-development-of-a
 ---
 
 <!-- Work Martin did at TU Graz, before RISE existed. It is on the site
@@ -36,6 +42,8 @@ partners:
      Two things to confirm: which Commission service commissioned it (listed
      here as DG GROW, which may be wrong - JRC is the other candidate), and
      Martin's exact role in the consortium. -->
+
+<h2>Context</h2>
 
 The EU's **Product Environmental Footprint** method was designed for
 products. A building is not a product: it is assembled on site from thousands
@@ -48,7 +56,7 @@ that it would.
 PEF4Buildings tested it. The project was commissioned by the European
 Commission and carried out by VITO, KU Leuven and TU Graz.
 
-<h2>How it was done</h2>
+<h2>Insights</h2>
 
 <div class="findings" markdown="1">
 
@@ -72,7 +80,7 @@ Commission and carried out by VITO, KU Leuven and TU Graz.
 
 </div>
 
-<h2>Why it is still here</h2>
+<h2>Impact</h2>
 
 The question PEF4Buildings asked is the one that keeps returning: a method
 that works on a product does not automatically work on a building, and a
