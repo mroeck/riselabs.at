@@ -9,7 +9,8 @@ baseurl: ""
 lang: en
 
 email: office@riselabs.at
-linkedin: "https://www.linkedin.com/company/rise-regenerate/"
+linkedin: "https://www.linkedin.com/company/riseregenerate/"
+bluesky: "https://bsky.app/profile/riselabs.at"
 scholar: "https://scholar.google.com/citations?user=v0Pwb1cAAAAJ&hl=de"
 
 # Underlined automatically wherever it appears in a publication line.
