@@ -4,7 +4,7 @@ city: "Hørsholm"
 country: "Denmark"
 type: "industry"
 website: "https://www.velux.com"
-# logo: "velux.png"
+logo: "velux.svg"
 coords: [55.879, 12.503]   # latitude, longitude - places this partner on the map
 ---
 

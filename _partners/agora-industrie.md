@@ -4,7 +4,7 @@ city: "Berlin"
 country: "Germany"
 type: "think tank"
 website: "https://www.agora-industrie.de"
-# logo: "agora-industrie.png"
+logo: "agora-industrie.png"
 coords: [52.520, 13.405]   # latitude, longitude - places this partner on the map
 ---
 

@@ -4,7 +4,7 @@ city: "Heidelberg"
 country: "Germany"
 type: "research institute"
 website: "https://www.ifeu.de"
-# logo: "ifeu.png"
+logo: "ifeu.png"
 coords: [49.410, 8.694]   # latitude, longitude - places this partner on the map
 ---
 

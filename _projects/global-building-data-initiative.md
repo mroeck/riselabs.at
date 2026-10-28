@@ -16,6 +16,7 @@ clients:
 people:
   - martin-roeck
 partners:
+  - usp
   - epfl
 ---
 

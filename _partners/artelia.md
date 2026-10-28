@@ -4,7 +4,7 @@ city: "Copenhagen"
 country: "Denmark"
 type: "engineering consultancy"
 website: "https://www.artelia.dk"
-# logo: "artelia.png"
+logo: "artelia.png"
 # The green paper credits "Artelia Denmark", so this is the Danish arm of the
 # Artelia group rather than the French headquarters. Copenhagen is inferred
 # from that, not confirmed - check before relying on the map pin.

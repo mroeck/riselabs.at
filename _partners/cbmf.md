@@ -3,8 +3,8 @@ name: "China Building Materials Federation"
 city: "Beijing"
 country: "China"
 type: "industry association"
-website: ""   # ADD: could not confirm the address
-# logo: "cbmf.png"   # ADD: no logo supplied yet
+website: "https://www.cbmf.org/en/"
+logo: "cbmf.png"
 coords: [39.904, 116.407]   # latitude, longitude - places this partner on the map
 ---
 

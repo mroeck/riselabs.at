@@ -3,8 +3,8 @@ name: "EBP Chile"
 city: "Santiago"
 country: "Chile"
 type: "consultancy"
-website: ""   # ADD: could not confirm the address
-# logo: "ebp-chile.png"   # ADD: no logo supplied yet
+website: "https://www.ebp.global/cl-en"
+logo: "ebp-chile.svg"
 coords: [-33.449, -70.669]   # latitude, longitude - places this partner on the map
 ---
 

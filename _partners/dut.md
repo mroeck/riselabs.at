@@ -4,7 +4,7 @@ city: "Durban"
 country: "South Africa"
 type: "university"
 website: "https://www.dut.ac.za"
-# logo: "dut.png"   # ADD: no logo supplied yet
+logo: "dut.png"
 coords: [-29.859, 31.022]   # latitude, longitude - places this partner on the map
 ---
 

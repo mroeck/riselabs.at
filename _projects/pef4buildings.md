@@ -5,6 +5,7 @@ years: "2017–2018"
 funder: "European Commission"
 role: "Researcher, TU Graz (before RISE)"
 summary: "Tested whether the EU's Product Environmental Footprint method works on whole buildings, and set out how benchmarks and performance classes for offices could be defined"
+hero: "/assets/img/projects/pef4buildings.png"
 themes:
   - whole-life-carbon
   - data-benchmarks

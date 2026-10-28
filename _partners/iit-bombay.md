@@ -4,7 +4,7 @@ city: "Mumbai"
 country: "India"
 type: "university"
 website: "https://www.iitb.ac.in"
-# logo: "iit-bombay.png"   # ADD: no logo supplied yet
+logo: "iit-bombay.png"
 coords: [19.076, 72.878]   # latitude, longitude - places this partner on the map
 ---
 

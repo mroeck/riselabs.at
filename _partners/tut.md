@@ -4,7 +4,7 @@ city: "Pretoria"
 country: "South Africa"
 type: "university"
 website: "https://www.tut.ac.za"
-# logo: "tut.png"   # ADD: no logo supplied yet
+logo: "tut.svg"
 coords: [-25.748, 28.229]   # latitude, longitude - places this partner on the map
 ---
 

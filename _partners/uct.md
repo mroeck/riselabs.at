@@ -4,7 +4,7 @@ city: "Cape Town"
 country: "South Africa"
 type: "university"
 website: "https://www.uct.ac.za"
-# logo: "uct.png"   # ADD: no logo supplied yet
+logo: "uct.svg"
 coords: [-33.925, 18.424]   # latitude, longitude - places this partner on the map
 ---
 

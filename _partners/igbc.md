@@ -4,7 +4,7 @@ city: "Hyderabad"
 country: "India"
 type: "network"
 website: "https://igbc.in"
-# logo: "igbc.png"   # ADD: no logo supplied yet
+logo: "igbc.png"
 coords: [17.385, 78.487]   # latitude, longitude - places this partner on the map
 ---
 
