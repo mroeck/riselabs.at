@@ -13,7 +13,7 @@ partners:
   - ramboll
   - ec-dg-env
 title: "Whole Life Carbon Network and INDICATE LIFE closing event, 21 October in Brussels"
-summary: "A day of roundtables and discussion on turning whole life carbon data into benchmarks, policy and investment decisions — and on what INDICATE LIFE leaves behind."
+summary: "A day of roundtables and discussion on turning whole life carbon data into benchmarks, policy and investment decisions - and on what INDICATE LIFE leaves behind."
 ---
 
 INDICATE LIFE closes with a full day at **L42, Rue de la Loi 42, Brussels, on
@@ -48,7 +48,7 @@ Innovation) sets out what INDICATE LIFE achieved. Networking and a cocktail
 close the day.
 
 <!-- NOTE: the invitation circulated on 24 September has Martin moderating and
-     Zsolt on the panel. This is the corrected line-up — worth making sure the
+     Zsolt on the panel. This is the corrected line-up - worth making sure the
      public invitation and the registration page say the same thing. -->
 
 <h2>Registration</h2>

@@ -2,8 +2,8 @@
 """Download partner logos, normalise them, and wire them into the front matter.
 
 Seventeen partners have no logo. They cannot be fetched from the session this
-script was written in — its network allowlist reaches package registries and
-GitHub and nothing else — so this exists to make the job one command once you
+script was written in - its network allowlist reaches package registries and
+GitHub and nothing else - so this exists to make the job one command once you
 have the URLs.
 
 Fill in `logo-sources.txt` (one `slug <space> url` per line, `#` for
@@ -14,7 +14,7 @@ comments), then:
 
 Needs Pillow:  pip install --break-system-packages pillow
 
-What it does to each file, and why — these are all mistakes this site has
+What it does to each file, and why - these are all mistakes this site has
 already made once:
 
   * converts CMYK to RGB. A CMYK JPEG renders with inverted-looking colour in
@@ -48,7 +48,7 @@ UA = "riselabs.at logo fetcher (martin.roeck@riselabs.at)"
 
 def read_list():
     if not LIST.exists():
-        sys.exit(f"no {LIST.name} — create it with lines of: slug  https://…/logo.png")
+        sys.exit(f"no {LIST.name} - create it with lines of: slug  https://…/logo.png")
     out = []
     for n, raw in enumerate(LIST.read_text().splitlines(), 1):
         line = raw.split("#", 1)[0].strip()
@@ -99,7 +99,7 @@ def normalise(raw, slug):
         if w >= before[0] * 0.25 and h >= before[1] * 0.25:
             im = im.crop(bbox)
         else:
-            print(f"  .. {slug}: trim would cut {before} to ({w}, {h}) — skipped, "
+            print(f"  .. {slug}: trim would cut {before} to ({w}, {h}) - skipped, "
                   f"that is the over-trim this script exists to avoid")
 
     if max(im.size) > MAXEDGE:
@@ -140,7 +140,7 @@ def main():
 
     pairs = read_list()
     if not pairs:
-        sys.exit("nothing to do — logo-sources.txt has no slug/url lines")
+        sys.exit("nothing to do - logo-sources.txt has no slug/url lines")
 
     missing = [s for s, _ in pairs if not (PARTNERS / f"{s}.md").exists()]
     if missing:
@@ -161,7 +161,7 @@ def main():
             print(f"  !! {slug}: {e}")
             continue
         if "svg" in ctype.lower() or url.lower().endswith(".svg"):
-            print(f"  !! {slug}: SVG — Pillow cannot rasterise it. Export a PNG, "
+            print(f"  !! {slug}: SVG - Pillow cannot rasterise it. Export a PNG, "
                   f"or save the SVG to {LOGOS}/ and set `logo:` by hand.")
             continue
         png = normalise(raw, slug)

@@ -13,7 +13,7 @@ title: "Context-specific emissions pathways for EU buildings, in Nature Communic
 summary: "New work with KU Leuven, TU Graz and IIASA on what different decarbonisation pathways mean for the European building stock to 2050."
 ---
 
-<!-- CHECK THE DATE — the filename sets it. Rename to correct. -->
+<!-- CHECK THE DATE - the filename sets it. Rename to correct. -->
 
 Our paper on context-specific life cycle emissions pathways for EU buildings
 and construction is out in *Nature Communications*, with colleagues at

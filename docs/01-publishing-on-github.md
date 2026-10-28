@@ -9,8 +9,8 @@ and to the DNS records at the domain registrar.
 
 ## 1. What this site is, in one paragraph
 
-It is a **Jekyll** site. Jekyll takes plain text files — Markdown for content,
-YAML for structured data — and builds them into an ordinary website. GitHub
+It is a **Jekyll** site. Jekyll takes plain text files - Markdown for content,
+YAML for structured data - and builds them into an ordinary website. GitHub
 Pages runs Jekyll for free on every push, so there is no server to maintain
 and no database to back up. The whole site, content included, is the files in
 this repository. If you can edit a text file, you can edit the site.
@@ -29,7 +29,7 @@ on github.com.
 2. **New repository**. Name it `riselabs.at` (any name works; this one is
    self-explanatory).
 3. **Public** or **Private** both work. Private repositories need a paid plan
-   for Pages. Public is fine — everything here is published anyway.
+   for Pages. Public is fine - everything here is published anyway.
 4. Do **not** add a README, .gitignore or licence. The repository must start
    empty.
 
@@ -40,7 +40,7 @@ Easiest route, no command line:
 1. Unzip `rise-site.zip` on your computer.
 2. On the empty repository page, click **uploading an existing file**.
 3. Open the unzipped folder and drag **everything inside it** into the
-   browser — the files, not the folder itself. The root of the repository must
+   browser - the files, not the folder itself. The root of the repository must
    contain `_config.yml`, `index.md` and the `_projects`, `_people` and other
    folders directly.
 4. Scroll down, write a commit message such as "Initial site", and
@@ -88,7 +88,7 @@ In the DNS settings for `riselabs.at`, create these records:
 | A     | `@`         | `185.199.111.153`         |
 | CNAME | `www`       | `<account>.github.io.`    |
 
-All four A records are needed — they are GitHub's four servers, and using only
+All four A records are needed - they are GitHub's four servers, and using only
 one makes the site fragile. `@` means the bare domain; some registrars want it
 left blank instead. The trailing dot on the CNAME value is correct, and some
 registrars add it for you.
@@ -102,13 +102,13 @@ DNS changes take anywhere from a few minutes to a few hours to propagate.
 
 1. Settings → **Pages** → **Custom domain**: enter `riselabs.at` and **Save**.
 2. GitHub runs a DNS check. If DNS has not propagated yet it will show a
-   warning — wait and reload rather than changing anything.
+   warning - wait and reload rather than changing anything.
 3. Once the check passes, tick **Enforce HTTPS**. The certificate is issued
    automatically and is free. The tickbox stays greyed out until the
    certificate exists, which can take up to an hour.
 
 Saving the custom domain writes a `CNAME` file into the repository. One is
-already included, containing `riselabs.at`, so this should be a no-op — but
+already included, containing `riselabs.at`, so this should be a no-op - but
 if GitHub ever appears to "forget" the domain, check that file still exists.
 Deleting it unsets the custom domain.
 
@@ -129,7 +129,7 @@ For small edits, use the browser: open the file on github.com, click the
 pencil icon, edit, and **Commit changes** at the bottom. Committing straight
 to `main` publishes immediately.
 
-For anything larger — a new project with images, several files at once —
+For anything larger - a new project with images, several files at once -
 commit to a branch and open a pull request instead. Nothing goes live until
 the pull request is merged, which gives a second pair of eyes.
 
@@ -180,10 +180,10 @@ Worth settling before launch rather than after:
 
 - Repository root must contain: `_config.yml`, `index.md`, `CNAME`
 - Build source: branch `main`, folder `/ (root)`
-- Plugins in use: `jekyll-seo-tag`, `jekyll-feed`, `jekyll-sitemap` — all three
+- Plugins in use: `jekyll-seo-tag`, `jekyll-feed`, `jekyll-sitemap` - all three
   are on GitHub Pages' supported list, so they need no extra setup
 - Generated automatically once live: `/sitemap.xml`, `/feed.xml`, `/404.html`
 - Checked before every upload: `python3 docs-check.py` from the repository
-  root — it should print `no problems found`
+  root - it should print `no problems found`
 - Never edit: `_site/` (build output, not in the repository) and `_preview/`
   (local previews, excluded from the build)

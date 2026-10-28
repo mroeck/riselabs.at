@@ -1,10 +1,15 @@
 ---
-title: "INDICATE — National Building LCA Data Accelerator (pilot)"
+title: "INDICATE National Building LCA Data Accelerator (Pilot)"
 status: "concluded"
 years: "2022–2024"
 funder: "Laudes Foundation"
 role: "Team lead and work package lead"
 summary: "Piloted the data accelerator in three countries, and showed the approach transfers"
+hero: "/assets/img/projects/indicate-pilot-map.png"
+hero_caption: "The pilot ran in Ireland, Spain and Czechia, 2022 to 2024."
+themes:
+  - data-benchmarks
+  - policy-regulation
 link: "https://www.indicatedata.com/"
 clients:
   - laudes
@@ -18,7 +23,7 @@ partners:
 partners_note: "with national consortia in Ireland, Spain and Czechia"
 ---
 
-<!-- DRAFT — written from this project's own front matter, the public
+<!-- DRAFT - written from this project's own front matter, the public
      project page and what has been discussed. The framing is safe; any
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->

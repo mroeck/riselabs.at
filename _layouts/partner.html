@@ -29,7 +29,7 @@ layout: default
   {%- comment -%}
     News & events naming this partner. This was missing: the layout computed
     projects and publications but never passed posts to related.html, so no
-    partner page has ever shown a News tab — while the Together column on
+    partner page has ever shown a News tab - while the Together column on
     /partners/ counted news items, which is how the two disagreed.
   {%- endcomment -%}
   {%- assign news = site.posts | where_exp: "p", "p.partners contains page.slug" -%}

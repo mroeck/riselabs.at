@@ -1,5 +1,5 @@
 {%- comment -%}
-  Data and tools as cards. Expects: include.pubs — publications with
+  Data and tools as cards. Expects: include.pubs - publications with
   `kind: data`.
 
   These are not a separate kind of content. Each one is already a publication
@@ -8,7 +8,7 @@
   practice, hidden. Two optional fields in the publication's front matter are
   used here when present:
 
-    state   "available", "in development" — what a reader can expect
+    state   "available", "in development" - what a reader can expect
     repo    link to the source code, where there is any
 {%- endcomment -%}
 {%- assign items = include.pubs | sort: "year" | reverse -%}

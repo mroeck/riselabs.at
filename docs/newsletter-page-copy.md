@@ -12,7 +12,7 @@ Paste each block into the matching field in **Buttondown → Settings**.
 ## Newsletter name
 
 ```
-RISE — notes from the institute
+RISE - notes from the institute
 ```
 
 ---
@@ -33,7 +33,7 @@ The main block on the subscribe page.
 
 ```
 RISE is a research institute in Vienna working on the deep decarbonisation of
-the built environment — in European policy, in international collaborations,
+the built environment - in European policy, in international collaborations,
 and with the practitioners already building differently.
 
 This is where we write up what we are finding before it becomes a paper, and
@@ -52,7 +52,7 @@ A few times a year. No tracking, no sales sequence, and one click to leave.
 Shown after someone subscribes.
 
 ```
-You're on the list. Nothing will arrive for a while — we write when there is
+You're on the list. Nothing will arrive for a while - we write when there is
 something worth sending, which is a few times a year rather than a few times a
 month.
 
@@ -71,5 +71,5 @@ keep matching them:
   monthly, change this line first.
 - **"No tracking."** Buttondown can track opens and clicks. If you turn that
   on, this line has to go, and `/datenschutz/` needs a sentence about it.
-- **"One click to leave."** True by default — Buttondown puts an unsubscribe
+- **"One click to leave."** True by default - Buttondown puts an unsubscribe
   link in every email. Don't remove it.

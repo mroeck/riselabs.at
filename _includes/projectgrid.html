@@ -1,0 +1,34 @@
+{%- comment -%}
+  Projects as an image-led grid. Expects: include.projects
+
+  Each card leads with its image, then the years, the title, the one-line
+  summary, and its themes. `data-themes` carries the
+  theme slugs so the filter can show and hide cards without a page load.
+
+  A project with no image gets a placeholder rather than a collapsed card, so
+  the grid stays even while the pictures are still being gathered.
+{%- endcomment -%}
+<ul class="pgrid">
+  {%- for p in include.projects -%}
+  <li data-themes="{{ p.themes | join: ' ' }}">
+    <a href="{{ p.url | relative_url }}">
+      {%- if p.hero -%}
+      <span class="pcard-img"><img src="{{ p.hero | relative_url }}" alt="" loading="lazy"></span>
+      {%- else -%}
+      <span class="pcard-img pcard-img-empty"></span>
+      {%- endif -%}
+      <span class="pcard-meta">{{ p.years }}</span>
+      <span class="pcard-title">{{ p.title }}</span>
+      {%- if p.summary %}<span class="pcard-sum">{{ p.summary }}.</span>{% endif -%}
+      {%- if p.themes.size > 0 -%}
+      <span class="pcard-tags">
+        {%- for t in p.themes -%}
+          {%- assign th = site.data.themes | where: "slug", t | first -%}
+          <span>{{ th.name | default: t }}</span>
+        {%- endfor -%}
+      </span>
+      {%- endif -%}
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>

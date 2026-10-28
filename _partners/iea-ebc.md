@@ -5,7 +5,7 @@ country: "France"
 type: "international organisation"
 website: "https://www.iea-ebc.org"
 logo: "iea-ebc.png"
-coords: [48.857, 2.352]   # latitude, longitude — places this partner on the map
+coords: [48.857, 2.352]   # latitude, longitude - places this partner on the map
 ---
 
 <!-- Optional: a paragraph about the collaboration shows on this page. -->

@@ -1,5 +1,5 @@
 ---
-title: "Environmental modelling of building stocks — an integrated review of life cycle-based assessment models to support EU policy making"
+title: "Environmental modelling of building stocks - an integrated review of life cycle-based assessment models to support EU policy making"
 kind: article
 authors: "Röck M, Baldereschi E, Verellen E, Passer A, Sala S, Allacker K"
 year: 2021

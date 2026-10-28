@@ -5,6 +5,12 @@ years: "2021–2024"
 funder: "European Commission DG ENV"
 role: "Team lead and task lead"
 summary: "Provided the archetype modelling behind the EU's roadmap for bringing down whole life carbon"
+hero: "/assets/img/projects/eu-stock-by-country.png"
+hero_caption: "Building stock composition by country across the EU."
+themes:
+  - policy-regulation
+  - whole-life-carbon
+  - building-stock
 link: "https://c.ramboll.com/whole-life-carbon-reduction"
 clients:
   - ec-dg-env
@@ -16,7 +22,7 @@ partners:
   - bpie
 ---
 
-<!-- DRAFT — written from this project's own front matter, the public
+<!-- DRAFT - written from this project's own front matter, the public
      project page and what has been discussed. The framing is safe; any
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->

@@ -6,7 +6,7 @@ permalink: /events/
 
 <div class="page-head wrap narrow">
   <h1>Events</h1>
-  <p class="lede">Talks, panels, workshops and seminars — where the work gets
+  <p class="lede">Talks, panels, workshops and seminars - where the work gets
   argued about in public.</p>
 </div>
 

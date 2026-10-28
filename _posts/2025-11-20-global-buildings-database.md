@@ -9,10 +9,10 @@ partners:
   - epfl
   - climateworks
 title: "A global buildings database, openly published"
-summary: "Whole life carbon, energy performance and material intensity for buildings worldwide — the dataset behind GBDI, released on Zenodo."
+summary: "Whole life carbon, energy performance and material intensity for buildings worldwide - the dataset behind GBDI, released on Zenodo."
 ---
 
-<!-- CHECK THE DATE — the filename sets it. Rename to correct. -->
+<!-- CHECK THE DATE - the filename sets it. Rename to correct. -->
 
 We have published the global buildings database openly: whole life cycle
 greenhouse gas emissions, energy performance and material intensity, assembled

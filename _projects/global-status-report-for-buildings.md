@@ -1,17 +1,23 @@
 ---
 title: "Global Status Report for Buildings and Construction"
 status: "current"
-years: "2024–"
+years: "2024–2028"
 funder: "UNEP / GlobalABC"
 role: "Lead Advisor, Embodied Carbon"
 summary: "The annual global stocktake of the sector's emissions and progress"
+hero: "/assets/img/projects/embodied-carbon-world.png"
+hero_caption: "Embodied carbon emissions per m2 by world region."
+themes:
+  - building-stock
+  - policy-regulation
+  - global-south
 clients:
   - unep
 people:
   - martin-roeck
 ---
 
-<!-- DRAFT — written from this project's own front matter, the public
+<!-- DRAFT - written from this project's own front matter, the public
      project page and what has been discussed. The framing is safe; any
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
@@ -23,7 +29,7 @@ UNEP.
 
 <h2>Our role</h2>
 
-We advise on the embodied carbon side — the emissions from making and moving
+We advise on the embodied carbon side - the emissions from making and moving
 materials and from construction itself, as distinct from the energy a building
 uses once occupied.
 

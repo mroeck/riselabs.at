@@ -6,7 +6,7 @@ permalink: /tools/
 
 <div class="page-head wrap narrow">
   <h1>Data &amp; tools</h1>
-  <p class="lede">The datasets, models and software behind the studies —
+  <p class="lede">The datasets, models and software behind the studies -
   published so the results can be reproduced, not just read.</p>
 </div>
 
@@ -21,7 +21,7 @@ right.</p>
 
 {%- comment -%}
   These are the publications with `kind: data`. They are not duplicated here
-  — this page is a different way into the same files, because a dataset
+  - this page is a different way into the same files, because a dataset
   listed fourth on a publications page is effectively buried.
 {%- endcomment -%}
 {%- assign datasets = site.publications | where: "kind", "data" -%}

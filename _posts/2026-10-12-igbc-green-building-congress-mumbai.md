@@ -9,7 +9,7 @@ partners:
   - igbc
   - worldgbc
 # Pictures: cleared for use, but this sandbox cannot reach the source. The
-# congress is in November — a photograph from the panel will be the right
+# congress is in November - a photograph from the panel will be the right
 # image once it has happened. Until then the event artwork would do.
 # hero: /assets/img/posts/igbc-congress-2026.jpg
 # hero_caption: ""
@@ -19,7 +19,7 @@ summary: "Martin Röck joins the opening Leadership Panel on global pathways to 
 
 The 24th **CII–IGBC Green Building Congress** runs from **26 to 28 November
 2026** at the Jio World Convention Centre in Mumbai, under the theme
-*Forging a Sustainable Future — Do Good, Feel Good. Building Greener Worlds
+*Forging a Sustainable Future - Do Good, Feel Good. Building Greener Worlds
 Together*.
 
 Martin Röck has been invited to join the opening **Leadership Panel, "Global
@@ -29,7 +29,7 @@ brings together international perspectives alongside the National Institute of
 Urban Affairs and senior leaders from across the built environment sector.
 
 The discussion covers decarbonisation, building performance and data,
-regenerative systems, climate resilience, circularity, policy and innovation —
+regenerative systems, climate resilience, circularity, policy and innovation -
 and how international evidence translates into something usable in a market
 building at India's pace.
 

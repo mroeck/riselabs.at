@@ -15,7 +15,7 @@ partners:
 # speaker panel to assets/img/posts/ and uncomment.
 # hero: /assets/img/posts/gbdi-india-webinar.jpg
 # hero_caption: "The GBDI webinar on whole life carbon for India's building sector, 1 July 2026."
-title: "Whole life carbon for India's building sector — GBDI webinar with IIT Bombay"
+title: "Whole life carbon for India's building sector - GBDI webinar with IIT Bombay"
 summary: "Why whole life carbon matters for India's net-zero goals, what CCTS and CBAM mean for material supply chains, and which data and tools exist today."
 ---
 

@@ -1,4 +1,4 @@
-/* RISE — interim site
+/* RISE - interim site
    Palette and type follow the RISE CI Manual v1.2:
    navy #001730, magenta #f92d84, purple #751094 (gradient only), pink #ffe1ee.
    Circular is licensed, so Figtree stands in as the closest open match. */
@@ -9,7 +9,7 @@
    their IP address, which is the most common GDPR complaint against small
    European sites; self-hosting removes the transfer and one DNS round trip.
 
-   Figtree is licensed under the SIL Open Font License 1.1 — see
+   Figtree is licensed under the SIL Open Font License 1.1 - see
    assets/fonts/LICENSE.txt. Only the five styles the site actually uses are
    included. If you start using another weight, add its files from the
    @fontsource/figtree package and a block here, or it will fall back to the
@@ -110,11 +110,11 @@
 
    Two layers, deliberately:
 
-   1. BRAND CONSTANTS — the CI colours themselves. These never change,
+   1. BRAND CONSTANTS - the CI colours themselves. These never change,
       in any theme. Anything that must be the RISE magenta or the RISE
       navy whatever the page is doing uses these.
 
-   2. SEMANTIC TOKENS — what a colour is *for*: page background, body
+   2. SEMANTIC TOKENS - what a colour is *for*: page background, body
       text, the accent, a rule. These are the ones the theme swaps.
 
    A light theme therefore redefines eight values and nothing else. The
@@ -136,7 +136,7 @@
   --purple:  #751094;   /* gradient only, per the manual */
   --blush:   #ffe1ee;
 
-  /* 2. semantic tokens — dark theme, the default */
+  /* 2. semantic tokens - dark theme, the default */
   --bg:          #001730;   /* = navy */
   --surface:     #0a2347;   /* raised panels */
   --ink:         #ffffff;
@@ -169,7 +169,7 @@
    introducing a sixth colour from nowhere. The pure magenta is still used
    for fills and rules, where contrast rules for text do not apply.
 
-   Blush finally earns its place here as the raised-panel colour — the CI
+   Blush finally earns its place here as the raised-panel colour - the CI
    manual reserves it for light use. */
 
 :root[data-theme="light"] {
@@ -190,7 +190,7 @@
      so fields stay white and are defined by their border instead. */
   --field-bg:    #ffffff;
 
-  /* Logo tiles and figures are white by design — they are the paper the
+  /* Logo tiles and figures are white by design - they are the paper the
      artwork sits on. On a white page they need an edge or they dissolve. */
   --tile-edge:   rgba(0, 23, 48, 0.12);
 }
@@ -293,7 +293,7 @@ a:hover { color: var(--accent-hover); }
 }
 .site-nav .sub a[aria-current="page"] { border-bottom: 0; color: var(--accent); }
 
-/* the menu button — the burger is three rules that become a cross when open */
+/* the menu button - the burger is three rules that become a cross when open */
 .nav-toggle {
   display: none; align-items: center; gap: .5rem;
   font: inherit; font-size: .9rem; font-weight: 500;
@@ -328,7 +328,7 @@ a:hover { color: var(--accent-hover); }
   .site-nav > ul { display: block; }
   .site-nav > ul > li { padding: .45rem 0; }
 
-  /* on a phone the groups are always open — a second tap to reach Approach
+  /* on a phone the groups are always open - a second tap to reach Approach
      is one tap too many when the whole menu is already a deliberate act. The
      group name stays, as a label rather than a control. */
   .sub-toggle {
@@ -396,14 +396,14 @@ a:hover { color: var(--accent-hover); }
     radial-gradient(52rem 30rem at 14% 112%, rgba(249,45,132,.34) 0%, rgba(249,45,132,0) 64%);
 }
 
-/* The hero keeps its dark image bed in both themes — a pale wash over the
+/* The hero keeps its dark image bed in both themes - a pale wash over the
    same photographs would leave dark text fighting the imagery. So its text
    is pinned light here rather than inherited from --ink, which flips. */
 .hero-inner { width: 100%; color: #ffffff; }
 
 /* The headline is the brand magenta in BOTH themes. The bed behind it stays
-   navy either way, where #f92d84 reaches 4.9:1 — comfortably past the 3:1
-   large text needs — so there is no reason for the two themes to differ here,
+   navy either way, where #f92d84 reaches 4.9:1 - comfortably past the 3:1
+   large text needs - so there is no reason for the two themes to differ here,
    and the asymmetry only existed because light mode asked for colour first.
 
    The link uses the same brand magenta rather than the pale pink that used to
@@ -704,7 +704,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   background: var(--surface);
 }
 
-/* phones rarely render an inline PDF — show the bar, hide the dead frame */
+/* phones rarely render an inline PDF - show the bar, hide the dead frame */
 @media (max-width: 40rem) {
   .doc-view { display: none; }
   .doc-bar { border-bottom: 1px solid var(--rule); border-radius: 2px; }
@@ -1000,8 +1000,8 @@ table.listing td {
   border-bottom: 1px solid var(--rule);
   vertical-align: middle;
 }
-/* The logo alone did not say who a partner was — several of these marks are
-   symbols rather than wordmarks — so the name sits beside it. */
+/* The logo alone did not say who a partner was - several of these marks are
+   symbols rather than wordmarks - so the name sits beside it. */
 table.listing td.t-partner { width: 19rem; }
 
 table.listing td.t-partner a {
@@ -1411,8 +1411,8 @@ table.listing tr:hover td { background: var(--surface-2); }
   .corner { display: none; }
 }
 
-/* White surfaces that carry artwork — partner tiles, figures, the PDF
-   viewer, deliverable thumbnails — are white in both themes, because they
+/* White surfaces that carry artwork - partner tiles, figures, the PDF
+   viewer, deliverable thumbnails - are white in both themes, because they
    are the paper the artwork sits on. On the light page they would otherwise
    dissolve into the background, so they take an edge there. */
 .partners a,
@@ -1563,3 +1563,103 @@ table.listing td.t-partner .t-logo,
 
 .tool-links { display: flex; gap: 1rem; margin-top: .6rem; }
 .tool-links a { font-size: .82rem; font-weight: 500; }
+
+/* a second affiliation under the role line on a person page */
+.person-also { margin: .35rem 0 0; max-width: 46ch; }
+
+/* ---------- project grid ---------- */
+
+.pgrid {
+  list-style: none; padding: 0; margin: 1.6rem 0 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem 1.4rem;
+}
+@media (max-width: 62rem) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 40rem) { .pgrid { grid-template-columns: 1fr; } }
+
+.pgrid li { margin: 0; }
+.pgrid a { display: block; text-decoration: none; color: inherit; }
+
+.pcard-img {
+  display: block; aspect-ratio: 4 / 3; width: 100%;
+  border: 1px solid var(--rule); border-radius: 3px;
+  overflow: hidden; background: #fff;
+}
+.pcard-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* a project without a picture yet keeps the grid even rather than collapsing */
+.pcard-img-empty { background: var(--surface); position: relative; }
+.pcard-img-empty::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 0%, var(--surface-2) 100%);
+}
+.pgrid a:hover .pcard-img { border-color: var(--accent); }
+
+.pcard-meta {
+  display: block; margin: .75rem 0 .25rem;
+  font-size: .78rem; color: var(--ink-soft);
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.pcard-title { display: block; font-weight: 600; font-size: 1.04rem; line-height: 1.3; }
+.pgrid a:hover .pcard-title { color: var(--accent); }
+.pcard-sum {
+  display: block; margin-top: .35rem;
+  font-size: .89rem; line-height: 1.5; color: var(--ink-soft);
+}
+.pcard-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .6rem; }
+.pcard-tags span {
+  font-size: .7rem; padding: .18rem .5rem;
+  border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft);
+}
+
+/* ---------- theme filter ---------- */
+
+.themebar { display: flex; flex-wrap: wrap; gap: .45rem; margin: .4rem 0 0; }
+.themebar button {
+  font: inherit; font-size: .84rem; cursor: pointer;
+  padding: .4rem .85rem; border-radius: 999px;
+  border: 1px solid var(--rule); background: none; color: var(--ink-soft);
+}
+.themebar button:hover { color: var(--ink); border-color: var(--ink-soft); }
+.themebar button.on {
+  background: var(--accent); border-color: var(--accent);
+  color: var(--btn-ink); font-weight: 600;
+}
+
+/* ---------- expertise ---------- */
+
+.xindex {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.1rem;
+  margin: 0 0 1rem; font-size: .9rem;
+}
+
+.xfield {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 2.2rem;
+  align-items: start; padding: 2.6rem 0; border-top: 1px solid var(--rule);
+}
+/* alternate the image side so the page reads as a sequence, not a list */
+.xfield:nth-child(odd) .xfield-img { order: 2; }
+@media (max-width: 46rem) {
+  .xfield { grid-template-columns: 1fr; gap: 1.2rem; padding: 2rem 0; }
+  .xfield:nth-child(odd) .xfield-img { order: 0; }
+}
+
+.xfield-img {
+  aspect-ratio: 3 / 2; border-radius: 3px; overflow: hidden;
+  border: 1px solid var(--rule); background: #fff;
+  position: sticky; top: 1.5rem;
+}
+@media (max-width: 46rem) { .xfield-img { position: static; } }
+.xfield-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.xfield-img-empty { background: var(--surface); }
+
+.xfield h2 { margin: 0 0 .55rem; font-size: 1.3rem; }
+.xlede { margin: 0 0 1rem; font-size: 1.02rem; line-height: 1.55; }
+.xlist { margin: 0 0 1rem; padding-left: 1.1rem; }
+.xlist li { margin: .25rem 0; font-size: .92rem; line-height: 1.5; color: var(--ink-soft); }
+.xeg { margin: 1rem 0 .4rem; font-size: .9rem; }
+.xeg-l {
+  display: block; font-size: .74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ink-soft); margin-bottom: .2rem;
+}
+.xfor { margin-top: .5rem; }

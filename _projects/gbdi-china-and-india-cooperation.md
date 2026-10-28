@@ -5,6 +5,10 @@ years: "2026–2027"
 funder: "Global Industry Hub"
 role: "Principal Investigator"
 summary: "Extends the global building data work into the two markets that will add the most floor area this century"
+hero: "/assets/img/projects/building-greenery.webp"
+themes:
+  - global-south
+  - data-benchmarks
 link: "https://www.gbdi.io"
 clients:
   - global-industry-hub
@@ -14,16 +18,16 @@ partners:
   - epfl
 ---
 
-<!-- DRAFT — written from this project's own front matter, the public
+<!-- DRAFT - written from this project's own front matter, the public
      project page and what has been discussed. The framing is safe; any
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
 
 Most of the floor area of the coming decades will be built in China and
 India. The data infrastructure for whole life carbon was not built with those
-markets in mind, and the methods that work in Europe carry assumptions —
+markets in mind, and the methods that work in Europe carry assumptions -
 about material supply, construction practice, grid intensity and building
-lifespan — that do not travel unexamined.
+lifespan - that do not travel unexamined.
 
 <h2>What we are doing</h2>
 

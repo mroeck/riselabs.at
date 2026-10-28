@@ -1,0 +1,125 @@
+# ---------------------------------------------------------------------------
+# Our expertise. Each entry renders as one field on /expertise/.
+#
+# This replaced _data/services.yml. The framing changed from "what you can
+# buy" to "what we do", but nothing was thrown away: every `includes` line
+# below came from the services page, so the page is no thinner than it was,
+# only differently organised and carrying images.
+#
+#   title     the field
+#   strand    which strand of the Approach it serves: up | wide | deep
+#   lede      one or two sentences. What this actually is.
+#   includes  the concrete pieces of work. Things, not adjectives.
+#   examples  slugs of projects in _projects/ that prove it. Titles and
+#             summaries are pulled in automatically - nothing to keep in sync.
+#   audience  who typically commissions it
+#   note      optional caveat, shown smaller
+#   image     a figure or photograph. Every field should have one.
+# ---------------------------------------------------------------------------
+
+- title: "Whole life carbon assessment and benchmarking"
+  strand: up
+  # image: /assets/img/expertise/whole-life-carbon.jpg
+  lede: >-
+    Consistent assessment across large samples of real buildings, and the
+    benchmarks and target values that follow from them.
+  includes:
+    - "Whole life carbon assessment of buildings and portfolios, to a comparable scope"
+    - "Benchmark and limit-value derivation, with the sensitivity analysis behind it"
+    - "Benchmarking a portfolio against comparable stock"
+    - "BIM-LCA and bill-of-quantities based embodied carbon analysis"
+  examples:
+    - collaborative-carbon
+    - towards-embodied-carbon-benchmarks-for
+  audience: "Public authorities, portfolio holders, industry bodies, funders"
+
+- title: "Building stock modelling and scenarios"
+  strand: up
+  # image: /assets/img/expertise/building-stock.jpg
+  lede: >-
+    Bottom-up models of national and regional building stocks, built from
+    archetypes and harmonised data and run forward under policy scenarios.
+  includes:
+    - "Baseline and scenario modelling for building stocks, national or EU-wide"
+    - "Archetype development and harmonised material and energy flow data"
+    - "Trajectory analysis to 2050 under combinations of policy levers"
+    - "Open scenario tooling national teams can run themselves"
+  examples:
+    - analysis-of-life-cycle-greenhouse
+    - global-whole-life-carbon-tracker
+  note: >-
+    The models are built to be repeated by national teams rather than bought
+    from us. The EU27 baseline behind the revised EPBD came out of this work.
+  audience: "European Commission, national ministries and agencies, international organisations"
+
+- title: "Policy evidence and advisory"
+  strand: up
+  # image: /assets/img/expertise/policy-evidence.jpg
+  lede: >-
+    Evidence for the people writing the rules - and advice on turning a target
+    into a sequence of decisions: how impacts get measured, what success looks
+    like, and what has to change in what order.
+  includes:
+    - "Evidence and technical input for legislative processes and impact assessments"
+    - "Advice on assessment methods: what to measure, how, and with what data"
+    - "Target development, from a budget-based rationale to usable limit values"
+    - "Decarbonisation roadmaps and implementation strategy, with interim targets and indicators"
+    - "Alignment with the EPBD, the EU Taxonomy and reporting duties"
+    - "Sufficiency and reuse strategies, where building less is on the table"
+  examples:
+    - supporting-the-development-of-a
+    - agora-leitmaerkte-embodied-carbon
+  audience: "Public authorities and large public portfolio holders, cities and regions, industry associations"
+
+- title: "Open data infrastructure"
+  strand: wide
+  # image: /assets/img/expertise/open-data.jpg
+  lede: >-
+    The data capability an organisation or a country needs to govern whole life
+    carbon - rather than one more study.
+  includes:
+    - "Design of building LCA databases, data models and reporting schemas"
+    - "National data collection programmes, from sampling design to governance"
+    - "Statistical analysis of EPD and building assessment data"
+    - "Open-source tooling, dashboards and trackers in Python"
+  examples:
+    - global-building-data-initiative
+    - indicate-life
+  audience: "Governments setting benchmarks, data initiatives, funders and philanthropies"
+
+- title: "Methods, standards and harmonisation"
+  strand: up
+  # image: /assets/img/expertise/methods-standards.jpg
+  lede: >-
+    Making numbers comparable: method development where none yet exists,
+    independent review, and alignment across standards and jurisdictions.
+  includes:
+    - "Method development where no accepted method yet exists"
+    - "Review of assessment methods, tools and benchmark proposals"
+    - "Critical review of life cycle assessment studies"
+    - "Data quality and reproducibility appraisal"
+    - "Expert statements and technical opinions"
+  examples:
+    - iea-ebc-annex-72
+  note: >-
+    We take review work only where we have no stake in the outcome, and we say
+    so in writing when we do.
+  audience: "Public authorities, standardisation and industry bodies, investors"
+
+- title: "Teaching and capacity building"
+  strand: wide
+  # image: /assets/img/expertise/teaching.jpg
+  lede: >-
+    Building capability inside a team or a market - including where the data
+    infrastructure does not exist yet, working with local teams rather than
+    arriving with a finished method.
+  includes:
+    - "Method training for national teams and assessment practitioners"
+    - "Executive briefings on what the coming requirements actually demand"
+    - "Workshop design and facilitation for consortia and stakeholder processes"
+    - "Keynotes and conference contributions"
+    - "Co-supervision of doctoral and masters research"
+  examples:
+    - gbdi-china-and-india-cooperation
+    - indicate
+  audience: "National consortia, professional bodies, universities, conference organisers"

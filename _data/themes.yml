@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# Themes - the controlled vocabulary.
+#
+# Themes say what a piece of work is ABOUT. Expertise (in expertise.yml) says
+# what we DO. They are different axes on purpose: a policy advisory project
+# can be about materials, and a data project can be about sufficiency.
+#
+# This list is closed. A project, publication or post sets `themes:` using
+# these slugs and no others - docs-check.py fails on anything not in here,
+# which is what stops this becoming the fifteen one-use tags it replaced.
+#
+# Adding a theme is a deliberate act: it should group at least three pieces of
+# work, or it is a label rather than a theme.
+#
+#   slug   what goes in a file's `themes:` list
+#   name   what is shown
+#   blurb  one line, for the themes index
+# ---------------------------------------------------------------------------
+
+- slug: whole-life-carbon
+  name: "Whole life carbon"
+  blurb: "Emissions across the whole life of a building, not just its operation."
+
+- slug: building-stock
+  name: "Building stock & scenarios"
+  blurb: "What the existing stock is, and where different policy choices take it."
+
+- slug: data-benchmarks
+  name: "Data & benchmarks"
+  blurb: "The datasets, and the reference values derived from them."
+
+- slug: materials-circularity
+  name: "Materials & circularity"
+  blurb: "What buildings are made of, and what happens to it afterwards."
+
+- slug: regenerative-design
+  name: "Regenerative design and construction"
+  blurb: "Building so the result gives back more than it takes."
+
+- slug: sufficiency-space
+  name: "Sufficiency & space"
+  blurb: "Building less, sharing more, and using what already stands."
+
+- slug: policy-regulation
+  name: "Policy & regulation"
+  blurb: "Turning evidence into targets, limit values and reporting duties."
+
+- slug: global-south
+  name: "Global South & emerging markets"
+  blurb: "Where most of the coming floor area will be built, and the data gap there."

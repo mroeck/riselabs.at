@@ -2,7 +2,7 @@ title: RISE
 tagline: towards regenerative spatial systems
 description: >-
   RISE is a research institute in Vienna working on how the built environment
-  can operate within planetary boundaries — and what has to change to get there.
+  can operate within planetary boundaries - and what has to change to get there.
 
 url: "https://riselabs.at"
 baseurl: ""
@@ -26,8 +26,8 @@ privacy_url: "/datenschutz/"
 team_page: false
 
 # Newsletter. Two different URLs, doing two different jobs:
-#   newsletter_url    = the public Buttondown page — renders a button
-#   newsletter_action = the API embed endpoint — renders a form on the page
+#   newsletter_url    = the public Buttondown page - renders a button
+#   newsletter_action = the API embed endpoint - renders a form on the page
 # Set either or both. With both, the form shows and the page link sits under
 # it. Comment both out and the block falls back to an email link.
 # newsletter_url: "https://buttondown.com/riseregenerate"
@@ -39,7 +39,7 @@ newsletter_action: "https://buttondown.com/api/emails/embed-subscribe/riseregene
 # with `items` is a group that opens a panel. Groups keep the bar to five
 # words, which is what stopped it wrapping onto two lines on a phone.
 #
-# Home is deliberately present and deliberately skipped by the header — the
+# Home is deliberately present and deliberately skipped by the header - the
 # logo is the link home. It stays here because other includes read this list.
 nav:
   - title: Home
@@ -48,8 +48,8 @@ nav:
     items:
       - title: Approach
         url: /approach/
-      - title: Services
-        url: /services/
+      - title: Expertise
+        url: /expertise/
       - title: Partners
         url: /partners/
       # - title: Team     # hidden; see team_page above
@@ -95,7 +95,7 @@ collections:
 #
 # This block is load-bearing. Without it the files in _projects, _people,
 # _publications and _partners have no layout at all, and Jekyll renders their
-# raw content with no stylesheet, no navigation and no header — which is
+# raw content with no stylesheet, no navigation and no header - which is
 # exactly what happened on the first upload. Nothing in those files sets a
 # layout individually, by design: the layout belongs to the collection.
 defaults:
@@ -121,7 +121,7 @@ exclude:
   - Gemfile.lock
   - docs          # the guidance documents, not part of the public site
   - _preview      # local preview output, never published
-  - docs-check.py    # site checker — tooling, not a page
+  - docs-check.py    # site checker - tooling, not a page
   - make-figures.py  # redraws the CollaborativeCarbon charts
   - fetch-abstracts.py  # pulls abstracts from Zotero/Crossref
   - add-logos.py        # downloads and normalises partner logos

@@ -7,14 +7,14 @@ people:
   - martin-roeck
 title: "CLEAR: a coalition to make whole life carbon numbers mean the same thing"
 summary: "RICS and founding members including GBDI have launched the Coalition for Life cycle Emissions Alignment and Reporting, to quantify where carbon assessment methods diverge and then harmonise them."
-# A header image would help this one — the CLEAR identity, or a figure showing
+# A header image would help this one - the CLEAR identity, or a figure showing
 # the divergence between assessment methods. Ask RICS for the coalition mark,
 # or reuse a method-comparison figure from our own work.
 # hero: /assets/img/posts/clear-coalition.jpg
 # hero_caption: ""
 ---
 
-RICS and a group of founding members have launched **CLEAR — the Coalition
+RICS and a group of founding members have launched **CLEAR - the Coalition
 for Life cycle Emissions Alignment and Reporting**, to align how whole life
 carbon emissions from buildings and infrastructure are measured and reported.
 The **Global Building Data Initiative**, which Martin Röck helped found and

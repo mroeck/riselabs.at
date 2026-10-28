@@ -1,5 +1,5 @@
 ---
-title: "IEA EBC Annex 72 — Assessing life cycle related environmental impacts caused by buildings: background reports"
+title: "IEA EBC Annex 72 - Assessing life cycle related environmental impacts caused by buildings: background reports"
 kind: book
 authors: "Frischknecht R, Lützkendorf T, Passer A, Birgisdottir H, Chae CU, Palaniappan S, Balouktsi M, Nygaard Rasmussen F, Röck M, Potrč Obrecht T, Hoxha E, Ruschi Mendes Saade M (eds.)"
 year: 2023

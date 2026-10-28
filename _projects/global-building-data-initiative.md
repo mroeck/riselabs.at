@@ -1,10 +1,15 @@
 ---
-title: "Global Building Data Initiative"
+title: "GBDI Global Building Data Initiative (Pilot)"
 status: "concluded"
 years: "2024–2025"
 funder: "ClimateWorks Foundation"
 role: "Principal Investigator"
 summary: "Launched an open global data commons on resource use and upfront embodied carbon of new buildings"
+hero: "/assets/img/projects/gbdi-platform.png"
+hero_caption: "The Global Building Data Initiative platform."
+themes:
+  - data-benchmarks
+  - whole-life-carbon
 link: "https://www.gbdi.io"
 clients:
   - climateworks
@@ -14,7 +19,7 @@ partners:
   - epfl
 ---
 
-<!-- DRAFT — written from this project's own front matter, the public
+<!-- DRAFT - written from this project's own front matter, the public
      project page and what has been discussed. The framing is safe; any
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
@@ -30,7 +35,7 @@ and why most countries still have none.
   resource use and upfront embodied carbon for new buildings, designed so
   entries from different countries and tools can sit side by side.
 - **Agreed the minimum.** What has to be recorded for a building assessment to
-  be comparable with another — scope, units, reference area, data quality.
+  be comparable with another - scope, units, reference area, data quality.
 - **Made contribution possible.** Routes for national teams, researchers and
   industry to add their own data rather than only consume someone else's.
 

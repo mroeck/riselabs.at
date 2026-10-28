@@ -8,7 +8,7 @@ content editing, `03-editing-the-site.md` is the one you want.
 
 ## 1. Every page the site produces
 
-### Fixed pages — one file each, in the repository root
+### Fixed pages - one file each, in the repository root
 
 | URL | File | What it is |
 |---|---|---|
@@ -17,14 +17,14 @@ content editing, `03-editing-the-site.md` is the one you want.
 | `/services/` | `services.md` | Six services, each with a worked example; all five testimonials |
 | `/projects/` | `projects.md` | Filterable list of all projects |
 | `/publications/` | `publications.md` | Filterable list of all publications |
-| `/team/` | `team.md` | **Hidden for now.** The team, then core collaborators — see §7 |
+| `/team/` | `team.md` | **Hidden for now.** The team, then core collaborators - see §7 |
 | `/partners/` | `partners.md` | Equal Earth world map, then a filterable alphabetical list with a count of projects, publications and news per partner |
 | `/news/` | `news.md` | All news and events |
 | `/impressum/` | `impressum.md` | Legal disclosure (ECG, UGB, MedienG) |
 | `/datenschutz/` | `datenschutz.md` | Privacy policy (GDPR) |
 | `/404.html` | `404.html` | Shown for an address that does not exist |
 
-### Generated pages — one per content file
+### Generated pages - one per content file
 
 | URL pattern | Source folder | Count today |
 |---|---|---|
@@ -156,8 +156,8 @@ show it:
 | `projects: [gbdi]` | a news post | the GBDI project page, under updates |
 | `partners: [uct]` | a news post | UCT's partner page, under News & events |
 
-Person and partner pages each end with a tabbed panel — **All · News &
-events · Projects · Publications · People** — assembled entirely from these
+Person and partner pages each end with a tabbed panel - **All · News &
+events · Projects · Publications · People** - assembled entirely from these
 references. Project pages show the same material as stacked sections with
 headings rather than tabs, because each section carries more detail there.
 Either way, nothing in them is maintained by hand.
@@ -165,7 +165,7 @@ Either way, nothing in them is maintained by hand.
 **A reference to a file that does not exist is silently ignored.** Nothing
 breaks, nothing appears, and no error is shown. This is the single most
 common way for content to go missing. `docs-check.py` in the repository root
-catches it — see §6.
+catches it - see §6.
 
 ---
 
@@ -177,7 +177,7 @@ Useful when you add something and want to know where it will surface.
 |---|---|
 | A project with `status: current` | `/projects/`, its own page, the home page's current projects |
 | A project with `status: concluded` | `/projects/`, its own page |
-| A publication | `/publications/`, its own page, and — if among the four newest by year — the home page |
+| A publication | `/publications/`, its own page, and - if among the four newest by year - the home page |
 | A person with `group: rise` | their own page; the team list too, once it is unhidden |
 | A person with `group: collaborator` | the same, under "Core collaborators" |
 | A partner | `/partners/`, its own page. **Only appears on the home page if added by hand** to the list in `index.md` |
@@ -196,7 +196,7 @@ Worth knowing about, rarely worth changing:
 | `title`, `tagline`, `description` | Browser tab, search results, social previews |
 | `url`, `baseurl` | The live address. Leave alone |
 | `email`, `linkedin`, `scholar` | Used in the footer and contact blocks |
-| `author_cite` | `"Röck M"` — underlined automatically in every author list |
+| `author_cite` | `"Röck M"` - underlined automatically in every author list |
 | `privacy_url` | Setting it adds the Datenschutz link to the footer |
 | `newsletter_action` | The Buttondown form endpoint |
 | `nav` | The main menu. Order here is order on screen |
@@ -211,8 +211,8 @@ Colour lives in two layers at the top of `assets/css/style.css`: brand
 constants that never change, and semantic tokens the theme swaps. Changing
 the palette means editing those tokens, nothing else.
 
-The hero keeps its dark image bed in both themes — a pale wash over the same
-photographs would leave dark text fighting the imagery — so its text colours
+The hero keeps its dark image bed in both themes - a pale wash over the same
+photographs would leave dark text fighting the imagery - so its text colours
 are pinned rather than inherited.
 
 Nothing is stored on the visitor's device, by choice. The consequence is that
@@ -238,7 +238,7 @@ for itself.
 
 That last one is worth knowing about. Jekyll gives every page its own `url`,
 `path`, `id`, `date`, `content` and a few others. A front matter field with
-one of those names is **silently ignored** — which is how every partner page
+one of those names is **silently ignored** - which is how every partner page
 once came to link to itself instead of to the partner's website. The field is
 now called `website`, and the checker refuses the reserved names outright.
 
@@ -255,13 +255,13 @@ and the page was thin. Nothing has been deleted.
 
 Three things keep it hidden, and all three have to be undone together:
 
-1. `team_page: false` in `_config.yml` — this also hides the "← The team" and
+1. `team_page: false` in `_config.yml` - this also hides the "← The team" and
    "The whole team →" links on person and partner pages, so they do not point
    at a page that is not there.
 2. `published: false` in `team.md`.
 3. The Team entry in `nav` is commented out.
 
-Three people — Barbara Droste-Luckmann, Nicole Di Santo and Zuhaib Batra —
+Three people - Barbara Droste-Luckmann, Nicole Di Santo and Zuhaib Batra -
 also carry `published: false`, because their pages still contain `[ADD]`
 placeholders. Remove that line once their text is written, whether or not the
 team page is back.

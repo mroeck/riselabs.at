@@ -1,5 +1,5 @@
 ---
-title: "wohnlabor — gemeinsam wohnen gestalten"
+title: "wohnlabor - gemeinsam wohnen gestalten"
 kind: book
 authors: "wohnlabor (Hirschberg R, Jäger A, Ruderer J, Fröhlich J, Prosekar M, Röck M)"
 year: 2019

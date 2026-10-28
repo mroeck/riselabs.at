@@ -5,7 +5,7 @@ country: "Brazil"
 type: "university"
 website: "https://www.usp.br"
 # logo: "usp.png"   # ADD: no logo supplied yet
-coords: [-23.551, -46.633]   # latitude, longitude — places this partner on the map
+coords: [-23.551, -46.633]   # latitude, longitude - places this partner on the map
 ---
 
 <!-- Optional: a paragraph about the collaboration shows on this page. -->

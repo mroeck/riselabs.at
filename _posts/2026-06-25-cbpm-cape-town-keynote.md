@@ -11,7 +11,7 @@ partners:
   - greenwich
   - tut
 title: "Keynote at the CBPM Conference, Cape Town"
-summary: "On whole life cycle modelling for low-carbon, climate-resilient building stock — and on why there is no one pathway that fits every context."
+summary: "On whole life cycle modelling for low-carbon, climate-resilient building stock - and on why there is no one pathway that fits every context."
 ---
 
 The Construction Business and Project Management (CBPM) Conference ran from
@@ -21,7 +21,7 @@ Innovation in the Built Environment*.
 
 Martin Röck gave the keynote, **"Towards Regenerative Spatial Systems:
 Advancing Environmental Life Cycle Modelling for Supporting Low/No Carbon and
-Climate Resilient Building Stock Development"** — on how whole life
+Climate Resilient Building Stock Development"** - on how whole life
 cycle-based sustainability assessment, building information modelling and open
 science principles can guide the built environment, and what that experience
 from Europe does and does not transfer.
@@ -32,7 +32,7 @@ The most useful part was the disagreement. Hearing directly from researchers
 and practitioners working on infrastructure gaps and climate adaptation across
 different regions of Africa was a reminder that there is no one-size-fits-all
 pathway to sustainable construction. Resilience and decarbonisation have to be
-addressed together, and both are shaped by context — which is an argument for
+addressed together, and both are shaped by context - which is an argument for
 context-specific analysis and context-sensitive approaches, not for exporting
 a European method and expecting it to land.
 
