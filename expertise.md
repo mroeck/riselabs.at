@@ -1,0 +1,95 @@
+---
+layout: default
+title: Expertise
+permalink: /expertise/
+---
+
+<div class="page-head wrap narrow">
+  <h1>Our expertise</h1>
+  <p class="lede">Six fields of work. Each one is a capability built by doing
+  it repeatedly for people who needed the answer to hold up - not a service
+  line invented for a website.</p>
+</div>
+
+<main id="content">
+<section class="band">
+<div class="wrap">
+
+{%- comment -%}
+  Fields come from _data/expertise.yml. The index jumps down the page; the
+  fields alternate image and text, so the page reads as a sequence rather
+  than a list. Projects named in `examples` are pulled in by slug, so their
+  titles never need keeping in sync.
+{%- endcomment -%}
+
+<p class="xindex">
+  {%- for x in site.data.expertise -%}
+  <a href="#{{ x.title | slugify }}">{{ x.title }}</a>
+  {%- endfor -%}
+</p>
+
+{%- for x in site.data.expertise %}
+<div class="xfield" id="{{ x.title | slugify }}">
+  <div class="xfield-img{% unless x.image %} xfield-img-empty{% endunless %}">
+    {%- if x.image %}<img src="{{ x.image | relative_url }}" alt="" loading="lazy">{% endif -%}
+  </div>
+  <div class="xfield-body">
+    <h2>{{ x.title }}</h2>
+    <p class="xlede">{{ x.lede }}</p>
+
+    {%- if x.includes.size > 0 %}
+    <ul class="xlist">
+      {%- for i in x.includes %}<li>{{ i }}</li>{% endfor -%}
+    </ul>
+    {%- endif %}
+
+    {%- if x.note %}<p class="muted small">{{ x.note }}</p>{% endif %}
+
+    {%- if x.examples.size > 0 %}
+    <p class="xeg"><span class="xeg-l">Where you can see it</span>
+      {%- for slug in x.examples -%}
+        {%- assign p = site.projects | where: "slug", slug | first -%}
+        {%- if p %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% unless forloop.last %} · {% endunless %}{% endif -%}
+      {%- endfor -%}
+    </p>
+    {%- endif %}
+
+    {%- if x.audience %}<p class="muted small xfor"><strong>Typically for:</strong> {{ x.audience }}</p>{% endif %}
+  </div>
+</div>
+{%- endfor %}
+
+</div>
+</section>
+
+<section class="band">
+<div class="wrap narrow">
+  <p class="eyebrow">How we work with you</p>
+  <div class="findings" markdown="1">
+
+- **Commissioned work.** A brief, a budget and a deliverable - the usual shape
+  for an evidence base, a benchmark study or a roadmap.
+- **Research partnership.** Joining a consortium as a research partner, where
+  the work is genuinely open-ended and the output is knowledge rather than a
+  deliverable to a brief: partner or work package lead in Horizon Europe, LIFE
+  and national programmes, joint publication and open data work.
+- **Independent review.** A second, disinterested reading of an assessment, a
+  dataset or a claim, written so it can be shown to a board, a regulator or a
+  counterparty.
+- **Teaching and facilitation.** Training a team, briefing an executive, or
+  running the workshop where a consortium has to agree something.
+
+  </div>
+</div>
+</section>
+
+<section class="band cta-band">
+  <div class="wrap narrow">
+    <h2>Work with us</h2>
+    <p>If your work touches any of the above, write to us. We would rather hear
+    the problem than the brief.</p>
+    <a class="cta" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  </div>
+</section>
+
+</main>

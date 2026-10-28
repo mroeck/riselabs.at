@@ -14,21 +14,21 @@ wip: true   # shows the "Page in progress" note by the theme toggle
     <p class="eyebrow">What we stand for</p>
     <div class="cols pillars">
       <div>
-        <h3>System evolution</h3>
+        <h3>Systemic decarbonisation</h3>
         <p class="muted">Reducing and removing the emissions and resource use
-        locked into how we build — and redistributing what the built
+        locked into how we build - and redistributing what the built
         environment takes and gives.</p>
       </div>
       <div>
-        <h3>We are nature</h3>
+        <h3>Planetary boundaries</h3>
         <p class="muted">Healthy ecosystems are the foundation for sustainable
         development and resilient societies. We help understand where the
         balance is.</p>
       </div>
       <div>
         <h3>Stronger together</h3>
-        <p class="muted">Capacity-building, collective action, and solidarity —
-        because effective climate action is never done alone. Committed to open science.</p>
+        <p class="muted">Collective action, solidarity and systems of care -
+        because effective climate action is never done alone.</p>
       </div>
     </div>
     <p class="more"><a href="{{ '/approach/' | relative_url }}">How we work →</a></p>
@@ -50,7 +50,7 @@ wip: true   # shows the "Page in progress" note by the theme toggle
   <div class="wrap">
     <p class="eyebrow">Recent publications</p>
     <p class="band-note">We publish our methods, data and code openly wherever
-    licensing allows. A benchmark nobody can reproduce is just an opinion.</p>
+    licensing allows. A benchmark nobody can reproduce is an opinion.</p>
     {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 4 -%}
     {% include publist.html pubs=recent %}
     <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
@@ -93,10 +93,10 @@ wip: true   # shows the "Page in progress" note by the theme toggle
         <span class="onward-d muted">The three strands, the post-growth
         question, and the methods behind the numbers.</span>
       </a>
-      <a href="{{ '/services/' | relative_url }}">
-        <span class="onward-t">What we offer</span>
-        <span class="onward-d muted">Commissioned research, data
-        infrastructure, independent review, strategy and training.</span>
+      <a href="{{ '/expertise/' | relative_url }}">
+        <span class="onward-t">What we do</span>
+        <span class="onward-d muted">Six fields of work - assessment,
+        stock modelling, policy evidence, data, methods and teaching.</span>
       </a>
     </div>
   </div>
@@ -106,7 +106,7 @@ wip: true   # shows the "Page in progress" note by the theme toggle
   <div class="wrap narrow">
     <h2>Work with us</h2>
     <p>We collaborate with policy makers, industry and research partners, and
-    with networks and players pioneering what the sector has not yet normalized. If your
+    with networks pioneering what the sector has not normalised yet. If your
     work touches any of that, write to us.</p>
     <a class="cta" href="mailto:{{ site.email }}">{{ site.email }}</a>
   </div>

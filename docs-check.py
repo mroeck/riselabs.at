@@ -111,7 +111,7 @@ for slug, (fm, body, f) in posts.items():
                   f"`{key}` points at '{v}', which has no file in _{target}/")
 
 # ------------------------------------------------- data files referencing slugs
-svc = yaml.safe_load((SITE / "_data/services.yml").read_text()) or []
+svc = yaml.safe_load((SITE / "_data/expertise.yml").read_text()) or []
 for s in svc:
     ex = s.get("example")
     if ex and ex not in coll["projects"]:
@@ -157,7 +157,7 @@ for cname, items in coll.items():
         if not fm.get("layout") and not rules.get(cname):
             P("layout", f"_{cname}/{slug}.md",
               "no layout, and _config.yml has no defaults rule for "
-              f"`{cname}` — Jekyll will render this as unstyled raw text")
+              f"`{cname}` - Jekyll will render this as unstyled raw text")
             break
 for slug, (fm, body, f) in posts.items():
     if not fm.get("layout") and not rules.get("posts"):
@@ -178,7 +178,7 @@ for cname, items in coll.items():
         for key in fm:
             if key in SHADOWED:
                 P("shadowed", f"_{cname}/{slug}.md",
-                  f"`{key}` is a built-in Jekyll field and will be ignored — rename it")
+                  f"`{key}` is a built-in Jekyll field and will be ignored - rename it")
 
 # ------------------------------------------------------------------- assets
 asset_re = re.compile(r'(?:^|[\s"\'(:])(/assets/[A-Za-z0-9._/\-]+)')
@@ -216,7 +216,7 @@ for slug, (fm, body, f) in coll["partners"].items():
 
 # Every project, publication and post should carry at least one image: a
 # figure from the work for a project or paper, a photograph for an event.
-# This is a note rather than an error — a page without one still builds, it
+# This is a note rather than an error - a page without one still builds, it
 # just reads as a wall of text, which is what this is here to prevent.
 def _has_picture(fm, body):
     if fm.get("hero") or (fm.get("figures") or []):
@@ -224,10 +224,31 @@ def _has_picture(fm, body):
     # a figure written straight into the body counts too
     return "<figure" in body or "![" in body
 
+# Themes are a closed vocabulary. An unknown slug is an error, not a note:
+# it silently drops the item out of every filter, which is exactly how the
+# fifteen single-use tags this replaced became useless.
+_theme_slugs = {t["slug"] for t in (yaml.safe_load((SITE / "_data/themes.yml").read_text()) or [])}
+_theme_use = {s: 0 for s in _theme_slugs}
+for kind in ("projects", "publications"):
+    for slug, (fm, body, f) in coll.get(kind, {}).items():
+        for t in (fm.get("themes") or []):
+            if t not in _theme_slugs:
+                P("themes", f"_{kind}/{slug}.md",
+                  f"theme '{t}' is not in _data/themes.yml")
+            else:
+                _theme_use[t] += 1
+_unused = [s for s, n in _theme_use.items() if n == 0]
+if _unused:
+    N("themes", f"declared but never used: {', '.join(sorted(_unused))}")
+_thin = [f"{s} ({n})" for s, n in sorted(_theme_use.items()) if 0 < n < 3]
+if _thin:
+    N("themes", "used fewer than three times - a label rather than a theme: "
+                + ", ".join(_thin))
+
 # Reported as one line per kind rather than one per page: sixty separate
 # notes would bury everything else, and the useful number here is the gap.
 _want_pics = {
-    "projects":     ("project", "a figure from the work — intervention logic, key results"),
+    "projects":     ("project", "a figure from the work - intervention logic, key results"),
     "publications": ("publication", "a selection of figures from the paper"),
     "posts":        ("post", "a figure from the project or paper, or a photograph for an event"),
 }
@@ -243,7 +264,7 @@ for kind, (singular, wanted) in _want_pics.items():
     if bare:
         shown = ", ".join(sorted(bare)[:6])
         more = f", +{len(bare) - 6} more" if len(bare) > 6 else ""
-        N("figures", f"{len(bare)} of {total} {kind} have no image — wanted: "
+        N("figures", f"{len(bare)} of {total} {kind} have no image - wanted: "
                      f"{wanted}\n      {shown}{more}")
         continue
     path = "/assets/img/partners/" + logo
@@ -285,7 +306,7 @@ for slug in coll["publications"]:
 for slug in coll["partners"]:
     pages.add(f"/partners/{slug}/")
 
-# posts, whose permalink is /news/:year/:title/ — the filename carries both
+# posts, whose permalink is /news/:year/:title/ - the filename carries both
 for slug in posts:
     m = re.match(r"(\d{4})-\d{2}-\d{2}-(.+)", slug)
     if m:
@@ -299,7 +320,7 @@ for p, t in all_text:
             continue
         if target in hidden_pages:
             N("links", f"{p.relative_to(SITE)} links to {target}, a page that is "
-                       "currently unpublished — fine if the link is behind a flag")
+                       "currently unpublished - fine if the link is behind a flag")
         elif target not in pages:
             P("link", str(p.relative_to(SITE)), f"links to {target}, which no page produces")
 
@@ -314,7 +335,7 @@ def _check_nav(entry, parent=None):
         kids = entry.get("items") or []
         if not kids:
             N("config", f"nav group '{entry.get('title','?')}' has no visible items "
-                        "and is skipped by the header — fine if its pages are hidden")
+                        "and is skipped by the header - fine if its pages are hidden")
         for kid in kids:
             _check_nav(kid, entry.get("title"))
     elif "url" in entry:

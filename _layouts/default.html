@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.url == "/" %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
+  <title>{% if page.url == "/" %}{{ site.title }} - {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="icon" href="{{ '/assets/img/rise-signet-pink.png' | relative_url }}">
   {%- comment -%}
@@ -23,7 +23,7 @@
     light does not get a flash of dark on every page. This has to be inline
     and early; a deferred script runs too late to prevent the flash.
 
-    Storage can throw — private windows, blocked site data — so it is wrapped,
+    Storage can throw - private windows, blocked site data - so it is wrapped,
     and the page renders in the default dark theme if anything goes wrong.
   {%- endcomment -%}
   <script>
@@ -43,7 +43,7 @@
 
 <header class="site-header">
   <div class="wrap bar">
-    <a class="brand" href="{{ '/' | relative_url }}" aria-label="RISE — home">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="RISE - home">
       {%- comment -%}
         Both logo files ship; CSS shows the one the current theme needs. A
         filter or blend applied to the white logo would drag the magenta
@@ -65,8 +65,8 @@
 
     {%- comment -%}
       Entries with `items` in _config.yml render as groups; entries with a
-      `url` render as plain links. An empty group — About, while the team
-      page is hidden — is skipped rather than rendered as a dead button.
+      `url` render as plain links. An empty group - About, while the team
+      page is hidden - is skipped rather than rendered as a dead button.
     {%- endcomment -%}
     <nav class="site-nav" id="sitenav" aria-label="Main">
       <ul>
@@ -130,7 +130,7 @@
   either having to know the other's width.
 
   The toggle is hidden until the script runs, so a visitor without JavaScript
-  is never shown a control that cannot work — they get the dark theme, which
+  is never shown a control that cannot work - they get the dark theme, which
   is the primary one. The note does not depend on JavaScript.
 {%- endcomment -%}
 <div class="corner">

@@ -22,7 +22,7 @@ layout: default
     {%- comment -%}
       A link out to PlumX rather than the PlumX widget. The widget is a
       script from plu.mx, which would make every visitor's browser contact
-      Elsevier and hand over their IP address and the page they are on —
+      Elsevier and hand over their IP address and the page they are on -
       the same thing the self-hosted fonts exist to avoid, and it would
       need a privacy section and almost certainly a consent banner. A link
       sends nothing until somebody chooses to follow it.
@@ -40,7 +40,7 @@ layout: default
   {%- for out in page.outputs -%}
     {%- if out.embed %}{% include pdf.html file=out.file title=out.title note=out.note %}
     {%- else %}<p class="doc-line"><a href="{% include url.html u=out.file %}">{{ out.title }}</a>
-      {%- if out.note %} <span class="muted">— {{ out.note }}</span>{% endif -%}</p>
+      {%- if out.note %} <span class="muted">- {{ out.note }}</span>{% endif -%}</p>
     {%- endif -%}
   {%- endfor -%}
   {%- endif %}

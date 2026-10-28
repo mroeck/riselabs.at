@@ -121,7 +121,7 @@
 
      The choice is remembered on the visitor's device, in localStorage under
      "rise-theme". That is the one thing this site stores, it holds a single
-     word, and it is written only when the visitor presses the button — so it
+     word, and it is written only when the visitor presses the button - so it
      is a preference they set, not something that tracks them. It never
      leaves the browser. The matching read is an inline script in <head>, so
      the remembered theme is applied before first paint; without it every
@@ -196,7 +196,7 @@
 
     // a click outside, or Escape, closes whatever is open
     // the click lands on the icon inside the button, so test the button's
-    // subtree rather than the button itself — otherwise this closes the menu
+    // subtree rather than the button itself - otherwise this closes the menu
     // on the very click that opened it
     document.addEventListener("click", function (e) {
       if (!nav.contains(e.target) && !btn.contains(e.target)) {
@@ -206,6 +206,82 @@
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") { closeSubs(); openNav(false); btn.focus(); }
+    });
+  }
+
+
+  /* ---------- external links ---------- */
+
+  /* Anything pointing off this site opens in a new tab, so a reader following
+     a DOI or a partner link does not lose the page they were on. Done here
+     rather than in the markup because most of these links are written in
+     markdown bodies, where adding target= to each one by hand would rot.
+
+     rel="noopener" is not optional: without it the opened page gets a handle
+     on this one through window.opener. */
+
+  function setupExternalLinks() {
+    var here = location.hostname;
+    Array.prototype.forEach.call(document.querySelectorAll("a[href]"), function (a) {
+      var h = a.getAttribute("href") || "";
+      if (h.charAt(0) === "#" || h.indexOf("mailto:") === 0 || h.indexOf("tel:") === 0) return;
+      // a.hostname resolves relative URLs against this page, so a relative
+      // link reports our own host and is correctly left alone
+      if (!a.hostname || a.hostname === here) return;
+      a.target = "_blank";
+      // some links already carry rel="noopener" from their include, so merge
+      // rather than concatenate, or it reads "noopener noopener noreferrer"
+      var rels = (a.rel || "").split(/\s+/).filter(Boolean);
+      ["noopener", "noreferrer"].forEach(function (r) {
+        if (rels.indexOf(r) === -1) rels.push(r);
+      });
+      a.rel = rels.join(" ");
+    });
+  }
+
+  /* ---------- theme filter ---------- */
+
+  /* Shows and hides cards by theme without a page load. The bar is hidden in
+     the markup and revealed here, so a visitor without JavaScript sees every
+     project rather than a filter that cannot filter. */
+
+  function setupThemes(bar) {
+    var grid = document.querySelector(".pgrid");
+    if (!grid) return;
+    var cards = Array.prototype.slice.call(grid.querySelectorAll("li"));
+    var empty = document.querySelector("[data-theme-empty]");
+    var buttons = Array.prototype.slice.call(bar.querySelectorAll("[data-theme-filter]"));
+
+    // drop any filter that would match nothing, rather than offering a dead
+    // button - themes are a closed vocabulary and not all of it is in use yet
+    buttons.forEach(function (b) {
+      var want = b.getAttribute("data-theme-filter");
+      if (!want) return;
+      var hits = cards.filter(function (c) {
+        return (" " + c.getAttribute("data-themes") + " ").indexOf(" " + want + " ") > -1;
+      });
+      if (!hits.length) b.parentNode.removeChild(b);
+    });
+
+    bar.hidden = false;
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-theme-filter]") : null;
+      if (!btn) return;
+      var want = btn.getAttribute("data-theme-filter");
+
+      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
+        b.classList.toggle("on", b === btn);
+      });
+
+      var shown = 0;
+      cards.forEach(function (c) {
+        var has = !want ||
+          (" " + c.getAttribute("data-themes") + " ").indexOf(" " + want + " ") > -1;
+        c.hidden = !has;
+        if (has) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
     });
   }
 
@@ -242,8 +318,8 @@
      formula generated the outline (Šavrič, Patterson & Jenny 2018), so the
      pins land where the countries are.
 
-     Several partners share a city — four are in Brussels, three in Copenhagen,
-     four in London — so pins are grouped by position and the group carries a
+     Several partners share a city - four are in Brussels, three in Copenhagen,
+     four in London - so pins are grouped by position and the group carries a
      count. Twenty-two separate dots stacked on Brussels would read as one. */
 
   var EE = { A1: 1.340264, A2: -0.081106, A3: 0.000893, A4: 0.003796 };
@@ -292,7 +368,7 @@
       var c = document.createElementNS(NS, "circle");
       c.setAttribute("cx", cx.toFixed(1));
       c.setAttribute("cy", cy.toFixed(1));
-      // area, not radius, grows with the count — a radius that scaled linearly
+      // area, not radius, grows with the count - a radius that scaled linearly
       // would make four partners look like sixteen
       c.setAttribute("r", (4.5 * Math.sqrt(here.length)).toFixed(1));
       g.appendChild(c);
@@ -300,7 +376,7 @@
       var where = [first.c, first.k].filter(Boolean).join(", ");
       var names = here.map(function (p) { return p.n; }).join(" · ");
       var t = document.createElementNS(NS, "title");
-      t.textContent = where ? where + " — " + names : names;
+      t.textContent = where ? where + " - " + names : names;
       g.appendChild(t);
 
       if (here.length > 1) {
@@ -322,6 +398,8 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
     Array.prototype.forEach.call(document.querySelectorAll("[data-nav-toggle]"), setupNav);
     Array.prototype.forEach.call(document.querySelectorAll("[data-citeas]"), setupCite);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-themebar]"), setupThemes);
+    setupExternalLinks();
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);

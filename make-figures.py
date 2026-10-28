@@ -92,18 +92,18 @@ s.append("</svg>")
 
 # ---------------------------------------------------------------- figure 2
 FW, FH = 760, 206
-# Widths are indicative of the narrowing, not a measured axis — the labels
+# Widths are indicative of the narrowing, not a measured axis - the labels
 # carry the counts. Numbers sit inside the bars, labels clear of them, so
 # nothing clips however long the text gets.
 STAGES = [
     ("329", "projects on the European longlist",            300, SLATE),
     ("60",  "screened for whole life carbon",               186, "#e05a9b"),
-    ("12",  "modelled in detail — 10 collaborative, 2 Vienna references", 90, MAGENTA),
+    ("12",  "modelled in detail - 10 collaborative, 2 Vienna references", 90, MAGENTA),
 ]
 LABEL_X = 346
 f = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {FW} {FH}" role="img" '
      f'aria-label="The study funnel: 329 projects on the European longlist, 60 '
-     f'screened for whole life carbon, 12 modelled in detail — 10 collaborative '
+     f'screened for whole life carbon, 12 modelled in detail - 10 collaborative '
      f'projects and 2 Vienna reference blocks.">',
      f'<rect width="{FW}" height="{FH}" fill="#ffffff"/>',
      f'<style>text{{font-family:Figtree,system-ui,sans-serif}}</style>']

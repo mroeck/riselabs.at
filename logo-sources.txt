@@ -14,13 +14,13 @@
 # ------------------------  --------------------------------------------------
 # aeee                      https://aeee.in
 # agora-industrie           https://www.agora-industrie.de
-# cbmf                      (no website recorded — China Building Materials Federation)
+# cbmf                      (no website recorded - China Building Materials Federation)
 # clt-europe                https://www.clteurope.org
 # cohabitat                 https://www.cohabitat.io/en
 # dut                       https://www.dut.ac.za
-# ebp-chile                 (no website recorded — EBP Chile)
+# ebp-chile                 (no website recorded - EBP Chile)
 # energy-foundation-china   https://www.efchina.org
-# greentech-knowledge       (no website recorded — Greentech Knowledge Solutions)
+# greentech-knowledge       (no website recorded - Greentech Knowledge Solutions)
 # greenwich                 https://www.gre.ac.uk
 # ifeu                      https://www.ifeu.de
 # igbc                      https://igbc.in

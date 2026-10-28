@@ -5,6 +5,12 @@ years: "2025–2026"
 funder: "UK Department for Energy Security and Net Zero"
 role: "Work package lead, global building materials and life cycle emissions"
 summary: "Builds a global tracker of whole life carbon in construction, so progress can be measured against something"
+hero: "/assets/img/projects/modelling-framework.png"
+hero_caption: "From reduction solutions to building LCA models to a building stock model."
+themes:
+  - building-stock
+  - data-benchmarks
+  - whole-life-carbon
 clients:
   - desnz
 people:
@@ -15,7 +21,7 @@ partners:
   - arup
 ---
 
-<!-- DRAFT — written from this project's own front matter, the public
+<!-- DRAFT - written from this project's own front matter, the public
      project page and what has been discussed. The framing is safe; any
      specific number, date or outcome needs checking before this is relied
      on. Delete this comment once reviewed. -->
@@ -39,5 +45,5 @@ Our work package covers global building materials and life cycle emissions:
 
 "Whole life carbon is rising" and "whole life carbon is falling" are both
 currently defensible claims, because nobody is measuring consistently at this
-scale. A tracker settles the question — and makes it possible to tell whether
+scale. A tracker settles the question - and makes it possible to tell whether
 policy is working.

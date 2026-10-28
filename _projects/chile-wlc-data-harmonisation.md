@@ -1,10 +1,12 @@
 ---
 title: "Chile: whole life carbon tool and data harmonisation with OpenBDF"
 status: "current"
-years: "2025–"
+years: "2025–2026"
 funder: "CORFO Chile Public Goods Call"
-role: "International technical partner — data architecture and OpenBDF alignment"
+role: "International technical partner - data architecture and OpenBDF alignment"
 summary: "Aligns Chile's national whole life carbon tool and building database with the open global data format from the start, so the data stays comparable"
+hero: "/assets/img/projects/santiago.jpg"
+hero_caption: "Santiago de Chile."
 link: "https://www.gbdi.io"
 partners:
   - ebp-chile
@@ -14,13 +16,13 @@ people:
   - martin-roeck
 # Nicole Di Santo is Technical Lead on this. Add `- nicole-di-santo` above once
 # her person page is finished and `published: false` is removed from it.
-tags:
-  - whole life carbon
-  - data harmonisation
-  - OpenBDF
+themes:
+  - data-benchmarks
+  - global-south
+  - whole-life-carbon
 ---
 
-<!-- DRAFT — written from the project information sheet supplied in October
+<!-- DRAFT - written from the project information sheet supplied in October
      2026. The framing and the facts come from that document; check the dates
      and the description of the partners' roles before relying on it. -->
 

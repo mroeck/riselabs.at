@@ -2,7 +2,7 @@
 layout: default
 title: Team
 permalink: /team/
-published: false   # hidden for now — see `team_page` in _config.yml
+published: false   # hidden for now - see `team_page` in _config.yml
 ---
 
 <div class="page-head wrap narrow">

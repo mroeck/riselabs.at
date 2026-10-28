@@ -1,16 +1,16 @@
 ---
-title: "CollaborativeCarbon — Whole Life Carbon Assessments for Collaborative Housing across Europe"
+title: "CollaborativeCarbon - Whole Life Carbon Assessments for Collaborative Housing across Europe"
 status: "concluded"
 years: "2024–2026"
 funder: "Laudes Foundation"
 role: "Project lead, whole life carbon assessment and analysis"
-summary: "The first quantitative baseline for the whole life carbon of European collaborative housing — and the finding that it is structural material, not the collaborative model, that decides performance"
-tags:
-  - whole life carbon
-  - collaborative housing
-  - BIM-LCA
-  - timber
-  - sufficiency
+summary: "The first quantitative baseline for the whole life carbon of European collaborative housing - and the finding that it is structural material, not the collaborative model, that decides performance"
+hero: "/assets/img/projects/collaborative-housing.jpg"
+themes:
+  - whole-life-carbon
+  - sufficiency-space
+  - materials-circularity
+  - regenerative-design
 link: "https://www.collaborative-carbon.com"
 project_title: "CollaborativeCarbon: Whole Life Carbon Assessments for Collaborative Housing across Europe"
 cite_authors: "Röck, M., Hujvan, A., Degel, J., Pendlmayr, M., & Zilker, M."
@@ -46,8 +46,8 @@ partners_note: "TU Delft's contribution was through its CO-Lab Research group"
      deck has all twelve, add them to the ROWS list in make-figures.py at the
      site root and re-run it to redraw the chart. -->
 
-Collaborative housing — co-housing, housing cooperatives, community land
-trusts — is usually argued for on social and economic grounds, and that case
+Collaborative housing - co-housing, housing cooperatives, community land
+trusts - is usually argued for on social and economic grounds, and that case
 is well made. Its climate performance was not: the evidence was largely
 anecdotal, which left a building type with a plausible carbon advantage absent
 from the evidence base policy actually uses.
@@ -66,7 +66,7 @@ behind it. The answer is more useful than the one the sector expected.
 <figure class="fig">
   <a href="/assets/img/figures/collabcarbon-funnel.svg" class="fig-link">
     <img src="/assets/img/figures/collabcarbon-funnel.svg"
-         alt="329 projects on the European longlist, 60 screened for whole life carbon, 12 modelled in detail — 10 collaborative projects and 2 Vienna reference blocks."
+         alt="329 projects on the European longlist, 60 screened for whole life carbon, 12 modelled in detail - 10 collaborative projects and 2 Vienna reference blocks."
          loading="lazy" decoding="async">
   </a>
   <figcaption>
@@ -79,13 +79,13 @@ behind it. The answer is more useful than the one the sector expected.
 
 <div class="findings" markdown="1">
 
-- **A European longlist — 329 projects.** We identified and compiled
+- **A European longlist - 329 projects.** We identified and compiled
   collaborative housing projects across Europe, with general information and
   floor area metrics for each.
-- **Typology-based screening — 60 projects.** The projects that supplied
+- **Typology-based screening - 60 projects.** The projects that supplied
   enough data went through a whole life carbon screening, enough to show the
   distribution of results rather than a handful of exemplars.
-- **Detailed assessment — 10 projects, plus 2 references.** The ten
+- **Detailed assessment - 10 projects, plus 2 references.** The ten
   best-performing projects, spanning Austria, Switzerland, Germany, Spain,
   France and the UK and ranging from urban to rural, were modelled in 3D and
   assessed with the Madaster LCA tool, alongside two conventional Vienna
@@ -130,7 +130,7 @@ behind it. The answer is more useful than the one the sector expected.
   two conventional Vienna references.
 - **Being collaborative saves nothing on its own.** The weakest result in the
   study is La Chalmeta, a collaborative project in concrete and aluminium, at
-  +326 kg CO₂e/m² — higher than either conventional reference block.
+  +326 kg CO₂e/m² - higher than either conventional reference block.
 - **Sharing space is a carbon strategy, not only a social one.** The strongest
   projects use 22–53% less floor area per person than their national averages,
   while the space residents can actually use runs from 3 to 30 times the size
@@ -138,7 +138,7 @@ behind it. The answer is more useful than the one the sector expected.
   person and gives 16% of its net floor area to community space. The effect on
   per-capita emissions is large: around 19 t CO₂e per capita for best practice
   against roughly 32 t for the EU new-build average.
-- **Community-led process may make good choices more likely — but that is
+- **Community-led process may make good choices more likely - but that is
   untested.** It is plausible that collective decision-making favours timber
   and bio-based materials. The study did not quantify it, and says so.
 
@@ -149,7 +149,7 @@ behind it. The answer is more useful than the one the sector expected.
 <div class="findings" markdown="1">
 
 - **Treat material choice as the primary lever.** Mandate or incentivise
-  low-carbon structural systems — timber, CLT and bio-based materials — in
+  low-carbon structural systems - timber, CLT and bio-based materials - in
   publicly funded housing.
 - **Make whole life carbon the primary metric.** Shift housing policy,
   subsidies and standards onto it now, ahead of the 2028 and 2030 EU
@@ -172,7 +172,7 @@ behind it. The answer is more useful than the one the sector expected.
 - Whether collaborative projects shift construction norms in the
   neighbourhoods around them.
 - How far the findings generalise across European climates, regulations and
-  building cultures — and what Vienna's public housing tradition has to teach
+  building cultures - and what Vienna's public housing tradition has to teach
   the rest.
 
 </div>
@@ -182,16 +182,16 @@ behind it. The answer is more useful than the one the sector expected.
 The complete study materials are on Zenodo under
 [DOI 10.5281/zenodo.19452986](https://doi.org/10.5281/zenodo.19452986):
 
-1. Synthesis, insights and recommendations — slide deck, 45 pages
-2. Factsheets for the shortlisted projects — 60 pages
-3. Dashboards for the selected projects — 10+2 pages
-4. Poster on the selected-project analysis — 1 page
-5. Supporting information: data on the shortlisted projects — general
+1. Synthesis, insights and recommendations - slide deck, 45 pages
+2. Factsheets for the shortlisted projects - 60 pages
+3. Dashboards for the selected projects - 10+2 pages
+4. Poster on the selected-project analysis - 1 page
+5. Supporting information: data on the shortlisted projects - general
    information, floor area metrics, whole life carbon screening
 
-Project-level data for the twelve modelled projects — general information,
+Project-level data for the twelve modelled projects - general information,
 floor area metrics, embodied carbon results, bill-of-quantities materials and
-BIM models — is available on reasonable request, at
+BIM models - is available on reasonable request, at
 [martin.roeck@riselabs.at](mailto:martin.roeck@riselabs.at).
 
 <!-- The citation is no longer written out here: it is built from the cite_*

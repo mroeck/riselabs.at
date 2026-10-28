@@ -2,8 +2,8 @@
 """Fill in publication abstracts, from the RISE Zotero library first.
 
 Why this is a script and not something already done: abstracts have to come
-from the record, not from a summary. Writing them by hand — or having a model
-write them — produces plausible text that is not the paper's abstract, on a
+from the record, not from a summary. Writing them by hand - or having a model
+write them - produces plausible text that is not the paper's abstract, on a
 page that carries a DOI. So this fetches the real thing.
 
 Three sources, tried in order:
@@ -42,7 +42,7 @@ import urllib.parse
 import urllib.request
 
 MAILTO = "martin.roeck@riselabs.at"
-ZOTERO_GROUP = "6485191"          # RISE Open — zotero.org/groups/6485191/rise_open
+ZOTERO_GROUP = "6485191"          # RISE Open - zotero.org/groups/6485191/rise_open
 PUBS = pathlib.Path(__file__).parent / "_publications"
 UA = f"riselabs.at abstract fetcher (mailto:{MAILTO})"
 
@@ -89,7 +89,7 @@ def load_zotero():
             batch = get(url, headers)
         except urllib.error.HTTPError as e:
             print(f"  !! Zotero returned HTTP {e.code}"
-                  + (" — the group may be private; set ZOTERO_API_KEY"
+                  + (" - the group may be private; set ZOTERO_API_KEY"
                      if e.code in (403, 404) else ""))
             return {}, {}
         except (urllib.error.URLError, json.JSONDecodeError) as e:
@@ -189,7 +189,7 @@ def main():
     args = ap.parse_args()
 
     if not PUBS.is_dir():
-        sys.exit(f"no {PUBS} — run this from the site root")
+        sys.exit(f"no {PUBS} - run this from the site root")
 
     zot_doi, zot_title = ({}, {}) if args.no_zotero else load_zotero()
 
@@ -212,7 +212,7 @@ def main():
             skipped += 1
             continue
 
-        # 1. our own library, by DOI then by title — a title match covers the
+        # 1. our own library, by DOI then by title - a title match covers the
         #    reports and datasets that have no DOI at all
         abstract, source = None, None
         if doi and doi in zot_doi:

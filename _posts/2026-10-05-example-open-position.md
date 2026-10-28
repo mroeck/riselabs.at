@@ -6,7 +6,7 @@ title: "We are hiring: Researcher, building stock modelling"
 summary: "A two-year position in Vienna, working on whole life carbon scenarios for European and global building stocks."
 ---
 
-<!-- TEMPLATE — this post is set to published: false
+<!-- TEMPLATE - this post is set to published: false
 type: opening, so it is not live.
      Copy this file, rename it with today's date, edit the text, and
      delete the "published: false

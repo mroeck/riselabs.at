@@ -1,5 +1,5 @@
 ---
-title: "Supporting the development of a roadmap for the reduction of whole life carbon of buildings — final technical report"
+title: "Supporting the development of a roadmap for the reduction of whole life carbon of buildings - final technical report"
 kind: report
 authors: "European Commission DG ENV, Le Den X, Steinmann J, Kovacs A, Kockat J, Röck M, Allacker K, Toth Z"
 year: 2024

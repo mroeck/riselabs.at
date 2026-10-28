@@ -1,20 +1,22 @@
 ---
-title: "Embodied Carbon in the German Building Sector — Creating Lead Markets for Climate-Friendly Materials"
+title: "Embodied Carbon in the German Building Sector - Creating Lead Markets for Climate-Friendly Materials"
 status: "concluded"
 years: "2022–2024"
 funder: "Agora Industrie"
-role: "Contributing author — embodied carbon assessment and regulatory options"
+role: "Contributing author - embodied carbon assessment and regulatory options"
 summary: "Quantified Germany's embodied carbon from construction and set out how limit values could turn the building sector into a lead market for near-zero steel and cement"
-tags:
-  - embodied carbon
-  - lead markets
-  - German policy
-  - construction materials
+hero: "/assets/img/projects/berlin.jpg"
+hero_caption: "Berlin. The German building sector is one of Europe's largest consumers of cement, steel and brick."
+themes:
+  - materials-circularity
+  - policy-regulation
+  - whole-life-carbon
+  - regenerative-design
 link: "https://www.agora-industrie.de/publikationen/reduktion-und-regulierung-von-embodied-carbon-emissionen-im-deutschen-gebaeudesektor"
-project_title: "Reduktion und Regulierung von Embodied-Carbon-Emissionen im deutschen Gebäudesektor — Schaffung von Leitmärkten für klimafreundliche Grundstoffe"
+project_title: "Reduktion und Regulierung von Embodied-Carbon-Emissionen im deutschen Gebäudesektor - Schaffung von Leitmärkten für klimafreundliche Grundstoffe"
 # The study's figures are published under CC BY 4.0 and may be reused with
 # attribution. Abb. A (emission target paths) or Abb. E (the recommended
-# timeline for limit values) would make the best header image — download the
+# timeline for limit values) would make the best header image - download the
 # PNG from the publication page, drop it in assets/img/figures/, and
 # uncomment these two lines.
 # hero: /assets/img/figures/agora-limit-value-timeline.png
@@ -42,11 +44,11 @@ partners:
 
 <!-- The study is published in German only. This page summarises it in
      English; quoted figures are from the publication page and the study
-     itself. A header figure is available under CC BY 4.0 — see the commented
+     itself. A header figure is available under CC BY 4.0 - see the commented
      `hero` lines in the front matter. -->
 
 Germany's building sector is one of the largest consumers of cement, steel and
-brick in Europe. That makes it a problem — and, read differently, a lever: a
+brick in Europe. That makes it a problem - and, read differently, a lever: a
 buyer big enough to create a market for materials that barely have one yet.
 
 This study, produced with Agora Industrie, ifeu and Ramboll, quantified how
@@ -109,7 +111,7 @@ before it:
   efficiency classes people already understand from energy certificates.
 - **Coordinate demand with supply, and modernise building law.** Align the
   demand-side measures across Germany and the EU with supply-side support,
-  and clear the regulatory obstacles to circular and low-carbon practice —
+  and clear the regulatory obstacles to circular and low-carbon practice -
   recycling, reuse, and the shift from mineral to renewable materials.
 
 </div>

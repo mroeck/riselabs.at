@@ -2,10 +2,10 @@
   A figure with a caption, a source line and a download link.
 
     include.file     path to the image
-    include.number   optional — "Figure 1"
+    include.number   optional - "Figure 1"
     include.caption  the caption
-    include.source   optional — where it is from
-    include.wide     optional — "true" to break past the text column
+    include.source   optional - where it is from
+    include.wide     optional - "true" to break past the text column
 {%- endcomment -%}
 <figure class="fig{% if include.wide == 'true' %} wide{% endif %}">
   <a href="{% include url.html u=include.file %}" class="fig-link">

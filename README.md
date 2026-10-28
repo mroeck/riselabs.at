@@ -1,7 +1,7 @@
 # riselabs.at
 
 Interim RISE site. Static [Jekyll](https://jekyllrb.com), built and served by
-GitHub Pages. Designed to be replaced when the CI revamp lands — nothing here
+GitHub Pages. Designed to be replaced when the CI revamp lands - nothing here
 is precious.
 
 ## Before you publish anything
@@ -11,7 +11,7 @@ python3 docs-check.py
 ```
 
 It catches broken cross-references, missing images, reserved field names and
-unresolved layouts — the kinds of mistake Jekyll builds happily and silently
+unresolved layouts - the kinds of mistake Jekyll builds happily and silently
 gets wrong. Run it from this folder. "no problems found" means go.
 
 ## Where the documentation is
@@ -37,7 +37,7 @@ excluded from the built site. **Start with `03`.**
 | `fetch-abstracts.py` | Pulls publication abstracts from Crossref/OpenAlex by DOI |
 | `make-figures.py` | Redraws the CollaborativeCarbon charts from their source values |
 
-Neither is published — both are in the `exclude` list in `_config.yml`.
+Neither is published - both are in the `exclude` list in `_config.yml`.
 
 ## Running it locally
 

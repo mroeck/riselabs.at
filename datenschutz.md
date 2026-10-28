@@ -4,7 +4,7 @@ title: Datenschutzerklärung
 permalink: /datenschutz/
 description: >-
   Information on the processing of personal data on riselabs.at under the
-  GDPR — hosting, newsletter, contact, and your rights.
+  GDPR - hosting, newsletter, contact, and your rights.
 ---
 
 {%- assign im = site.data.impressum -%}
@@ -14,7 +14,7 @@ description: >-
   inside <main> and <section>, and kramdown does not parse markdown inside
   block-level HTML.
 
-  This describes what the site actually does as built — no cookies, no
+  This describes what the site actually does as built - no cookies, no
   analytics, self-hosted fonts, one external processor for the newsletter,
   and one stored preference (the theme). If that changes, this page has to
   change with it. In particular, adding any embed (a video, a map, a social
@@ -72,7 +72,7 @@ erforderlich (§ 165 Abs. 3 TKG 2021).</p>
 
 <p>Sie können den Eintrag jederzeit löschen, indem Sie die Websitedaten in
 Ihrem Browser entfernen. Wird die Speicherung durch Ihre Browser-Einstellungen
-unterbunden, funktioniert die Umschaltung weiterhin — die Auswahl gilt dann
+unterbunden, funktioniert die Umschaltung weiterhin - die Auswahl gilt dann
 nur für die aktuelle Seite.</p>
 
 <h2>Hosting und Server-Logs <span class="gloss">[hosting and server logs]</span></h2>
@@ -80,7 +80,7 @@ nur für die aktuelle Seite.</p>
 <p>Die Website wird auf GitHub Pages gehostet, einem Dienst der GitHub, Inc.,
 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der
 Website wird nach Angaben von GitHub die IP-Adresse der Besucherinnen und
-Besucher zu Sicherheitszwecken protokolliert und gespeichert — unabhängig
+Besucher zu Sicherheitszwecken protokolliert und gespeichert - unabhängig
 davon, ob eine Anmeldung bei GitHub besteht.</p>
 
 <p>Auf Umfang und Dauer dieser Protokollierung haben wir keinen Einfluss und
@@ -101,7 +101,7 @@ Daten zur Zustellung der Newsletter.</p>
 
 <p>Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO.
 Sie können diese Einwilligung jederzeit mit Wirkung für die Zukunft
-widerrufen — über den Abmeldelink in jedem Newsletter oder formlos per
+widerrufen - über den Abmeldelink in jedem Newsletter oder formlos per
 E-Mail an <a href="mailto:{{ im.email }}">{{ im.email }}</a>. Nach dem
 Widerruf wird die E-Mail-Adresse aus dem Verteiler gelöscht.</p>
 

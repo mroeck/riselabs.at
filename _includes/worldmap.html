@@ -3,20 +3,20 @@
 
   Equal Earth is equal-area: every country takes screen space in proportion to
   its real area. On a map whose whole point is "we work in these places",
-  Mercator would inflate Europe and shrink Africa — saying something we do not
+  Mercator would inflate Europe and shrink Africa - saying something we do not
   mean. The outline is generated from Natural Earth 110m data; see
   worldmap-paths.html.
 
   Markers are placed by a script, because projecting latitude and longitude
   needs trigonometry and Liquid has none. Without JavaScript the map simply
-  does not appear — the table below it is the real content, and it is complete.
+  does not appear - the table below it is the real content, and it is complete.
 
   A partner appears here as soon as its file carries a `coords: [lat, lon]`
   line. Nothing else to maintain.
 
   Note for future edits: do NOT select the partners with `where_exp`. A
   commented-out `# coords:` line is nil, and neither a bare truth test nor
-  `coords.size == 2` filtered it out reliably — the result was `"lat":,"lon":`
+  `coords.size == 2` filtered it out reliably - the result was `"lat":,"lon":`
   in the JSON, which broke every pin on the map silently. Walking the list and
   emitting only complete entries is the version that works.
 {%- endcomment -%}
@@ -45,7 +45,7 @@
   </svg>
   <figcaption class="muted small">
     {{ placed }} partner organisations in {{ country_count }} countries.
-    Equal Earth projection — equal-area, so every country is shown at its true
+    Equal Earth projection - equal-area, so every country is shown at its true
     relative size.
   </figcaption>
 </figure>

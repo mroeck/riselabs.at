@@ -4,18 +4,18 @@
 # Filled from RISE_Company-Information.docx, version January 2026.
 #
 # Austrian law, three overlapping sets of duties:
-#   ECG §5        — provider identity and contact, for any commercial website
-#   UGB §14       — registered Firma, legal form, seat, Firmenbuch no. + court.
+#   ECG §5        - provider identity and contact, for any commercial website
+#   UGB §14       - registered Firma, legal form, seat, Firmenbuch no. + court.
 #                   RISE is an e.U., so this applies in full, and because the
 #                   registered Firma differs from the owner's civil name, the
 #                   owner has to be named too.
-#   MedienG §25   — media owner, business purpose, seat; plus editorial
+#   MedienG §25   - media owner, business purpose, seat; plus editorial
 #                   direction ("Blattlinie") once a site carries content beyond
 #                   presenting the business itself. News and commentary count,
 #                   so this site is treated as the larger case.
 #
 # Bank details are deliberately NOT here. They belong on invoices, not on a
-# public page — a published IBAN is a standing invitation to direct-debit
+# public page - a published IBAN is a standing invitation to direct-debit
 # fraud and invoice-redirection scams.
 #
 # The page renders only the fields that are filled in, so a blank line is
@@ -36,8 +36,8 @@ owner: "Dr. Martin Röck"
 # already says "Inhaber"; fill it if a different role should appear.
 owner_role: ""
 
-# Only if a trading name differs from the registered Firma. It does not —
-# "RISE" is simply the short form — so this stays blank.
+# Only if a trading name differs from the registered Firma. It does not -
+# "RISE" is simply the short form - so this stays blank.
 trading_as: ""
 
 # --- where ----------------------------------------------------------------
@@ -66,7 +66,7 @@ seat: ""
 # a visitor may need an account to use, so whether it counts as "direct"
 # has not been tested. Two ways to put this beyond doubt whenever you want:
 # a business number separate from your private one (a VoIP line costs
-# little), or a contact form here — say the word and I will add one.
+# little), or a contact form here - say the word and I will add one.
 
 email: "office@riselabs.at"
 phone: ""
@@ -82,23 +82,23 @@ zvr: ""              # not applicable, RISE is not a Verein
 
 # --- trade law ------------------------------------------------------------
 #
-# STILL TO CONFIRM — the one thing the company document does not settle.
+# STILL TO CONFIRM - the one thing the company document does not settle.
 #
 # Being registered as an e.U. does not by itself mean the activity is a
 # Gewerbe. Pure research can fall outside the Gewerbeordnung as "Neue
 # Selbständige". But the company document describes RISE as a "research and
-# consulting firm", and paid consulting is normally a Gewerbe — usually
+# consulting firm", and paid consulting is normally a Gewerbe - usually
 # Unternehmensberatung. If it is, then three things are mandatory here:
 # the Gewerbe, the supervisory authority, and WKO membership (which follows
 # automatically from holding a Gewerbe).
 #
 # One question to your accountant or the WKO. If the answer is yes,
 # uncomment the three lines below; the authority is fixed by the 1090
-# address. If the answer is no, leave them blank — stating them would be
-# wrong — and either way set trade_law_checked to true to clear the notice.
+# address. If the answer is no, leave them blank - stating them would be
+# wrong - and either way set trade_law_checked to true to clear the notice.
 
 # Set true on your assessment that the work does not fall under the
-# Gewerbeordnung — research rather than a regulated trade. Provisional
+# Gewerbeordnung - research rather than a regulated trade. Provisional
 # until your accountant confirms it. If the answer comes back the other
 # way, uncomment the three lines below and the section reappears.
 trade_law_checked: true
@@ -113,7 +113,7 @@ berufsrecht_url: "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesno
 
 # --- media law (MedienG §25) ----------------------------------------------
 
-# Unternehmensgegenstand — business purpose. Drawn from the company
+# Unternehmensgegenstand - business purpose. Drawn from the company
 # description so the two documents say the same thing.
 purpose: >-
   Forschung und Beratung zur Transformation hin zu regenerativen Systemen
@@ -121,14 +121,14 @@ purpose: >-
   (LCSA) von Gebäuden und Infrastruktur sowie Beratung von Politik und
   Industrie auf dieser Grundlage.
 
-# Blattlinie — basic editorial direction, required once a site publishes
+# Blattlinie - basic editorial direction, required once a site publishes
 # beyond self-presentation.
 blattlinie: >-
   Information über die Forschungstätigkeit, Projekte und Publikationen von
   RISE sowie über wissenschaftliche und politische Entwicklungen zu
   Klimaschutz, Ressourcennutzung und Transformation im Gebäudesektor.
 
-# Beteiligungsverhältnisse — ownership.
+# Beteiligungsverhältnisse - ownership.
 ownership: >-
   Alleininhaber ist Dr. Martin Röck. Es bestehen keine Beteiligungen Dritter
   und keine Treuhandverhältnisse.

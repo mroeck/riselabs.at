@@ -26,7 +26,7 @@ Settle three things, once, and the rest is mechanical.
 
 **1. The criterion.** Who qualifies, and therefore who does not. Collaborators
 talk to each other, and an unexplained omission reads as a judgement. A
-stateable rule — "a named role in a current or recent RISE project" — makes
+stateable rule - "a named role in a current or recent RISE project" - makes
 absences impersonal. Write the rule down here when you have it.
 
 **2. Their employer's position.** Anyone at a university, a ministry or a
@@ -50,7 +50,7 @@ the record exists without anyone signing anything.
 
 The email must state:
 
-- exactly what will appear — name, role, organisation, photo, short profile,
+- exactly what will appear - name, role, organisation, photo, short profile,
   links, and the automatic list of RISE projects and publications they are
   named on;
 - that they are listed as employed elsewhere and not part of RISE;
@@ -69,9 +69,10 @@ converts: people agree in principle and then never write the three sentences.
 | `role` | Their own role, at their own organisation |
 | `org` | Required for collaborators |
 | `portrait` | Square, at least 600 × 600 px. Save to `assets/img/people/` |
+| `also` | A second standing role that is not their day job - an IPCC author role, a report coordinating authorship. Optional |
 | `summary` | One sentence, shown under their name |
 | body text | Two or three sentences in their own voice |
-| `links` | LinkedIn, Google Scholar, ORCID, personal site — whichever they want |
+| `links` | LinkedIn, Google Scholar, ORCID, personal site - whichever they want |
 | `cite` | How their name appears in author lists, e.g. `Di Santo N` |
 
 `cite` matters more than it looks: it is what underlines their name

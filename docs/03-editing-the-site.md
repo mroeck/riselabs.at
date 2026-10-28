@@ -63,8 +63,8 @@ Everything after the second set of dashes is the body text, written
 in ordinary prose.
 ```
 
-The **front matter** is structured information — title, year, who it links
-to — in YAML. The **body** is free text.
+The **front matter** is structured information - title, year, who it links
+to - in YAML. The **body** is free text.
 
 Some files need only front matter. A publication, for example, works
 perfectly well with an empty body.
@@ -78,7 +78,7 @@ perfectly well with an empty body.
 accents or special characters, ending `.md`.
 
 **Never rename a published file.** It breaks every link to that page,
-including links on other people's sites. Change the title inside instead —
+including links on other people's sites. Change the title inside instead -
 the title and the filename are allowed to differ.
 
 **Put double quotes around any title containing a colon.** This is the single
@@ -104,7 +104,7 @@ people:
 ```
 
 A reference that doesn't match a file is **silently dropped**. No error, no
-warning — the connection just doesn't appear. When something you expected
+warning - the connection just doesn't appear. When something you expected
 doesn't show up, this is almost always why. Run `python3 docs-check.py` to
 catch it.
 
@@ -142,7 +142,7 @@ produces, why it matters.
 | `years` | yes | `"2025–2028"`. An en dash (–) not a hyphen |
 | `funder` | yes | Who funds it |
 | `role` | yes | What RISE's role is |
-| `summary` | yes | One sentence. No full stop — it sits in lists |
+| `summary` | yes | One sentence. No full stop - it sits in lists |
 | `link` | no | The project's own website |
 | `clients` | no | Partner filenames. Shown as clients |
 | `partners` | no | Partner filenames. Shown as collaborators |
@@ -171,7 +171,7 @@ figures:
   source: Where it came from.
 ```
 
-`outputs` are **published deliverables** — reports, datasets, tools that
+`outputs` are **published deliverables** - reports, datasets, tools that
 anyone may read. Internal notes, drafts and briefing documents do not belong
 here.
 
@@ -179,7 +179,7 @@ here.
 
 ## 5. Add a publication
 
-Create `_publications/firstauthor-year-keywords.md` — for example
+Create `_publications/firstauthor-year-keywords.md` - for example
 `roeck-2026-embodied-carbon-benchmarks.md`. Lowercase surname, no accents
 (`roeck`, not `röck`).
 
@@ -262,13 +262,13 @@ A paragraph or two, ideally in their own words.
 `published: false`. Copy it rather than starting from scratch, and remember
 to remove that line.
 
-**The team page is currently hidden** — see §7 of
+**The team page is currently hidden** - see §7 of
 `02-site-map-and-structure.md` for what to switch back on. Three people are
 held back with `published: false` because their pages still have `[ADD]`
 placeholders in them. A person page goes live the moment that line is
 removed, whether or not the team list is back, so write the text first.
 
-**When someone leaves**, don't delete the file — their name is attached to
+**When someone leaves**, don't delete the file - their name is attached to
 projects and publications. Either set `published: false`, or keep the page and
 change the role to past tense.
 
@@ -296,8 +296,8 @@ Optional: a paragraph about the collaboration.
 | `name` | yes | |
 | `type` | yes | In use: `university`, `public authority`, `consultancy`, `foundation`, `network`, `international organisation`, `research institute`, `think tank`, `architecture practice`, `industry association`. Reuse an existing one where it fits |
 | `city`, `country` | no | Shown under the name |
-| `coords` | no | `[latitude, longitude]` — puts the partner on the world map. Leave it out and they appear in the table only |
-| `website` | no | Their site. **Must be `website`, not `url`** — see the warning below |
+| `coords` | no | `[latitude, longitude]` - puts the partner on the world map. Leave it out and they appear in the table only |
+| `website` | no | Their site. **Must be `website`, not `url`** - see the warning below |
 | `logo` | no | A filename inside `assets/img/partners/` |
 
 > **Never name this field `url`.** Jekyll reserves `url` for the page's own
@@ -307,7 +307,7 @@ Optional: a paragraph about the collaboration.
 > refuses them.
 
 **22 of the 23 logos are the real thing.** Politecnico di Milano is still on
-a placeholder — its name set in type — because no logo file was supplied.
+a placeholder - its name set in type - because no logo file was supplied.
 
 To add or replace one: save the file as `<slug>.png` (or `.svg`) in
 `assets/img/partners/`, matching the partner's filename, and set `logo:` in
@@ -318,21 +318,21 @@ first batch:
   not at all. BPIE's logo arrived this way.
 - **Trim the built-in padding.** Many logo files ship with generous white
   space baked in, which makes them look shrunken beside marks that have none.
-- **Resize to about 640px wide.** One file in the first batch was 5119px —
+- **Resize to about 640px wide.** One file in the first batch was 5119px -
   far more than a 3rem-tall tile will ever use.
 
 A partner appears on `/partners/` automatically. The home page shows a
-**hand-picked** subset, listed in `index.md` — search for `assign shown`.
+**hand-picked** subset, listed in `index.md` - search for `assign shown`.
 
 The **Together** column on `/partners/` counts what each partnership has
-produced — projects, publications, news — and is calculated from the
+produced - projects, publications, news - and is calculated from the
 cross-references, never typed in. A dash means none yet. If a number looks
 wrong, the cause is a missing or misspelled reference on the project,
 publication or post, not on the partner file.
 
 **A post counts for a partner only when the post names them**, in its
 `partners:` list. So when you write a news item, list the organisations it is
-about — otherwise the partner's page will not show it and the column will read
+about - otherwise the partner's page will not show it and the column will read
 as a dash. That is the whole mechanism; there is no inference from projects.
 
 ---
@@ -340,7 +340,7 @@ as a dash. That is the whole mechanism; there is no inference from projects.
 ## 8. Add a news post or event
 
 Create `_posts/YYYY-MM-DD-short-title.md`. **The date in the filename is the
-publication date** — there is no date field. To change the date, rename the
+publication date** - there is no date field. To change the date, rename the
 file (which also changes its URL, so do it before publishing).
 
 ```markdown
@@ -365,7 +365,7 @@ The body of the post.
 | `type` | yes | `output`, `event`, `project` or `opening`. Shown as a small label |
 | `title` | yes | |
 | `summary` | yes | What appears in lists |
-| `featured` | no | `true` pushes it to the front of the home page's three. Use sparingly — one at a time |
+| `featured` | no | `true` pushes it to the front of the home page's three. Use sparingly - one at a time |
 | `projects`, `people` | no | Filenames. The post then also appears on those pages |
 | `partners` | no | Filenames. Use when a post is about a partner but not tied to one of their projects |
 
@@ -421,7 +421,7 @@ lifting its contrast before uploading helps.
 Home, Approach and Services are in the repository root: `index.md`,
 `approach.md`, `services.md`.
 
-These pages are written in **HTML paragraphs**, not Markdown — the text sits
+These pages are written in **HTML paragraphs**, not Markdown - the text sits
 inside `<p>` tags:
 
 ```html
@@ -429,7 +429,7 @@ inside `<p>` tags:
 ```
 
 This is deliberate and necessary. Jekyll does not convert Markdown inside
-HTML blocks, and these pages are built from HTML sections — so Markdown
+HTML blocks, and these pages are built from HTML sections - so Markdown
 written here appears on screen as raw syntax. When editing, keep text inside
 its `<p>` tags, and for a link write:
 
@@ -438,11 +438,11 @@ its `<p>` tags, and for a link write:
 ```
 
 Project, publication, person, partner and news bodies are **ordinary
-Markdown** — §12 applies there, not this.
+Markdown** - §12 applies there, not this.
 
 Legal pages: `impressum.md` and `datenschutz.md`. The Impressum's details come
 from `_data/impressum.yml`. Edit that file, not the page. **Check with Martin
-before changing either** — both carry legal obligations, and the privacy
+before changing either** - both carry legal obligations, and the privacy
 policy in particular describes exactly what the site does. Adding anything
 third-party (an embedded video, a map, analytics, a social widget) makes it
 inaccurate and requires a new section, usually a cookie banner too.
@@ -453,12 +453,12 @@ inaccurate and requires a new section, usually a cookie banner too.
 
 Both are in `_data/`, not pages.
 
-**`_data/services.yml`** — each block has `title`, `strand` (`up`, `wide` or
+**`_data/services.yml`** - each block has `title`, `strand` (`up`, `wide` or
 `deep`, which links back to the Approach page), `lede`, a list of `includes`,
 an `example` (a project filename, whose title and summary are pulled in
 automatically), `audience`, and an optional `note`.
 
-**`_data/testimonials.yml`** — each quote needs a unique `id`, the `quote`
+**`_data/testimonials.yml`** - each quote needs a unique `id`, the `quote`
 verbatim, `name`, `role`, `org` and a `context` line giving the source and
 date.
 
@@ -474,7 +474,7 @@ all of them.
 **Before publishing a new testimonial**, get the person's agreement in
 writing. It names an identifiable person and their employer in a commercial
 context. Attribute them with the role they held **when they said it**, not
-their current job — implying a present employer endorses RISE when they
+their current job - implying a present employer endorses RISE when they
 haven't is both misleading and the kind of thing people object to.
 
 ---
@@ -486,7 +486,7 @@ on per page: `wip: true` in that page's front matter. It is on the home page
 only at the moment.
 
 Remove the line when the page is finished. There is no site-wide switch, on
-purpose — a disclaimer that nobody can remember how to turn off tends to stay
+purpose - a disclaimer that nobody can remember how to turn off tends to stay
 up for a year.
 
 ---
@@ -495,12 +495,12 @@ up for a year.
 
 Dark is the primary theme and what every page loads with. The toggle in the
 bottom corner switches that page to light. Nothing is stored on the visitor's
-device, so the choice resets when they move to another page — a deliberate
+device, so the choice resets when they move to another page - a deliberate
 trade for storing nothing.
 
 Colour is set in two layers at the top of `assets/css/style.css`: the brand
 constants from the CI manual, which never change, and the semantic tokens the
-theme swaps. **If you change a colour, change a token — never a value inside
+theme swaps. **If you change a colour, change a token - never a value inside
 a rule**, or it will be right in one theme and wrong in the other.
 
 The hero is dark in both themes, which is why its text colours are pinned
@@ -511,7 +511,7 @@ rather than inherited.
 ## 12. Writing text: formatting that works
 
 In project, publication, person, partner and news **bodies** (not the fixed
-pages — see §10):
+pages - see §10):
 
 ```markdown
 ## A heading
@@ -553,7 +553,7 @@ House style, from the existing pages: sentence case in headings, en dashes
 **A page didn't appear.** Check for `published: false`. Check the file is in
 the right folder and ends `.md`. Check the build under **Actions**.
 
-**A connection didn't appear** — a publication missing from a project page,
+**A connection didn't appear** - a publication missing from a project page,
 say. The reference doesn't match a filename. Compare them character by
 character; run `docs-check.py`.
 
@@ -562,7 +562,7 @@ Nine times out of ten it is an unquoted colon in a title. The previous version
 stays live, so the site is never down because of this.
 
 **Markdown is showing as raw syntax.** You are editing one of the fixed pages
-— see §10.
+- see §10.
 
 **Something broke and you want it back.** Every change is reversible. Open the
 file on github.com, click **History**, find the version before the change, and
@@ -602,7 +602,7 @@ figures:
 
 `hero` is the one at the top. `figures` is the list further down. You can also
 write a `<figure class="fig">` straight into the body if it needs to sit at a
-particular point in the argument — the CollaborativeCarbon project does this.
+particular point in the argument - the CollaborativeCarbon project does this.
 
 **When asking a partner or a project for material, ask for the figures at the
 same time**, and ask what licence they come under. Agora's figures are CC BY
@@ -612,7 +612,7 @@ naming the source is the minimum.
 ## 16. Cite this
 
 Publication pages build a citation block automatically from their front
-matter. Projects do too, but only when you set `cite_year` — so a project with
+matter. Projects do too, but only when you set `cite_year` - so a project with
 nothing citable does not get an empty box:
 
 ```yaml
@@ -645,4 +645,4 @@ is a plain link; an entry with `items` is a group that opens a panel. Groups
 exist so the bar stays on one line on a phone.
 
 A group whose items are all hidden is skipped rather than rendered as a dead
-button — which is what happens to About while the team page is hidden.
+button - which is what happens to About while the team page is hidden.

@@ -1,5 +1,5 @@
 ---
-title: "Environmental potentials of bio-based construction materials — life cycle assessment of regenerative design strategies (1/2)"
+title: "Environmental potentials of bio-based construction materials - life cycle assessment of regenerative design strategies (1/2)"
 kind: article
 authors: "Mouton L, Allacker K, Röck M"
 year: 2022

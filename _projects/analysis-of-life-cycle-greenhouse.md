@@ -5,10 +5,12 @@ years: "2022–2025"
 funder: "European Commission DG GROW"
 role: "Team lead and task lead, baseline analysis and scenario modelling"
 summary: "Quantified the baseline and the plausible futures for emissions and removals across the EU building stock to 2050"
-tags:
-  - whole life carbon
-  - building stock modelling
-  - EU policy
+hero: "/assets/img/projects/wlc-scenario-explorer.png"
+hero_caption: "The WLC Scenario Explorer: GHG emissions of EU building stock scenarios."
+themes:
+  - building-stock
+  - whole-life-carbon
+  - policy-regulation
 link: "https://c.ramboll.com/life-cycle-emissions-of-eu-building-and-construction"
 project_title: "Analysis of life-cycle greenhouse gas emissions and removals of EU buildings and construction"
 outputs:

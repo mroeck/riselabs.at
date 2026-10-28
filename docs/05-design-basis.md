@@ -1,7 +1,7 @@
 # Design basis
 
 What the stylesheet implements, and why. Moved out of the README so that file
-stays short — this is the reference for anyone changing colours, type or
+stays short - this is the reference for anyone changing colours, type or
 layout, and for whoever picks the site up at the CI revamp.
 
 ## Colour
@@ -10,10 +10,10 @@ Follows the RISE CI Manual v1.2.
 
 | | |
 | --- | --- |
-| Navy | `#001730` — page background in the dark theme |
-| Magenta | `#f92d84` — the only accent |
-| Purple | `#751094` — gradient only, per the manual |
-| Blush | `#ffe1ee` — pale tint |
+| Navy | `#001730` - page background in the dark theme |
+| Magenta | `#f92d84` - the only accent |
+| Purple | `#751094` - gradient only, per the manual |
+| Blush | `#ffe1ee` - pale tint |
 
 These four are **brand constants**. They are declared once at the top of
 `assets/css/style.css` and never used directly by a component.
@@ -21,7 +21,7 @@ These four are **brand constants**. They are declared once at the top of
 Everything else reads a **semantic token**: `--bg`, `--surface`, `--ink`,
 `--ink-soft`, `--accent`, `--rule`, `--field-bg`, `--tile-edge` and the
 `--btn-*` set. The light theme redefines those eleven tokens and nothing
-else. That is what makes two themes possible without two stylesheets — and it
+else. That is what makes two themes possible without two stylesheets - and it
 means a new component gets both themes for free, as long as it never writes a
 hex value of its own.
 
@@ -48,8 +48,8 @@ the critical path for every page.
 
 ## Layout
 
-- `--measure: 40rem` — the reading column. Body text never exceeds it.
-- `--wide: 64rem` — the wide container, for grids and figures that break out.
+- `--measure: 40rem` - the reading column. Body text never exceeds it.
+- `--wide: 64rem` - the wide container, for grids and figures that break out.
 
 `.wrap` gives the wide container, `.wrap.narrow` the reading column.
 
@@ -65,7 +65,7 @@ card on navy is a deliberate surface, not an oversight.
 Dark is primary and is what every visitor gets first. The toggle sits in the
 bottom-right corner and flips `data-theme` on `<html>`.
 
-The choice is remembered in `localStorage` under `rise-theme` — one word, set
+The choice is remembered in `localStorage` under `rise-theme` - one word, set
 only when the visitor presses the button, never transmitted. An inline script
 in `<head>` applies it before first paint, so there is no flash of dark on a
 light-theme reload. This is disclosed on the Datenschutz page; if you remove

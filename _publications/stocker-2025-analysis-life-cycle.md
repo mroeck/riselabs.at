@@ -1,5 +1,5 @@
 ---
-title: "Analysis of life-cycle greenhouse gas emissions of EU buildings and construction — analysis of results and implications"
+title: "Analysis of life-cycle greenhouse gas emissions of EU buildings and construction - analysis of results and implications"
 kind: report
 authors: "Stocker M, Zink V, Marton C, Steinmann J, Toth Z, Graaf L, Koronen C, Alaux N, Röck M"
 year: 2025

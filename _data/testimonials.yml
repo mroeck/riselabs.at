@@ -3,10 +3,10 @@
 # simply does not appear until there is something real in it.
 #
 #   id      short slug, used by a page to pick particular quotes and set
-#           their order — see index.md, which shows three of these
+#           their order - see index.md, which shows three of these
 #   quote   the words, verbatim. No ellipses that change the meaning.
 #   name    who said it
-#   role    their role AT THE TIME, not their current headline — see the note
+#   role    their role AT THE TIME, not their current headline - see the note
 #           on Brigitte Jacquemont below for why that distinction matters
 #   org     their organisation at the time
 #   context shown smaller. Used here to say where the quote came from and
@@ -17,7 +17,7 @@
 #   url     optional link to the person or organisation
 #
 # Transcribed from screenshots of Martin's LinkedIn recommendations.
-# Check each one against the original before publishing — see the notes.
+# Check each one against the original before publishing - see the notes.
 # ---------------------------------------------------------------------------
 
 - quote: >-
@@ -33,7 +33,7 @@
     positive attitude. I highly recommend him for any future opportunities.
   id: brigitte-jacquemont
   name: "Brigitte Jacquemont"
-  # Her LinkedIn headline now reads "Circular economy & waste prevention —
+  # Her LinkedIn headline now reads "Circular economy & waste prevention -
   # French Ministry for Ecology". Deliberately NOT used: the quote is about
   # work she commissioned while at DG ENERGY, and pairing it with her current
   # employer would imply the French ministry is endorsing RISE. Her role at
@@ -57,7 +57,7 @@
   id: simone-kongsbak
   name: "Simone Kongsbak"
   # Her headline reads "Partner at Smith Innovation and co-funder of Smith
-  # Commons" — "co-funder" is almost certainly a typo for "co-founder" on
+  # Commons" - "co-funder" is almost certainly a typo for "co-founder" on
   # her profile. Rather than reproduce or silently correct someone else's
   # typo, this uses the part that is unambiguous. Add the second role back
   # if she confirms the spelling.
@@ -93,13 +93,13 @@
 
 # Confirmed complete; the only thing missing in the original was the full
 # stop at the end. The dash before "and we quickly developed" is an em dash
-# here, typed as a hyphen in the original — the only other change.
+# here, typed as a hyphen in the original - the only other change.
 - quote: >-
     I had the pleasure of working with Martin on a project with the ambitious
     aim of establishing embodied carbon benchmarks for buildings in Europe and
     setting a pathway for reduction of carbon in the built environment.
     Although we worked together remotely, Martin was a constant source of
-    insight, professionalism, and enthusiasm — and we quickly developed a close
+    insight, professionalism, and enthusiasm - and we quickly developed a close
     collaboration. His leadership and deep understanding of the field was
     instrumental to the success of our work, and he has an exceptional ability
     to make complex concepts tangible.
@@ -128,7 +128,7 @@
   org: "Facultad de Arquitectura y Urbanismo, Universidad de Chile"
   # Supplied in the Chile project information sheet, October 2026. Unlike the
   # others this is about the GBDI partnership rather than about Martin, and it
-  # is the only recent one — worth confirming she is happy for it to appear
+  # is the only recent one - worth confirming she is happy for it to appear
   # here before this goes live, since the others were already public on
   # LinkedIn and this one was not.
   context: "On the GBDI partnership, 2026 · Chile"
