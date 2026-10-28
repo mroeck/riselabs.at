@@ -5,8 +5,8 @@ years: "2025–2026"
 funder: "UK Department for Energy Security and Net Zero"
 role: "Work package lead, global building materials and life cycle emissions"
 summary: "Builds a global tracker of whole life carbon in construction, so progress can be measured against something"
-hero: "/assets/img/projects/modelling-framework.png"
-hero_caption: "From reduction solutions to building LCA models to a building stock model."
+# No image yet - the modelling-framework diagram was borrowed from the
+#   DG ENV roadmap and has been returned to it. This project needs its own.
 themes:
   - building-stock
   - data-benchmarks

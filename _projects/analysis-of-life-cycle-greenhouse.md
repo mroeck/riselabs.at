@@ -5,8 +5,8 @@ years: "2022–2025"
 funder: "European Commission DG GROW"
 role: "Team lead and task lead, baseline analysis and scenario modelling"
 summary: "Quantified the baseline and the plausible futures for emissions and removals across the EU building stock to 2050"
-hero: "/assets/img/projects/wlc-scenario-explorer.png"
-hero_caption: "The WLC Scenario Explorer: GHG emissions of EU building stock scenarios."
+hero: "/assets/img/projects/eu-stock-by-country.png"
+hero_caption: "Building stock composition by country across the EU."
 themes:
   - building-stock
   - whole-life-carbon
@@ -23,6 +23,10 @@ outputs:
 # Add further published deliverables as blocks above: title, optional note,
 # and a url. Only outputs anyone may read belong here.
 figures:
+- file: /assets/img/projects/wlc-scenario-explorer.png
+  number: Figure 2
+  caption: The WLC Scenario Explorer, the open tool built from this
+    study's stock model.
 - file: /assets/img/figures/wlc-trajectory.jpg
   number: Figure 1
   caption: Whole life carbon trajectory for the EU building stock under the current-policy
