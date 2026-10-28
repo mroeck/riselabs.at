@@ -54,7 +54,7 @@ nav:
         url: /partners/
       # - title: Team     # hidden; see team_page above
       #   url: /team/
-  - title: Impact
+  - title: Work
     items:
       - title: Projects
         url: /projects/

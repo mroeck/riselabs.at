@@ -363,6 +363,47 @@ for f in ("CNAME", ".gitignore", "404.html", "README.md", "Gemfile"):
     if not (SITE / f).exists():
         N("repo", f"no {f}")
 
+# -------------------------------------------------------- markdown vs. html
+#
+# Two bugs that reached the live site, and the rules that catch them.
+#
+# 1. kramdown only treats an HTML tag as a block-level element when it starts
+#    at the beginning of the line. `<div markdown="1">` indented inside a
+#    parent div is not recognised, so neither the markdown inside it nor the
+#    tags themselves are processed, and the raw <div> and <li> end up visible
+#    as text. That is exactly what happened to /expertise/. Every other
+#    markdown="1" block on the site sits at column 0 and renders correctly.
+#
+# 2. A page that is pure layout - all HTML and Liquid, no markdown prose - has
+#    nothing to gain from being a .md file and everything to lose, because it
+#    is still run through kramdown. Such pages belong in .html, where Liquid
+#    still runs but markdown does not.
+for f in sorted(SITE.rglob("*.md")):
+    rel = f.relative_to(SITE)
+    if rel.parts[0] in ("_preview", "docs", "_site") or rel.name == "README.md":
+        continue
+    fm, body = split_fm(f)
+    if fm is None:
+        continue
+
+    for i, line in enumerate(body.split("\n"), 1):
+        if 'markdown="1"' in line and line[:1].isspace():
+            P("markdown", str(rel),
+              f"line {i}: <div markdown=\"1\"> is indented. kramdown only parses "
+              "block HTML that starts at column 0, so this block and its tags "
+              "will render as visible text. Move it to column 0, or write the "
+              "content as HTML and drop the markdown=\"1\".")
+
+    # Pure-layout page living as markdown.
+    stripped = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+    stripped = re.sub(r"\{%.*?%\}", "", stripped, flags=re.S)
+    prose = re.findall(r"^(?:#{1,6} |[-*] |\d+\. |> )", stripped, re.M)
+    has_html = re.search(r"^\s*<(div|section|main|ul|table|figure)\b", stripped, re.M)
+    if has_html and not prose and rel.parent == pathlib.Path("."):
+        N(str(rel), "is all HTML and Liquid with no markdown prose. It would be "
+                    "safer as .html, where Liquid still runs but kramdown cannot "
+                    "mangle the markup. (Keep the permalink when renaming.)")
+
 # ---------------------------------------------------------------- report
 print()
 if problems:

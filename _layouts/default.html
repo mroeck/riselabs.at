@@ -17,7 +17,12 @@
   {%- endcomment -%}
   <link rel="preload" as="font" type="font/woff2" crossorigin
         href="{{ '/assets/fonts/figtree-latin-400-normal.woff2' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  {%- comment -%}
+    The build time is appended so a changed stylesheet is actually fetched.
+    Without it a returning visitor keeps the cached copy and sees new markup
+    with old rules, which looks like a broken layout rather than a cache.
+  {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   {%- comment -%}
     The remembered theme is applied before first paint, so a visitor who chose
     light does not get a flash of dark on every page. This has to be inline
@@ -145,7 +150,7 @@
   </button>
 </div>
 
-<script src="{{ '/assets/js/ui.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/ui.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 
 </body>
 </html>
