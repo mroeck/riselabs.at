@@ -5,12 +5,14 @@ layout: default
   The project image sits behind the title rather than below it. The gradient
   in .hero-full::after is what keeps the text legible over any frame, so the
   picture can be a photograph or a chart without the heading becoming hard to
-  read. A project with no image falls back to the plain head.
+  read. A project with no image of its own gets stock imagery rather
+  than a bare heading; see _data/stock.yml.
 {%- endcomment -%}
-{%- if page.hero -%}
+{%- assign head_img = page.hero -%}
+{%- unless head_img %}{% capture head_img %}{% include stockimg.html key=page.slug %}{% endcapture %}{% endunless -%}
 <section class="hero-full proj-hero">
   <div class="hero-media" aria-hidden="true">
-    <img src="{{ page.hero | relative_url }}" alt="" fetchpriority="high">
+    <img src="{{ head_img | strip | relative_url }}" alt="" fetchpriority="high">
   </div>
   <div class="hero-inner wrap narrow">
   <p class="post-date">
@@ -33,25 +35,6 @@ layout: default
 {%- if page.hero_caption %}
 <p class="hero-cap wrap narrow">{{ page.hero_caption }}</p>
 {%- endif %}
-{%- else -%}
-<div class="page-head wrap narrow">
-  <p class="post-date">
-    <span class="post-type">{{ page.status }}</span> &nbsp;·&nbsp; {{ page.years }}
-  </p>
-  <h1>{{ page.title }}</h1>
-  {%- if page.summary %}<p class="lede">{{ page.summary }}.</p>{% endif -%}
-
-  {%- comment -%} themes come from _data/themes.yml, by slug {%- endcomment -%}
-  {%- if page.themes.size > 0 %}
-  <p class="tags">
-    {%- for t in page.themes -%}
-      {%- assign th = site.data.themes | where: "slug", t | first -%}
-      <span class="tag">{{ th.name | default: t }}</span>
-    {%- endfor -%}
-  </p>
-  {%- endif -%}
-</div>
-{%- endif -%}
 
 <main id="content">
 

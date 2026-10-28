@@ -1,0 +1,32 @@
+# Stock imagery.
+#
+# These are RISE's own stock photographs, used when a project, publication or
+# expertise field has no picture of its own. They exist so a card or a page
+# header is never an empty grey box.
+#
+# A specific image always wins. Set `hero:` on a project, or `image:` on an
+# expertise field, and that is what is used. These are only the fallback.
+#
+# When nothing is set, _includes/stockimg.html picks one from this list in a
+# way that depends only on the item's own name, so the same project always
+# gets the same photograph rather than a different one on every build.
+#
+# Order matters: changing it changes which picture an unassigned item gets.
+# Add new images at the end.
+
+- file: /assets/img/stock/concrete-blue-grey.jpg
+  alt: "Blue-grey concrete surface"
+- file: /assets/img/stock/facade-terracotta-curves.jpg
+  alt: "Curved terracotta facade louvres against a blue sky"
+- file: /assets/img/stock/sandstone-pale.jpg
+  alt: "Pale sandstone with a diagonal seam"
+- file: /assets/img/stock/clay-cracked.jpg
+  alt: "Cracked red clay surface"
+- file: /assets/img/stock/ceiling-terracotta-lines.jpg
+  alt: "Terracotta soffit with recessed light lines in perspective"
+- file: /assets/img/stock/glass-facade-sky.jpg
+  alt: "Glass curtain wall reflecting clouds"
+- file: /assets/img/stock/concrete-forms-sky.jpg
+  alt: "Two pale concrete forms framing a sliver of sky"
+- file: /assets/img/stock/white-stair-soffit.jpg
+  alt: "White concrete stair soffit"
