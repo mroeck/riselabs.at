@@ -110,7 +110,11 @@
       </div>
       <div>
         <p><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
-        <a href="{{ site.linkedin }}">LinkedIn</a></p>
+        {%- if site.linkedin and site.linkedin != "" %}
+        <a href="{{ site.linkedin }}">LinkedIn</a>{% endif -%}
+        {%- if site.bluesky and site.bluesky != "" %}
+        <span aria-hidden="true"> · </span><a href="{{ site.bluesky }}">Bluesky</a>{% endif -%}
+        </p>
       </div>
       <div>
         <p class="muted">We work with<br>
