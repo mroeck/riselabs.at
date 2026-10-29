@@ -1,7 +1,10 @@
 <!doctype html>
-<!-- Dark is the primary theme and the one every visitor gets first.
-     The toggle in the corner switches this attribute. -->
-<html lang="{{ site.lang | default: "en" }}" data-theme="dark">
+<!-- Light is the default (R1, decided 29 Oct 2026); dark has to work just as
+     well. This attribute is what every visitor gets before any script runs,
+     which includes anyone with JavaScript off, so it is light. The script
+     below upgrades it to a remembered choice or to the operating system's
+     preference; the toggle in the corner switches it afterwards. -->
+<html lang="{{ site.lang | default: "en" }}" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,20 +27,35 @@
   {%- endcomment -%}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   {%- comment -%}
-    The remembered theme is applied before first paint, so a visitor who chose
-    light does not get a flash of dark on every page. This has to be inline
-    and early; a deferred script runs too late to prevent the flash.
+    The theme is settled before first paint, so nobody sees one theme flash
+    into the other. This has to be inline and early; a deferred script runs
+    too late to prevent the flash.
 
-    Storage can throw - private windows, blocked site data - so it is wrapped,
-    and the page renders in the default dark theme if anything goes wrong.
+    Two steps, in this order. A choice the visitor made here wins, because
+    they made it. Failing that, the operating system's setting is followed,
+    so someone who runs their machine dark gets a dark site without having to
+    ask. Failing both, the markup's light stands.
+
+    Storage can throw - private windows, blocked site data - and an old
+    browser may not know `matchMedia`, so each is wrapped separately: a
+    failure in one must not cost the other. If everything fails the page is
+    light, which is the default rather than a fallback.
   {%- endcomment -%}
   <script>
-    try {
-      var t = localStorage.getItem("rise-theme");
-      if (t === "light" || t === "dark") {
-        document.documentElement.setAttribute("data-theme", t);
+    (function () {
+      var el = document.documentElement, t = null;
+      try { t = localStorage.getItem("rise-theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") {
+        t = null;
+        try {
+          if (window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            t = "dark";
+          }
+        } catch (e) {}
       }
-    } catch (e) {}
+      if (t) { el.setAttribute("data-theme", t); }
+    })();
   </script>
   {%- seo title=false -%}
   {%- feed_meta -%}
