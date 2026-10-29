@@ -1,5 +1,5 @@
 ---
-published: false   # still has [ADD] placeholders - remove this line when written
+wip: true   # draft: awaiting this person's own words and approval
 name: "Dr. Nicole Di Santo"
 role: "Senior Scientist, WLCA and Digital Integrations Lead"
 cite: "Di Santo N"
@@ -7,13 +7,14 @@ group: collaborator
 org: "Global Building Data Initiative, EPFL"
 order: 1
 portrait: /assets/img/people/nicole-di-santo.jpg
-summary: "[ADD: one line on what she works on, shown in the team list.]"
+summary: "Leads whole life carbon assessment and digital integrations at the Global Building Data Initiative."
 links: []
 ---
 
-<!-- Role taken from gbdi.io. Nothing else about her is verified: LinkedIn
-     blocks automated access and a web search turned up nothing reliable,
-     so no biography has been invented here. Ask her for a paragraph, or
-     reuse whatever GBDI already has. -->
+<!-- DRAFT. Live deliberately, at the same scope as the rest of the team,
+     while the details are confirmed with the person.
 
-[ADD: a paragraph. What she works on at GBDI, and the background she brings.]
+     `summary` above restates their role and organisation. That is fact, not
+     biography. No paragraph has been written for them: an empty section is
+     honest, a made-up one is not. Their own words go here when they send
+     them, and the "Page in progress" note comes off with `wip`. -->
