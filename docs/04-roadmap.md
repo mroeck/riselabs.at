@@ -115,6 +115,12 @@ P1.0 (the HTTPS certificate, which needs DNS and repository admin):
 - ~~P1.6 INDICATE LIFE facts disagreed~~ 2024-2026 and five countries everywhere
 - ~~P1.7 nothing for the November job posts~~ `/join/`, opening fields, template
 
+From later phases, done out of order because nothing blocked them:
+
+- ~~P2.1, P2.2~~ team page live, person cards with portraits and initials tiles
+- ~~P3.3~~ the four ways of working moved to `_data/engagement.yml`
+- ~~L1, L6, L9, L14, L16, L17, L18~~ see `docs/07`
+
 Still open and waiting on a person: H0 (the HTTPS certificate) and H15 (the
 real job posts). H1, H2 and H9 were answered on 29 October. See the table at
 the end of `docs/07`.

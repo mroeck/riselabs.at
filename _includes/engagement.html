@@ -1,0 +1,31 @@
+{%- comment -%}
+  The four ways of working, from _data/engagement.yml.
+
+    include.style = "list"  the findings list used on /expertise/
+    include.style = "cards" the home page cards, each with a mail link whose
+                            subject is already filled in
+
+  One source, two shapes. The wording lives in the data file so the two pages
+  cannot drift apart, which is what happened when only /expertise/ carried it.
+{%- endcomment -%}
+{%- if include.style == "cards" -%}
+<ul class="engage">
+  {%- for m in site.data.engagement -%}
+  <li id="work-{{ m.id }}">
+    <h3>{{ m.title }}</h3>
+    <p>{{ m.body }}</p>
+    <p class="engage-go">
+      <a href="mailto:{{ site.email }}?subject={{ m.subject | uri_escape }}">{{ m.title }} &rarr;</a>
+    </p>
+  </li>
+  {%- endfor -%}
+</ul>
+{%- else -%}
+<div class="findings">
+  <ul>
+    {%- for m in site.data.engagement -%}
+    <li><strong>{{ m.title }}.</strong> {{ m.body }}</li>
+    {%- endfor -%}
+  </ul>
+</div>
+{%- endif -%}

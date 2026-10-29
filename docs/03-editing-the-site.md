@@ -515,9 +515,20 @@ inaccurate and requires a new section, usually a cookie banner too.
 
 ---
 
-## 11. Services and testimonials
+## 11. Services, engagement and testimonials
 
-Both are in `_data/`, not pages.
+All three are in `_data/`, not pages.
+
+**`_data/engagement.yml`** - the four ways of working with RISE. Each entry
+has an `id` (used only for the anchor; keep it stable), a `title`, a `body`
+and a `subject` that prefills the mail link on the home page card.
+
+One file, two places: the "Work with us" band on the home page renders them
+as cards, `/expertise/` renders the same four as a findings list, both through
+`_includes/engagement.html` with `style="cards"` or `style="list"`. The
+wording used to live on the expertise page alone, which let the home page say
+something vaguer and let the two drift. **Edit the data file, never the
+pages.**
 
 **`_data/services.yml`** - each block has `title`, `strand` (`up`, `wide` or
 `deep`, which links back to the Approach page), `lede`, a list of `includes`,
