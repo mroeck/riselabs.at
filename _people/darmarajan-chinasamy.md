@@ -13,6 +13,8 @@ summary: "Works on whole life carbon assessment in emerging markets, with the Gl
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/darmarajan-chinasamy-mphil-can-a3a915168/"
+  - title: GBDI
+    url: "https://www.gbdi.io"
   - title: University of Cape Town
     url: "https://eraonline.uct.ac.za/converis/portal/detail/Person/363274790?lang=en_GB"
 ---
