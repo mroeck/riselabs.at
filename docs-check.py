@@ -365,6 +365,21 @@ for f in ("CNAME", ".gitignore", "404.html", "README.md", "Gemfile"):
     if not (SITE / f).exists():
         N("repo", f"no {f}")
 
+# --------------------------------------------------------------------- people
+# `works_on` is a closed vocabulary, the same theme slugs projects use. A typo
+# would simply render the raw slug as a chip, which looks like a label nobody
+# chose. `tagline` is capped because it has to fit on a card.
+# _theme_slugs is already built further up, where project themes are checked.
+for _slug, (_fm, _body, _f) in coll["people"].items():
+    for _w in (_fm.get("works_on") or []):
+        if _w not in _theme_slugs:
+            P("people", f"_people/{_slug}.md",
+              f"`works_on` names {_w}, which is not a theme in _data/themes.yml")
+    _tag = _fm.get("tagline")
+    if _tag and len(_tag) > 120:
+        P("people", f"_people/{_slug}.md",
+          f"`tagline` is {len(_tag)} characters; the card allows 120")
+
 # ---------------------------------------------------------------- testimonials
 # `short` is what the homepage shows where a full quote will not fit. It must
 # be a verbatim substring of `quote`, never a paraphrase: a shortened quote

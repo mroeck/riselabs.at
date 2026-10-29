@@ -8,6 +8,10 @@ order: 2
 portrait: /assets/img/people/filename.jpg
 email: "name@riselabs.at"
 summary: "One line on what they work on, shown in the team list."
+tagline: "One line, in their own words, on why they do this work. Max 120 characters."
+works_on:          # theme slugs from _data/themes.yml; the checker rejects anything else
+  - whole-life-carbon
+  - data-benchmarks
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/..."

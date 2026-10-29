@@ -9,16 +9,23 @@ The site has two kinds of person, set by the `group` field in the file:
 
 | `group` | Who | Shown as |
 | --- | --- | --- |
-| `rise` | People of the institute | The first list on the team page |
-| `collaborator` | People we work with closely who are **employed elsewhere** | A separate section headed "Core collaborators" |
+| `rise` | People of the institute | "RISE" on their card |
+| `collaborator` | People we work with closely who are **employed elsewhere** | "Core collaborator · <org>" on their card |
 
 A collaborator must also carry an `org` line naming where they actually sit.
 
-**Do not blur these two.** The separation is what protects everyone: the
+**One grid, not two.** Since October 2026 everyone appears in a single list on
+the team page, ordered `rise` first and then `collaborator`, with **the
+employer printed on every card**. Two separate sections made the
+collaborators read as a lesser tier, which is not what the distinction is
+for.
+
+**Do not blur the two groups.** The distinction is what protects everyone: the
 collaborator, whose employer has not endorsed RISE; RISE, because a site that
 sells commissioned research should not imply a bench of people it cannot
 deploy; and the reader, who can see what the institute actually is. The
-heading on the team page says so in plain words. Keep it in normal type.
+employer line is what carries it now, and a sentence under the grid says so:
+"Team members employed elsewhere are shown with their employer." Keep both.
 
 ## Before inviting anyone
 
@@ -68,7 +75,9 @@ converts: people agree in principle and then never write the three sentences.
 | `name` | As they want it written, including title if they use one |
 | `role` | Their own role, at their own organisation |
 | `org` | Required for collaborators |
-| `portrait` | Square, at least 600 × 600 px. Save to `assets/img/people/` |
+| `portrait` | Square, at least 600 × 600 px. Save to `assets/img/people/`. Without one, the card shows their initials |
+| `tagline` | One line, max 120 characters, in their own words on why they do this work. Shown on the card and as the lede on their profile |
+| `works_on` | Theme slugs from `_data/themes.yml`. A closed vocabulary; the checker rejects anything else |
 | `also` | A second standing role that is not their day job - an IPCC author role, a report coordinating authorship. Optional |
 | `summary` | One sentence, shown under their name |
 | body text | Two or three sentences in their own voice |
@@ -89,11 +98,12 @@ automatically in the author list of every publication they are on.
 
 ## Sequencing
 
-The team page is currently hidden (`team_page: false` in `_config.yml`, and
-`published: false` in `team.md`). Leave it hidden until enough people have
-said yes that it does not look thin. A page that appears with two names and
-grows by one a month reads as struggling; the same page appearing complete
-reads as an institute. Unhide both flags in one move.
+The team page went live in October 2026 with Martin only. The rest appear as
+each person approves their own text, which is the rule below and is not
+negotiable for the sake of a fuller-looking page.
+
+A person without a photograph gets their initials on a token-coloured square,
+never a stock face.
 
 ## Review
 

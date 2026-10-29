@@ -834,7 +834,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   gap: .8rem;
   margin: 1.2rem 0 0;
 }
-.people li { margin: 0; }
+.people li { margin: 0; }   /* padding and border are set with the card, below */
 
 .people a {
   display: flex; align-items: center; gap: .85rem;
@@ -847,10 +847,49 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 }
 .people a:hover { border-color: var(--accent); }
 
-.people img {
-  width: 3rem; height: 3rem; flex: 0 0 auto;
-  border-radius: 50%; object-fit: cover;
+/* Person cards. A square portrait, not a circle: a 1:1 crop of a headshot
+   survives squaring, and a circle eats the shoulders. */
+.people .pc-face {
+  width: 4.5rem; height: 4.5rem; flex: 0 0 auto;
+  border-radius: 3px; object-fit: cover; object-position: top center;
+  background: var(--surface);
 }
+
+/* Shown instead of a portrait while a person has no photograph. Never a
+   stock face: see docs/06. */
+.people .pc-initials {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; font-weight: 600; letter-spacing: .03em;
+  color: var(--ink-soft); border: 1px solid var(--rule);
+}
+
+.people .pc-tag {
+  display: block; margin-top: .4rem;
+  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
+}
+
+/* The links row sits outside the card's own link, so it is its own set of tab
+   stops rather than a link inside a link. It therefore has to opt out of the
+   card styling that `.people a` applies: those rules make a bordered block,
+   which is right for the card and wrong for a row of small links. */
+.pc-links { display: flex; flex-wrap: wrap; gap: .85rem; margin: .45rem 0 0; padding: 0 .85rem; }
+.people .pc-links a {
+  display: inline; padding: 0; gap: 0;
+  background: none; border: 0; border-radius: 0;
+  font-size: .8rem; color: var(--accent); text-decoration: none;
+}
+.people .pc-links a:hover { text-decoration: underline; }
+
+/* The card and its links read as one block. */
+.people li {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding-bottom: .55rem;
+}
+.people li:hover { border-color: var(--accent); }
+.people a { background: none; border: 0; border-radius: 0; }
+.people a:hover { border-color: transparent; }
 
 .person-txt { min-width: 0; }
 .people .who { display: block; font-weight: 600; font-size: .95rem; }
@@ -862,7 +901,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 
 .person-head .portrait {
   width: 8.5rem; height: 8.5rem; flex: 0 0 auto;
-  border-radius: 2px; object-fit: cover;
+  border-radius: 2px; object-fit: cover; object-position: top center;
+  background: var(--surface);
 }
 
 .person-links { margin: .9rem 0 0; font-size: .9rem; display: flex; flex-wrap: wrap; gap: 1rem; }

@@ -9,7 +9,14 @@ layout: default
     <div>
       <h1>{{ page.name }}</h1>
       {%- if page.role %}<p class="post-type">{{ page.role }}{% if page.org %} · {{ page.org }}{% endif %}</p>{% endif -%}
-      {%- if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif -%}
+      {%- comment -%}
+        The tagline is the lede here: one line in the person's own words on
+        why they do this work. `summary` stays what lists elsewhere show, so
+        the two are not the same sentence. Falls back to summary while a
+        person has not supplied a tagline yet.
+      {%- endcomment -%}
+      {%- assign lede = page.tagline | default: page.summary -%}
+      {%- if lede %}<p class="lede">{{ lede }}</p>{% endif -%}
       <p class="person-links">
         {%- if page.email %}<a href="mailto:{{ page.email }}">{{ page.email }}</a>{% endif -%}
         {%- for l in page.links %} <a href="{{ l.url }}">{{ l.title }}</a>{% endfor -%}
@@ -23,6 +30,21 @@ layout: default
 <div class="wrap narrow post-body">
 
   {{ content }}
+
+  {%- comment -%}
+    Works on: theme slugs from _data/themes.yml, a closed vocabulary that
+    docs-check.py enforces. Plain chips for now; P5.1 turns them into links
+    to the theme pages when those exist.
+  {%- endcomment -%}
+  {%- if page.works_on.size > 0 %}
+  <h2>Works on</h2>
+  <p class="tags">
+    {%- for slug in page.works_on -%}
+      {%- assign th = site.data.themes | where: "slug", slug | first -%}
+      <span class="tag">{{ th.name | default: slug }}</span>
+    {%- endfor -%}
+  </p>
+  {%- endif %}
 
   {%- assign mine = site.projects | where_exp: "p", "p.people contains page.slug" -%}
   {%- assign pubs = site.publications | where_exp: "p", "p.people contains page.slug" | sort: "year" | reverse -%}

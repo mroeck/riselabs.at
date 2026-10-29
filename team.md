@@ -2,7 +2,6 @@
 layout: default
 title: Team
 permalink: /team/
-published: false   # hidden for now - see `team_page` in _config.yml
 ---
 
 <div class="page-head wrap narrow">
@@ -15,28 +14,29 @@ published: false   # hidden for now - see `team_page` in _config.yml
 <section class="band">
 <div class="wrap narrow">
 
-<!-- Nothing here is edited by hand. Each person is a file in _people/, and
-     the `group` field in that file decides which list they appear in:
-     `rise` for the institute, `collaborator` for the people we work with
-     closely who are employed elsewhere. A collaborator should also carry an
-     `org` line naming where they actually sit. -->
+<!-- Nothing here is edited by hand. Each person is a file in _people/.
+
+     One grid, not two. The `group` field still decides the order - `rise`
+     first, then `collaborator`, each by `order` - but everyone appears in the
+     same list, and every card carries its employer line instead. Separating
+     the two into different sections made the collaborators read as a lesser
+     tier; the employer line keeps the distinction honest without implying a
+     hierarchy. See docs/06.
+
+     A person with `published: false` does not appear at all. Do not remove
+     that line until the person has approved the exact text. -->
 
 {% include filter.html target="#teamlist" placeholder="Filter the team…" %}
 
 <div id="teamlist">
 
 {%- assign rise = site.people | where: "group", "rise" | sort: "order" -%}
-{%- if rise.size > 0 %}
-{% include peoplelist.html people=rise %}
-{%- endif %}
-
 {%- assign collab = site.people | where: "group", "collaborator" | sort: "order" -%}
-{%- if collab.size > 0 %}
-<h2>Core collaborators</h2>
-<p class="muted">People we work with closely who are employed elsewhere. They
-are not part of RISE, and much of what we do would not happen without
-them.</p>
-{% include peoplelist.html people=collab %}
+{%- assign everyone = rise | concat: collab -%}
+
+{%- if everyone.size > 0 %}
+{% include peoplelist.html people=everyone %}
+<p class="muted small">Team members employed elsewhere are shown with their employer.</p>
 {%- endif %}
 
 </div>
