@@ -1,5 +1,6 @@
 ---
 title: "INDICATE National Building LCA Data Accelerator (Pilot)"
+short_title: "INDICATE"
 status: "concluded"
 years: "2022–2024"
 funder: "Laudes Foundation"

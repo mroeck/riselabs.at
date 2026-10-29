@@ -1,5 +1,6 @@
 ---
 title: "INDICATE LIFE - National Building LCA Data and Policy Accelerator"
+short_title: "INDICATE LIFE"
 status: "current"
 years: "2024–2026"
 funder: "Co-funded by the European Union LIFE programme"

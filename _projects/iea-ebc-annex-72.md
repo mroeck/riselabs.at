@@ -1,5 +1,6 @@
 ---
 title: "IEA EBC Annex 72 - Assessing Life Cycle Related Environmental Impacts of Buildings"
+short_title: "IEA EBC Annex 72"
 status: "concluded"
 years: "2016–2023"
 funder: "International Energy Agency and Austrian Federal Ministry"

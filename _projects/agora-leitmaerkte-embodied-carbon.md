@@ -1,5 +1,6 @@
 ---
 title: "Embodied Carbon in the German Building Sector - Creating Lead Markets for Climate-Friendly Materials"
+short_title: "Agora lead markets"
 status: "concluded"
 years: "2022–2024"
 funder: "Agora Industrie"

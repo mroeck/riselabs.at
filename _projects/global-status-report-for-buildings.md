@@ -1,5 +1,6 @@
 ---
 title: "Global Status Report for Buildings and Construction"
+short_title: "Global Status Report"
 status: "current"
 years: "2024–2028"
 funder: "UNEP / GlobalABC"

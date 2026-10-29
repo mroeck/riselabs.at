@@ -1,5 +1,6 @@
 ---
 title: "Chile: whole life carbon tool and data harmonisation with OpenBDF"
+short_title: "Chile data harmonisation"
 status: "current"
 years: "2025–2026"
 funder: "CORFO Chile Public Goods Call"

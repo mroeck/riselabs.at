@@ -138,6 +138,7 @@ produces, why it matters.
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | Quote it if it contains a colon |
+| `short_title` | yes | The project's name in a sentence, up to 34 characters: "Re:Living", "GBDI pilot", "EU whole life carbon roadmap". Used wherever a project is named mid-sentence instead of as a headline, such as the engagement cards. The full `title` is still what the project's own page and the card grids show |
 | `status` | yes | `current` or `concluded`. Only `current` reaches the home page |
 | `years` | yes | `"2025–2028"`. An en dash (–) not a hyphen |
 | `funder` | yes | Who funds it |
@@ -519,9 +520,17 @@ inaccurate and requires a new section, usually a cookie banner too.
 
 All three are in `_data/`, not pages.
 
-**`_data/engagement.yml`** - the four ways of working with RISE. Each entry
-has an `id` (used only for the anchor; keep it stable), a `title`, a `body`
-and a `subject` that prefills the mail link on the home page card.
+**`_data/engagement.yml`** - the four ways work with RISE actually starts.
+Each entry has an `id` (used only for the anchor; keep it stable), a `title`,
+a `body`, a `subject` that prefills the mail link on the home page card, and
+`examples`: two project slugs.
+
+`examples` is the part that matters. Each card names two projects that began
+that way, linked to their pages under their `short_title`, so a visitor can
+check the claim in one click. `docs-check.py` fails a slug with no project
+behind it, and notes a card with fewer than two. **If a card has no examples
+to give, question the card, not the line** - the four here replaced an older
+set in which two modes had nothing on the site behind them.
 
 One file, two places: the "Work with us" band on the home page renders them
 as cards, `/expertise/` renders the same four as a findings list, both through

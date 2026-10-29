@@ -1,5 +1,5 @@
 {%- comment -%}
-  The four ways of working, from _data/engagement.yml.
+  The four ways work starts, from _data/engagement.yml.
 
     include.style = "list"  the findings list used on /expertise/
     include.style = "cards" the home page cards, each with a mail link whose
@@ -7,13 +7,32 @@
 
   One source, two shapes. The wording lives in the data file so the two pages
   cannot drift apart, which is what happened when only /expertise/ carried it.
+
+  Each card ends with two worked examples, linked to their project pages: a
+  card that describes a way of working and then shows two projects that began
+  that way is a claim a visitor can check, which is the whole point. The link
+  text is the project's `short_title`, because the real titles run to a line
+  and a half and would swamp the card; it falls back to `title` if a project
+  has no short form yet.
+
+  A slug with no project behind it is a failure in docs-check.py rather than
+  something handled here, so this include never has to render an apology.
 {%- endcomment -%}
+
 {%- if include.style == "cards" -%}
 <ul class="engage">
   {%- for m in site.data.engagement -%}
   <li id="work-{{ m.id }}">
     <h3>{{ m.title }}</h3>
     <p>{{ m.body }}</p>
+    {%- if m.examples.size > 0 %}
+    <p class="engage-eg">For example:
+      {%- for slug in m.examples -%}
+        {%- assign p = site.projects | where: "slug", slug | first -%}
+        {%- if p %} <a href="{{ p.url | relative_url }}">{{ p.short_title | default: p.title }}</a>{% unless forloop.last %} &middot;{% endunless %}{% endif -%}
+      {%- endfor -%}
+    </p>
+    {%- endif %}
     <p class="engage-go">
       <a href="mailto:{{ site.email }}?subject={{ m.subject | uri_escape }}">{{ m.title }} &rarr;</a>
     </p>
@@ -24,7 +43,14 @@
 <div class="findings">
   <ul>
     {%- for m in site.data.engagement -%}
-    <li><strong>{{ m.title }}.</strong> {{ m.body }}</li>
+    <li><strong>{{ m.title }}.</strong> {{ m.body }}
+      {%- if m.examples.size > 0 %} <span class="engage-eg">For example:
+        {%- for slug in m.examples -%}
+          {%- assign p = site.projects | where: "slug", slug | first -%}
+          {%- if p %} <a href="{{ p.url | relative_url }}">{{ p.short_title | default: p.title }}</a>{% unless forloop.last %} &middot;{% endunless %}{% endif -%}
+        {%- endfor -%}
+      </span>{% endif -%}
+    </li>
     {%- endfor -%}
   </ul>
 </div>

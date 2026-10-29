@@ -1,5 +1,6 @@
 ---
 title: "CollaborativeCarbon - Whole Life Carbon Assessments for Collaborative Housing across Europe"
+short_title: "CollaborativeCarbon"
 status: "concluded"
 years: "2024–2026"
 funder: "Laudes Foundation"
