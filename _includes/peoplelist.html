@@ -1,19 +1,61 @@
 {%- comment -%}
-  People as small cards. Expects: include.people
+  People as cards. Expects: include.people
+
+  Each card shows a square portrait, the name, the role, the employer line,
+  the tagline, and a row of links.
+
+  Where there is no portrait yet, the card shows the person's initials on a
+  token-coloured square rather than a stock photograph. A stock face standing
+  in for a real person is forbidden by docs/06, and an empty box reads as a
+  fault. The initials come from `cite` ("Röck M" gives RM), which everyone
+  already carries because the publication lists need it; `name` would give
+  "DM" for "Dr. Martin Röck".
+
+  The employer line is the point of the single grid: "RISE" for our own
+  people, "Core collaborator · <org>" for those employed elsewhere. See
+  docs/06 for why that distinction is kept visible.
+
+  Portrait alt text is deliberately empty here, because the name is printed
+  next to it. The profile page carries the name as alt instead.
 {%- endcomment -%}
 <ul class="people">
   {%- for person in include.people -%}
   <li>
     <a href="{{ person.url | relative_url }}">
       {%- if person.portrait -%}
-      <img src="{{ person.portrait | relative_url }}" alt="" loading="lazy">
+      <img class="pc-face" src="{{ person.portrait | relative_url }}" alt="" loading="lazy">
+      {%- else -%}
+        {%- assign cite_parts = person.cite | default: person.name | split: " " -%}
+        {%- capture initials -%}
+          {%- assign a = cite_parts[0] | slice: 0, 1 -%}
+          {%- assign b = cite_parts.last | slice: 0, 1 -%}
+          {{ a }}{% if cite_parts.size > 1 %}{{ b }}{% endif %}
+        {%- endcapture -%}
+      <span class="pc-face pc-initials" aria-hidden="true">{{ initials | strip | upcase }}</span>
       {%- endif -%}
       <span class="person-txt">
         <span class="who">{{ person.name }}</span>
         {%- if person.role %}<span class="what">{{ person.role }}</span>{% endif -%}
-        {%- if person.org %}<span class="where">{{ person.org }}</span>{% endif -%}
+        {%- comment -%} the employer, always, whichever group they are in {%- endcomment -%}
+        {%- if person.group == "collaborator" -%}
+        <span class="where">Core collaborator{% if person.org %} &middot; {{ person.org }}{% endif %}</span>
+        {%- else -%}
+        <span class="where">RISE</span>
+        {%- endif -%}
+        {%- if person.tagline %}<span class="pc-tag">{{ person.tagline }}</span>{% endif -%}
       </span>
     </a>
+
+    {%- comment -%}
+      Outside the card's own link, because a link inside a link is not valid
+      and the keyboard order would be unusable.
+    {%- endcomment -%}
+    {%- if person.email or person.links.size > 0 %}
+    <p class="pc-links">
+      {%- if person.email %}<a href="mailto:{{ person.email }}">Email</a>{% endif -%}
+      {%- for l in person.links %}<a href="{{ l.url }}">{{ l.title }}</a>{% endfor -%}
+    </p>
+    {%- endif -%}
   </li>
   {%- endfor -%}
 </ul>

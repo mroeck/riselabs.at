@@ -1,9 +1,17 @@
 ---
 name: "Dr. Martin Röck"
 role: "Founding Director and Lead Scientist"
+tagline: "Building decarbonisation is not a mere technical problem. It's a challenge of changing the system towards regenerative practices."
 group: rise
 cite: "Röck M"   # how the name appears in author lists; underlined automatically
 order: 1
+# The four he wants highlighted, not the four he appears on most: this is a
+# statement of direction rather than a tally. Slugs from _data/themes.yml.
+works_on:
+  - whole-life-carbon
+  - building-stock
+  - policy-regulation
+  - regenerative-design
 portrait: /assets/img/people/martin-roeck.jpg
 email: "martin.roeck@riselabs.at"
 summary: "Works on life cycle sustainability assessment and the decarbonisation of the built environment, at the interface between science and policy."

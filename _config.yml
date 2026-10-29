@@ -34,11 +34,10 @@ author_cite: "Röck M"
 # data-protection section appear at the foot of the Impressum.
 privacy_url: "/datenschutz/"
 
-# The team page is hidden for now: the team is still forming and the page was
-# thin. Nothing has been deleted. To bring it back: set this to true, remove
-# `published: false` from team.md, put the Team entry back in `nav` below, and
-# remove `published: false` from the people in _people/ who are ready.
-team_page: false
+# The team page is live. A person appears on it only once their own file has
+# no `published: false` line, which happens only after they have approved the
+# exact text; see docs/06.
+team_page: true
 
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
@@ -61,14 +60,14 @@ nav:
     url: /
   - title: About
     items:
+      - title: Team
+        url: /team/
       - title: Approach
         url: /approach/
       - title: Expertise
         url: /expertise/
       - title: Partners
         url: /partners/
-      # - title: Team     # hidden; see team_page above
-      #   url: /team/
       - title: Join
         url: /join/
   - title: Work

@@ -272,8 +272,22 @@ removed, whether or not the team list is back, so write the text first.
 projects and publications. Either set `published: false`, or keep the page and
 change the role to past tense.
 
----
 
+### Fields added October 2026
+
+| Field | Type | Shown | Notes |
+|---|---|---|---|
+| `tagline` | string, max 140 characters | Card and profile | One line in their own words on why they do this work. On the profile it replaces `summary` as the lede; `summary` is still what lists elsewhere use |
+| `works_on` | list of theme slugs | Profile, as chips | From `_data/themes.yml` only. `docs-check.py` rejects an unknown slug, exactly as it does for a project's `themes` |
+
+**Portraits.** Square, at least 600 × 600 px, head and shoulders. A person
+without one gets their initials on a token-coloured square, taken from `cite`
+("Röck M" gives RM). **Never a stock photograph of a face** - see `docs/06`.
+
+**Every card shows an employer**, "RISE" or "Core collaborator · <org>". That
+is what lets the team page be one grid instead of two sections.
+
+---
 ## 7. Add a partner
 
 Create `_partners/short-name.md`:

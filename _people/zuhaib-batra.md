@@ -1,12 +1,12 @@
 ---
-published: false   # still has [ADD] placeholders — remove this line when written
+published: false   # still has [ADD] placeholders - remove this line when written
 name: "Dr. Zuhaib Batra"
-role: "Senior Scientist, Global Policy Lead — Energy and Emissions"
+role: "Senior Scientist, Global Policy Lead: Energy and Emissions"
 cite: "Batra Z"
 group: collaborator
 org: "Global Building Data Initiative, EPFL"
 order: 2
-# portrait: /assets/img/people/zuhaib-batra.jpg
+portrait: /assets/img/people/zuhaib-batra.jpg
 summary: "[ADD: one line on what he works on, shown in the team list.]"
 links: []
 ---

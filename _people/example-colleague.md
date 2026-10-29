@@ -8,6 +8,10 @@ order: 2
 portrait: /assets/img/people/filename.jpg
 email: "name@riselabs.at"
 summary: "One line on what they work on, shown in the team list."
+tagline: "One line, in their own words, on why they do this work. Max 120 characters."
+works_on:          # theme slugs from _data/themes.yml; the checker rejects anything else
+  - whole-life-carbon
+  - data-benchmarks
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/..."
@@ -23,5 +27,5 @@ links:
      add this file's name to the `people:` list of a project, publication
      or post, and it appears on this page. -->
 
-A paragraph or several. This is the person's own space — bio, what they work
+A paragraph or several. This is the person's own space - bio, what they work
 on, how they got here, whatever they want to say.
