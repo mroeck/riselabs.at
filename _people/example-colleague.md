@@ -27,5 +27,5 @@ links:
      add this file's name to the `people:` list of a project, publication
      or post, and it appears on this page. -->
 
-A paragraph or several. This is the person's own space — bio, what they work
+A paragraph or several. This is the person's own space - bio, what they work
 on, how they got here, whatever they want to say.

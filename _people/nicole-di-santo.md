@@ -1,12 +1,12 @@
 ---
-published: false   # still has [ADD] placeholders — remove this line when written
+published: false   # still has [ADD] placeholders - remove this line when written
 name: "Dr. Nicole Di Santo"
 role: "Senior Scientist, WLCA and Digital Integrations Lead"
 cite: "Di Santo N"
 group: collaborator
 org: "Global Building Data Initiative, EPFL"
 order: 1
-# portrait: /assets/img/people/nicole-di-santo.jpg
+portrait: /assets/img/people/nicole-di-santo.jpg
 summary: "[ADD: one line on what she works on, shown in the team list.]"
 links: []
 ---
