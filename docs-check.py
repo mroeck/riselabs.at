@@ -403,6 +403,22 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
           f"`tagline` is {len(_tag)} characters, so it runs to several lines on "
           "a card. Fine on the profile; look at the team page before shipping it.")
 
+    # `affil` is the one-line affiliation a team card shows, in acronyms:
+    # "GBDI, EPFL" where `org` has "Global Building Data Initiative, EPFL".
+    # Spelt out, it wraps and the whole grid grows to the height of the
+    # longest one, which is the thing the short field exists to avoid. The
+    # card falls back to `org` where `affil` is absent, so a missing one is a
+    # note rather than a failure.
+    _af = _fm.get("affil")
+    if _af and len(_af) > 40:
+        P("people", f"_people/{_slug}.md",
+          f"`affil` is {len(_af)} characters, which wraps on a team card. It is "
+          "the short form, in acronyms; `org` is where the names are spelt out.")
+    elif not _af and _fm.get("org"):
+        N(f"_people/{_slug}.md",
+          "no `affil`, so the team card falls back to the full `org`. Add the "
+          "acronym form if that wraps.")
+
 # ---------------------------------------------------------------- testimonials
 # `short` is what the homepage shows where a full quote will not fit. It must
 # be a verbatim substring of `quote`, never a paraphrase: a shortened quote

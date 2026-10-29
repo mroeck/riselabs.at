@@ -3,6 +3,7 @@ name: "Dr. Martin Röck"
 role: "Founding Director and Lead Scientist"
 tagline: "Building decarbonisation is not a mere technical problem. It's a challenge of changing the system of spatial production and use towards regenerative practices."
 group: rise
+affil: "RISE, GBDI"
 cite: "Röck M"   # how the name appears in author lists; underlined automatically
 order: 1
 # The four he wants highlighted, not the four he appears on most: this is a

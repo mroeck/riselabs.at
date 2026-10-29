@@ -5,6 +5,7 @@ role: "Senior Scientist, Global Policy Lead: Energy and Emissions"
 cite: "Batra Z"
 group: collaborator
 org: "Global Building Data Initiative, EPFL"
+affil: "GBDI, EPFL"
 order: 2
 portrait: /assets/img/people/zuhaib-batra.jpg
 email: "office@riselabs.at"

@@ -5,6 +5,7 @@ role: "Senior Scientist, WLCA and Digital Integrations Lead"
 cite: "Di Santo N"
 group: collaborator
 org: "Global Building Data Initiative, EPFL"
+affil: "GBDI, EPFL"
 order: 1
 portrait: /assets/img/people/nicole-di-santo.jpg
 email: "office@riselabs.at"

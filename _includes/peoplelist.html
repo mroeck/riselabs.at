@@ -49,10 +49,18 @@
         <span class="who">{{ person.name }}</span>
         {%- if person.role %}<span class="what">{{ person.role }}</span>{% endif -%}
         {%- comment -%} the employer, always, whichever group they are in {%- endcomment -%}
+        {%- comment -%}
+          `affil` and not `org`: the card wants the affiliations short enough
+          to sit on one line, so it reads "GBDI, EPFL" where the person's own
+          page spells out "Global Building Data Initiative, EPFL" from `org`.
+          Someone with a foot in two organisations carries both here, in the
+          order they would introduce themselves.
+        {%- endcomment -%}
+        {%- assign affil = person.affil | default: person.org -%}
         {%- if person.group == "collaborator" -%}
-        <span class="where">Core collaborator{% if person.org %} &middot; {{ person.org }}{% endif %}</span>
+        <span class="where">Core collaborator{% if affil %} &middot; {{ affil }}{% endif %}</span>
         {%- else -%}
-        <span class="where">RISE</span>
+        <span class="where">{{ affil | default: "RISE" }}</span>
         {%- endif -%}
       </span>
     </a>

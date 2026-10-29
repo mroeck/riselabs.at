@@ -835,12 +835,23 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .people {
   list-style: none; padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  /* 21rem, not 15. At 15rem the text beside the portrait is about 150px
+     wide, which breaks a role like "Head of Office, Stakeholder and
+     Communications Manager" over three lines and makes the whole grid as tall
+     as its longest job title. 21rem gives two columns in a 64rem band, and a
+     text column wide enough for those roles to run to one or two lines. */
+  grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr));
   grid-auto-rows: 1fr;
   gap: .8rem;
   margin: 1.2rem 0 0;
 }
 .people li { margin: 0; }   /* padding and border are set with the card, below */
+
+/* One column, so there is nothing beside a card for it to line up with, and
+   the equal row height only adds dead space under the shortest card. */
+@media (max-width: 40rem) {
+  .people { grid-auto-rows: auto; }
+}
 
 /* Top-aligned, not centred. The cards are all one height now, so centring
    would put each name at a different point down its card depending on how
@@ -878,9 +889,16 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
    stops rather than a link inside a link. It therefore has to opt out of the
    card styling that `.people a` applies: those rules make a bordered block,
    which is right for the card and wrong for a row of small links. */
-.pc-links { display: flex; flex-wrap: wrap; gap: .85rem; margin: .45rem 0 0; padding: 0 .85rem; }
+.pc-links {
+  display: flex; flex-wrap: wrap; justify-content: flex-start;
+  gap: .85rem; margin: .45rem 0 0; padding: 0 .85rem;
+}
 .people .pc-links a {
   display: inline; padding: 0; gap: 0;
+  /* and not the `flex: 1 1 auto` the card's own link carries, which would
+     make each of these grow to fill the row and strand them a card's width
+     apart instead of sitting together on the left */
+  flex: 0 0 auto;
   background: none; border: 0; border-radius: 0;
   font-size: .8rem; color: var(--accent); text-decoration: none;
 }
