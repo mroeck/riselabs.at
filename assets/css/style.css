@@ -601,6 +601,12 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .posts .sum { margin: 0; color: var(--ink-soft); font-size: .95rem; }
 
 .post-body { max-width: var(--measure); }
+
+/* One rule for every heading in a body, so a section that follows a list, a
+   figure or a facts box is never flush against it. "Collaborators" and
+   "Client" used to sit directly under the block above. */
+.post-body h2 { margin-top: 2.5rem; }
+.post-body > :first-child { margin-top: 0; }
 .post-date { color: var(--ink-soft); font-size: .9rem; font-weight: 500; }
 .post-type { color: var(--accent); font-weight: 600; font-size: .9rem; }
 
@@ -659,6 +665,28 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 /* An opening states its terms before the prose, because the pay line is
    required by law and should not be something a reader has to hunt for. */
 .opening-facts { margin: 0 0 2rem; }
+
+/* The "Show all" control on a collapsed list. A button, not a link, because
+   it changes what is on the page rather than going anywhere. */
+.more-btn {
+  display: inline-block; margin: .6rem 0 0;
+  padding: .35rem 0; border: 0; background: none;
+  font: inherit; font-size: .88rem; font-weight: 500;
+  color: var(--accent); cursor: pointer;
+}
+.more-btn:hover { text-decoration: underline; }
+
+/* Footer navigation (L17). The nav column holds the groups side by side on a
+   wide screen and wraps on a narrow one, so the footer stays three columns
+   rather than becoming a long ladder of links. */
+.foot-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+.foot-navhead {
+  margin: 0 0 .5rem; font-size: .8rem; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft);
+}
+.foot-nav ul { list-style: none; padding: 0; margin: 0; }
+.foot-nav li { margin: 0 0 .35rem; }
+.foot-nav a, .site-footer .foot-navhead + p a { font-size: .92rem; }
 .opening-facts dd strong { color: var(--ink); }
 
 /* The citation lives as the last row of the facts box. It is smaller than the
@@ -1638,7 +1666,10 @@ table.listing td.t-partner .t-logo,
 .pcard-img {
   display: block; aspect-ratio: 4 / 3; width: 100%;
   border: 1px solid var(--rule); border-radius: 3px;
-  overflow: hidden; background: #fff;
+  overflow: hidden; background: var(--surface);
+  /* --surface, not #fff: a photograph covers this frame completely once
+     loaded, so the colour is only ever seen while the image is still
+     arriving, and white flashed against the dark theme. */
 }
 /* Images are cropped from the top left, not the centre. A report cover,
    a chart or a map carries its title and its key in the top left, and
@@ -1706,8 +1737,11 @@ table.listing td.t-partner .t-logo,
 
 .xfield-img {
   aspect-ratio: 3 / 2; border-radius: 3px; overflow: hidden;
-  border: 1px solid var(--rule); background: #fff;
+  border: 1px solid var(--rule); background: var(--surface);
   position: sticky; top: 1.5rem;
+  /* --surface, not #fff: a photograph covers this frame completely once
+     loaded, so the colour is only ever seen while the image is still
+     arriving, and white flashed against the dark theme. */
 }
 @media (max-width: 46rem) { .xfield-img { position: static; } }
 .xfield-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }

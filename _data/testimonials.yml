@@ -14,6 +14,10 @@
 #           personally in 2024, before RISE existed, so naming the source
 #           keeps that honest rather than letting them read as RISE client
 #           references.
+#   short   the sentence or two shown where space is tight. It must be a
+#           VERBATIM SUBSTRING of `quote`, never a paraphrase, so a
+#           shortened quote can never say something the person did not
+#           write. docs-check.py enforces that, whitespace collapsed.
 #   url     optional link to the person or organisation
 #
 # Transcribed from screenshots of Martin's LinkedIn recommendations.
@@ -32,6 +36,10 @@
     Beyond his technical skills, Martin is a hard-working professional with a
     positive attitude. I highly recommend him for any future opportunities.
   id: brigitte-jacquemont
+  short: >-
+    Martin consistently demonstrated a deep understanding of the subject
+    matter, contributing valuable insights to every study. His work was
+    always of the highest quality and delivered with exceptional clarity.
   name: "Brigitte Jacquemont"
   # Her LinkedIn headline now reads "Circular economy & waste prevention -
   # French Ministry for Ecology". Deliberately NOT used: the quote is about
@@ -55,6 +63,10 @@
     strategic mindset and ability to put the newest scientific knowledge into
     play. At the same time he is a great team player.
   id: simone-kongsbak
+  short: >-
+    Martin is an inspiring data scientist who has a unique ability to
+    understand how building LCAs can create climate policy and industry
+    action and is a skilled communicator.
   name: "Simone Kongsbak"
   # Her headline reads "Partner at Smith Innovation and co-funder of Smith
   # Commons" - "co-funder" is almost certainly a typo for "co-founder" on
@@ -74,6 +86,10 @@
     in the next steps of his professional career, as we also continue our
     fruitful collaboration!
   id: xavier-le-den
+  short: >-
+    Martin is a fantastic partner at work: he combines bottomless
+    scientific knowledge of carbon in buildings with the ability to
+    organise and steer complex studies with strategic implications.
   name: "Xavier Le Den"
   role: "Managing Director"
   org: "Ramboll Management Consulting Belgium"
@@ -86,6 +102,9 @@
     construction. Curious to see the outcomes of your research and would be
     happy to work together in the future. Thanks Martin!
   id: rutger-broer
+  short: >-
+    Martin in short: highly qualified, responsible and reliable, an
+    intuitive team player with a healthy sense of humour.
   name: "Rutger Broer"
   role: "Project Manager, Industrial Transformation and Lead Markets"
   org: "Agora Industry"
@@ -104,12 +123,20 @@
     instrumental to the success of our work, and he has an exceptional ability
     to make complex concepts tangible.
   id: andreas-sorensen
+  short: >-
+    His leadership and deep understanding of the field was instrumental to
+    the success of our work, and he has an exceptional ability to make
+    complex concepts tangible.
   name: "Andreas Sørensen"
   role: "Senior Digital Lead in Sustainability"
   org: "Ramboll"
   context: "LinkedIn recommendation, October 2024"
 
 - id: barbara-rodriguez-droguett
+  short: >-
+    Ensuring that the data architecture for the Chilean WLC tool is
+    compatible with global standards from day one prevents future
+    technical problems and ensures data integration.
   quote: >-
     We thought about reaching out to GBDI as a partner because of the need for
     international alignment from the outset. Ensuring that the data architecture
