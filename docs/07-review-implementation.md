@@ -494,6 +494,233 @@ two unconfirmed partner websites.
 
 ---
 
+## Phase L: layout and visual appeal
+
+Source: layout and appeal review of 29 October 2026, comparing the live
+site with the same four references in the browser:
+https://claude.ai/artifact/SUKCW8k7e8Vth1tPWxTqg9
+
+Section 0 applies in full. In particular: colours only through the semantic
+tokens in `docs/05`, the hero stays dark in both themes, figures and logos
+sit on white cards unless a task below says otherwise, no third-party fonts
+or scripts. Measure before and after every change (page height at 1,280 px
+and 390 px, screenshots in both themes) and put the numbers in the PR.
+
+Order: L1 now (one line, before next week's job posts). L2–L5 together as one
+PR, because they share the homepage. The rest in any order. L3 depends on
+photos (H16).
+
+### L1 Fix the missing page-head gutter (do this first)
+
+- **File:** `assets/css/style.css`, line 453.
+- **Problem:** `.page-head { padding: 2.5rem 0 1rem; }` sets the left and
+  right padding to 0, overriding `.wrap { padding: 0 1.5rem; }` on the same
+  element. On phones every inner page's title and lede touch the screen
+  edge (measured: title at 0 px, body text at 24 px). On desktop the title
+  sits 24 px left of the body text (313 px vs 337 px at 1,280 px).
+- **Change:** `.page-head { padding-top: 2.5rem; padding-bottom: 1rem; }`.
+- **Done when:** at 390 px the `h1`, `.lede` and first body paragraph of
+  `/projects/`, `/publications/` and `/team/martin-roeck/` share one left
+  edge at 24 px; at 1,280 px they share one left edge too.
+
+### L2 Homepage order and bands
+
+- **File:** `index.md`, `assets/css/style.css`
+- **Change:** reorder to seven bands:
+  1. Hero (L8)
+  2. Current projects: the three most recent `status: "current"` projects
+     as image cards via `_includes/projectgrid.html` (replaces P2.8's first
+     bullet), "All projects →"
+  3. What we stand for, with "How we work →" and "What we do →" as its two
+     links (this absorbs the old "onward" band)
+  4. Team (L3)
+  5. Latest and Recent publications side by side from 1,024 px (two
+     columns, three items each, posts with a small image or date tile per
+     L13, publications in the P2.5 entry layout); stacked on phones
+  6. Partners and quotes (L7, L9) on one `--surface` band
+  7. Work with us (the four modes from P3.3) with the newsletter form as its
+     last row
+- **Done when:** the homepage has seven bands; page height at 1,280 px and
+  390 px is reported before and after in the PR; no band is a plain text
+  list.
+
+### L3 Portraits and the team band (Smith, Eunomia, Bauhaus Earth)
+
+- **Files:** `index.md`, `_includes/peoplelist.html`, `team.md`,
+  `_layouts/project.html`, `assets/img/people/`, `docs/03` § 9 (images)
+- **Decision (Martin, 29 Oct 2026):** black and white, until harmonised
+  headshots of all team members exist.
+- **Photo rule (write it into `docs/03`):** every portrait renders in black
+  and white through CSS, not by converting the files: add
+  `filter: grayscale(1)` to `.portrait` and the portrait images in
+  `_includes/peoplelist.html`, behind one class (for example
+  `.people-bw` on `<body>`, set from `_config.yml` as
+  `portraits: bw`), so it can be switched off in one place once the
+  harmonised headshots arrive. Keep the original files in colour. Square
+  1:1 crop, at least 800 × 800 px, head and shoulders. A person with no
+  photo yet gets an initials tile; a person with any approved photo uses it,
+  cropped square and shown in black and white.
+- **Homepage team band:** the published people as a row of large portraits
+  (about 240 px wide on desktop), name, role, affiliation line (P2.1). One
+  short quote from one person in display size beside the row is optional
+  (Smith).
+- **Team page:** a group photo as the page header when one exists (Bauhaus
+  Earth, Carlson Lab); otherwise the portrait grid starts directly under the
+  title. 4 columns on desktop, 2 on phones.
+- **Project pages:** "Our experts" cards with a 96 px portrait instead of
+  the 40 px circle.
+- **Human input:** the portrait shoot (H16) and, if wanted, a group photo.
+- **Done when:** every published person has a portrait in the chosen style,
+  and the homepage, team page and project pages use them at the sizes above.
+
+### L4 Section hierarchy and accent use
+
+- **File:** `assets/css/style.css`, `index.md`, `_layouts/*.html`
+- **Change:**
+  - Each homepage band gets a real heading (`h2`, about 2rem, weight 600)
+    with the existing eyebrow above it as a small label, or drop the eyebrow.
+  - Introduce one band variant `.band.alt` with `background: var(--surface)`
+    and use it on alternate bands (2 and 6 in L2), so the page has a rhythm.
+  - Magenta (`--accent`) only for buttons, links in running text, and one
+    highlight per band. Years, eyebrows and meta lines move to
+    `--ink-soft`. DOIs become buttons (P2.5).
+- **Done when:** a screenshot of the homepage at 1,280 px shows a visible
+  heading per band and alternating band backgrounds, and contrast still meets
+  WCAG AA in both themes.
+
+### L5 Two-column inner pages (Smith, Bauhaus Earth)
+
+- **Files:** `_layouts/project.html`, `_layouts/person.html`,
+  `_layouts/publication.html`, `_layouts/post.html`, `assets/css/style.css`
+- **Change:** from 1,024 px, a two-column body inside `--wide`:
+  - project: facts box (duration, funder, role, client, collaborators,
+    website, contact) as a sticky left column of about 18rem; text right in
+    `--measure`. Move the facts box from after the text to this column.
+  - person: portrait, links and "Works on" chips left; bio right.
+  - publication: thumbnail, action buttons and facts left; abstract right.
+  - post: date, place and register button (events) left; text right.
+  Below 1,024 px, the left column stacks above the text as today.
+- **Done when:** the four page types render in two columns at 1,280 px and
+  in one column at 390 px, with no horizontal scroll.
+
+### L6 Long lists as tabs
+
+- **Files:** `_layouts/person.html`, `_includes/related.html`
+- **Problem:** Martin's profile is 13,540 px at 1,280 px and 22,083 px at
+  390 px; after the bio come 10 posts, 15 projects and all publications.
+- **Change:** render the related lists with the tab component project pages
+  already use (`data-tabs`): News, Projects, Publications, each showing the
+  three newest and a "Show all" link to the filtered index. Without
+  JavaScript the full lists show, as today.
+- **Done when:** the profile height drops and is reported in the PR; the
+  no-JS fallback still shows every item.
+
+### L7 Partner logos
+
+- **Files:** `_includes/partners.html`, `index.md`, `assets/css/style.css`
+- **Change:** on the homepage only, show the ten partners as one compact
+  strip: logos about 40 px high, in a single tone (CSS
+  `filter: grayscale(1)` plus an opacity of about 0.8 on the white card, full
+  colour on hover/focus), on the `.band.alt` surface. The partner pages and
+  `/partners/` keep the full-colour white cards.
+- **Done when:** the homepage logo band is under half its current height
+  (434 px) and no longer the brightest element on the page.
+
+### L8 Hero
+
+- **Files:** `_includes/hero.html`, `assets/css/style.css`
+- **Change:**
+  - Lighten the image bed on the right: keep the gradient strong behind the
+    text (left), and let the right half show the photo (raise `.hero-media
+    img` opacity from 0.44 to about 0.6 and make the `::after` gradient run
+    left to right). Check text contrast stays at WCAG AA.
+  - Add a primary button ("Work with us", to the P3.3 band anchor) before
+    the existing "Our approach →" link.
+  - Add a "Coming up" panel at the hero's lower right on desktop (next
+    upcoming event from P3.1: date, place, title, link), as Bauhaus Earth
+    does with its news panel. On phones it sits under the hero text. Hidden
+    when nothing is upcoming.
+  - Add a small "Get in touch" button to the header on desktop (Eunomia),
+    linking to the same anchor.
+- **Done when:** the hero shows two actions and, when an event is upcoming,
+  the panel; contrast passes in both themes.
+
+### L9 Short quotes
+
+- **Files:** `_data/testimonials.yml`, `_includes/testimonials.html`
+- **Decision (Martin, 29 Oct 2026):** short versions approved. Until at
+  least two `about: work` quotes exist (P3.5), the homepage keeps showing
+  the three personal recommendations it shows today, in their short form,
+  with their `context` line ("LinkedIn recommendation, …") unchanged so
+  they stay honest. The full quotes move to Martin's profile.
+- **Change:** add a `short` field to each entry in
+  `_data/testimonials.yml` with exactly these sentences, each checked as a
+  verbatim substring of its `quote`:
+
+  | `id` | `short` |
+  | --- | --- |
+  | `brigitte-jacquemont` | Martin consistently demonstrated a deep understanding of the subject matter, contributing valuable insights to every study. His work was always of the highest quality and delivered with exceptional clarity. |
+  | `xavier-le-den` | Martin is a fantastic partner at work: he combines bottomless scientific knowledge of carbon in buildings with the ability to organise and steer complex studies with strategic implications. |
+  | `simone-kongsbak` | Martin is an inspiring data scientist who has a unique ability to understand how building LCAs can create climate policy and industry action and is a skilled communicator. |
+  | `rutger-broer` | Martin in short: highly qualified, responsible and reliable, an intuitive team player with a healthy sense of humour. |
+  | `andreas-sorensen` | His leadership and deep understanding of the field was instrumental to the success of our work, and he has an exceptional ability to make complex concepts tangible. |
+  | `barbara-rodriguez-droguett` | Ensuring that the data architecture for the Chilean WLC tool is compatible with global standards from day one prevents future technical problems and ensures data integration. |
+
+  The homepage renders `short` with name, role, organisation (logo where
+  the organisation is a partner) and `context`. The Rodríguez Droguett
+  quote stays unpublished until H10 is answered. Extend `docs-check.py` so
+  it fails when a `short` is not a substring of its `quote` (compare with
+  whitespace collapsed).
+- **Done when:** the homepage quotes take one row of cards, and the
+  checker passes.
+
+### L10 Project image rules
+
+- **Files:** `docs/03` § 9 (images), `_projects/*.md`
+- **Change:** write the rule: in order of preference, (1) an own photograph
+  from the project, (2) an own figure on a white card, (3) a stock photo
+  only with a credit. Never a screenshot of a website. Replace the two GBDI
+  card images that are website screenshots (`gbdi-objectives.png`,
+  `gbdi-platform.png`) with a figure or photo (H11).
+- **Done when:** no project `hero` is a screenshot of a web page.
+
+### L11 to L17 (smaller)
+
+- **L11 Expertise images:** covered by P4.1.
+- **L12 DOI buttons:** covered by P2.5.
+- **L13 Post images:** posts with `type: event` and no `hero` get a
+  generated date tile (day and month in display type on `--surface`) in
+  lists; news posts without an image use their first project's `hero`.
+- **L14 Vertical rhythm:** one spacing rule for every `h2` in `.post-body`
+  (for example `margin-top: 2.5rem`), so "Collaborators" and "Client" no
+  longer sit directly under the block above.
+- **L15 Approach diagram:** a simple inline SVG of the three strands (up,
+  wide, deep) under the lede, drawn with tokens, no script. Wording from the
+  page's own headings.
+- **L16 Image placeholders:** give card images `background: var(--surface)`
+  so lazy-loading images do not flash white.
+- **L17 Footer:** three columns: address, the nav groups, follow and
+  newsletter link.
+
+### L18 Shorter profile for Martin
+
+- **File:** `_people/martin-roeck.md` (body only; front matter unchanged)
+- **Problem:** the body is 1,123 words, with nine lessons from the air;
+  with the related lists the page runs to 13,540 px (L6).
+- **Decision (Martin, 29 Oct 2026):** draft approved unchanged.
+- **Change:** replace everything after the front matter with the contents
+  of `martin-roeck-body-draft.md`, exactly as supplied (H18). The draft is 561 words. It keeps the five `<h2>`
+  sections, every role, board, link and degree, and turns the nine lessons
+  into four. Keep the lessons in the existing `<dl class="lessons">`
+  markup, four `<dt>`/`<dd>` pairs. Do not edit the wording yourself. If
+  Martin approves the draft unchanged, it is supplied ready to paste as
+  `martin-roeck-body-draft.md` (already in this markup); otherwise use the
+  text he sends.
+- **Done when:** the body matches the approved text exactly, and the
+  page height after L6 and L18 is reported in the PR.
+
+---
+
 ## Human input
 
 Items the implementer cannot resolve. Ask, and do not guess.
@@ -516,3 +743,6 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H13 | Martin | German text for `/de/` | P5.2 |
 | H14 | Martin | ~~End year and Croatia~~ Answered 29 Oct: ends 2026; Croatia takes part | P1.6 |
 | H15 | Martin | The job posts for November 2026: title, text, and the opening fields in P1.7 | P1.7 |
+| H16 | Martin | ~~Colour or black and white~~ Answered 29 Oct: black and white until harmonised headshots of all team members exist. Still open: the shoot itself, and a group photo if wanted | L3 |
+| H17 | Martin | ~~Short testimonial versions~~ Answered 29 Oct: approved; texts in L9 | L9 |
+| H18 | Martin | ~~Approve the shortened profile text~~ Answered 29 Oct: approved unchanged; use `martin-roeck-body-draft.md` as supplied | L18 |
