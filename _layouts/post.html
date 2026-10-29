@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<div class="page-head wrap narrow">
+<div class="page-head wrap">
   <p class="post-date">{% if page.type %}<span class="post-type">{{ page.type }}</span> &nbsp;·&nbsp; {% endif %}{{ page.date | date: "%d %B %Y" }}</p>
   <h1>{{ page.title }}</h1>
   {%- if page.summary %}<p class="lede">{{ page.summary }}</p>{% endif -%}
@@ -23,7 +23,8 @@ layout: default
 {%- endif %}
 
 <section class="band">
-<div class="wrap narrow post-body">
+<div class="wrap article">
+<div class="article-main post-body">
 
   {%- comment -%}
     Openings carry their terms in a facts box at the top. Austrian law
@@ -33,6 +34,21 @@ layout: default
     opening that is missing any required field.
   {%- endcomment -%}
   {%- if page.type == "opening" %}
+  {%- endif %}
+
+  {{ content }}
+
+  {%- if page.figures.size > 0 %}
+  <h2 id="figures">Figures</h2>
+  {%- for f in page.figures -%}
+    {% include figure.html file=f.file number=f.number caption=f.caption source=f.source %}
+  {%- endfor -%}
+  {%- endif %}
+
+  <p class="muted small" style="margin-top:2.5rem;"><a href="{{ '/news/' | relative_url }}">← All news</a></p>
+</div>
+
+<aside class="article-side">
   <dl class="facts opening-facts">
     {%- if page.pay_min %}
     <dt>Pay</dt>
@@ -53,18 +69,8 @@ layout: default
     <dd><a href="mailto:{{ page.apply }}?subject={{ page.title | uri_escape }}">{{ page.apply }}</a></dd>
     {%- endif -%}
   </dl>
-  {%- endif %}
+</aside>
 
-  {{ content }}
-
-  {%- if page.figures.size > 0 %}
-  <h2 id="figures">Figures</h2>
-  {%- for f in page.figures -%}
-    {% include figure.html file=f.file number=f.number caption=f.caption source=f.source %}
-  {%- endfor -%}
-  {%- endif %}
-
-  <p class="muted small" style="margin-top:2.5rem;"><a href="{{ '/news/' | relative_url }}">← All news</a></p>
 </div>
 </section>
 </main>

@@ -121,17 +121,24 @@
 <footer class="site-footer">
   <div class="wrap">
     {%- comment -%}
-      Three columns (L17): who and where, the site's own navigation, and the
+      One row (R5): who and where, then one column per nav group, then the
       ways to keep in touch. The nav is built from the same `nav` list the
-      header uses, so a page added there appears here without a second edit.
+      header uses, so a page added there appears here without a second edit -
+      which also means adding a nav group changes the column count in
+      `.foot-grid`, and that is the one thing here that is not automatic.
+
+      The initiatives moved out of this column and into the bottom bar, where
+      they sit opposite the legal line instead of being squeezed under the
+      address.
     {%- endcomment -%}
     <div class="foot-grid">
       <div>
         <img class="foot-mark logo-dark" src="{{ '/assets/img/rise-logo-white.png' | relative_url }}" alt="RISE">
         <img class="foot-mark logo-light" src="{{ '/assets/img/rise-logo-navy.png' | relative_url }}" alt="RISE">
         <p class="muted">Institute for Regenerative<br>Spatial Systems Science<br>Vienna, Austria</p>
-        <p class="muted">We work with<br>
-        <a href="https://www.gbdi.io">GBDI</a> &middot; <a href="https://www.indicatedata.com/">INDICATE</a></p>
+        {%- if site.newsletter_action or site.newsletter_url %}
+        <p class="foot-news"><a href="{{ '/#newsletter' | relative_url }}">Newsletter &rarr;</a></p>
+        {%- endif %}
       </div>
 
       <nav class="foot-nav" aria-label="Footer">
@@ -150,28 +157,33 @@
       </nav>
 
       <div>
-        <p class="foot-navhead">Keep in touch</p>
-        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-        <p>
+        <p class="foot-navhead">Follow</p>
+        <ul>
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
           {%- if site.linkedin and site.linkedin != "" %}
-          <a href="{{ site.linkedin }}">LinkedIn</a>{% endif -%}
+          <li><a href="{{ site.linkedin }}">LinkedIn</a></li>{% endif -%}
           {%- if site.bluesky and site.bluesky != "" %}
-          <span aria-hidden="true"> &middot; </span><a href="{{ site.bluesky }}">Bluesky</a>{% endif -%}
-        </p>
-        {%- if site.newsletter_action or site.newsletter_url %}
-        <p><a href="{{ '/#newsletter' | relative_url }}">Newsletter</a></p>
-        {%- endif %}
+          <li><a href="{{ site.bluesky }}">Bluesky</a></li>{% endif -%}
+        </ul>
       </div>
     </div>
-    <p class="muted small foot-legal">
-      © {{ 'now' | date: "%Y" }} RISE
-      <span aria-hidden="true">·</span>
-      <a href="{{ '/impressum/' | relative_url }}">Impressum</a>
-      {%- if site.privacy_url and site.privacy_url != "" %}
-      <span aria-hidden="true">·</span>
-      <a href="{% include url.html u=site.privacy_url %}">Datenschutz</a>
-      {%- endif %}
-    </p>
+
+    <div class="foot-bar muted small">
+      <p class="foot-legal">
+        © {{ 'now' | date: "%Y" }} RISE
+        <span aria-hidden="true">·</span>
+        <a href="{{ '/impressum/' | relative_url }}">Impressum</a>
+        {%- if site.privacy_url and site.privacy_url != "" %}
+        <span aria-hidden="true">·</span>
+        <a href="{% include url.html u=site.privacy_url %}">Datenschutz</a>
+        {%- endif %}
+      </p>
+      <p class="foot-init">Initiatives:
+        <a href="https://www.gbdi.io">GBDI</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://www.indicatedata.com/">INDICATE</a>
+      </p>
+    </div>
   </div>
 </footer>
 

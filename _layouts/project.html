@@ -39,7 +39,8 @@ layout: default
 <main id="content">
 
 <section class="band">
-<div class="wrap narrow post-body">
+<div class="wrap article">
+<div class="article-main post-body">
 
   {%- comment -%}
     Page order, deliberately: the project text comes first, because that is
@@ -79,39 +80,6 @@ layout: default
   <div id="project-info">
   {{ content }}
 
-  {%- comment -%}
-    The facts box. The citation sits inside it as a final row rather than in
-    a block of its own, so everything needed to reference the project is in
-    one place. The row only appears when cite_year is set, and the copy
-    button is added by the script to the [data-citeas] element.
-  {%- endcomment -%}
-  <dl class="facts facts-after">
-    {%- if page.project_title %}<dt>Project title</dt><dd>{{ page.project_title }}</dd>{% endif -%}
-    {%- if page.years %}<dt>Duration</dt><dd>{{ page.years }}</dd>{% endif -%}
-    {%- if page.funder %}<dt>Funder</dt><dd>{{ page.funder }}</dd>{% endif -%}
-    {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
-    {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
-    {%- if page.clients.size > 0 -%}
-    <dt>Client</dt><dd>{% include partnernames.html keys=page.clients %}</dd>
-    {%- endif -%}
-    {%- if page.partners.size > 0 or page.partners_note -%}
-    <dt>Collaborators</dt>
-    <dd>
-      {%- if page.partners.size > 0 %}{% include partnernames.html keys=page.partners %}{% endif -%}
-      {%- if page.partners_note %}{% if page.partners.size > 0 %}, {% endif %}{{ page.partners_note }}{% endif -%}
-    </dd>
-    {%- endif -%}
-    {%- if page.link %}<dt>Website</dt><dd><a href="{{ page.link }}">{{ page.link }}</a></dd>{% endif -%}
-    {%- if page.cite_year -%}
-    {%- assign cite_title = page.cite_title | default: page.project_title | default: page.title -%}
-    {%- assign who = page.cite_authors | default: "RISE" -%}
-    {%- capture citation -%}
-{{ who }} ({{ page.cite_year }}). {{ cite_title }}.{% if page.cite_where %} {{ page.cite_where }}.{% endif %}{% if page.cite_doi %} https://doi.org/{{ page.cite_doi }}{% elsif page.link %} {{ page.link }}{% endif %}
-    {%- endcapture -%}
-    <dt>Cite as</dt>
-    <dd class="facts-cite" data-citeas><span data-citeas-text>{{ citation | strip }}</span></dd>
-    {%- endif -%}
-  </dl>
   </div>
 
   {%- comment -%}
@@ -209,6 +177,44 @@ layout: default
   <p class="muted small" style="margin-top:2.5rem;">
     <a href="{{ '/projects/' | relative_url }}">← All projects</a>
   </p>
+</div>
+
+<aside class="article-side">
+  {%- comment -%}
+    The facts box. The citation sits inside it as a final row rather than in
+    a block of its own, so everything needed to reference the project is in
+    one place. The row only appears when cite_year is set, and the copy
+    button is added by the script to the [data-citeas] element.
+  {%- endcomment -%}
+  <dl class="facts facts-after">
+    {%- if page.project_title %}<dt>Project title</dt><dd>{{ page.project_title }}</dd>{% endif -%}
+    {%- if page.years %}<dt>Duration</dt><dd>{{ page.years }}</dd>{% endif -%}
+    {%- if page.funder %}<dt>Funder</dt><dd>{{ page.funder }}</dd>{% endif -%}
+    {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
+    {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
+    {%- if page.clients.size > 0 -%}
+    <dt>Client</dt><dd>{% include partnernames.html keys=page.clients %}</dd>
+    {%- endif -%}
+    {%- if page.partners.size > 0 or page.partners_note -%}
+    <dt>Collaborators</dt>
+    <dd>
+      {%- if page.partners.size > 0 %}{% include partnernames.html keys=page.partners %}{% endif -%}
+      {%- if page.partners_note %}{% if page.partners.size > 0 %}, {% endif %}{{ page.partners_note }}{% endif -%}
+    </dd>
+    {%- endif -%}
+    {%- if page.link %}<dt>Website</dt><dd><a href="{{ page.link }}">{{ page.link }}</a></dd>{% endif -%}
+    {%- if page.cite_year -%}
+    {%- assign cite_title = page.cite_title | default: page.project_title | default: page.title -%}
+    {%- assign who = page.cite_authors | default: "RISE" -%}
+    {%- capture citation -%}
+{{ who }} ({{ page.cite_year }}). {{ cite_title }}.{% if page.cite_where %} {{ page.cite_where }}.{% endif %}{% if page.cite_doi %} https://doi.org/{{ page.cite_doi }}{% elsif page.link %} {{ page.link }}{% endif %}
+    {%- endcapture -%}
+    <dt>Cite as</dt>
+    <dd class="facts-cite" data-citeas><span data-citeas-text>{{ citation | strip }}</span></dd>
+    {%- endif -%}
+  </dl>
+</aside>
+
 </div>
 </section>
 </main>
