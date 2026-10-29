@@ -2,7 +2,19 @@
   People as cards. Expects: include.people
 
   Each card shows a square portrait, the name, the role, the employer line,
-  the tagline, and a row of links.
+  and a row with the person's email and LinkedIn.
+
+  No tagline here. A tagline is one or two sentences, so a card carrying one
+  is two or three times the height of a card without, and a grid of cards
+  where one is three times its neighbour reads as broken rather than as
+  emphasis. The tagline belongs on the person's own page, where there is room
+  for it to be read rather than skimmed.
+
+  Only email and LinkedIn on the card, even where the person's front matter
+  carries more. Every card then has the same two rows, so the cards are the
+  same shape; the rest of a person's links - a profile at their university, an
+  ORCID, a personal site - are on their own page, which is where someone who
+  wants them is heading anyway.
 
   Where there is no portrait yet, the card shows the person's initials on a
   token-coloured square rather than a stock photograph. A stock face standing
@@ -42,7 +54,6 @@
         {%- else -%}
         <span class="where">RISE</span>
         {%- endif -%}
-        {%- if person.tagline %}<span class="pc-tag">{{ person.tagline }}</span>{% endif -%}
       </span>
     </a>
 
@@ -50,10 +61,11 @@
       Outside the card's own link, because a link inside a link is not valid
       and the keyboard order would be unusable.
     {%- endcomment -%}
-    {%- if person.email or person.links.size > 0 %}
+    {%- assign card_links = person.links | where: "title", "LinkedIn" -%}
+    {%- if person.email or card_links.size > 0 %}
     <p class="pc-links">
       {%- if person.email %}<a href="mailto:{{ person.email }}">Email</a>{% endif -%}
-      {%- for l in person.links %}<a href="{{ l.url }}">{{ l.title }}</a>{% endfor -%}
+      {%- for l in card_links %}<a href="{{ l.url }}">{{ l.title }}</a>{% endfor -%}
     </p>
     {%- endif -%}
   </li>

@@ -7,6 +7,7 @@ group: collaborator
 org: "Global Building Data Initiative, University of Cape Town"
 order: 3
 portrait: /assets/img/people/darmarajan-chinasamy.jpg
+email: "office@riselabs.at"
 summary: "Works on whole life carbon assessment in emerging markets, with the Global Building Data Initiative."
 links:
   - title: LinkedIn

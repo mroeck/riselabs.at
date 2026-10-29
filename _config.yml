@@ -46,6 +46,16 @@ team_page: true
 # published, so it can never go live looking thin by accident.
 home_team_band: true
 
+# How portraits are rendered. `bw` renders every portrait black and white,
+# wherever it appears: the team grid, the home band, the experts list on a
+# project page, and a person's own page. The files themselves stay in colour,
+# so this is one word to change and nothing to re-crop.
+#
+# Set it to anything else (or delete the line) and the portraits render as
+# shot. This is the one switch; there is no per-person override, because a
+# row of portraits where one is in colour reads as a mistake.
+portraits: bw
+
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
 #   newsletter_action = the API embed endpoint - renders a form on the page

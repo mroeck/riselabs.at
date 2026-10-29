@@ -7,8 +7,11 @@ group: collaborator
 org: "Global Building Data Initiative, EPFL"
 order: 1
 portrait: /assets/img/people/nicole-di-santo.jpg
+email: "office@riselabs.at"
 summary: "Leads whole life carbon assessment and digital integrations at the Global Building Data Initiative."
-links: []
+links:
+  - title: LinkedIn
+    url: "https://www.linkedin.com/in/nicole-di-santo-eng-phd/"
 ---
 
 <!-- DRAFT. Live deliberately, at the same scope as the rest of the team,
