@@ -1,11 +1,12 @@
 ---
 title: "INDICATE LIFE - National Building LCA Data and Policy Accelerator"
 status: "current"
-years: "2024–2027"
+years: "2024–2026"
 funder: "Co-funded by the European Union LIFE programme"
 role: "Project partner - technical work package lead"
 summary: "Helps national consortia generate the building LCA data their governments need to set whole life carbon benchmarks and targets"
 hero: "/assets/img/projects/indicate-life-map.png"
+image: "/assets/img/projects/indicate-life-map.png"   # the social preview; see docs/03
 hero_caption: "INDICATE LIFE runs in Austria, Croatia, Hungary, Italy and Luxembourg."
 themes:
   - data-benchmarks
@@ -20,7 +21,7 @@ partners:
   - bpie
   - smith-innovation
   - worldgbc
-partners_note: "co-ordinated by Smith Innovation, with national consortia in Austria, Hungary, Italy and Luxembourg"
+partners_note: "co-ordinated by Smith Innovation, with national consortia in Austria, Croatia, Hungary, Italy and Luxembourg"
 # Related projects, by slug. The link is written on both sides for
 # readability, but the layout also resolves it in reverse, so naming a
 # project on one side alone is enough to make it appear on both.
@@ -53,7 +54,8 @@ Helps national consortia generate the building LCA data their governments need t
 
 <h2>Where it runs</h2>
 
-Austria, Hungary, Italy and Luxembourg, under the EU LIFE Clean Energy
+Austria, Croatia, Hungary, Italy and Luxembourg,
+under the EU LIFE Clean Energy
 Transition programme - following the [pilot](/projects/indicate/) in Ireland,
 Spain and Czechia.
 

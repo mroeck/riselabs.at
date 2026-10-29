@@ -6,6 +6,7 @@ funder: "Global Industry Hub"
 role: "Principal Investigator"
 summary: "Extends the global building data work into the two markets that will add the most floor area this century"
 hero: "/assets/img/projects/gbdi-objectives.png"
+image: "/assets/img/projects/gbdi-objectives.png"   # the social preview; see docs/03
 hero_caption: "The Global Building Data Initiative's objectives and approach."
 themes:
   - global-south

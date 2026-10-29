@@ -6,6 +6,7 @@ funder: "European Commission DG GROW"
 role: "Team lead and task lead, baseline analysis and scenario modelling"
 summary: "Quantified the baseline and the plausible futures for emissions and removals across the EU building stock to 2050"
 hero: "/assets/img/projects/eu-stock-by-country.png"
+image: "/assets/img/projects/eu-stock-by-country.png"   # the social preview; see docs/03
 hero_caption: "Building stock composition by country across the EU."
 themes:
   - building-stock

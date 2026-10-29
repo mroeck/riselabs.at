@@ -6,6 +6,7 @@ funder: "UK Department for Energy Security and Net Zero"
 role: "Work package lead, global building materials and life cycle emissions"
 summary: "Builds a global tracker of whole life carbon in construction, so progress can be measured against something"
 hero: "/assets/img/projects/gwlct-earth.jpg"
+image: "/assets/img/projects/gwlct-earth.jpg"   # the social preview; see docs/03
 hero_caption: "The tracker differentiates material use and embodied emissions using remote sensing satellite data."
 themes:
   - building-stock

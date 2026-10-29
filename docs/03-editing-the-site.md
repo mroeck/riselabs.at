@@ -372,6 +372,41 @@ The body of the post.
 The home page shows three posts: any featured ones first, then the newest.
 `/news/` shows all of them.
 
+### Openings (`type: opening`)
+
+A job advertisement needs more than a post. `/join/` lists every published
+opening whose `deadline` has not passed, and the post layout prints the terms
+in a box above the text. All of these are **required** once the post is
+published; `docs-check.py` fails a published opening that is missing any of
+them, and fails one that still carries the template's placeholder pay.
+
+| Field | Example | Notes |
+|---|---|---|
+| `deadline` | `2026-11-30` | Applications close at the end of this day |
+| `start` | `2027-02-01` or `"by agreement"` | |
+| `duration` | `"2 years"` | |
+| `hours` | `"40 h/week (100%)"` | |
+| `location` | `"Vienna, Austria"` | |
+| `pay_min` | `"EUR 3,500"` | Gross minimum pay |
+| `pay_unit` | `month` / `week` / `hour` | |
+| `pay_basis` | `"14 payments per year"` | Optional |
+| `apply` | `office@riselabs.at` | Where applications go |
+
+**Why the pay field is required.** An Austrian job advertisement must state
+the minimum pay for the position with a time unit. Stating it is enough; a
+willingness to pay more is optional. The layout renders it at the top of every
+opening so it cannot be forgotten in the prose. Wording must also be
+gender-neutral under the Equal Treatment Act. None of this is legal advice:
+check the current guidance before publishing.
+
+Start from `_posts/2026-10-05-example-open-position.md`, which is a template
+and stays `published: false`.
+
+**Deadlines go stale.** GitHub Pages rebuilds only on a push, so `/join/`
+filters at build time *and* again in the browser from each item's `data-end`
+attribute. Without JavaScript the build-time filter stands, so the page can be
+a few days out of date but never badly wrong.
+
 ---
 
 ## 9. Images
@@ -398,6 +433,23 @@ Reference images with a path from the site root, starting with a slash:
 ```yaml
 portrait: /assets/img/people/martin-roeck.jpg
 ```
+
+### The picture shown when a link is shared
+
+`_config.yml` sets a site-wide card at `/assets/img/social/rise-default.png`,
+so every shared link has a picture. A page with its own picture sets **both**
+`hero:` and `image:`, with the same path:
+
+```yaml
+hero: "/assets/img/projects/indicate-life-map.png"
+image: "/assets/img/projects/indicate-life-map.png"
+```
+
+The duplication is deliberate. `jekyll-seo-tag` reads `image` and knows
+nothing about `hero`, and writing the Open Graph tags by hand in
+`default.html` would duplicate the ones the plugin already emits. A second
+field is the cheaper of the two, and `docs-check.py` notes any page that sets
+`hero` without `image`.
 
 **The three home page hero images** are listed in `_data/hero.yml`, one per
 pillar. To swap one, upload the new image and change the filename there.

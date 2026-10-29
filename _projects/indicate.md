@@ -6,6 +6,7 @@ funder: "Laudes Foundation"
 role: "Team lead and work package lead"
 summary: "Piloted the data accelerator in three countries, and showed the approach transfers"
 hero: "/assets/img/projects/indicate-pilot-map.png"
+image: "/assets/img/projects/indicate-pilot-map.png"   # the social preview; see docs/03
 hero_caption: "The pilot ran in Ireland, Spain and Czechia, 2022 to 2024."
 themes:
   - data-benchmarks

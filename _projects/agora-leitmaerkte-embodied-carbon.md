@@ -6,6 +6,7 @@ funder: "Agora Industrie"
 role: "Contributing author - embodied carbon assessment and regulatory options"
 summary: "Quantified Germany's embodied carbon from construction and set out how limit values could turn the building sector into a lead market for near-zero steel and cement"
 hero: "/assets/img/projects/berlin.jpg"
+image: "/assets/img/projects/berlin.jpg"   # the social preview; see docs/03
 hero_caption: "Berlin. The German building sector is one of Europe's largest consumers of cement, steel and brick."
 themes:
   - materials-circularity

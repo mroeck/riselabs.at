@@ -63,7 +63,7 @@ once.</p>
 <p><a href="https://www.indicatedata.com/">INDICATE</a> is a funding and
 support framework helping national consortia generate the building LCA data
 their governments need to set benchmarks - piloted in Ireland, Spain and
-Czechia, now running in Austria, Hungary, Italy and Luxembourg under the EU
+Czechia, now running in Austria, Croatia, Hungary, Italy and Luxembourg under the EU
 LIFE programme. <a href="https://www.gbdi.io">GBDI</a>, developed with EPFL
 under the GLOBE consensus, is building an open global data commons on resource
 use and embodied carbon, with particular attention to the Global South, where
@@ -103,12 +103,17 @@ justice is not a success, it is a transfer.</p>
 
 <h2>Growth, and what follows it</h2>
 
+<!-- H2 OPEN: this paragraph carried "up to 150% by 2050 ... roughly five
+     billion square metres of new building every year" with no source. On a
+     site that argues for reproducibility an unsourced figure cannot stand, so
+     per P1.5 the sentence has been reworded to carry no number. Restore the
+     figures with a link once the source is confirmed. -->
 <p>Most decarbonisation strategy for construction assumes the sector keeps
 growing and gets cleaner per unit built. That assumption is doing a lot of
-work, and the arithmetic is uncomfortable: global floor area is projected to
-rise by up to 150% by 2050, which is roughly five billion square metres of new
-building every year. Efficiency gains that would be impressive against a stable
-stock look much less so against that.</p>
+work, and the arithmetic is uncomfortable: global floor area is still
+projected to grow substantially by mid-century. Efficiency gains that would be
+impressive against a stable stock look much less so against one that keeps
+expanding.</p>
 
 <p>We take the post-growth question seriously - not as a slogan, but as a
 research agenda. What would it mean to meet housing and infrastructure needs

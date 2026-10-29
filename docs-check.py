@@ -365,6 +365,56 @@ for f in ("CNAME", ".gitignore", "404.html", "README.md", "Gemfile"):
     if not (SITE / f).exists():
         N("repo", f"no {f}")
 
+# -------------------------------------------------------------------- openings
+# A job advertisement in Austria must state the minimum pay for the position
+# with a time unit, so a published opening missing pay_min or pay_unit is a
+# legal problem, not a cosmetic one. The rest of the fields are what the
+# facts box at the top of the post renders. The template itself is
+# published: false and so is not checked.
+OPENING_FIELDS = ("deadline", "start", "duration", "hours",
+                  "location", "pay_min", "pay_unit", "apply")
+for _slug, (_fm, _body, _f) in posts.items():
+    if _fm.get("type") != "opening":
+        continue
+    if _fm.get("published") is False:
+        continue
+    missing = [k for k in OPENING_FIELDS if not _fm.get(k)]
+    if missing:
+        P("opening", f"_posts/{_slug}.md",
+          "published opening is missing " + ", ".join(f"`{k}`" for k in missing)
+          + ". Austrian law requires the minimum pay and its time unit to be "
+            "stated in a job advertisement; the other fields fill the facts box.")
+    if _fm.get("pay_unit") and _fm["pay_unit"] not in ("month", "week", "hour"):
+        P("opening", f"_posts/{_slug}.md",
+          f"`pay_unit` is {_fm['pay_unit']}; it must be month, week or hour")
+    if "x,xxx" in str(_fm.get("pay_min", "")):
+        P("opening", f"_posts/{_slug}.md",
+          "`pay_min` is still the placeholder from the template (H15)")
+
+# ------------------------------------------------------------- social preview
+# jekyll-seo-tag reads `image`, not `hero`. A page that sets a hero without an
+# image still shares correctly, but with the generic site card instead of its
+# own picture, which is almost never what was wanted. P1.4 chose the explicit
+# second field over hand-writing meta tags, so this is the rule that keeps the
+# two in step.
+for _name in ("projects", "people", "publications", "partners"):
+    for _slug, (_fm, _body, _f) in coll[_name].items():
+        if _fm.get("hero") and not _fm.get("image"):
+            N(f"_{_name}/{_slug}.md",
+              "has `hero` but no `image`, so a shared link shows the generic "
+              "RISE card rather than this page's own picture. Add "
+              "`image:` with the same path.")
+for _slug, (_fm, _body, _f) in posts.items():
+    if _fm.get("hero") and not _fm.get("image"):
+        N(f"_posts/{_slug}.md",
+          "has `hero` but no `image`; a shared link shows the generic card")
+
+_social = cfg.get("image")
+if not _social:
+    P("config", "_config.yml", "no site-wide `image`, so shared links have no picture")
+elif not (SITE / _social.lstrip("/")).exists():
+    P("config", "_config.yml", f"`image` points at {_social}, which does not exist")
+
 # ---------------------------------------------------------------- stock images
 stock = (yaml.safe_load((SITE / "_data/stock.yml").read_text()) or [])
 if not stock:

@@ -6,6 +6,7 @@ funder: "International Energy Agency and Austrian Federal Ministry"
 role: "Subtask co-lead"
 summary: "Harmonised building LCA methods, workflows and tools across 27 countries"
 hero: "/assets/img/projects/lca-life-cycle-stages.png"
+image: "/assets/img/projects/lca-life-cycle-stages.png"   # the social preview; see docs/03
 hero_caption: "Life cycle stages and modules, the common structure the Annex harmonised around."
 themes:
   - whole-life-carbon

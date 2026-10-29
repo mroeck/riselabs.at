@@ -292,6 +292,28 @@
      Clipboard access can be refused, in which case the label says so and the
      text is still there to select. */
 
+  // Openings whose deadline has passed.
+  //
+  // GitHub Pages rebuilds only on a push, so the build-time filter on /join/
+  // goes stale as soon as a deadline passes on a quiet week. This hides any
+  // opening whose data-end date has gone by, and shows the "nothing open"
+  // line if that was the last one. Without JavaScript the build-time filter
+  // stands, so the page is never badly wrong.
+  function setupOpenings(list) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var live = 0;
+
+    Array.prototype.forEach.call(list.querySelectorAll("[data-end]"), function (li) {
+      var end = new Date(li.getAttribute("data-end") + "T23:59:59");
+      if (isNaN(end.getTime())) { live++; return; }   // unparseable: leave it alone
+      if (end < today) { li.hidden = true; } else { live++; }
+    });
+
+    var empty = document.querySelector("[data-openings-empty]");
+    if (empty) { empty.hidden = live > 0; }
+  }
+
   function setupCite(box) {
     var text = box.querySelector("[data-citeas-text]");
     if (!text || !navigator.clipboard) return;
@@ -398,6 +420,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
     Array.prototype.forEach.call(document.querySelectorAll("[data-nav-toggle]"), setupNav);
     Array.prototype.forEach.call(document.querySelectorAll("[data-citeas]"), setupCite);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-openings]"), setupOpenings);
     Array.prototype.forEach.call(document.querySelectorAll("[data-themebar]"), setupThemes);
     setupExternalLinks();
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);

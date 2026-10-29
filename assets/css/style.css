@@ -602,26 +602,35 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 
 /* ---------- project list and project pages ---------- */
 
-.projects { list-style: none; padding: 0; margin: 0 0 1rem; }
+.projects,
+.openings { list-style: none; padding: 0; margin: 0 0 1rem; }
 
-.projects li {
+.projects li,
+.openings li {
   padding: 1.15rem 0;
   border-top: 1px solid var(--rule);
   margin: 0;
 }
 
-.projects .meta {
+.projects .meta,
+.openings .meta {
   display: flex; gap: .7rem; flex-wrap: wrap;
   margin: 0 0 .3rem; font-size: .82rem; font-weight: 500;
 }
-.projects .date { color: var(--accent); }
-.projects .funder { color: var(--ink-soft); }
+.projects .date,
+.openings .date { color: var(--accent); }
+.projects .funder,
+.openings .funder { color: var(--ink-soft); }
 
-.projects h3 { margin: 0 0 .3rem; font-size: 1.08rem; }
-.projects h3 a { color: var(--ink); text-decoration: none; }
-.projects h3 a:hover { color: var(--accent); }
+.projects h3,
+.openings h2 { margin: 0 0 .3rem; font-size: 1.08rem; }
+.projects h3 a,
+.openings h2 a { color: var(--ink); text-decoration: none; }
+.projects h3 a:hover,
+.openings h2 a:hover { color: var(--accent); }
 
-.projects .sum { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+.projects .sum,
+.openings .sum { margin: 0; color: var(--ink-soft); font-size: .95rem; }
 .projects .role { margin: .3rem 0 0; font-size: .88rem; color: var(--ink-soft); }
 
 /* key facts on a project page */
@@ -642,6 +651,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 /* The facts box now sits below the project text rather than above it, so it
    needs air at the top and reads as a summary of what was just described. */
 .facts-after { margin: 2.6rem 0 2rem; }
+
+/* An opening states its terms before the prose, because the pay line is
+   required by law and should not be something a reader has to hunt for. */
+.opening-facts { margin: 0 0 2rem; }
+.opening-facts dd strong { color: var(--ink); }
 
 /* The citation lives as the last row of the facts box. It is smaller than the
    rows above because it is reference material rather than a fact to scan, and

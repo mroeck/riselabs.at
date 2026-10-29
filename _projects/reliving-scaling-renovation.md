@@ -6,6 +6,7 @@ funder: "The VELUX Group"
 role: "Project partner - impact hierarchy and potential quantification"
 summary: "Set out a hierarchy for action on Europe's housing - renovate first, extend second, build new last - and quantified what following it would save"
 hero: "/assets/img/projects/towards-reliving.webp"
+image: "/assets/img/projects/towards-reliving.webp"   # the social preview; see docs/03
 hero_caption: "From traditional new build, through Living Places, towards Re:Living renovation."
 themes:
   - sufficiency-space

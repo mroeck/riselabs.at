@@ -13,6 +13,20 @@ linkedin: "https://www.linkedin.com/company/riseregenerate/"
 bluesky: "https://bsky.app/profile/riselabs.at"
 scholar: "https://scholar.google.com/citations?user=v0Pwb1cAAAAJ&hl=de"
 
+# The picture shown when a page is shared on LinkedIn, Bluesky or anywhere
+# else that reads Open Graph. jekyll-seo-tag turns this into an absolute
+# https URL from `url` above.
+#
+# A page with its own picture sets `image:` next to `hero:`; see docs/03.
+# That is deliberately a second field rather than derived from `hero`,
+# because jekyll-seo-tag only reads `image` and hand-writing the meta tags
+# here would duplicate the ones the plugin already emits.
+image: /assets/img/social/rise-default.png
+
+# Every page has an image, so the large card is always the right one.
+twitter:
+  card: summary_large_image
+
 # Underlined automatically wherever it appears in a publication line.
 author_cite: "Röck M"
 
@@ -55,6 +69,8 @@ nav:
         url: /partners/
       # - title: Team     # hidden; see team_page above
       #   url: /team/
+      - title: Join
+        url: /join/
   - title: Work
     items:
       - title: Projects

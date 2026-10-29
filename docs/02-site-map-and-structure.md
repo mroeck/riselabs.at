@@ -14,11 +14,12 @@ content editing, `03-editing-the-site.md` is the one you want.
 |---|---|---|
 | `/` | `index.md` | Home. Hero, three pillars, latest news, recent publications, current projects, partners, three testimonials, contact, newsletter |
 | `/approach/` | `approach.md` | The long argument: three strands of scaling, post-growth, methods |
-| `/services/` | `services.md` | Six services, each with a worked example; all five testimonials |
-| `/projects/` | `projects.md` | Filterable list of all projects |
+| `/expertise/` | `expertise.html` | Six fields of expertise, each with an image and worked examples |
+| `/projects/` | `projects.html` | Filterable list of all projects |
 | `/publications/` | `publications.md` | Filterable list of all publications |
 | `/team/` | `team.md` | **Hidden for now.** The team, then core collaborators - see §7 |
 | `/partners/` | `partners.md` | Equal Earth world map, then a filterable alphabetical list with a count of projects, publications and news per partner |
+| `/join/` | `join.html` | Open positions, filtered by deadline. See §8 of docs/03 |
 | `/news/` | `news.md` | All news and events |
 | `/impressum/` | `impressum.md` | Legal disclosure (ECG, UGB, MedienG) |
 | `/datenschutz/` | `datenschutz.md` | Privacy policy (GDPR) |
@@ -28,11 +29,11 @@ content editing, `03-editing-the-site.md` is the one you want.
 
 | URL pattern | Source folder | Count today |
 |---|---|---|
-| `/projects/<filename>/` | `_projects/` | 11 |
+| `/projects/<filename>/` | `_projects/` | 15 |
 | `/publications/<filename>/` | `_publications/` | 38 |
-| `/team/<filename>/` | `_people/` | 1 published, 3 held back |
-| `/partners/<filename>/` | `_partners/` | 23 |
-| `/news/<year>/<title>/` | `_posts/` | 5 |
+| `/team/<filename>/` | `_people/` | 1 published, 4 held back |
+| `/partners/<filename>/` | `_partners/` | 44 |
+| `/news/<year>/<title>/` | `_posts/` | 11 |
 
 **The filename is the URL.** `_projects/indicate-life.md` becomes
 `/projects/indicate-life/`. Renaming a file breaks every link to it,
