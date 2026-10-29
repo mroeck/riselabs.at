@@ -1274,8 +1274,21 @@ table.listing tr:hover td { background: var(--surface-2); }
 .engage h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
 .engage p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--ink-soft); }
 /* pushed to the foot so the links line up across cards of unequal length */
-.engage .engage-go { margin-top: auto; padding-top: .9rem; }
+/* The worked examples. Smaller than the description and above the call to
+   action, because they are evidence for what was just claimed rather than
+   the next thing to do. `margin-top: auto` moves to this line instead of
+   .engage-go, so the examples and the action stay together at the foot of
+   the card and the cards line up however uneven the descriptions are. */
+.engage .engage-eg {
+  margin-top: auto; padding-top: .7rem;
+  font-size: .84rem; line-height: 1.5;
+}
+.engage .engage-go { padding-top: .4rem; }
 .engage .engage-go a { font-size: .88rem; font-weight: 500; }
+
+/* The same examples in the list shape on /expertise/, where they follow the
+   description inline rather than sitting in a card. */
+.findings .engage-eg { color: var(--ink-soft); }
 
 .band-lede { max-width: var(--measure); }
 

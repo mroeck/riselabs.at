@@ -150,18 +150,22 @@ permalink: /
 </section>
 
 {%- comment -%}
-  The four ways of working, from _data/engagement.yml, the same source
+  The four ways work starts, from _data/engagement.yml, the same source
   /expertise/ reads. Each card's link prefills the subject line, so an
-  enquiry arrives already sorted by what it is about. The newsletter is the
-  last row of this band rather than a band of its own: it is the smaller ask
-  for a reader not ready for the larger one.
+  enquiry arrives already sorted by what it is about, and each card names two
+  projects that began that way, so none of it is an unbacked claim. The
+  newsletter is the last row of this band rather than a band of its own: it is
+  the smaller ask for a reader not ready for the larger one.
+
+  The lede names who, not what. The projects band near the top of this page
+  already shows what.
 {%- endcomment -%}
 <section class="band cta-band" id="work-with-us">
   <div class="wrap">
     <h2>Work with us</h2>
-    <p class="band-lede">We collaborate with policy makers, industry and
-    research partners, and with networks pioneering what the sector has not
-    normalised yet. If your work touches any of that, write to us.</p>
+    <p class="band-lede">We work with public authorities, international
+    organisations, funders, research partners and the pioneers changing how we
+    build. Most collaborations start in one of four ways.</p>
     {% include engagement.html style="cards" %}
     <p class="muted small">Or write to
     <a href="mailto:{{ site.email }}">{{ site.email }}</a> if none of those

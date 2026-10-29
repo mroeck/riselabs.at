@@ -1,5 +1,6 @@
 ---
 title: "Global Whole Life Carbon Tracker for the Built Environment"
+short_title: "Global Whole Life Carbon Tracker"
 status: "current"
 years: "2025–2026"
 funder: "UK Department for Energy Security and Net Zero"

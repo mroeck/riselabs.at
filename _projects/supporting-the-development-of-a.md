@@ -1,5 +1,6 @@
 ---
 title: "Supporting the Development of a Roadmap for the Reduction of Whole Life Carbon of Buildings"
+short_title: "EU whole life carbon roadmap"
 status: "concluded"
 years: "2021–2024"
 funder: "European Commission DG ENV"

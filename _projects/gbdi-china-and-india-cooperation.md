@@ -1,5 +1,6 @@
 ---
 title: "GBDI China and India Cooperation Incubator"
+short_title: "GBDI China and India"
 status: "current"
 years: "2026–2027"
 funder: "Global Industry Hub"

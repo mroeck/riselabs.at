@@ -130,6 +130,33 @@ for s in svc:
     if ex and ex not in coll["projects"]:
         P("xref", "_data/services.yml", f"example '{ex}' has no file in _projects/")
 
+# The four ways work starts. Each card claims a way of working and then names
+# projects that began that way, which is the only thing that keeps the card
+# from being a brochure line. So the slugs are checked hard: a card pointing at
+# a project that is not there would render as a card with one example, or
+# none, and nobody would notice.
+eng = yaml.safe_load((SITE / "_data/engagement.yml").read_text()) or []
+_eng_ids = set()
+for e in eng:
+    where = f"entry '{e.get('title', '?')}'"
+    for key in ("id", "title", "subject", "body"):
+        if not e.get(key):
+            P("data", "_data/engagement.yml", f"{where} has no `{key}`")
+    if e.get("id") in _eng_ids:
+        P("data", "_data/engagement.yml", f"duplicate id '{e['id']}'")
+    _eng_ids.add(e.get("id"))
+
+    exs = e.get("examples") or []
+    for ex in exs:
+        if ex not in coll["projects"]:
+            P("xref", "_data/engagement.yml",
+              f"{where} gives the example '{ex}', which has no file in _projects/")
+    if len(exs) < 2:
+        N("_data/engagement.yml",
+          f"{where} has {len(exs)} worked example(s). The card is meant to "
+          "name two projects that started this way; if there are not two, the "
+          "card may be describing something RISE does not actually do.")
+
 tst = yaml.safe_load((SITE / "_data/testimonials.yml").read_text()) or []
 seen_ids = set()
 for t in tst:
@@ -512,6 +539,22 @@ for slug, (pr, _body, _f) in coll["projects"].items():
         elif other not in coll["projects"]:
             P("related", f"_projects/{slug}.md",
               f"`related` names {other}, which is not a project")
+
+    # `short_title` is the link text wherever a project is named inside a
+    # sentence: the engagement cards today, and anywhere else that needs a
+    # name rather than a headline. The real titles run to a line and a half
+    # ("Supporting the Development of a Roadmap for the Reduction of Whole
+    # Life Carbon..."), which swamps a card. The cap is what fits on one line
+    # of a card at the smallest column width; above it the point is lost.
+    _st = pr.get("short_title")
+    if _st is None:
+        N(f"_projects/{slug}.md",
+          "no `short_title`, so anything naming this project inside a "
+          "sentence falls back to the full title")
+    elif len(_st) > 34:
+        P("projects", f"_projects/{slug}.md",
+          f"`short_title` is {len(_st)} characters, which is no longer short: "
+          "it wraps in an engagement card. Keep it to a name.")
 
 # -------------------------------------------------------- markdown vs. html
 #

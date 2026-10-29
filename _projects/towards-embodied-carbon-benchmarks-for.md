@@ -1,5 +1,6 @@
 ---
 title: "Towards Embodied Carbon Benchmarks for the European Building Industry"
+short_title: "Towards Embodied Carbon Benchmarks"
 status: "concluded"
 years: "2021–2022"
 funder: "Laudes Foundation"

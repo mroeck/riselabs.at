@@ -1,5 +1,6 @@
 ---
 title: "GBDI Global Building Data Initiative (Pilot)"
+short_title: "GBDI pilot"
 status: "concluded"
 years: "2024–2025"
 funder: "ClimateWorks Foundation"

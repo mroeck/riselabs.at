@@ -1,45 +1,72 @@
-# The four ways of working with RISE.
+# The four ways work with RISE actually starts.
 #
 # One source for two places: the "Work with us" band on the home page and the
-# "How we work with you" block on /expertise/. They used to be written out on
-# the expertise page alone, which meant the home page said something vaguer
-# and the two could drift apart.
+# end of /expertise/. Written here rather than in either page, so the two
+# cannot drift apart.
 #
-#   id       used for the anchor and nothing else; keep it stable
-#   title    the name of the mode, as it reads in the sentence
-#   body     the description. Carried over from expertise.html unchanged
-#   subject  prefills the subject line of the mail link on the home page
-#            card, so an enquiry arrives already sorted
+#   id        the anchor, and nothing else; keep it stable
+#   title     the name of the way in, as it reads in the sentence
+#   subject   prefills the subject line of the card's mail link, so an
+#             enquiry arrives already sorted
+#   body      the description
+#   examples  project slugs, two per card. They render as "For example: …",
+#             each linked to its project page under its `short_title`.
+#             docs-check.py fails a slug with no project behind it.
 #
-# The order here is the order both pages render. It runs from the most
-# conventional engagement to the least.
+# The point of `examples` is that no card describes a service RISE has not
+# done. Every one of these has at least two projects on this site behind it,
+# so a visitor can check the claim in one click. If a card ever has no
+# example to give, that is a reason to question the card, not to drop the
+# line.
+#
+# These four replace an earlier set (commissioned work, research partnership,
+# independent review, teaching and facilitation) which described four generic
+# consulting modes. Two of them had no project on the site behind them, and
+# the two ways most current work actually begins - a funder backing a
+# programme RISE designs and runs, and a country or data initiative joining a
+# shared data programme - were missing entirely. Wording from the review of
+# 29 October 2026.
+#
+# The order here is the order both pages render, and it runs from the most
+# self-contained engagement to the most open-ended.
 
-- id: commissioned
-  title: "Commissioned work"
-  subject: "Commissioned work"
+- id: commission
+  title: "Commission a study"
+  subject: "Commission a study"
   body: >-
-    A brief, a budget and a deliverable - the usual shape for an evidence
-    base, a benchmark study or a roadmap.
+    A clear question and an answer that holds up: a baseline, scenarios,
+    benchmarks or a roadmap, written for a legislative process or a board.
+  examples:
+    - supporting-the-development-of-a
+    - analysis-of-life-cycle-greenhouse
 
-- id: partnership
-  title: "Research partnership"
-  subject: "Research partnership"
+- id: fund
+  title: "Fund a programme"
+  subject: "Fund a programme"
   body: >-
-    Joining a consortium as a research partner, where the work is genuinely
-    open-ended and the output is knowledge rather than a deliverable to a
-    brief: partner or work package lead in Horizon Europe, LIFE and national
-    programmes, joint publication and open data work.
+    Shared data and capacity that outlast a single project. We design and run
+    programmes with funders, from the pilot until they stand on their own.
+  examples:
+    - indicate
+    - global-building-data-initiative
 
-- id: review
-  title: "Independent review"
-  subject: "Independent review"
+- id: join-data
+  title: "Join a data programme"
+  subject: "Join a data programme"
   body: >-
-    A second, disinterested reading of an assessment, a dataset or a claim,
-    written so it can be shown to a board, a regulator or a counterparty.
+    For national teams, governments and data initiatives: collect and publish
+    building LCA data in an open, shared format, so benchmarks and targets
+    rest on comparable numbers.
+  examples:
+    - indicate-life
+    - chile-wlc-data-harmonisation
 
-- id: teaching
-  title: "Teaching and facilitation"
-  subject: "Teaching and facilitation"
+- id: research-advice
+  title: "Research and advice"
+  subject: "Research and advice"
   body: >-
-    Training a team, briefing an executive, or running the workshop where a
-    consortium has to agree something.
+    Joint research in consortia, advisory roles, and the keynote, training or
+    workshop where a group has to agree something.
+  examples:
+    - iea-ebc-annex-72
+    - global-status-report-for-buildings

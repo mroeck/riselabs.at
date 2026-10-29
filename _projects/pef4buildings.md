@@ -1,5 +1,6 @@
 ---
 title: "PEF4Buildings: applying the Product Environmental Footprint method to office buildings"
+short_title: "PEF4Buildings"
 status: "concluded"
 years: "2017–2018"
 funder: "European Commission"

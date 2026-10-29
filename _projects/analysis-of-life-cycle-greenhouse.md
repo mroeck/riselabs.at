@@ -1,5 +1,6 @@
 ---
 title: "Analysis of Life Cycle Greenhouse Gas Emissions and Removals of EU Buildings and Construction"
+short_title: "EU buildings emissions analysis"
 status: "concluded"
 years: "2022–2025"
 funder: "European Commission DG GROW"

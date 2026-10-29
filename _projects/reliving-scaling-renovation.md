@@ -1,5 +1,6 @@
 ---
 title: "Re:Living - Scaling Renovation: Impact Hierarchy"
+short_title: "Re:Living"
 status: "current"
 years: "2026"
 funder: "The VELUX Group"
