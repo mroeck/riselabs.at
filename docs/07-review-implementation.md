@@ -18,7 +18,9 @@ These override anything below that seems to conflict with them.
 1. **Keep the existing contracts.** `docs/03-editing-the-site.md`,
    `docs/05-design-basis.md` and `docs/06-core-collaborators.md` still apply.
    In particular: colours only through semantic tokens, no third-party scripts
-   or fonts, no analytics, no hex values inside component rules.
+   or fonts, no hex values inside component rules. One exception, decided
+   29 October 2026: the Plausible analytics snippet (R10), loaded only in
+   production and only together with the approved Datenschutz text.
 2. **Invent nothing that carries a name, a number or a DOI.** No bios, no
    abstracts, no quotes, no figures, no event dates, no licences. Where content
    is missing, leave the field empty or keep `published: false`, and add the
@@ -721,6 +723,388 @@ photos (H16).
 
 ---
 
+## Phase R: visual refinement against the RISE CI (round 3)
+
+Source: third review of 29 October 2026, of the live site after PR #19
+(HEAD 6b5b7d2), checked against the RISE CI Manual v1.2 (hla.studio,
+12 Dec 2024) and the reference sites:
+https://claude.ai/artifact/4pDbvLmqiKqPeiLDvt33vR
+
+Assets: `riselabs-asset-pack-2026-10-29.zip`, supplied with this spec.
+Unzip at the repo root. It holds `assets/img/pubs/` (38 thumbnails),
+`assets/img/photos/` (10 photos), `manifest.yml` (target path, front-matter
+line, source, licence and credit for every file),
+`assets/img/placeholders/` (R11), `drafts/datenschutz-plausible-draft.html`
+(R10, publish only after approval), `preview/` (reference images, do not
+publish), `make_tiles.py` and `crop_pages.py` (move both to
+`scripts/`).
+
+Decision (Martin): **light is the default theme; light and dark must both
+work.** This replaces "Dark is primary" in `docs/05`.
+
+Phase R supersedes older tasks where they overlap: R4 replaces L5, R5
+replaces L17, R2, R3 and R9 replace L4. R6 and R7 cover the image parts of
+P2.5 and P4.1 / L11; direct downloads (P2.5) and the team's own photos
+(P4.1) remain.
+
+Order: R1–R3 as one PR (theme, tokens, type; every page changes). R4 and
+R5 next. R6–R9 and R11 in any order. R10 needs Martin's Plausible setup
+and H25. Screenshots of the homepage,
+`/projects/`, `/publications/`, one project, one post and `/team/` at 1,280
+and 390 px, light and dark, go in each PR.
+
+### R1 Light by default
+
+- **Files:** `_layouts/default.html` (line 4), the theme script,
+  `docs/05`.
+- **Problem:** line 4 hard-codes `data-theme="dark"`, so every first visit
+  and every visitor without JavaScript sees dark.
+- **Change:** `data-theme="light"` in the markup. The script keeps a stored
+  choice (`localStorage`, wrapped in try/catch) and otherwise follows
+  `prefers-color-scheme`. Without JavaScript: light. The toggle stays.
+  In `docs/05`, replace "Dark is primary" with "Light is the default; dark
+  must work equally well".
+- **Done when:** a fresh private window with the OS set to light, and one
+  with JavaScript off, both show light; the toggle still switches and
+  remembers.
+
+### R2 Palette and bands
+
+- **File:** `assets/css/style.css` (tokens), `index.md`
+- **Problem:** light-theme bands run hero / blush / white / white / blush /
+  blush. The last two blush bands merge into about 1,600 px of pink, and the
+  two white ones into one, so the bands do not read as bands. In dark, the
+  alternate band #0a2347 is only 1.15:1 against the navy page. The bright
+  magenta is used as a large fill, which the CI does not ask for (it is an
+  accent and the end of the gradient).
+- **Change:** these tokens, and nothing else for colour:
+
+  | Token | Light | Dark |
+  | --- | --- | --- |
+  | `--bg` | #ffffff | #001730 |
+  | `--surface` (alternate band, card) | #f1f3f6 | #16325a |
+  | `--tint` (small highlights only) | #ffe1ee | #2a1745 |
+  | `--text` | #001730 | #ffffff |
+  | `--accent` (links, labels, rules) | #be208b | #f92d84 |
+  | `--btn-bg` / `--btn-fg` | #001730 / #ffffff | #f92d84 / #001730 |
+  | `--gradient` | `linear-gradient(120deg, #001730, #751094, #f92d84)` | same |
+
+  Blush (#ffe1ee) is no longer a band colour. Use it only for small
+  highlights (a tag, the team banner in R8). Homepage bands, in order:
+  hero (photo) → projects (`--bg`) → what we stand for (`--surface`) →
+  team (`--bg`) → latest (`--surface`) → partners and quotes (`--bg`) →
+  work with us (`--gradient`, white text) → footer (navy in both themes).
+  Remove the 1 px border between bands.
+- **Rule:** two adjacent bands never share a background. Add a check to
+  `docs-check.py` if the bands are data-driven; otherwise a comment in
+  `index.md`.
+- **Done when:** contrast is measured and reported in the PR: body text on
+  every band at least 4.5:1, `--surface` visibly different from `--bg`
+  (light #f1f3f6 on white; dark #16325a is 1.41:1 off navy, white text on it
+  12.8:1), `--accent` #be208b on white at least 4.5:1.
+
+### R3 Type scale and band rhythm
+
+- **File:** `assets/css/style.css`
+- **Problem:** `h2` is 20.8 px on a 17 px body, so section heads barely
+  stand out; band padding is 57.6 px. The CI scale steps H1 24 → H2 18 →
+  body 10 pt, a ratio of 1.8 between H2 and body; the site has 1.2.
+- **Change:** `h1 { font-size: clamp(2.25rem, 5vw, 3rem); }`,
+  `h2 { font-size: clamp(1.75rem, 3vw, 2.125rem); font-weight: 500;
+  line-height: 1.1; }`. Band padding `6rem` from 48rem up, `4rem` below.
+  Text measure 60–80 characters (CI), so text columns are at most 40rem.
+- **Typeface (decided, H22):** RISE holds a web and desktop licence for
+  Circular, the CI typeface. Switch to it:
+  - Self-host the WOFF2 files Martin supplies (H24) in `assets/fonts/`,
+    with `@font-face` rules and `font-display: swap`. No font service, no
+    third-party request.
+  - Cuts: Book (400) for body text, Medium (500) for headings and labels
+    (the CI's heading weight), and the matching italics. Use only the cuts
+    the licence covers; do not synthesise bold or italic
+    (`font-synthesis: none`).
+  - Font stack: `"Circular", "Figtree", system-ui, sans-serif`. Keep the
+    Figtree files until Circular is live, then remove them.
+  - Put the licence notice or EULA reference in `assets/fonts/README.md`
+    if the licence asks for it. Do not commit the desktop (OTF/TTF) files
+    to the public repo.
+  - Re-render the designed publication tiles (R6) with Circular:
+    `make_tiles.py` takes the font path as a setting (Martin or the
+    implementer runs it locally with the desktop files; only the WebP
+    output is committed).
+  - `docs/05`: replace Figtree with Circular.
+- **Done when:** the homepage at 1,280 px shows each band's heading as the
+  largest text in that band, and band edges are visible in both themes;
+  the network panel shows the Circular WOFF2 files loading from
+  riselabs.at and no other font requests.
+
+### R4 Inner pages: two templates
+
+- **Files:** `_layouts/page.html`, `_layouts/project.html`,
+  `_layouts/post.html`, `_layouts/publication.html` (or the include they
+  share), the index pages `/projects/`, `/publications/`, `/posts/`.
+- **Problem:** inner pages sit in a single 640 px column on a 1,280 px
+  screen, so they look narrow and empty next to the full-width homepage.
+- **Change:** two templates, both in a 64rem `.wrap`:
+  - **Article** (one project, one post, one publication, one profile): a
+    full-width page head (title, lede, meta, optional hero image), then a
+    grid `minmax(0, 40rem) 18rem` with a 4rem gap. Text in the first column.
+    The sidebar holds facts (dates, funder, partners, contact person,
+    downloads, tags) and is `position: sticky; top: 6rem` from 64rem up.
+    Below 64rem the sidebar moves above the text as a compact fact box.
+    Related items go in a full-width `--surface` band below.
+  - **Index** (projects, publications, posts): page head, then a filter or
+    tab row, then a card grid `repeat(auto-fill, minmax(16rem, 1fr))` that
+    uses the full 64rem.
+- **Mapping:** projects index, publications index, posts index → Index;
+  project, post, publication, person → Article.
+- **Done when:** at 1,280 px no inner page has an empty area wider than
+  320 px either side of the content; at 390 px text runs edge to edge
+  inside the 24 px gutter (L1).
+
+### R5 Footer in one row
+
+- **File:** `_includes/footer.html`, `assets/css/style.css` (line 1312 and
+  the `.foot-*` rules)
+- **Problem:** `.foot-grid` is 456 / 228 / 228 px and the whole nav sits in
+  one 228 px column, so it wraps (About and Work above Media). Line 1312
+  sets `align-items: end`, which pushes columns down unevenly. "We work with
+  GBDI / INDICATE" is squeezed into the same strip.
+- **Change:**
+  ```css
+  .foot-grid { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr);
+               gap: 2rem; align-items: start; }
+  .foot-nav  { display: contents; }   /* each nav group becomes a column */
+  @media (max-width: 48rem) {
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+    .foot-grid > :first-child { grid-column: 1 / -1; }
+  }
+  ```
+  Delete line 1312. Columns: address and newsletter (wide), then About,
+  Work, Media, Follow. Bottom bar on its own row: left
+  "© 2026 RISE · Impressum · Datenschutz", right "Initiatives: GBDI ·
+  INDICATE" (links).
+- **Done when:** at 1,280 px every nav group sits on one line, and the
+  bottom bar is one line; at 390 px two columns.
+
+### R6 Publication grid with title pages
+
+- **Files:** `_publications/*.md` (front matter), the publications index
+  and card include, `assets/css/style.css`, `scripts/`
+- **Change:**
+  - Copy `assets/img/pubs/*.webp` (38 files, 600 × 800) from the pack. For
+    each entry in `manifest.yml`, add its `field` line (`thumbnail: …`) and
+    its `thumbnail_credit` to the publication's front matter. 20 are title
+    pages from open-access PDFs; 18 are designed tiles in the CI (closed
+    access, or no PDF that could be opened). Do not swap one kind for the
+    other without a licence.
+  - Card: 3:4 thumbnail with a 1 px `--surface` border, kind label, title
+    (3 lines max), first authors, year and venue, then pills for PDF, DOI,
+    Data and Cite, each shown only when the field exists. Grid as R4 Index
+    (four columns at 1,280 px, two at 390 px). Year headings stay.
+  - Credit: `thumbnail_credit` in small text on the publication page, not
+    on the card.
+  - Title pages and tiles are never duotoned (R7).
+  - `scripts/make_tiles.py` makes a tile from front matter for a new
+    entry; `scripts/crop_pages.py` crops a page from a screenshot. Add a
+    `make-thumbnails.py` that renders page 1 of a PDF in `assets/pdf/` to
+    600 × 800 WebP when the entry's licence allows it. Note both in
+    `docs/04`.
+- **Licence check (H20):** three title pages are CC-BY-NC-ND
+  (`alaux-2024-whole-life-greenhouse`, `roeck-2020-embodied-ghg-emissions`,
+  `soustverdaguer-2025-data-infrastructure-whole`). Install them only
+  after H20 is answered; until then use a tile made with `make_tiles.py`.
+- **Done when:** every publication shows a thumbnail; `docs-check.py`
+  fails a publication without `thumbnail`, and a title page without
+  `thumbnail_credit`.
+
+### R7 Photos for Expertise, Approach and two projects, in duotone
+
+- **Files:** `_data/expertise.yml`, the Approach page, `_projects/` (the two
+  GBDI entries), `assets/css/style.css`
+- **Change:**
+  - Copy `assets/img/photos/*.jpg` (10 files, 906 × 678). Use them as
+    listed in `manifest.yml` (`use`), each with its `image_credit`
+    ("Photo: <name> / Unsplash") in small text under or over the image.
+    This replaces the current Expertise stock images.
+  - Approach: three image and text bands (scaling up, scaling wide, scaling
+    deep), image left and text right, alternating sides, on alternating
+    `--bg` / `--surface` (R2). Scaling deep uses the existing
+    `assets/img/projects/collaborative-housing.jpg`.
+  - The GBDI China and India and GBDI Pilot projects get the two
+    `project-gbdi-*` photos as hero images.
+  - **Duotone, in CSS:** a `.duotone` wrapper. The image is
+    `filter: grayscale(1) contrast(1.1)`; two layers sit over it: one
+    `mix-blend-mode: lighten` with the dark colour, one
+    `mix-blend-mode: multiply` with the light colour. Tokens:
+    `--duo-dark` / `--duo-light`. Light theme: #f92d84 / #ffe1ee (ramp A,
+    the CI's light duotone, magenta to blush; decided by Martin, H19).
+    The photos turn strongly pink on purpose, as accents; keep text off
+    them (captions and credits sit below the image, not over it). Dark theme: #001730 / #f92d84 with #751094 in between (ramp D,
+    the CI's dark duotone). `preview/*-light.jpg` and `*-dark.jpg` show the
+    intended result for each photo.
+  - Duotone only for photos. Never for figures, title pages, tiles, logos
+    or portraits (portraits stay black and white, H16).
+- **Done when:** the Expertise page, the Approach page and the two GBDI
+  projects match the previews in both themes, and every photo shows its
+  credit.
+
+### R8 Team page wording and layout
+
+- **File:** `team.md` (or `_pages/team.md`), the person card include,
+  `_people/*.md` (`group` field)
+- **Change:** use this text exactly.
+  - Lede: "RISE is a growing team in Vienna. We work every day with
+    researchers at partner institutions, and with a wider network across
+    policy, industry and research."
+  - Banner under the lede (`--tint` background, small text): "We are
+    growing. New colleagues join in 2027 and more profiles are on their
+    way. [See open positions →](/join/)"
+  - First group heading: "At RISE".
+  - Second group heading: "Extended team", with the note "Researchers we
+    work with closely on shared projects, employed by our partner
+    institutions." This replaces "core collaborators" everywhere on the
+    site, including front matter values and labels.
+  - Card affiliation line: "RISE" for `group: rise`; for
+    `group: collaborator`, "Extended team · " followed by the person's
+    `org` (for example "Extended team · Global Building Data Initiative,
+    EPFL"). Built from front matter, never typed. The `group` value
+    `collaborator` can stay as an internal key; only the visible label
+    changes.
+  - Layout: four columns of 1:1 portraits about 240 px wide, black and
+    white in CSS (`filter: grayscale(1)`), name, role, affiliation line.
+    Two columns at 390 px.
+  - As of 235b9a8 the page shows five people as drafts (Martin, Barbara,
+    Nicole, Zuhaib, Norman). The draft marking stays until each person
+    has approved their text (H3–H5).
+- **Done when:** the words "core collaborator" appear nowhere in the built
+  site, and the banner links to `/join/`.
+
+### R9 Hero and accents
+
+- **File:** `assets/css/style.css`
+- **Change:** the hero overlay uses `--gradient` at 85% opacity over the
+  photo, in both themes (the CI's gradient; the opacity is a proposal,
+  tune by eye). Buttons use
+  `--btn-bg` / `--btn-fg` (navy in light, magenta in dark). Magenta as a
+  fill only on the hero, the "work with us" band (via the gradient) and
+  small elements; everywhere else it is text, rule or icon colour.
+- **Done when:** in light theme no area larger than a button is filled
+  with flat #f92d84.
+
+### R10 Visitor analytics with Plausible (decided, H21)
+
+- **Files:** new `_includes/analytics.html`, `_layouts/default.html`
+  (`<head>`), `404.html`, `datenschutz.md`, `_data/` (privacy date),
+  `docs/04`, `docs/05`
+- **Decision (Martin, 29 Oct 2026):** Plausible Analytics. EU-hosted, no
+  cookies, no local storage, raw IP addresses never stored. Visitors are
+  counted with a hash of a daily salt, the site domain, IP address and
+  browser, and the salt is deleted every 24 hours, so a visitor cannot be
+  followed across days or sites.
+- **Plan:** the answer to "from and to where" across several pages (user
+  journeys, funnels) is only in **Business** ($19 a month at 10k
+  pageviews, as of 29 Oct 2026). Starter ($9) has visitors, sources,
+  pages, entry and exit pages, countries, devices, time on page, outbound
+  links and downloads, but one user only; Growth ($14) adds team members
+  (Barbara) and shared links. Start with the free 30-day trial, which has
+  all Business features, and decide on the plan after a month of data.
+- **Martin does (account owner, H21):**
+  1. Create the account at plausible.io and add the site `riselabs.at`.
+     Plausible's terms include its data processing agreement (DPA); no
+     separate signature is needed. Save a PDF of the DPA for the records.
+  2. In the site settings under General → Tracking, turn on outbound
+     links, file downloads and form submissions.
+  3. Under Goals, add a custom event goal named `404`.
+  4. Under Shields → IP addresses, add the office IPv4 and IPv6 address.
+     On each own browser and device, open riselabs.at, open the developer
+     console and run `localStorage.plausible_ignore=true` to stop counting
+     own visits.
+  5. Copy the site's snippet from Settings → General → Tracking → Site
+     installation and give it to the implementer.
+  6. Optional: weekly email report; invite Barbara (needs Growth or
+     Business).
+- **Implementer does:**
+  - Paste the snippet exactly as Plausible gives it into
+    `_includes/analytics.html`. Do not rewrite or self-host it. Include it
+    in `<head>` of `_layouts/default.html`, only in production:
+    ```liquid
+    {%- if jekyll.environment == "production" -%}
+      {%- include analytics.html -%}
+    {%- endif -%}
+    ```
+    GitHub Pages builds with `JEKYLL_ENV=production`, so local builds and
+    previews send nothing. Plausible also ignores `localhost` by default.
+  - `404.html`: after the snippet has loaded, send the 404 event (from
+    Plausible's docs):
+    ```html
+    <script>document.addEventListener('DOMContentLoaded', function () { plausible('404'); });</script>
+    ```
+  - This is the one third-party script the site allows. Note the
+    exception in `docs/05`, line 77 ("An embedded third-party script…"),
+    and in section 0 of this spec.
+  - `datenschutz.md`:
+    - Replace "verwendet keine Webanalyse" in the "Grundsatz" paragraph with
+      a sentence that says the site uses cookieless audience measurement,
+      described below.
+    - Add the section in `drafts/datenschutz-plausible-draft.html`. Do this
+      only after Martin or a lawyer has approved it (H25).
+    - Update the comment at the top of the file and the "Stand" date.
+  - No cookie banner is added. Whether § 165 Abs. 3 TKG 2021 requires
+    consent for cookieless measurement is not settled (EDPB Guidelines
+    2/2023 read the rule broadly). That is part of the H25 review. If the
+    reviewer wants consent, stop and ask; do not build a banner on your
+    own.
+- **Done when:**
+  - The snippet is in the HTML on riselabs.at and absent from a local
+    build.
+  - A test visit, an outbound click, a PDF download and a 404 each show
+    in the realtime view.
+  - Own visits are excluded.
+  - The Datenschutz section is live with the approved wording.
+
+### R11 One placeholder per kind of item
+
+- **Files:** `_includes/stockimg.html`, `_data/stock.yml`,
+  `_includes/projectgrid.html`, `_layouts/project.html`,
+  `_layouts/person.html`, `_includes/peoplelist.html`,
+  `_includes/pubitem.html`, `assets/img/placeholders/`
+- **Now (235b9a8):**
+  - Projects and Expertise fall back to one of eight stock texture photos
+    (`_data/stock.yml`), chosen by the length of the slug modulo 8. Items
+    whose slugs have the same length get the same picture, and a texture
+    does not tell a visitor that a picture is still to come. All 15
+    projects have a `hero` today, so this fallback is only visible on
+    Expertise, which R7 replaces.
+  - People cards show initials when there is no portrait. The profile page
+    shows nothing.
+  - Publications have no image at all.
+- **Change:** one dedicated placeholder per kind, all in the CI, so a
+  missing image looks intentional. Previews are in
+  `preview/placeholders.jpg`; the files are in `assets/img/placeholders/`
+  in the pack.
+  - **Project** (card and page head): `placeholder-project.webp`, the CI
+    gradient with the white signet. Use it wherever a project, post or
+    event has no `hero` or `image`. Retire the stock-texture picker for
+    projects. Keep `_data/stock.yml` only if Martin wants the textures
+    elsewhere.
+  - **Publication**: no image file. When `thumbnail` is missing, render the
+    designed tile in HTML and CSS from front matter: the gradient bar, kind
+    label, venue, title, the first three authors, year and DOI, on a 3:4
+    white card, matching the R6 tiles. A new publication therefore never
+    shows an empty box. `docs-check.py` warns (not fails) when `thumbnail`
+    is missing, so a proper tile or title page gets made later.
+  - **Person**: initials from `cite`, centred in Circular Medium, on
+    `--surface` (light #f1f3f6 with navy text; dark #16325a with white
+    text), 1:1. Use the same markup on the card and on the profile page.
+- **H23 items:** the EU, IEA EBC, TU Graz and MDPI publications keep
+  their designed tiles from the pack until Martin supplies the PDFs.
+  Their tiles are their placeholders.
+- **Done when:** removing `hero`, `thumbnail` or `portrait` from a test
+  copy of one project, one publication and one person shows the matching
+  placeholder on the card and on the page, in both themes.
+
+---
+
 ## Human input
 
 Items the implementer cannot resolve. Ask, and do not guess.
@@ -746,3 +1130,44 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H16 | Martin | ~~Colour or black and white~~ Answered 29 Oct: black and white until harmonised headshots of all team members exist. Still open: the shoot itself, and a group photo if wanted | L3 |
 | H17 | Martin | ~~Short testimonial versions~~ Answered 29 Oct: approved; texts in L9 | L9 |
 | H18 | Martin | ~~Approve the shortened profile text~~ Answered 29 Oct: approved unchanged; use `martin-roeck-body-draft.md` as supplied | L18 |
+| H19 | Martin | ~~Light-theme duotone~~ Answered 29 Oct: ramp A, the CI's magenta → blush (first answered B, then changed to A the same evening) | R7 |
+| H20 | Martin | Three title pages are CC-BY-NC-ND. Is RISE's website non-commercial use under that licence? If unsure, keep designed tiles for those three | R6 |
+| H21 | Martin | ~~Analytics tool~~ Answered 29 Oct: Plausible. Still needed: the account and setup steps in R10, the snippet, and the plan after the 30-day trial (Business for user journeys) | R10 |
+| H22 | Martin | ~~Circular licence~~ Answered 29 Oct: licensed for web and desktop use; switch to Circular | R3 |
+| H23 | Martin | To do, later: PDFs for the EU roadmap and DG GROW reports, IEA EBC Annex 72, TU Graz and the MDPI papers, so their tiles can become title pages. Designed tiles stay as placeholders until then | R6, R11 |
+| H24 | Martin | The Circular WOFF2 web files (Book, Medium and italics) and any notice the licence requires. **Still open.** Files supplied 29 Oct do not cover this site: see the note below | R3 |
+| H25 | Martin or a lawyer | Approve the Datenschutz section for Plausible (`drafts/datenschutz-plausible-draft.html`), including whether consent is needed | R10 |
+| H26 | Norman Chinasamy | Approval of his profile text and portrait (live as a draft since 235b9a8); UCT clearance if required | R8 |
+
+---
+
+## Implementer's notes
+
+Added by whoever is doing the work, as things are found. Facts only, each
+with the date and where it came from.
+
+### H24, Circular: the files supplied on 29 October do not cover this site
+
+Four files arrived with the pack: `CircularXXWeb-Medium` and
+`CircularXXSub-Medium`, each as WOFF and WOFF2, plus Lineto's
+`stylesheet.css`. Two things block R3's typeface switch.
+
+**The licence names another domain.** The disclaimer in Lineto's own
+`stylesheet.css` reads: "These Web fonts are licensed exclusively for the use
+on the following domain(s) and their subdomains: www.riseregenerate.com
+(monthly pageviews: <50K)". This site is riselabs.at, which is neither that
+domain nor a subdomain of it, so serving these files from riselabs.at would
+fall outside the licence. Needed: riselabs.at added to the licensed domains.
+
+**Only one cut, and no italics.** Both files report weight 500, upright, in
+their own metadata (`OS/2.usWeightClass` 500, `head.macStyle` bit 1 clear).
+R3 asks for Book (400) for body text and Medium (500) for headings, with
+`font-synthesis: none`, so with these files alone the body text has no face
+to render in. The "Sub" file is a 470-glyph subset of the 755-glyph "Web"
+file, not a second weight. Needed: the Book cut, and the italics if they are
+wanted.
+
+Until both are resolved the site stays on Figtree, which is what the order
+above says to do while the files are missing. `assets/css/style.css` keeps
+the `@font-face` block and the `--font` token together at the top of the
+file, so the swap is those two edits and nothing else.
