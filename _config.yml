@@ -39,6 +39,13 @@ privacy_url: "/datenschutz/"
 # exact text; see docs/06.
 team_page: true
 
+# The team band on the home page. Off until the team page itself is complete:
+# a band headed "The team" showing one person says the wrong thing. Flip this
+# to true once the collaborators' profiles are confirmed and published, and
+# the band appears. It also hides itself if fewer than two people are
+# published, so it can never go live looking thin by accident.
+home_team_band: false
+
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
 #   newsletter_action = the API embed endpoint - renders a form on the page

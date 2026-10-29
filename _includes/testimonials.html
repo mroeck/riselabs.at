@@ -38,8 +38,11 @@
   {%- endfor -%}
 
   {%- if found > 0 %}
-<section class="band">
-  <div class="wrap">
+{%- comment -%}
+  include.bare="true" drops the surrounding band, for when the quotes
+  sit inside a band the calling page has already opened.
+{%- endcomment -%}
+{%- unless include.bare == "true" %}<section class="band"><div class="wrap">{% endunless %}
     <p class="eyebrow">{{ include.heading | default: "What people say" }}</p>
     <div class="quotes">
       {%- for key in keys -%}
@@ -53,7 +56,17 @@
           The quotation marks are attached to the first and last paragraph in
           CSS instead of to the blockquote itself.
         {%- endcomment -%}
+        {%- comment -%}
+          include.short="true" renders the shortened version. Each `short` is
+          a verbatim substring of its `quote`, enforced by docs-check.py, so
+          nothing is ever attributed to someone that they did not write.
+          Falls back to the full quote where there is none.
+        {%- endcomment -%}
+        {%- if include.short == "true" and q.short -%}
+        <blockquote>{{ q.short | markdownify }}</blockquote>
+        {%- else -%}
         <blockquote>{{ q.quote | markdownify }}</blockquote>
+        {%- endif -%}
         <figcaption>
           {%- if q.url and q.url != "" -%}
           <a href="{% include url.html u=q.url %}">{{ q.name }}</a>
@@ -68,8 +81,7 @@
       {%- endif -%}
       {%- endfor %}
     </div>
-  </div>
-</section>
+{%- unless include.bare == "true" %}</div></section>{% endunless %}
   {%- endif -%}
 
 {%- endif -%}

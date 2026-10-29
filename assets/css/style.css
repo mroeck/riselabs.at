@@ -1198,6 +1198,23 @@ table.listing tr:hover td { background: var(--surface-2); }
 
 .cta-band { background: var(--surface); }
 
+/* Alternating bands (L2/L4). Without this the home page is one unbroken
+   column and nothing tells the eye where a section ends. */
+.band.alt { background: var(--surface); }
+
+/* Latest and Recent publications side by side on a wide screen. They were two
+   full-width bands of text in sequence, which is most of why the page read as
+   a single column of prose. Stacked below 64rem. */
+.home-split { display: grid; gap: 2.4rem; }
+@media (min-width: 64rem) {
+  .home-split { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+.home-split > div > h2:first-child { margin-top: 0; }
+
+/* The newsletter as the last row of the offer band rather than a band of its
+   own: it is the smaller ask for a reader not ready for the larger one. */
+.home-news { margin-top: 2.6rem; padding-top: 1.8rem; border-top: 1px solid var(--rule); }
+
 /* The four ways of working, on the home page. Cards rather than a list,
    because each one is a different conversation to start and the mail link at
    the foot of each is the point of the band. */
@@ -1229,7 +1246,11 @@ table.listing tr:hover td { background: var(--surface-2); }
    constants, as docs/05 requires: those tokens already carry the contrast
    decision (navy on magenta in dark, white on the darker magenta in light),
    and writing the hex here would have been wrong in one of the two themes. */
-.hero-btn {
+/* `.hero-full a` sets every link in the hero to magenta and is the more
+   specific selector, so a bare .hero-btn rendered as magenta text on a
+   magenta button: a solid pink rectangle with the label invisible. Matching
+   its specificity is the fix. */
+.hero-full a.hero-btn {
   display: inline-block;
   padding: .55rem 1.1rem;
   margin-right: 1.1rem;
@@ -1239,7 +1260,8 @@ table.listing tr:hover td { background: var(--surface-2); }
   font-weight: 600;
   text-decoration: none;
 }
-.hero-btn:hover, .hero-btn:focus { background: var(--btn-bg-hover); color: var(--btn-ink); }
+.hero-full a.hero-btn:hover,
+.hero-full a.hero-btn:focus { background: var(--btn-bg-hover); color: var(--btn-ink); }
 
 /* ---------- newsletter ---------- */
 
