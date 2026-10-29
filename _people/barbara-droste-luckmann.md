@@ -4,11 +4,14 @@ name: "Barbara Droste-Luckmann"
 role: "Head of Office, Stakeholder and Communications Manager"
 cite: "Droste-Luckmann B"
 group: rise
+affil: "RISE, GBDI"
 order: 2
 portrait: /assets/img/people/barbara-droste-luckmann.jpg
-# email: "barbara.droste-luckmann@riselabs.at"
+email: "barbara.droste-luckmann@riselabs.at"
 summary: "Runs the office at RISE, and the institute's stakeholder and communications work."
-links: []
+links:
+  - title: LinkedIn
+    url: "https://www.linkedin.com/in/barbara-luckmann-24722867/"
 ---
 
 <!-- DRAFT. Live deliberately, at the same scope as the rest of the team,

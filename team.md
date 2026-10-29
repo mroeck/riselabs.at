@@ -12,7 +12,10 @@ permalink: /team/
 
 <main id="content">
 <section class="band">
-<div class="wrap narrow">
+<!-- The full band width, not `narrow`. `narrow` is the reading measure, which
+     is right for the lede above and wrong for a grid of cards: at 40rem the
+     cards are too tight for a job title to fit beside a portrait. -->
+<div class="wrap">
 
 <!-- Nothing here is edited by hand. Each person is a file in _people/.
 

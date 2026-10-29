@@ -5,8 +5,10 @@ role: "Intern, WLCA Emerging Markets"
 cite: "Chinasamy D"
 group: collaborator
 org: "Global Building Data Initiative, University of Cape Town"
+affil: "GBDI, UCT"
 order: 3
 portrait: /assets/img/people/darmarajan-chinasamy.jpg
+email: "office@riselabs.at"
 summary: "Works on whole life carbon assessment in emerging markets, with the Global Building Data Initiative."
 links:
   - title: LinkedIn

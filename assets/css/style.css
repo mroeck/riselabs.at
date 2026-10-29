@@ -827,17 +827,39 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 
 /* ---------- people ---------- */
 
+/* One size of card, whatever is in it. `grid-auto-rows: 1fr` makes every row
+   the height of the tallest card in the grid, and the flex column inside each
+   card then lets the portrait-and-text block take the slack, so the links row
+   sits on the same line across the whole grid. Without both halves the cards
+   step up and down as the roles wrap to one, two or three lines. */
 .people {
   list-style: none; padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  /* 21rem, not 15. At 15rem the text beside the portrait is about 150px
+     wide, which breaks a role like "Head of Office, Stakeholder and
+     Communications Manager" over three lines and makes the whole grid as tall
+     as its longest job title. 21rem gives two columns in a 64rem band, and a
+     text column wide enough for those roles to run to one or two lines. */
+  grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr));
+  grid-auto-rows: 1fr;
   gap: .8rem;
   margin: 1.2rem 0 0;
 }
 .people li { margin: 0; }   /* padding and border are set with the card, below */
 
+/* One column, so there is nothing beside a card for it to line up with, and
+   the equal row height only adds dead space under the shortest card. */
+@media (max-width: 40rem) {
+  .people { grid-auto-rows: auto; }
+}
+
+/* Top-aligned, not centred. The cards are all one height now, so centring
+   would put each name at a different point down its card depending on how
+   many lines the role runs to, and a row of names at five different heights
+   reads as five misaligned cards. Aligned to the top, the portraits and the
+   names line up across the row and the slack falls at the bottom. */
 .people a {
-  display: flex; align-items: center; gap: .85rem;
+  display: flex; align-items: flex-start; gap: .85rem;
   padding: .7rem .85rem;
   background: var(--surface);
   border: 1px solid var(--rule);
@@ -863,18 +885,20 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   color: var(--ink-soft); border: 1px solid var(--rule);
 }
 
-.people .pc-tag {
-  display: block; margin-top: .4rem;
-  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
-}
-
 /* The links row sits outside the card's own link, so it is its own set of tab
    stops rather than a link inside a link. It therefore has to opt out of the
    card styling that `.people a` applies: those rules make a bordered block,
    which is right for the card and wrong for a row of small links. */
-.pc-links { display: flex; flex-wrap: wrap; gap: .85rem; margin: .45rem 0 0; padding: 0 .85rem; }
+.pc-links {
+  display: flex; flex-wrap: wrap; justify-content: flex-start;
+  gap: .85rem; margin: .45rem 0 0; padding: 0 .85rem;
+}
 .people .pc-links a {
   display: inline; padding: 0; gap: 0;
+  /* and not the `flex: 1 1 auto` the card's own link carries, which would
+     make each of these grow to fill the row and strand them a card's width
+     apart instead of sitting together on the left */
+  flex: 0 0 auto;
   background: none; border: 0; border-radius: 0;
   font-size: .8rem; color: var(--accent); text-decoration: none;
 }
@@ -882,13 +906,14 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 
 /* The card and its links read as one block. */
 .people li {
+  display: flex; flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 2px;
   padding-bottom: .55rem;
 }
 .people li:hover { border-color: var(--accent); }
-.people a { background: none; border: 0; border-radius: 0; }
+.people a { background: none; border: 0; border-radius: 0; flex: 1 1 auto; }
 .people a:hover { border-color: transparent; }
 
 .person-txt { min-width: 0; }
@@ -903,6 +928,18 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   width: 8.5rem; height: 8.5rem; flex: 0 0 auto;
   border-radius: 2px; object-fit: cover; object-position: top center;
   background: var(--surface);
+}
+
+/* Portraits in black and white, from `portraits: bw` in _config.yml by way of
+   a class on <body>. It is done here rather than in the image files so the
+   originals stay in colour: a portrait gets reused in a slide, a press note or
+   a partner's page, and a greyscale JPEG cannot be un-greyed.
+   `grayscale(1)` and not `saturate(0)`: grayscale weights the channels by
+   luminance, so skin tones keep their tonal separation instead of flattening.
+   Only portraits. Project and publication imagery is untouched. */
+body.portraits-bw .people .pc-face,
+body.portraits-bw .person-head .portrait {
+  filter: grayscale(1);
 }
 
 .person-links { margin: .9rem 0 0; font-size: .9rem; display: flex; flex-wrap: wrap; gap: 1rem; }
