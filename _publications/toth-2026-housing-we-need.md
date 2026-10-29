@@ -17,10 +17,7 @@ partners:
   - artelia
 ---
 
-<!-- H1 OPEN: the two merged entries spelled one author differently,
-     "Bjørkskov KBR" here and "Reimer Bjørkskov KB" in the deleted file.
-     The Zenodo record could not be reached to settle it, so this is
-     left as it was. Check the record and correct if needed.
+<!-- Author name form confirmed by Martin, 29 October 2026: "Bjørkskov KBR".
 
      Figures: the paper's hierarchy diagram and the material-intensity vs
      emissions matrix are the two worth reproducing here, with permission and
