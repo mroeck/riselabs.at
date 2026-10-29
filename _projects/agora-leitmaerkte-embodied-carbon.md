@@ -23,10 +23,6 @@ project_title: "Reduktion und Regulierung von Embodied-Carbon-Emissionen im deut
 # uncomment these two lines.
 # hero: /assets/img/figures/agora-limit-value-timeline.png
 # hero_caption: "Recommended timeline for embodied carbon limit values in German new construction. Agora Industrie, ifeu, RISE and Ramboll (2024), CC BY 4.0."
-cite_authors: "Agora Industrie, ifeu, RISE und Ramboll"
-cite_year: 2024
-cite_where: "Agora Industrie, Berlin. Publication 341/09-S-2024/DE"
-cite_doi: "10.5281/zenodo.13285202"
 outputs:
 - title: "Reduktion und Regulierung von Embodied-Carbon-Emissionen im deutschen Gebäudesektor"
   note: "Study, 95 pages · Agora Industrie, September 2024 (v1.2, November 2024) · German"

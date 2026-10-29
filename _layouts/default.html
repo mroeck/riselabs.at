@@ -146,9 +146,29 @@
           {%- if item.items and item.items.size > 0 %}
         <div class="foot-navgroup">
           <p class="foot-navhead">{{ item.title }}</p>
+          {%- comment -%}
+            A link may carry `foot_with: <title of another link in this
+            group>`, which puts the two on one line here and nowhere else.
+            The partner is then skipped when the loop reaches it, so it is
+            not listed twice. Everything without `foot_with` behaves as
+            before, one link per line.
+          {%- endcomment -%}
+          {%- assign paired = "" -%}
+          {%- for sub in item.items %}{% if sub.foot_with %}{% assign paired = paired | append: "|" | append: sub.foot_with %}{% endif %}{% endfor -%}
           <ul>
-            {%- for sub in item.items %}
-            <li><a href="{{ sub.url | relative_url }}">{{ sub.title }}</a></li>
+            {%- for sub in item.items -%}
+              {%- assign is_partner = false -%}
+              {%- assign needle = "|" | append: sub.title -%}
+              {%- if paired contains needle %}{% assign is_partner = true %}{% endif -%}
+              {%- unless is_partner %}
+            <li><a href="{{ sub.url | relative_url }}">{{ sub.title }}</a>
+              {%- if sub.foot_with -%}
+                {%- assign mate = item.items | where: "title", sub.foot_with | first -%}
+                {%- if mate %} <span class="foot-sep" aria-hidden="true">·</span>
+              <a href="{{ mate.url | relative_url }}">{{ mate.title }}</a>{% endif -%}
+              {%- endif -%}
+            </li>
+              {%- endunless -%}
             {%- endfor %}
           </ul>
         </div>

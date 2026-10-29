@@ -15,10 +15,6 @@ themes:
   - regenerative-design
 link: "https://www.collaborative-carbon.com"
 project_title: "CollaborativeCarbon: Whole Life Carbon Assessments for Collaborative Housing across Europe"
-cite_authors: "Röck, M., Hujvan, A., Degel, J., Pendlmayr, M., & Zilker, M."
-cite_year: 2026
-cite_where: "RISE × einszueins"
-cite_doi: "10.5281/zenodo.19452986"
 outputs:
 - title: "Synthesis, factsheets, dashboards and supporting data"
   note: "Complete study materials · RISE × einszueins, 2026 · DOI 10.5281/zenodo.19452986"

@@ -141,11 +141,11 @@ produces, why it matters.
 | `short_title` | yes | The project's name in a sentence, up to 34 characters: "Re:Living", "GBDI pilot", "EU whole life carbon roadmap". Used wherever a project is named mid-sentence instead of as a headline, such as the engagement cards. The full `title` is still what the project's own page and the card grids show |
 | `status` | yes | `current` or `concluded`. Only `current` reaches the home page |
 | `years` | yes | `"2025–2028"`. An en dash (–) not a hyphen |
-| `funder` | yes | Who funds it |
+| `funder` | yes | Who funds the work. Shown in one **Funder / client** row together with `clients`, because on every project so far they are the same organisation. Where `clients` names a partner, that partner's linked name is what shows; `funder` is the fallback where there is no partner file, and is shown in brackets alongside only when it says something the partner name does not |
 | `role` | yes | What RISE's role is |
 | `summary` | yes | One sentence. No full stop - it sits in lists |
 | `link` | no | The project's own website |
-| `clients` | no | Partner filenames. Shown as clients |
+| `clients` | no | Partner filenames. Shown in the **Funder / client** row as links to their partner pages |
 | `partners` | no | Partner filenames. Shown as collaborators |
 | `people` | no | Person filenames |
 | `hero` | no | A wide photo at the top: `/assets/img/name.jpg` |
@@ -698,16 +698,22 @@ naming the source is the minimum.
 ## 16. Cite this
 
 Publication pages build a citation block automatically from their front
-matter. Projects do too, but only when you set `cite_year` - so a project with
-nothing citable does not get an empty box:
+matter.
 
-```yaml
-cite_authors: "Röck, M., & Someone, A."   # defaults to RISE
-cite_year: 2026
-cite_title: "..."                          # defaults to project_title
-cite_where: "Publisher or commissioner"
-cite_doi: "10.5281/zenodo.0000000"
-```
+**Project pages do not, and should not.** A project is not a citable work.
+Most of them were done with partners, so a citation line on the page invites
+a reader to cite RISE for work RISE contributed to rather than authored. A
+citation needs authors, a venue and ideally a DOI, which is what a
+publication has and a project does not.
+
+If a project produced something citable - a report, a dataset, a paper - then
+that output is the citable thing, and it belongs in `_publications/` with its
+own citation. It will then appear on the project page by itself, under
+"Publications on this project", because publications name the projects they
+came from.
+
+`docs-check.py` fails any `cite_*` field left in a project file, so this
+cannot quietly come back.
 
 ## 17. Data & tools
 
