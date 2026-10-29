@@ -15,6 +15,8 @@ partners:
   - epfl
 people:
   - martin-roeck
+  - nicole-di-santo
+  - barbara-droste-luckmann
 # Nicole Di Santo is Technical Lead on this. Add `- nicole-di-santo` above once
 # her person page is finished and `published: false` is removed from it.
 themes:

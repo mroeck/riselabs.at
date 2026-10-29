@@ -34,6 +34,7 @@ clients:
   - velux
 people:
   - martin-roeck
+  - barbara-droste-luckmann
 partners:
   - velux
   - bpie

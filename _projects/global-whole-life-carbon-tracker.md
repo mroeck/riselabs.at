@@ -16,6 +16,8 @@ clients:
   - desnz
 people:
   - martin-roeck
+  - zuhaib-batra
+  - barbara-droste-luckmann
 partners:
   - bpie
   - ucl
