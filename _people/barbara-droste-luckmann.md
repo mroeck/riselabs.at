@@ -1,7 +1,7 @@
 ---
 published: false   # still has [ADD] placeholders - remove this line when written
 name: "Barbara Droste-Luckmann"
-role: "Stakeholder and Communication Manager"
+role: "Head of Office, Stakeholder and Communications Manager"
 cite: "Droste-Luckmann B"
 group: rise
 order: 2
