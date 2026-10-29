@@ -16,6 +16,8 @@ clients:
   - climateworks
 people:
   - martin-roeck
+  - nicole-di-santo
+  - zuhaib-batra
 partners:
   - usp
   - epfl

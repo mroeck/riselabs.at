@@ -1,5 +1,5 @@
 ---
-published: false   # still has [ADD] placeholders - remove this line when written
+wip: true   # draft: awaiting this person's own words and approval
 name: "Barbara Droste-Luckmann"
 role: "Head of Office, Stakeholder and Communications Manager"
 cite: "Droste-Luckmann B"
@@ -7,13 +7,14 @@ group: rise
 order: 2
 portrait: /assets/img/people/barbara-droste-luckmann.jpg
 # email: "barbara.droste-luckmann@riselabs.at"
-summary: "[ADD: one line on what she works on, shown in the team list.]"
+summary: "Runs the office at RISE, and the institute's stakeholder and communications work."
 links: []
 ---
 
-<!-- ADD a short paragraph in her own words. Her role on the GBDI team is
-     Stakeholder & Communication Manager (per gbdi.io), which is the only
-     thing verified so far - everything else here needs writing or
-     confirming before this page goes live. -->
+<!-- DRAFT. Live deliberately, at the same scope as the rest of the team,
+     while the details are confirmed with the person.
 
-[ADD: a paragraph or two. What she works on, and how she came to it.]
+     `summary` above restates their role and organisation. That is fact, not
+     biography. No paragraph has been written for them: an empty section is
+     honest, a made-up one is not. Their own words go here when they send
+     them, and the "Page in progress" note comes off with `wip`. -->

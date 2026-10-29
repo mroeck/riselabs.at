@@ -44,7 +44,7 @@ team_page: true
 # to true once the collaborators' profiles are confirmed and published, and
 # the band appears. It also hides itself if fewer than two people are
 # published, so it can never go live looking thin by accident.
-home_team_band: false
+home_team_band: true
 
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
