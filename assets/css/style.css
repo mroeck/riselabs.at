@@ -1,7 +1,45 @@
 /* RISE - interim site
    Palette and type follow the RISE CI Manual v1.2:
    navy #001730, magenta #f92d84, purple #751094 (gradient only), pink #ffe1ee.
-   Circular is licensed, so Figtree stands in as the closest open match. */
+   Headings are set in Circular, the CI typeface; body text is still Figtree.
+   assets/fonts/README.md says why, and what has to arrive to finish it. */
+
+/* ---------- Circular, self-hosted ----------
+
+   Legal Disclaimer for Web licence
+
+   Licence to use self-hosted webfonts for displaying dynamic text on
+   specified website domains. Our package includes WOFF and WOFF2 font
+   formats.
+
+   Should the license page views limit be exceeded the license holder will be
+   required to contact Lineto.com for an upgrade.
+
+   It is strictly prohibited to rename the font and to download or use these
+   fonts in any other media.
+
+   These Web fonts are licensed exclusively for the use on the following
+   domain(s) and their subdomains:
+
+   www.riseregenerate.com (monthly pageviews: <50K)
+
+   (Lineto supplies that notice with the package and asks for it to be copied
+   into the stylesheet. The domain it names is not the one this site is served
+   from yet: see assets/fonts/README.md.)
+
+   The family name is Lineto's own file name, because the licence forbids
+   renaming the font. One face only, Medium 500 upright, so Circular is used
+   for headings and labels and `font-synthesis: none` keeps the browser from
+   inventing a bold or an italic from it. */
+
+@font-face {
+  font-family: "CircularXXWeb-Medium";
+  src: url("../fonts/CircularXXWeb-Medium.woff2") format("woff2"),
+       url("../fonts/CircularXXWeb-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------- Figtree, self-hosted ----------
    Served from this site rather than from Google Fonts. A Google Fonts
@@ -136,16 +174,42 @@
   --purple:  #751094;   /* gradient only, per the manual */
   --blush:   #ffe1ee;
 
-  /* 2. semantic tokens - dark theme, the default */
+  /* The CI gradient, navy through purple to magenta. One band uses it as a
+     surface; it is the same in both themes, because it is artwork rather
+     than a theme colour. */
+  --gradient: linear-gradient(120deg, #001730, #751094, #f92d84);
+
+  /* The same gradient with a navy scrim over it, for the one band that
+     carries text on the gradient. White on the bare magenta end is 3.66:1,
+     which fails AA; a quarter-opacity navy over the whole ramp brings the
+     worst point to 5.76:1 and leaves the navy end untouched at 18:1. The
+     gradient still reads as the gradient: it is darkened, not greyed. */
+  --gradient-text-bed:
+    linear-gradient(rgba(0, 23, 48, .25), rgba(0, 23, 48, .25)),
+    linear-gradient(120deg, #001730, #751094, #f92d84);
+
+  /* 2. semantic tokens - dark theme.
+     Light is the default now (R1); dark is below it in the file only because
+     :root carries the dark values and [data-theme="light"] overrides them. */
   --bg:          #001730;   /* = navy */
-  --surface:     #0a2347;   /* raised panels */
+  --surface:     #16325a;   /* alternate band, cards. R2 raised this from
+                               #0a2347, which was 1.15:1 off the navy page,
+                               so a band on it did not read as a band. */
+  --tint:        #2a1745;   /* small highlights only, never a whole band */
   --ink:         #ffffff;
   --ink-soft:    #a9b6c6;
-  --accent:      #f92d84;   /* = magenta; legible on navy at 4.9:1 */
-  --accent-hover:#ff6ba6;
+  /* A lighter magenta than the CI's #f92d84, and deliberately so. R2 raises
+     the dark alternate band to #16325a, and #f92d84 on #16325a is 3.50:1,
+     which fails AA for text; every link in an alternate band would be below
+     the line. #ff6ba6 measures 4.83:1 there and 6.78:1 on the navy page, so
+     one value passes on both beds, which is worth more than carrying the
+     exact brand hex into link text. The CI magenta is untouched where it is a
+     fill rather than text: the gradient, the hero, and the buttons below. */
+  --accent:      #ff6ba6;
+  --accent-hover:#ffa3c7;
   --rule:        rgba(255, 255, 255, 0.13);
   --surface-2:   rgba(255, 255, 255, 0.03);   /* row hover, code */
-  --field-bg:    #0a2347;   /* text inputs; see the light theme for why */
+  --field-bg:    #16325a;   /* text inputs; see the light theme for why */
   --tile-edge:   transparent;   /* white logo tiles need no edge on navy */
 
   /* buttons: white on magenta is only 3.7:1, which fails AA, so the
@@ -157,8 +221,13 @@
   --measure: 40rem;
   --wide:    64rem;
 
+  /* Two stacks. `--font` is the body text; `--font-display` is headings and
+     labels, where Circular is licensed and complete enough to use. Circular
+     falls back to Figtree, so a heading never lands on a system font. */
   --font: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
           Roboto, sans-serif;
+  --font-display: "CircularXXWeb-Medium", "Figtree", ui-sans-serif, system-ui,
+          -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 /* Light theme. Only the semantic layer moves.
@@ -174,7 +243,12 @@
 
 :root[data-theme="light"] {
   --bg:          #ffffff;
-  --surface:     #ffe1ee;   /* = blush */
+  /* R2: blush is no longer a band colour. It was both the alternate band and
+     the card surface, so two blush bands in a row merged into one long pink
+     stretch and the bands stopped reading as bands. The alternate band is now
+     a light grey, and blush survives as --tint for small highlights. */
+  --surface:     #f1f3f6;
+  --tint:        #ffe1ee;   /* = blush; a tag, a banner, nothing larger */
   --ink:         #001730;   /* = navy */
   --ink-soft:    #52616f;
   --accent:      #be208b;   /* magenta 55% / purple 45% */
@@ -182,9 +256,11 @@
   --rule:        rgba(0, 23, 48, 0.14);
   --surface-2:   rgba(0, 23, 48, 0.04);
 
-  --btn-bg:      #be208b;
-  --btn-ink:     #ffffff;   /* 5.6:1 */
-  --btn-bg-hover:#9d198f;
+  /* R2: navy on white, not magenta on white. Magenta is an accent in the CI,
+     and a page of magenta buttons spends it. */
+  --btn-bg:      #001730;
+  --btn-ink:     #ffffff;   /* 17.2:1 */
+  --btn-bg-hover:#16325a;
 
   /* A blush-filled input reads as highlighted or errored rather than empty,
      so fields stay white and are defined by their border instead. */
@@ -420,7 +496,10 @@ a:hover { color: var(--accent-hover); }
 
 .hero-full h1 {
   font-size: clamp(1.9rem, 5.6vw, 3.3rem);
-  font-weight: 600;
+  /* 500, not 600: Circular has one cut here and `font-synthesis: none` is
+     set, so a 600 would quietly render as 500 anyway. Saying 500 means the
+     stylesheet describes what actually happens. */
+  font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.08;
   margin: 0 0 1.2rem;
@@ -447,8 +526,15 @@ a:hover { color: var(--accent-hover); }
 
 main { padding-bottom: 1rem; }
 
-.band { padding: 3.6rem 0; border-top: 1px solid var(--rule); }
-.band:first-of-type { border-top: 0; }
+/* R3: band padding 4rem on a phone, 6rem from 48rem up. R2: no rule between
+   bands. The border was there because neighbouring bands often shared a
+   background and nothing else separated them; now that no two adjacent bands
+   share one, the colour change is the separation and a line on top of it
+   reads as a seam. */
+.band { padding: 4rem 0; }
+@media (min-width: 48rem) {
+  .band { padding: 6rem 0; }
+}
 
 /* Only the vertical padding. The shorthand used to set left and right to 0,
    which overrode .wrap's own 1.5rem gutter on the same element, so on a phone
@@ -456,16 +542,28 @@ main { padding-bottom: 1rem; }
    body text below them did not. */
 .page-head { padding-top: 2.5rem; padding-bottom: 1rem; }
 
-h1, h2, h3 { letter-spacing: -0.022em; }
+/* R3: headings are set in Circular and sized on the CI's scale. The CI steps
+   H1 24 / H2 18 / body 10 pt, a ratio of 1.8 between H2 and body; this site
+   had 1.2 (h2 at 20.8px on a 17px body), which is why section heads barely
+   registered. Weight 500 because that is the CI's heading weight and the only
+   Circular cut licensed here; `font-synthesis: none` stops a browser faking a
+   heavier one. */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-synthesis: none;
+  letter-spacing: -0.022em;
+}
+
+h1 { font-size: clamp(2.25rem, 5vw, 3rem); line-height: 1.08; }
 
 .page-head h1 {
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  font-weight: 600;
+  font-size: clamp(2.25rem, 5vw, 3rem);
   margin: 0 0 .8rem;
 }
 
-h2 { font-size: 1.3rem; font-weight: 600; margin: 0 0 1rem; }
-h3 { font-size: 1.05rem; font-weight: 600; margin: 2rem 0 .5rem; }
+h2 { font-size: clamp(1.75rem, 3vw, 2.125rem); line-height: 1.1; margin: 0 0 1rem; }
+h3 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
 
 p, li { margin: 0 0 1.05rem; }
 ul, ol { padding-left: 1.25rem; }
@@ -1233,7 +1331,26 @@ table.listing tr:hover td { background: var(--surface-2); }
   margin: 0 0 1.2rem;
 }
 
-.cta-band { background: var(--surface); }
+/* The closing band, on the CI gradient in both themes (R2). It is the one
+   place magenta appears as a large fill, and it is the end of the gradient
+   rather than a flat magenta panel. Everything in it is white, so the
+   semantic tokens are redefined on the band itself rather than each child
+   being given a colour: anything dropped in here inherits the right one. */
+.cta-band {
+  background: var(--gradient-text-bed);
+  --ink:       #ffffff;
+  --ink-soft:  rgba(255, 255, 255, 0.82);
+  --accent:    #ffffff;
+  --accent-hover: rgba(255, 255, 255, 0.82);
+  --rule:      rgba(255, 255, 255, 0.28);
+  --surface:   rgba(255, 255, 255, 0.10);
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --field-bg:  rgba(255, 255, 255, 0.12);
+  --btn-bg:    #ffffff;
+  --btn-ink:   #001730;
+  --btn-bg-hover: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+}
 
 /* Alternating bands (L2/L4). Without this the home page is one unbroken
    column and nothing tells the eye where a section ends. */
@@ -1359,7 +1476,7 @@ table.listing tr:hover td { background: var(--surface-2); }
 
 .legal h2 {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;   /* see .hero-full h1 */
   letter-spacing: .01em;
   margin: 2.2rem 0 .35rem;
   padding-top: 1.1rem;

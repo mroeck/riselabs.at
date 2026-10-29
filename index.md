@@ -17,13 +17,33 @@ permalink: /
 
   Alternate bands carry `.band.alt`, so the page has a rhythm instead of
   running as one column. Every band has a real heading.
+
+  THE RULE, FROM R2: two adjacent bands never share a background. Reading
+  down, the backgrounds must go bg / surface / bg / surface and so on, with
+  the hero and the closing band as the two exceptions, which carry a photo and
+  the CI gradient. It is not decoration: when the review was written the page
+  ran blush, white, white, blush, blush, so two pairs of neighbours merged and
+  the bands stopped being bands.
+
+  So: adding, removing or reordering a band means re-checking every `.band`
+  below it and flipping `.alt` where it now clashes. There is nothing
+  automatic about it, because the bands are written out here rather than
+  generated. The order is:
+
+    1  hero            photo
+    2  current projects   --bg
+    3  what we stand for  --surface   (.alt)
+    4  team               --bg
+    5  latest + pubs      --surface   (.alt)
+    6  partners + quotes  --bg
+    7  work with us       --gradient  (.cta-band)
 {%- endcomment -%}
 
 {% include hero.html %}
 
 <main id="content">
 
-<section class="band alt">
+<section class="band">
   <div class="wrap">
     <h2>Current projects</h2>
     <p class="band-note">Research and advisory work for the European
@@ -35,7 +55,7 @@ permalink: /
   </div>
 </section>
 
-<section class="band">
+<section class="band alt">
   <div class="wrap">
     <h2>What we stand for</h2>
     <div class="cols pillars">
@@ -92,7 +112,7 @@ permalink: /
 {%- assign collab = site.people | where: "group", "collaborator" | sort: "order" -%}
 {%- assign team = rise | concat: collab -%}
 {%- if team.size > 1 %}
-<section class="band alt">
+<section class="band">
   <div class="wrap">
     <h2>The team</h2>
     <p class="band-note">A small institute in Vienna, working with a wider
@@ -109,7 +129,7 @@ permalink: /
   They were two full-width bands of text one after the other, which is most
   of why the page read as a single column of prose.
 {%- endcomment -%}
-<section class="band">
+<section class="band alt">
   <div class="wrap">
     <div class="home-split">
       <div>
@@ -137,7 +157,7 @@ permalink: /
   Partners and the quotes on one surface band: both are other people vouching
   for the work, and they were two separate full-width bands doing the same job.
 {%- endcomment -%}
-<section class="band alt">
+<section class="band">
   <div class="wrap">
     <h2>We work with</h2>
     {%- comment -%} hand-picked, in this order; the full list is on /partners/ {%- endcomment -%}
