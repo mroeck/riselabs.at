@@ -118,6 +118,23 @@ Deleting it unsets the custom domain.
 - `https://www.riselabs.at` redirects to it.
 - `http://riselabs.at` redirects to `https://`.
 
+**Done on 29 October 2026.** All three verified in a browser that evening:
+`http://riselabs.at/projects/` redirected to `https://`,
+`https://www.riselabs.at/` redirected to `https://riselabs.at/`, and the site
+loaded with no certificate warning.
+
+Before that the certificate was missing, so `https://riselabs.at` showed a
+privacy error while `http://` worked. Everything the site says about itself
+points at `https://` - the canonical tag, `og:url`, the sitemap - so every
+shared link and every search result led to the warning. Ticking **Enforce
+HTTPS** became possible once GitHub had issued the certificate, which is the
+signal that the DNS was right; the checkbox stays greyed out until then.
+
+If this ever recurs, the usual causes in order: a stray A, AAAA or CNAME
+record left on the apex from a previous host; a CAA record that does not
+permit `letsencrypt.org`; or a custom domain that needs removing and
+re-saving in the Pages settings to trigger a fresh certificate request.
+
 ---
 
 ## 4. Making changes after launch
