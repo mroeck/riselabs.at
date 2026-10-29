@@ -1338,6 +1338,14 @@ table.listing tr:hover td { background: var(--surface-2); }
    being given a colour: anything dropped in here inherits the right one. */
 .cta-band {
   background: var(--gradient-text-bed);
+  /* `--bg` is redefined too, and that is not cosmetic. Anything inside this
+     band that paints itself with the page colour - the engagement cards do -
+     would otherwise be a white panel in light theme while the band has just
+     set the ink to white: white text on a white card, invisible. A
+     translucent navy gives those panels a bed that works with white ink in
+     both themes and keeps the gradient readable through them. Measured:
+     white on this bed is 7.73:1 at the gradient's worst point. */
+  --bg:        rgba(0, 23, 48, 0.22);
   --ink:       #ffffff;
   --ink-soft:  rgba(255, 255, 255, 0.82);
   --accent:    #ffffff;
