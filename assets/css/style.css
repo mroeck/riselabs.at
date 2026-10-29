@@ -450,7 +450,11 @@ main { padding-bottom: 1rem; }
 .band { padding: 3.6rem 0; border-top: 1px solid var(--rule); }
 .band:first-of-type { border-top: 0; }
 
-.page-head { padding: 2.5rem 0 1rem; }
+/* Only the vertical padding. The shorthand used to set left and right to 0,
+   which overrode .wrap's own 1.5rem gutter on the same element, so on a phone
+   every inner page's title and lede sat hard against the screen edge while the
+   body text below them did not. */
+.page-head { padding-top: 2.5rem; padding-bottom: 1rem; }
 
 h1, h2, h3 { letter-spacing: -0.022em; }
 
