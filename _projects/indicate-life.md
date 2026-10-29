@@ -16,6 +16,7 @@ clients:
   - eu-life
 people:
   - martin-roeck
+  - nicole-di-santo
 partners:
   - ku-leuven
   - bpie

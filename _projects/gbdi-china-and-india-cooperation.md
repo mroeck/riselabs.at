@@ -16,6 +16,9 @@ clients:
   - global-industry-hub
 people:
   - martin-roeck
+  - nicole-di-santo
+  - zuhaib-batra
+  - barbara-droste-luckmann
 partners:
   - epfl
 # Related projects, by slug. The link is written on both sides for

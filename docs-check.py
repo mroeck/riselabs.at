@@ -39,12 +39,19 @@ cfg, _ = split_fm(SITE / "_config.yml") if False else (yaml.safe_load((SITE / "_
 
 # ---------------------------------------------------------------- collections
 coll = {}
+# Every slug with a file, including the unpublished ones. A reference to a
+# person who exists but has not approved their text yet is not a broken
+# reference, and saying "has no file" about a file that is sitting right
+# there sends whoever reads it looking for the wrong problem.
+on_disk = {}
 for name in ("projects", "people", "publications", "partners"):
     coll[name] = {}
+    on_disk[name] = set()
     for f in sorted((SITE / f"_{name}").glob("*.md")):
         fm, body = split_fm(f)
         if fm is None:
             continue
+        on_disk[name].add(f.stem)
         if fm.get("published") is False:      # templates and drafts
             continue
         coll[name][f.stem] = (fm, body, f)
@@ -95,7 +102,13 @@ for src, key, target in XREF:
             P("xref", f"_{src}/{slug}.md", f"`{key}` is a string, should be a list")
             vals = [vals]
         for v in vals:
-            if v not in coll[target]:
+            if v in coll[target]:
+                continue
+            if v in on_disk[target]:
+                N(f"_{src}/{slug}.md",
+                  f"`{key}` names {v}, whose file is still unpublished, so the "
+                  "link will appear on its own once that file goes live")
+            else:
                 P("xref", f"_{src}/{slug}.md",
                   f"`{key}` points at '{v}', which has no file in _{target}/")
 
