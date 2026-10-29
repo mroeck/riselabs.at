@@ -1,0 +1,45 @@
+# The four ways of working with RISE.
+#
+# One source for two places: the "Work with us" band on the home page and the
+# "How we work with you" block on /expertise/. They used to be written out on
+# the expertise page alone, which meant the home page said something vaguer
+# and the two could drift apart.
+#
+#   id       used for the anchor and nothing else; keep it stable
+#   title    the name of the mode, as it reads in the sentence
+#   body     the description. Carried over from expertise.html unchanged
+#   subject  prefills the subject line of the mail link on the home page
+#            card, so an enquiry arrives already sorted
+#
+# The order here is the order both pages render. It runs from the most
+# conventional engagement to the least.
+
+- id: commissioned
+  title: "Commissioned work"
+  subject: "Commissioned work"
+  body: >-
+    A brief, a budget and a deliverable - the usual shape for an evidence
+    base, a benchmark study or a roadmap.
+
+- id: partnership
+  title: "Research partnership"
+  subject: "Research partnership"
+  body: >-
+    Joining a consortium as a research partner, where the work is genuinely
+    open-ended and the output is knowledge rather than a deliverable to a
+    brief: partner or work package lead in Horizon Europe, LIFE and national
+    programmes, joint publication and open data work.
+
+- id: review
+  title: "Independent review"
+  subject: "Independent review"
+  body: >-
+    A second, disinterested reading of an assessment, a dataset or a claim,
+    written so it can be shown to a board, a regulator or a counterparty.
+
+- id: teaching
+  title: "Teaching and facilitation"
+  subject: "Teaching and facilitation"
+  body: >-
+    Training a team, briefing an executive, or running the workshop where a
+    consortium has to agree something.

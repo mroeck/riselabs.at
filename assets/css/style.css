@@ -1158,6 +1158,49 @@ table.listing tr:hover td { background: var(--surface-2); }
 
 .cta-band { background: var(--surface); }
 
+/* The four ways of working, on the home page. Cards rather than a list,
+   because each one is a different conversation to start and the mail link at
+   the foot of each is the point of the band. */
+.engage {
+  list-style: none; padding: 0; margin: 1.8rem 0 1.4rem;
+  display: grid; gap: 1rem;
+  /* Two by two, not auto-fit: four cards across a 64rem container left a
+     three-plus-one orphan, and the four descriptions are uneven enough that
+     narrow columns made the longest one tower over the rest. */
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 46rem) { .engage { grid-template-columns: 1fr; } }
+.engage li {
+  margin: 0; padding: 1.15rem 1.2rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  display: flex; flex-direction: column;
+}
+.engage h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+.engage p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--ink-soft); }
+/* pushed to the foot so the links line up across cards of unequal length */
+.engage .engage-go { margin-top: auto; padding-top: .9rem; }
+.engage .engage-go a { font-size: .88rem; font-weight: 500; }
+
+.band-lede { max-width: var(--measure); }
+
+/* The hero's primary action. Uses the --btn-* set rather than the brand
+   constants, as docs/05 requires: those tokens already carry the contrast
+   decision (navy on magenta in dark, white on the darker magenta in light),
+   and writing the hex here would have been wrong in one of the two themes. */
+.hero-btn {
+  display: inline-block;
+  padding: .55rem 1.1rem;
+  margin-right: 1.1rem;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  border-radius: 3px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.hero-btn:hover, .hero-btn:focus { background: var(--btn-bg-hover); color: var(--btn-ink); }
+
 /* ---------- newsletter ---------- */
 
 .newsletter {
