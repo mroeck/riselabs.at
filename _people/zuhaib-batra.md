@@ -13,6 +13,8 @@ summary: "Leads global policy work on energy and emissions at the Global Buildin
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/zuhaibbatra/"
+  - title: GBDI
+    url: "https://www.gbdi.io"
 ---
 
 <!-- DRAFT. Live deliberately, at the same scope as the rest of the team,

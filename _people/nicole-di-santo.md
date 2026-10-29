@@ -13,6 +13,8 @@ summary: "Leads whole life carbon assessment and digital integrations at the Glo
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/nicole-di-santo-eng-phd/"
+  - title: GBDI
+    url: "https://www.gbdi.io"
 ---
 
 <!-- DRAFT. Live deliberately, at the same scope as the rest of the team,
