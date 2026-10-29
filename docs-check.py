@@ -375,10 +375,13 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
         if _w not in _theme_slugs:
             P("people", f"_people/{_slug}.md",
               f"`works_on` names {_w}, which is not a theme in _data/themes.yml")
+    # 140, not the 120 the spec first proposed. 129 characters was measured on
+    # a card at 390 px and 1280 px and wrapped to four lines without crowding
+    # anything, so the lower cap was costing wording for no layout reason.
     _tag = _fm.get("tagline")
-    if _tag and len(_tag) > 120:
+    if _tag and len(_tag) > 140:
         P("people", f"_people/{_slug}.md",
-          f"`tagline` is {len(_tag)} characters; the card allows 120")
+          f"`tagline` is {len(_tag)} characters; the card allows 140")
 
 # ---------------------------------------------------------------- testimonials
 # `short` is what the homepage shows where a full quote will not fit. It must

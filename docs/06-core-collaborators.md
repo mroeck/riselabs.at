@@ -76,7 +76,7 @@ converts: people agree in principle and then never write the three sentences.
 | `role` | Their own role, at their own organisation |
 | `org` | Required for collaborators |
 | `portrait` | Square, at least 600 × 600 px. Save to `assets/img/people/`. Without one, the card shows their initials |
-| `tagline` | One line, max 120 characters, in their own words on why they do this work. Shown on the card and as the lede on their profile |
+| `tagline` | One line, max 140 characters, in their own words on why they do this work. Shown on the card and as the lede on their profile |
 | `works_on` | Theme slugs from `_data/themes.yml`. A closed vocabulary; the checker rejects anything else |
 | `also` | A second standing role that is not their day job - an IPCC author role, a report coordinating authorship. Optional |
 | `summary` | One sentence, shown under their name |

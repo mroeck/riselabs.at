@@ -277,7 +277,7 @@ change the role to past tense.
 
 | Field | Type | Shown | Notes |
 |---|---|---|---|
-| `tagline` | string, max 120 characters | Card and profile | One line in their own words on why they do this work. On the profile it replaces `summary` as the lede; `summary` is still what lists elsewhere use |
+| `tagline` | string, max 140 characters | Card and profile | One line in their own words on why they do this work. On the profile it replaces `summary` as the lede; `summary` is still what lists elsewhere use |
 | `works_on` | list of theme slugs | Profile, as chips | From `_data/themes.yml` only. `docs-check.py` rejects an unknown slug, exactly as it does for a project's `themes` |
 
 **Portraits.** Square, at least 600 × 600 px, head and shoulders. A person
