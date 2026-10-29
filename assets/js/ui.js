@@ -314,6 +314,42 @@
     if (empty) { empty.hidden = live > 0; }
   }
 
+  // Long related lists on a profile.
+  //
+  // The markup carries every item, so a reader without JavaScript sees the
+  // whole list. Where the panel asks for it, this hides all but the first few
+  // and adds a button to show the rest. The button is created here rather
+  // than in the markup for the same reason: without a script it would be a
+  // control that does nothing.
+  function setupCollapse(panel) {
+    var n = parseInt(panel.getAttribute("data-collapse"), 10);
+    var list = panel.querySelector("ul, ol");
+    if (!n || !list) return;
+
+    var items = Array.prototype.slice.call(list.children);
+    if (items.length <= n) return;
+
+    var hidden = items.slice(n);
+    hidden.forEach(function (li) { li.hidden = true; });
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "more-btn";
+    btn.setAttribute("aria-expanded", "false");
+    btn.textContent = "Show all " + items.length;
+
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      hidden.forEach(function (li) { li.hidden = open; });
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      btn.textContent = open ? "Show all " + items.length : "Show fewer";
+    });
+
+    // before the "All projects →" line, if there is one
+    var more = panel.querySelector(".more");
+    if (more) { panel.insertBefore(btn, more); } else { panel.appendChild(btn); }
+  }
+
   function setupCite(box) {
     var text = box.querySelector("[data-citeas-text]");
     if (!text || !navigator.clipboard) return;
@@ -421,6 +457,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-nav-toggle]"), setupNav);
     Array.prototype.forEach.call(document.querySelectorAll("[data-citeas]"), setupCite);
     Array.prototype.forEach.call(document.querySelectorAll("[data-openings]"), setupOpenings);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-collapse]"), setupCollapse);
     Array.prototype.forEach.call(document.querySelectorAll("[data-themebar]"), setupThemes);
     setupExternalLinks();
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);

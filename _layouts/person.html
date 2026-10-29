@@ -28,7 +28,13 @@ layout: default
   {%- assign pubs = site.publications | where_exp: "p", "p.people contains page.slug" | sort: "year" | reverse -%}
   {%- assign news = site.posts | where_exp: "p", "p.people contains page.slug" -%}
 
-  {% include related.html projects=mine pubs=pubs posts=news
+  {%- comment -%}
+    The lists run long on a profile with years of work behind it: ten posts,
+    fifteen projects and every publication. `collapse` shows three of each
+    behind a "Show all" button. The full lists are still in the markup, so a
+    reader without JavaScript loses nothing.
+  {%- endcomment -%}
+  {% include related.html projects=mine pubs=pubs posts=news collapse=3
      projects_title="Projects" pubs_title="Publications" %}
 
   {%- if site.team_page %}

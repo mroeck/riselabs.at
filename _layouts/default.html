@@ -102,23 +102,47 @@
 
 <footer class="site-footer">
   <div class="wrap">
+    {%- comment -%}
+      Three columns (L17): who and where, the site's own navigation, and the
+      ways to keep in touch. The nav is built from the same `nav` list the
+      header uses, so a page added there appears here without a second edit.
+    {%- endcomment -%}
     <div class="foot-grid">
       <div>
         <img class="foot-mark logo-dark" src="{{ '/assets/img/rise-logo-white.png' | relative_url }}" alt="RISE">
         <img class="foot-mark logo-light" src="{{ '/assets/img/rise-logo-navy.png' | relative_url }}" alt="RISE">
         <p class="muted">Institute for Regenerative<br>Spatial Systems Science<br>Vienna, Austria</p>
-      </div>
-      <div>
-        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>
-        {%- if site.linkedin and site.linkedin != "" %}
-        <a href="{{ site.linkedin }}">LinkedIn</a>{% endif -%}
-        {%- if site.bluesky and site.bluesky != "" %}
-        <span aria-hidden="true"> · </span><a href="{{ site.bluesky }}">Bluesky</a>{% endif -%}
-        </p>
-      </div>
-      <div>
         <p class="muted">We work with<br>
-        <a href="https://www.gbdi.io">GBDI</a> · <a href="https://www.indicatedata.com/">INDICATE</a></p>
+        <a href="https://www.gbdi.io">GBDI</a> &middot; <a href="https://www.indicatedata.com/">INDICATE</a></p>
+      </div>
+
+      <nav class="foot-nav" aria-label="Footer">
+        {%- for item in site.nav -%}
+          {%- if item.items and item.items.size > 0 %}
+        <div class="foot-navgroup">
+          <p class="foot-navhead">{{ item.title }}</p>
+          <ul>
+            {%- for sub in item.items %}
+            <li><a href="{{ sub.url | relative_url }}">{{ sub.title }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+
+      <div>
+        <p class="foot-navhead">Keep in touch</p>
+        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        <p>
+          {%- if site.linkedin and site.linkedin != "" %}
+          <a href="{{ site.linkedin }}">LinkedIn</a>{% endif -%}
+          {%- if site.bluesky and site.bluesky != "" %}
+          <span aria-hidden="true"> &middot; </span><a href="{{ site.bluesky }}">Bluesky</a>{% endif -%}
+        </p>
+        {%- if site.newsletter_action or site.newsletter_url %}
+        <p><a href="{{ '/#newsletter' | relative_url }}">Newsletter</a></p>
+        {%- endif %}
       </div>
     </div>
     <p class="muted small foot-legal">

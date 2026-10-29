@@ -365,6 +365,25 @@ for f in ("CNAME", ".gitignore", "404.html", "README.md", "Gemfile"):
     if not (SITE / f).exists():
         N("repo", f"no {f}")
 
+# ---------------------------------------------------------------- testimonials
+# `short` is what the homepage shows where a full quote will not fit. It must
+# be a verbatim substring of `quote`, never a paraphrase: a shortened quote
+# that says something the person did not write is the one failure mode here
+# that matters, and it is invisible once published. Whitespace is collapsed
+# before comparing, because YAML folding rewraps both.
+_tst = yaml.safe_load((SITE / "_data/testimonials.yml").read_text()) or []
+for _e in _tst:
+    _id = _e.get("id", "?")
+    if not _e.get("short"):
+        N("_data/testimonials.yml", f"{_id} has no `short`; the full quote is used everywhere")
+        continue
+    _s = re.sub(r"\s+", " ", _e["short"]).strip()
+    _q = re.sub(r"\s+", " ", _e.get("quote", "")).strip()
+    if _s not in _q:
+        P("testimonial", "_data/testimonials.yml",
+          f"{_id}: `short` is not a verbatim substring of `quote`. A shortened "
+          "quote must never say something the person did not write.")
+
 # -------------------------------------------------------------------- openings
 # A job advertisement in Austria must state the minimum pay for the position
 # with a time unit, so a published opening missing pay_min or pay_unit is a

@@ -4,6 +4,11 @@
 
     include.posts / include.projects / include.pubs / include.people
     include.posts_title etc. override the headings
+    include.collapse  a number; the script then shows that many items per
+                      panel behind a "Show all" button. Without JavaScript
+                      every item still shows, which is why the lists are
+                      rendered in full and collapsed afterwards rather than
+                      truncated here.
 {%- endcomment -%}
 {%- assign has_posts  = include.posts.size    | default: 0 -%}
 {%- assign has_projs  = include.projects.size | default: 0 -%}
@@ -22,7 +27,7 @@
   </div>
 
   {%- if has_posts > 0 %}
-  <section data-panel="news">
+  <section data-panel="news"{% if include.collapse %} data-collapse="{{ include.collapse }}"{% endif %}>
     <h2>{{ include.posts_title | default: "News &amp; events" }}</h2>
     {% include newslist.html posts=include.posts %}
     <p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
@@ -30,7 +35,7 @@
   {%- endif %}
 
   {%- if has_projs > 0 %}
-  <section data-panel="projects">
+  <section data-panel="projects"{% if include.collapse %} data-collapse="{{ include.collapse }}"{% endif %}>
     <h2>{{ include.projects_title | default: "Projects" }}</h2>
     {% include projectlist.html projects=include.projects %}
     <p class="more"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
@@ -38,7 +43,7 @@
   {%- endif %}
 
   {%- if has_pubs > 0 %}
-  <section data-panel="publications">
+  <section data-panel="publications"{% if include.collapse %} data-collapse="{{ include.collapse }}"{% endif %}>
     <h2>{{ include.pubs_title | default: "Publications" }}</h2>
     {% include publist.html pubs=include.pubs %}
     <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
@@ -46,7 +51,7 @@
   {%- endif %}
 
   {%- if has_people > 0 %}
-  <section data-panel="people">
+  <section data-panel="people"{% if include.collapse %} data-collapse="{{ include.collapse }}"{% endif %}>
     <h2>{{ include.people_title | default: "People" }}</h2>
     {% include peoplelist.html people=include.people %}
     {%- if site.team_page %}<p class="more"><a href="{{ '/team/' | relative_url }}">The whole team →</a></p>{% endif %}
