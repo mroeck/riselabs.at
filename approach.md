@@ -103,17 +103,15 @@ justice is not a success, it is a transfer.</p>
 
 <h2>Growth, and what follows it</h2>
 
-<!-- H2 OPEN: this paragraph carried "up to 150% by 2050 ... roughly five
-     billion square metres of new building every year" with no source. On a
-     site that argues for reproducibility an unsourced figure cannot stand, so
-     per P1.5 the sentence has been reworded to carry no number. Restore the
-     figures with a link once the source is confirmed. -->
 <p>Most decarbonisation strategy for construction assumes the sector keeps
 growing and gets cleaner per unit built. That assumption is doing a lot of
-work, and the arithmetic is uncomfortable: global floor area is still
-projected to grow substantially by mid-century. Efficiency gains that would be
-impressive against a stable stock look much less so against one that keeps
-expanding.</p>
+work, and the arithmetic is uncomfortable: global floor area is projected to
+rise by up to 150% by 2050, which is roughly five billion square metres of new
+building every year
+(<a href="https://www.unep.org/resources/report/global-status-report-buildings-and-construction-2025-2026">Global
+Status Report for Buildings and Construction 2025-2026</a>, UNEP and
+GlobalABC). Efficiency gains that would be impressive against a stable stock
+look much less so against that.</p>
 
 <p>We take the post-growth question seriously - not as a slogan, but as a
 research agenda. What would it mean to meet housing and infrastructure needs

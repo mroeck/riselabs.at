@@ -501,15 +501,15 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | ID | Needed from | Question | Blocks |
 | --- | --- | --- | --- |
 | H0 | Martin (repo and DNS admin) | Fix the custom-domain DNS and certificate in GitHub Pages | P1.0 |
-| H1 | Martin | ~~Same document?~~ Answered 29 Oct: yes, list once with the Zenodo DOI. Still open: author name form "Reimer Bjørkskov KB" or "Bjørkskov KBR" | P1.1 |
-| H2 | Martin | Source for "up to 150% by 2050 … five billion square metres per year" | P1.5 |
+| H1 | Martin | ~~Same document, and the author name form~~ Answered 29 Oct: one entry with the Zenodo DOI; the name is "Bjørkskov KBR" | P1.1 |
+| H2 | Martin | ~~Source for "up to 150% by 2050 … five billion square metres per year"~~ Answered 29 Oct: the Global Status Report for Buildings and Construction 2025-2026, UNEP and GlobalABC. Figures restored with the link | P1.5 |
 | H3 | Barbara | Employer answered 29 Oct: RISE. Still needed: tagline, bio, portrait, links, approval | P2.1, P1.7 |
 | H4 | Nicole | Draft by Martin in progress. Needed: approval of the text, portrait, links; EPFL clearance if required | P2.1 |
 | H5 | Zuhaib | Draft by Martin in progress. Needed: approval of the text, portrait, links; EPFL clearance if required | P2.1 |
 | H6 | Martin | Date from which Nicole and Zuhaib are RISE employees, if and when that happens | P2.1 label |
 | H7 | Martin or Barbara | Run `fetch-abstracts.py --write` and review the diff | P2.6 |
 | H8 | Martin | Dates, places and registration links for event posts that lack them, starting with the COP31 session | P3.1 |
-| H9 | Martin | Standing text for `/join/`: theses, visiting researchers, fellowships | P1.7, P3.4 |
+| H9 | Martin | ~~Standing text for `/join/`~~ Drafted 29 Oct and live on the page as "Other ways in": theses, visiting researchers, fellowships. Reword freely | P1.7, P3.4 |
 | H10 | Martin | Consent from Bárbara Rodríguez Droguett to publish her quote | P3.5 |
 | H11 | Martin | Own photos with permission to publish | P4.1 |
 | H12 | Martin | New slugs for the three projects with truncated names | P4.2 |

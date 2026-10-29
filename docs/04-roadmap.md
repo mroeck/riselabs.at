@@ -110,12 +110,14 @@ P1.0 (the HTTPS certificate, which needs DNS and repository admin):
 - ~~P1.2 "Page in progress" on the homepage~~ removed
 - ~~P1.3 past event pinned to the homepage~~ unpinned
 - ~~P1.4 no social preview image~~ default card added, `image` alongside `hero`
-- ~~P1.5 unsourced floor-area figure~~ reworded to carry no number, pending H2
+- ~~P1.5 unsourced floor-area figure~~ sourced to the UNEP/GlobalABC Global
+  Status Report 2025-2026
 - ~~P1.6 INDICATE LIFE facts disagreed~~ 2024-2026 and five countries everywhere
 - ~~P1.7 nothing for the November job posts~~ `/join/`, opening fields, template
 
-Still open and waiting on a person: H1, H2, H9, H15. See the table at the end
-of `docs/07`.
+Still open and waiting on a person: H0 (the HTTPS certificate) and H15 (the
+real job posts). H1, H2 and H9 were answered on 29 October. See the table at
+the end of `docs/07`.
 
 ---
 
