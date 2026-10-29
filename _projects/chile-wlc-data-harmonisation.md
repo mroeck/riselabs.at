@@ -6,6 +6,7 @@ funder: "CORFO Chile Public Goods Call"
 role: "International technical partner - data architecture and OpenBDF alignment"
 summary: "Aligns Chile's national whole life carbon tool and building database with the open global data format from the start, so the data stays comparable"
 hero: "/assets/img/projects/santiago.jpg"
+image: "/assets/img/projects/santiago.jpg"   # the social preview; see docs/03
 hero_caption: "Santiago de Chile."
 link: "https://www.gbdi.io"
 partners:

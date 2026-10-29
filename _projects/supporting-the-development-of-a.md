@@ -6,6 +6,7 @@ funder: "European Commission DG ENV"
 role: "Team lead and task lead"
 summary: "Provided the archetype modelling behind the EU's roadmap for bringing down whole life carbon"
 hero: "/assets/img/projects/modelling-framework.png"
+image: "/assets/img/projects/modelling-framework.png"   # the social preview; see docs/03
 hero_caption: "Reduction solutions applied to a building LCA model, scaled up with a building stock model."
 themes:
   - policy-regulation

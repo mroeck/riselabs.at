@@ -2,7 +2,6 @@
 layout: default
 title: Home
 permalink: /
-wip: true   # shows the "Page in progress" note by the theme toggle
 ---
 
 {% include hero.html %}

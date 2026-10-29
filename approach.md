@@ -63,7 +63,7 @@ once.</p>
 <p><a href="https://www.indicatedata.com/">INDICATE</a> is a funding and
 support framework helping national consortia generate the building LCA data
 their governments need to set benchmarks - piloted in Ireland, Spain and
-Czechia, now running in Austria, Hungary, Italy and Luxembourg under the EU
+Czechia, now running in Austria, Croatia, Hungary, Italy and Luxembourg under the EU
 LIFE programme. <a href="https://www.gbdi.io">GBDI</a>, developed with EPFL
 under the GLOBE consensus, is building an open global data commons on resource
 use and embodied carbon, with particular attention to the Global South, where
@@ -107,8 +107,11 @@ justice is not a success, it is a transfer.</p>
 growing and gets cleaner per unit built. That assumption is doing a lot of
 work, and the arithmetic is uncomfortable: global floor area is projected to
 rise by up to 150% by 2050, which is roughly five billion square metres of new
-building every year. Efficiency gains that would be impressive against a stable
-stock look much less so against that.</p>
+building every year
+(<a href="https://www.unep.org/resources/report/global-status-report-buildings-and-construction-2025-2026">Global
+Status Report for Buildings and Construction 2025-2026</a>, UNEP and
+GlobalABC). Efficiency gains that would be impressive against a stable stock
+look much less so against that.</p>
 
 <p>We take the post-growth question seriously - not as a slogan, but as a
 research agenda. What would it mean to meet housing and infrastructure needs

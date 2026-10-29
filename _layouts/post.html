@@ -24,6 +24,37 @@ layout: default
 
 <section class="band">
 <div class="wrap narrow post-body">
+
+  {%- comment -%}
+    Openings carry their terms in a facts box at the top. Austrian law
+    requires a job advertisement to state the minimum pay with a time unit,
+    so pay_min and pay_unit are rendered here rather than left to the body
+    text, where they could be forgotten. docs-check.py fails a published
+    opening that is missing any required field.
+  {%- endcomment -%}
+  {%- if page.type == "opening" %}
+  <dl class="facts opening-facts">
+    {%- if page.pay_min %}
+    <dt>Pay</dt>
+    <dd><strong>from {{ page.pay_min }} gross per {{ page.pay_unit | default: "month" }}</strong>
+      {%- if page.pay_basis %}<br><span class="muted small">{{ page.pay_basis }}</span>{% endif -%}
+    </dd>
+    {%- endif -%}
+    {%- if page.hours %}<dt>Hours</dt><dd>{{ page.hours }}</dd>{% endif -%}
+    {%- if page.duration %}<dt>Duration</dt><dd>{{ page.duration }}</dd>{% endif -%}
+    {%- if page.start %}<dt>Start</dt><dd>{{ page.start }}</dd>{% endif -%}
+    {%- if page.location %}<dt>Location</dt><dd>{{ page.location }}</dd>{% endif -%}
+    {%- if page.deadline %}
+    <dt>Apply by</dt>
+    <dd><time datetime="{{ page.deadline | date: '%Y-%m-%d' }}">{{ page.deadline | date: "%d %B %Y" }}</time></dd>
+    {%- endif -%}
+    {%- if page.apply %}
+    <dt>Applications to</dt>
+    <dd><a href="mailto:{{ page.apply }}?subject={{ page.title | uri_escape }}">{{ page.apply }}</a></dd>
+    {%- endif -%}
+  </dl>
+  {%- endif %}
+
   {{ content }}
 
   {%- if page.figures.size > 0 %}

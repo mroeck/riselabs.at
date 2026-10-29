@@ -6,6 +6,7 @@ funder: "Laudes Foundation"
 role: "Task lead"
 summary: "Established a first European baseline for embodied carbon from real building data, and a budget-based way to set targets against it"
 hero: "/assets/img/projects/eu-ecb-boxplot.png"
+image: "/assets/img/projects/eu-ecb-boxplot.png"   # the social preview; see docs/03
 hero_caption: "Embodied carbon per m2 of floor area by building use subtype, harmonised EU-ECB data."
 themes:
   - whole-life-carbon

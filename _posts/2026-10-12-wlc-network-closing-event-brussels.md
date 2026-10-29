@@ -1,7 +1,7 @@
 ---
 layout: post
 type: event
-featured: true
+featured: false
 projects:
   - indicate-life
 people:

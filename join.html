@@ -1,0 +1,102 @@
+---
+layout: default
+title: Join
+permalink: /join/
+description: Open positions at RISE, and how to hear about future ones.
+---
+
+{%- comment -%}
+  Open positions.
+
+  Two filters, deliberately. The build-time one below drops openings whose
+  deadline has already passed at the moment the site was built. But GitHub
+  Pages only rebuilds on a push, so a deadline that passes on a quiet week
+  would leave a closed position on the page. Each item therefore also carries
+  `data-end`, and a few lines in assets/js/ui.js hide it on load once the date
+  has gone by. Without JavaScript the build-time split still applies, so the
+  page is never badly wrong, only occasionally a few days stale.
+
+  Dates are compared as plain integers (20261130) rather than as strings,
+  because Liquid's comparison operators are not dependable on strings.
+{%- endcomment -%}
+{%- assign today = 'now' | date: "%Y%m%d" | plus: 0 -%}
+{%- assign openings = site.posts | where: "type", "opening" | sort: "deadline" -%}
+
+<div class="page-head wrap narrow">
+  <h1>Join us</h1>
+  <p class="lede">Open positions at RISE, and how to hear about the next ones.</p>
+</div>
+
+<main id="content">
+<section class="band">
+<div class="wrap narrow">
+
+  {%- assign shown = 0 -%}
+  <ul class="openings" data-openings>
+    {%- for post in openings -%}
+      {%- assign close = post.deadline | date: "%Y%m%d" | plus: 0 -%}
+      {%- if close >= today -%}
+        {%- assign shown = shown | plus: 1 -%}
+    <li data-end="{{ post.deadline | date: '%Y-%m-%d' }}">
+      <p class="meta">
+        <span class="date">Apply by {{ post.deadline | date: "%d %B %Y" }}</span>
+        {%- if post.location %}<span class="funder">{{ post.location }}</span>{% endif -%}
+      </p>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      {%- if post.summary %}<p class="sum">{{ post.summary }}</p>{% endif -%}
+      {%- if post.pay_min %}
+      <p class="muted small">From {{ post.pay_min }} gross per {{ post.pay_unit | default: "month" }}{% if post.hours %}, {{ post.hours }}{% endif %}</p>
+      {%- endif -%}
+    </li>
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+
+  {%- comment -%}
+    Shown when the build found nothing open. The script hides it if it finds
+    an opening still live, and shows it if it has just hidden the last one.
+  {%- endcomment -%}
+  <p class="muted" data-openings-empty{% if shown > 0 %} hidden{% endif %}>
+    There are no open positions at the moment.
+  </p>
+
+</div>
+</section>
+
+{%- comment -%}
+  The standing section (H9). Most people who reach this page will not match an
+  advertised post, and the three routes below are how RISE actually takes
+  people on in between. Deliberately worded as an invitation rather than a
+  promise: none of them comes with funding attached, and saying so here saves
+  everyone a disappointing email.
+{%- endcomment -%}
+<section class="band">
+<div class="wrap narrow">
+
+  <h2>Other ways in</h2>
+
+  <p class="lede">Not everything starts with an advertised position.</p>
+
+  <div class="findings">
+    <ul>
+      <li><strong>Theses.</strong> We co-supervise masters and doctoral work
+        where the topic genuinely overlaps with a live project, so the work has
+        real data behind it and somewhere to land when it is finished. Write
+        with a short description of what you want to work on and roughly when.</li>
+      <li><strong>Visiting researchers.</strong> Stays of a few weeks to a few
+        months, normally funded by your own institution or a mobility grant.
+        Tell us what you would work on, and we will tell you honestly whether
+        we can give it the attention it deserves.</li>
+      <li><strong>Fellowships.</strong> If you are applying for a fellowship
+        that needs a host institution, we are open to being one and to writing
+        the proposal with you where the fit is right. Come to us early: the
+        schemes worth winning have long lead times.</li>
+    </ul>
+  </div>
+
+  <p>For any of these, or to hear about future openings, write to
+  <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+
+</div>
+</section>
+</main>

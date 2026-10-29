@@ -1,11 +1,11 @@
 ---
-title: "The Housing We Need For The Future We Want"
+title: "The housing we need for the future we want"
 kind: report
 authors: "Toth Z, Kockat J, Guglietti A, Sarran L, Feifer L, Bjørkskov KBR, Röck M, Søgaard R"
 year: 2026
+doi: "10.5281/zenodo.21030392"
 journal: "Green paper · The VELUX Group, Living Places"
 url_external: "https://livingplaces.velux.com/media/uz0cniqr/the-housing-we-need-for-the-future-we-want_lowresolution.pdf"
-note: "Published 3 July 2026. No DOI assigned."
 people:
   - martin-roeck
 projects:
@@ -17,7 +17,9 @@ partners:
   - artelia
 ---
 
-<!-- Figures: the paper's hierarchy diagram and the material-intensity vs
+<!-- Author name form confirmed by Martin, 29 October 2026: "Bjørkskov KBR".
+
+     Figures: the paper's hierarchy diagram and the material-intensity vs
      emissions matrix are the two worth reproducing here, with permission and
      a credit line. -->
 

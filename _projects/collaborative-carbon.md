@@ -6,6 +6,7 @@ funder: "Laudes Foundation"
 role: "Project lead, whole life carbon assessment and analysis"
 summary: "The first quantitative baseline for the whole life carbon of European collaborative housing - and the finding that it is structural material, not the collaborative model, that decides performance"
 hero: "/assets/img/projects/collaborative-housing.jpg"
+image: "/assets/img/projects/collaborative-housing.jpg"   # the social preview; see docs/03
 themes:
   - whole-life-carbon
   - sufficiency-space

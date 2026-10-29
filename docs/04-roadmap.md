@@ -80,8 +80,8 @@ confident invention does the most damage.
 
 ## 3. Smaller things, roughly in order of how much they matter
 
-- **Politecnico di Milano has no logo.** The only partner still on a
-  placeholder wordmark.
+- ~~**Politecnico di Milano has no logo.**~~ Done, October 2026: the real
+  logo replaced the placeholder wordmark.
 - **Ten new partners have no logo** - the South African universities, the
   Chinese and Indian organisations added with the 2026 events. The name shows
   on its own, which is tidy but inconsistent.
@@ -98,6 +98,26 @@ confident invention does the most damage.
   no other copy exists.
 - **Two websites unconfirmed** - China Building Materials Federation and
   Greentech Knowledge Solutions have `website: ""` rather than a guessed URL.
+
+---
+
+## 3a. From the October 2026 review
+
+The work order is `docs/07-review-implementation.md`. Phase P1 is done except
+P1.0 (the HTTPS certificate, which needs DNS and repository admin):
+
+- ~~P1.1 duplicate green paper~~ merged into one entry with the Zenodo DOI
+- ~~P1.2 "Page in progress" on the homepage~~ removed
+- ~~P1.3 past event pinned to the homepage~~ unpinned
+- ~~P1.4 no social preview image~~ default card added, `image` alongside `hero`
+- ~~P1.5 unsourced floor-area figure~~ sourced to the UNEP/GlobalABC Global
+  Status Report 2025-2026
+- ~~P1.6 INDICATE LIFE facts disagreed~~ 2024-2026 and five countries everywhere
+- ~~P1.7 nothing for the November job posts~~ `/join/`, opening fields, template
+
+Still open and waiting on a person: H0 (the HTTPS certificate) and H15 (the
+real job posts). H1, H2 and H9 were answered on 29 October. See the table at
+the end of `docs/07`.
 
 ---
 
