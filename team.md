@@ -7,8 +7,8 @@ permalink: /team/
 <div class="page-head wrap narrow">
   <h1>Team</h1>
   <p class="lede">RISE is a growing team in Vienna. We work every day with
-  researchers at partner institutions, and with a wider network across policy,
-  industry and research.</p>
+  researchers at partner institutions, and with a global network across
+  policy, industry, and research.</p>
 </div>
 
 <main id="content">
