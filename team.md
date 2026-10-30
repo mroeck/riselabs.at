@@ -6,8 +6,9 @@ permalink: /team/
 
 <div class="page-head wrap narrow">
   <h1>Team</h1>
-  <p class="lede">RISE is a small research institute in Vienna, working with a
-  wider network of partners across policy, industry and research.</p>
+  <p class="lede">RISE is a growing team in Vienna. We work every day with
+  researchers at partner institutions, and with a wider network across policy,
+  industry and research.</p>
 </div>
 
 <main id="content">
@@ -29,6 +30,10 @@ permalink: /team/
      A person with `published: false` does not appear at all. Do not remove
      that line until the person has approved the exact text. -->
 
+<p class="banner">We are growing. New colleagues join in 2027 and more
+profiles are on their way. <a href="{{ '/join/' | relative_url }}">See open
+positions &rarr;</a></p>
+
 {% include filter.html target="#teamlist" placeholder="Filter the team…" %}
 
 <div id="teamlist">
@@ -39,7 +44,7 @@ permalink: /team/
 
 {%- if everyone.size > 0 %}
 {% include peoplelist.html people=everyone %}
-<p class="muted small">Team members employed elsewhere are shown with their employer.</p>
+<p class="muted small">Team members employed elsewhere are shown with their institution.</p>
 {%- endif %}
 
 </div>

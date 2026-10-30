@@ -56,6 +56,17 @@ home_team_band: true
 # row of portraits where one is in colour reads as a mistake.
 portraits: bw
 
+# Large colour surfaces: the CI gradient on the hero and on the closing
+# "Work with us" band.
+#
+#   plain     (the default) flat shading from the semantic tokens
+#   gradient  the CI gradient, navy through purple to magenta
+#
+# Both are built and both are checked for contrast; this chooses which one
+# ships. It is one word here and a class on <body>, so it can be flipped on
+# for a look and flipped back without touching a stylesheet.
+surfaces: plain
+
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
 #   newsletter_action = the API embed endpoint - renders a form on the page

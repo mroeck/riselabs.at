@@ -451,6 +451,127 @@
     fig.hidden = false;   // only now is there anything to see
   }
 
+
+  /* ---------- people carousel ----------
+
+     Used by the home page team band: show N people at a time and rotate
+     through the whole list, so the band stays compact without hiding anyone.
+
+     Progressive enhancement, as everywhere here. Without JavaScript the list
+     renders as the ordinary grid with everybody in it, which is a complete
+     band on its own; this only ever takes things away and gives back
+     controls to reach them.
+
+     An auto-rotating carousel is a known accessibility hazard, so:
+       - it stops on hover, and on keyboard focus anywhere inside it;
+       - it never starts when the visitor asks for reduced motion;
+       - there is a pause button, not just a hover behaviour;
+       - every card stays in the DOM and in the tab order of its own page.
+  */
+  function setupCarousel(box) {
+    var per = parseInt(box.getAttribute("data-carousel"), 10) || 2;
+    var list = box.querySelector("ul");
+    if (!list) return;
+
+    var items = Array.prototype.slice.call(list.children);
+    if (items.length <= per) return;          // nothing to rotate through
+
+    var pages = Math.ceil(items.length / per);
+    var at = 0;
+    var timer = null;
+    var calm = false;
+    try {
+      calm = window.matchMedia &&
+             window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (e) {}
+
+    box.classList.add("carousel-on");
+    list.style.setProperty("--carousel-per", per);
+
+    function show(i) {
+      at = (i + pages) % pages;
+      items.forEach(function (li, n) {
+        var on = Math.floor(n / per) === at;
+        li.hidden = !on;
+      });
+      dots.forEach(function (d, n) {
+        d.setAttribute("aria-selected", n === at ? "true" : "false");
+      });
+      live.textContent = "Showing " + (at + 1) + " of " + pages;
+    }
+
+    function stop() {
+      if (timer) { window.clearInterval(timer); timer = null; }
+      play.setAttribute("aria-pressed", "true");
+      play.textContent = "Play";
+    }
+    function start() {
+      if (calm || timer) return;
+      timer = window.setInterval(function () { show(at + 1); }, 5000);
+      play.setAttribute("aria-pressed", "false");
+      play.textContent = "Pause";
+    }
+
+    var bar = document.createElement("div");
+    bar.className = "carousel-bar";
+
+    var prev = document.createElement("button");
+    prev.type = "button"; prev.className = "carousel-arrow";
+    prev.setAttribute("aria-label", "Previous");
+    prev.textContent = "\u2190";
+
+    var next = document.createElement("button");
+    next.type = "button"; next.className = "carousel-arrow";
+    next.setAttribute("aria-label", "Next");
+    next.textContent = "\u2192";
+
+    var dotwrap = document.createElement("div");
+    dotwrap.className = "carousel-dots";
+    dotwrap.setAttribute("role", "tablist");
+    dotwrap.setAttribute("aria-label", "Team members");
+
+    var dots = [];
+    for (var i = 0; i < pages; i++) {
+      (function (n) {
+        var d = document.createElement("button");
+        d.type = "button"; d.className = "carousel-dot";
+        d.setAttribute("role", "tab");
+        d.setAttribute("aria-label", "Show " + (n + 1) + " of " + pages);
+        d.addEventListener("click", function () { stop(); show(n); });
+        dotwrap.appendChild(d);
+        dots.push(d);
+      })(i);
+    }
+
+    var play = document.createElement("button");
+    play.type = "button"; play.className = "carousel-play";
+    play.setAttribute("aria-pressed", "false");
+    play.textContent = "Pause";
+    play.addEventListener("click", function () {
+      if (timer) { stop(); } else { start(); }
+    });
+
+    var live = document.createElement("p");
+    live.className = "carousel-live";
+    live.setAttribute("aria-live", "polite");
+
+    prev.addEventListener("click", function () { stop(); show(at - 1); });
+    next.addEventListener("click", function () { stop(); show(at + 1); });
+
+    bar.appendChild(prev);
+    bar.appendChild(dotwrap);
+    bar.appendChild(next);
+    if (!calm) { bar.appendChild(play); }
+    bar.appendChild(live);
+    box.appendChild(bar);
+
+    box.addEventListener("mouseenter", function () { if (timer) stop(); });
+    box.addEventListener("focusin", function () { if (timer) stop(); });
+
+    show(0);
+    start();
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-worldmap]"), setupMap);
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
@@ -463,6 +584,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), setupCarousel);
   }
 
   if (document.readyState === "loading") {
