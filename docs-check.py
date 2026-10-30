@@ -436,6 +436,32 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
     # longest one, which is the thing the short field exists to avoid. The
     # card falls back to `org` where `affil` is absent, so a missing one is a
     # note rather than a failure.
+    # An ORCID is an identifier, not a link: a wrong digit still resolves, to
+    # somebody else's research record. The checksum is cheap to verify, so it
+    # is, rather than trusting a number typed from an email.
+    for _l in (_fm.get("links") or []):
+        if _l.get("title") != "ORCID":
+            continue
+        _m = re.match(r"^https://orcid\.org/(\d{4})-(\d{4})-(\d{4})-(\d{3}[\dX])$",
+                      (_l.get("url") or "").strip())
+        if not _m:
+            P("people", f"_people/{_slug}.md",
+              f"ORCID link is `{_l.get('url')}`. It should read "
+              "https://orcid.org/0000-0000-0000-0000, with the final "
+              "character a digit or X.")
+            continue
+        _digits = "".join(_m.groups())
+        _total = 0
+        for _c in _digits[:15]:
+            _total = (_total + int(_c)) * 2
+        _check = (12 - _total % 11) % 11
+        _expect = "X" if _check == 10 else str(_check)
+        if _digits[15] != _expect:
+            P("people", f"_people/{_slug}.md",
+              f"ORCID {_l['url']} fails its own checksum: the last character "
+              f"should be {_expect}. One digit is wrong somewhere, and a wrong "
+              "ORCID points at a real stranger's publication record.")
+
     _af = _fm.get("affil")
     if _af and len(_af) > 40:
         P("people", f"_people/{_slug}.md",

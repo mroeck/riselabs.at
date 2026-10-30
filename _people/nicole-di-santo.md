@@ -13,6 +13,8 @@ summary: "Leads whole life carbon assessment and digital integrations at the Glo
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/nicole-di-santo-eng-phd/"
+  - title: ORCID
+    url: "https://orcid.org/0000-0001-8587-2526"
   - title: GBDI
     url: "https://www.gbdi.io"
 ---
