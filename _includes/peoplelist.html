@@ -10,11 +10,17 @@
   emphasis. The tagline belongs on the person's own page, where there is room
   for it to be read rather than skimmed.
 
-  Only email and LinkedIn on the card, even where the person's front matter
-  carries more. Every card then has the same two rows, so the cards are the
-  same shape; the rest of a person's links - a profile at their university, an
-  ORCID, a personal site - are on their own page, which is where someone who
-  wants them is heading anyway.
+  Email, LinkedIn and ORCID on the card, even where the person's front matter
+  carries more. Those three are the ones a reader is looking for on a card:
+  how to write to someone, who they are professionally, and what they have
+  published. The rest - a university profile, Google Scholar, a personal site
+  - are on the person's own page, which is where someone who wants them is
+  heading anyway.
+
+  The order is fixed here rather than taken from the front matter, so every
+  card reads the same way down the row whatever order the links happen to sit
+  in. A person without one of them simply shows fewer: Barbara has no ORCID,
+  and her card is not broken by that.
 
   Where there is no portrait yet, the card shows the person's initials on a
   token-coloured square rather than a stock photograph. A stock face standing
@@ -75,7 +81,9 @@
       Outside the card's own link, because a link inside a link is not valid
       and the keyboard order would be unusable.
     {%- endcomment -%}
-    {%- assign card_links = person.links | where: "title", "LinkedIn" -%}
+    {%- assign _li = person.links | where: "title", "LinkedIn" -%}
+    {%- assign _orcid = person.links | where: "title", "ORCID" -%}
+    {%- assign card_links = _li | concat: _orcid -%}
     {%- if person.email or card_links.size > 0 %}
     <p class="pc-links">
       {%- if person.email %}<a href="mailto:{{ person.email }}">Email</a>{% endif -%}

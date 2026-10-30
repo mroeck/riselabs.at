@@ -13,6 +13,8 @@ summary: "Leads global policy work on energy and emissions at the Global Buildin
 links:
   - title: LinkedIn
     url: "https://www.linkedin.com/in/zuhaibbatra/"
+  - title: ORCID
+    url: "https://orcid.org/0000-0002-3402-0048"
   - title: GBDI
     url: "https://www.gbdi.io"
 ---

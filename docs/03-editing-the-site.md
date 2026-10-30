@@ -285,8 +285,19 @@ change the role to past tense.
 without one gets their initials on a token-coloured square, taken from `cite`
 ("Röck M" gives RM). **Never a stock photograph of a face** - see `docs/06`.
 
-**Every card shows an employer**, "RISE" or "Core collaborator · <org>". That
-is what lets the team page be one grid instead of two sections.
+**Every card shows an affiliation**, the person's own institutions for RISE
+staff or "Extended team · <institutions>" for everyone else, from `affil`
+(short, in acronyms) falling back to `org`. That is what lets the team page be
+one grid instead of two sections.
+
+**A card shows three links at most**: email, LinkedIn and ORCID, in that
+order, whatever order they sit in the front matter. Those are what a reader
+wants from a card - how to write to someone, who they are professionally, and
+what they have published. Everything else a person links to appears on their
+own page. A person missing one of the three simply shows fewer.
+
+`docs-check.py` checks an ORCID against its own checksum, because a single
+wrong digit still resolves - to a stranger's publication record.
 
 ---
 ## 7. Add a partner
