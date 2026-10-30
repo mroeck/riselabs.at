@@ -12,17 +12,50 @@ permalink: /approach/
 {%- endcomment -%}
 
 <div class="page-head wrap narrow">
-  <h1>Approach</h1>
-  <p class="lede">Deep decarbonisation of the built environment is not merely a
-  technical problem. It is a question of changing a system - the interlinked
-  mix of technologies, infrastructures, organisations, markets, regulations
-  and practices that together produce buildings and infrastructures.</p>
+  <h1>Within limits, in the right order</h1>
+  <p class="lede">Every building stock draws on a shared and shrinking carbon
+  budget, and on ecosystems that are already past several of their boundaries.
+  Our work starts from that limit and asks three questions, in this
+  order.</p>
 </div>
 
 <main id="content">
 
 <section class="band">
 <div class="wrap narrow">
+
+<h2 id="avoid-reduce-regenerate">Avoid. Reduce. Regenerate.</h2>
+
+<ol class="hierarchy">
+  <li>
+    <h3>Avoid: build only what is needed.</h3>
+    <p>The emissions that never happen are the cheapest and the most certain.
+    That means renovating before replacing, using vacant and under-used space,
+    and planning for enough floor area rather than ever more.</p>
+    <p class="muted">Our work: Re:Living, a renovation-first hierarchy for
+    European housing; sufficiency scenarios for EU building stocks.</p>
+  </li>
+  <li>
+    <h3>Reduce: make what we build count.</h3>
+    <p>Then cut what remains: lower-carbon materials, longer service lives,
+    reuse, and efficient operation. We set benchmarks and limit values from
+    real buildings, so reductions are measured, not assumed.</p>
+    <p class="muted">Our work: whole life carbon benchmarks and limit values;
+    the EU whole life carbon roadmap.</p>
+  </li>
+  <li>
+    <h3>Regenerate: give back more than we take.</h3>
+    <p>Only then do we ask what the built environment can return: carbon
+    stored for the long term, materials kept in use, ecosystems restored.</p>
+    <p class="muted">Our work: research on biogenic carbon storage in EU
+    buildings.</p>
+  </li>
+</ol>
+
+<p class="guardrail"><strong>The guardrail:</strong> regeneration comes last
+and never pays for what could have been avoided. If a gain in one place is
+bought with a loss somewhere else, in nature, affordability or material
+justice, we do not count it as a gain.</p>
 
 <p>That framing decides what we work on. A method that nobody uses changes
 nothing. A regulation without credible data behind it gets watered down in
@@ -37,7 +70,7 @@ bring them all forward at once.</p>
 <section class="band">
 <div class="wrap narrow">
 
-<h2>Scaling up - changing the rules</h2>
+<h2 id="scaling-up">Scaling up: changing the rules</h2>
 
 <p>The science-to-policy interface: establishing the life cycle perspective in
 law and making it operational.</p>
@@ -54,7 +87,7 @@ and the EU Taxonomy, which steers where capital goes.</p>
 environmental footprint, and the social and economic dimensions of a transition
 that has to be just as well as fast.</p>
 
-<h2>Scaling wide - reaching greater numbers</h2>
+<h2 id="scaling-wide">Scaling wide: reaching greater numbers</h2>
 
 <p>Methods only matter at the scale they are used. Much of our work is
 therefore building the shared infrastructure that lets many actors act at
@@ -72,7 +105,7 @@ most of the floor area of the coming decades will be built.</p>
 <p>Both began as pilots and both outgrew them. Both now have lives of their
 own, which is the point.</p>
 
-<h2>Scaling deep - working with pioneers</h2>
+<h2 id="scaling-deep">Scaling deep: working with pioneers</h2>
 
 <p>The third strand is the smallest in budget and the least comfortable in a
 policy meeting, and we think it is where the interesting questions live.</p>
@@ -103,11 +136,13 @@ justice is not a success, it is a transfer.</p>
 
 <h2>Growth, and what follows it</h2>
 
-<p>Most decarbonisation strategy for construction assumes the sector keeps
-growing and gets cleaner per unit built. That assumption is doing a lot of
-work, and the arithmetic is uncomfortable: global floor area is projected to
-rise by up to 150% by 2050, which is roughly five billion square metres of new
-building every year
+<p>Most scenarios still assume that construction keeps growing and gets
+cleaner per square metre. Our own research suggests that will not be enough:
+in the EU, relying mostly on efficiency and cleaner materials would exceed
+national capacities by 2.7 billion tonnes CO<sub>2</sub>e over 2020-2050
+(<a href="{{ '/publications/alaux-2026-context-specific-life/' | relative_url }}">Alaux
+et al., 2026</a>). Global floor area is projected to rise by up to 150% by
+2050, roughly five billion square metres of new building every year
 (<a href="https://www.unep.org/resources/report/global-status-report-buildings-and-construction-2025-2026">Global
 Status Report for Buildings and Construction 2025-2026</a>, UNEP and
 GlobalABC). Efficiency gains that would be impressive against a stable stock
@@ -133,6 +168,19 @@ position.</p>
 
 <section class="band">
 <div class="wrap narrow">
+
+<h2>How we hold ourselves to account</h2>
+
+<ul class="account">
+  <li><strong>We publish our methods, data and code</strong> wherever licences
+  allow.</li>
+  <li><strong>We state our assumptions.</strong> Allocation rules, system
+  boundaries and uncertainty ranges come with every result.</li>
+  <li><strong>We review only where we have no stake</strong> in the outcome,
+  and say so in writing.</li>
+  <li><strong>We build models to be repeated</strong> by national teams, not
+  bought from us.</li>
+</ul>
 
 <h2>Methods</h2>
 

@@ -7,6 +7,11 @@
 # only differently organised and carrying images.
 #
 #   title     the field
+#   question  the question a client arrives with, which this field answers.
+#             It is the heading on the page; the title is the method, and
+#             sits under it. The fields grew out of clients who needed an
+#             answer they could defend in public: the methods are ours, the
+#             questions are theirs.
 #   strand    which strand of the Approach it serves: up | wide | deep
 #   lede      one or two sentences. What this actually is.
 #   includes  the concrete pieces of work. Things, not adjectives.
@@ -18,12 +23,14 @@
 # ---------------------------------------------------------------------------
 
 - title: "Whole life carbon assessment and benchmarking"
+  question: "How much is too much?"
   image: /assets/img/stock/concrete-blue-grey.jpg
   strand: up
   # image: /assets/img/expertise/whole-life-carbon.jpg
   lede: >-
-    Consistent assessment across large samples of real buildings, and the
-    benchmarks and target values that follow from them.
+    We assess large samples of real buildings consistently, and derive the
+    benchmarks and limit values that regulators and portfolio owners can
+    set.
   includes:
     - "Whole life carbon assessment of buildings and portfolios, to a comparable scope"
     - "Benchmark and limit-value derivation, with the sensitivity analysis behind it"
@@ -35,12 +42,14 @@
   audience: "Public authorities, portfolio holders, industry bodies, funders"
 
 - title: "Building stock modelling and scenarios"
+  question: "Where is the stock heading, and what changes that?"
   image: /assets/img/stock/glass-facade-sky.jpg
   strand: up
   # image: /assets/img/expertise/building-stock.jpg
   lede: >-
-    Bottom-up models of national and regional building stocks, built from
-    archetypes and harmonised data and run forward under policy scenarios.
+    Bottom-up models of national and regional building stocks, run against
+    carbon budgets to 2050 and beyond. They are built to be repeated by
+    national teams rather than bought from us.
   includes:
     - "Baseline and scenario modelling for building stocks, national or EU-wide"
     - "Archetype development and harmonised material and energy flow data"
@@ -55,13 +64,14 @@
   audience: "European Commission, national ministries and agencies, international organisations"
 
 - title: "Policy evidence and advisory"
+  question: "What should the rule say?"
   image: /assets/img/stock/concrete-forms-sky.jpg
   strand: up
   # image: /assets/img/expertise/policy-evidence.jpg
   lede: >-
-    Evidence for the people writing the rules - and advice on turning a target
-    into a sequence of decisions: how impacts get measured, what success looks
-    like, and what has to change in what order.
+    We turn a target into a sequence of decisions, with the evidence for
+    each, from the EPBD and the EU Taxonomy to national roadmaps and
+    sufficiency strategies.
   includes:
     - "Evidence and technical input for legislative processes and impact assessments"
     - "Advice on assessment methods: what to measure, how, and with what data"
@@ -75,12 +85,13 @@
   audience: "Public authorities and large public portfolio holders, cities and regions, industry associations"
 
 - title: "Open data infrastructure"
+  question: "What data does a country need to govern this?"
   image: /assets/img/stock/ceiling-terracotta-lines.jpg
   strand: wide
   # image: /assets/img/expertise/open-data.jpg
   lede: >-
-    The data capability an organisation or a country needs to govern whole life
-    carbon - rather than one more study.
+    Databases, reporting schemas and national data programmes, with
+    open-source tools so the capability stays where it is needed.
   includes:
     - "Design of building LCA databases, data models and reporting schemas"
     - "National data collection programmes, from sampling design to governance"
@@ -92,12 +103,14 @@
   audience: "Governments setting benchmarks, data initiatives, funders and philanthropies"
 
 - title: "Methods, standards and harmonisation"
+  question: "Can these numbers be compared?"
   image: /assets/img/stock/white-stair-soffit.jpg
   strand: up
   # image: /assets/img/expertise/methods-standards.jpg
   lede: >-
-    Making numbers comparable: method development where none yet exists,
-    independent review, and alignment across standards and jurisdictions.
+    Method development, tool and study reviews, and data-quality
+    appraisal. We take review work only where we have no stake in the
+    outcome.
   includes:
     - "Method development where no accepted method yet exists"
     - "Review of assessment methods, tools and benchmark proposals"
@@ -112,13 +125,13 @@
   audience: "Public authorities, standardisation and industry bodies, investors"
 
 - title: "Teaching and capacity building"
+  question: "Who will do this after we leave?"
   image: /assets/img/stock/facade-terracotta-curves.jpg
   strand: wide
   # image: /assets/img/expertise/teaching.jpg
   lede: >-
-    Building capability inside a team or a market - including where the data
-    infrastructure does not exist yet, working with local teams rather than
-    arriving with a finished method.
+    Training, executive briefings, workshops and co-supervision, often
+    with local teams, so that the capability outlasts the project.
   includes:
     - "Method training for national teams and assessment practitioners"
     - "Executive briefings on what the coming requirements actually demand"

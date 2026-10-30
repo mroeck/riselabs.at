@@ -2425,3 +2425,46 @@ table.listing td.t-partner .t-logo,
 .cols.pillars { grid-template-columns: repeat(4, 1fr); gap: 1.8rem; }
 @media (max-width: 64rem) { .cols.pillars { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 40rem) { .cols.pillars { grid-template-columns: 1fr; } }
+
+/* ---------- the avoid / reduce / regenerate hierarchy ----------
+
+   Numbered, because the order is the argument: regeneration is third and
+   never pays for a step skipped above it. The numbers are information here,
+   not decoration, which is the only reason they are there. */
+.hierarchy { list-style: none; counter-reset: step; padding: 0; margin: 1.6rem 0 1.8rem; }
+.hierarchy > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.6rem;
+  margin-bottom: 1.6rem;
+}
+.hierarchy > li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: .05em;
+  display: flex; align-items: center; justify-content: center;
+  width: 1.8rem; height: 1.8rem;
+  border: 1px solid var(--accent); border-radius: 50%;
+  font-family: var(--font-display); font-size: .9rem; color: var(--accent);
+}
+.hierarchy h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
+.hierarchy p { margin: 0 0 .4rem; }
+.hierarchy .muted { font-size: .9rem; }
+
+/* The guardrail. It is the definition of the word "regeneration" on this
+   site, so it is set apart from the paragraphs around it. */
+.guardrail {
+  border-left: 3px solid var(--accent);
+  padding: .1rem 0 .1rem 1.1rem;
+  margin: 0 0 1.6rem;
+}
+
+.account { padding-left: 1.2rem; }
+.account li { margin-bottom: .5rem; }
+
+/* The field's method name, under the question that heads it. */
+.xfield-name {
+  margin: -.3rem 0 .5rem;
+  font-size: .82rem; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase;
+  color: var(--ink-soft);
+}

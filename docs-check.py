@@ -126,6 +126,18 @@ for slug, (fm, body, f) in posts.items():
 # ------------------------------------------------- data files referencing slugs
 svc = yaml.safe_load((SITE / "_data/expertise.yml").read_text()) or []
 for s in svc:
+    # The question is what heads the field on the page; the title is the
+    # method, and it reads as a label under it. A field that loses its
+    # question silently falls back to the method name, which is the old page
+    # and gives no sign that anything is missing.
+    if not (s.get("question") or "").strip():
+        P("data", "_data/expertise.yml",
+          f"the field '{s.get('title')}' has no `question`. The page heads "
+          "each field with the question a client arrives with.")
+    elif not s["question"].rstrip().endswith("?"):
+        P("data", "_data/expertise.yml",
+          f"`question` for '{s.get('title')}' does not end in a question "
+          "mark. It is meant to be the question, not a restatement.")
     ex = s.get("example")
     if ex and ex not in coll["projects"]:
         P("xref", "_data/services.yml", f"example '{ex}' has no file in _projects/")
