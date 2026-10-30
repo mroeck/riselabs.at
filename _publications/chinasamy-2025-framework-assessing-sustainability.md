@@ -10,6 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/chinasamy-2025-framework-assessing-sustainability.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

@@ -10,6 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/ngoy-2025-exploratory-evaluation-factors.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

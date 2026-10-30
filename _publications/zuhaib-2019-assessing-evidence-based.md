@@ -8,6 +8,7 @@ doi: "10.1007/s12053-019-09812-z"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2019-assessing-evidence-based.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

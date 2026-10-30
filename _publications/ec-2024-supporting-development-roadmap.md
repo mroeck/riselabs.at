@@ -14,6 +14,7 @@ partners:
 projects:
   - supporting-the-development-of-a
 thumbnail: /assets/img/pubs/ec-2024-supporting-development-roadmap.webp
+rise_work: true
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

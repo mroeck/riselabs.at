@@ -11,6 +11,7 @@ partners:
   - bpie
   - vito
 thumbnail: /assets/img/pubs/zuhaib-2022-next-generation-energy.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

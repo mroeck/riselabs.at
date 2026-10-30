@@ -8,6 +8,7 @@ doi: "10.1016/j.enbuild.2025.116425"
 people:
   - nicole-di-santo
 thumbnail: /assets/img/pubs/disanto-2025-ensuring-excellent-indoor.webp
+rise_work: true
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

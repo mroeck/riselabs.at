@@ -484,6 +484,28 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
           "no `affil`, so the team card falls back to the full `org`. Add the "
           "acronym form if that wraps.")
 
+# `rise_work` is derived, not decided: a publication is RISE or GBDI work when
+# someone on it has a `rise_since` year and the publication is from that year
+# or later. It lives in the file because the list sorts on it and a template
+# cannot sort on something it computes while rendering - which means it can
+# drift the moment a `rise_since` changes or a person is added to a paper.
+# So it is recomputed here and compared, every run.
+_since = {s: fm.get("rise_since") for s, (fm, _b, _f) in coll["people"].items()}
+for _slug, (_pb, _body, _f) in coll["publications"].items():
+    _want = False
+    for _s in (_pb.get("people") or []):
+        _y = _since.get(_s)
+        if _y and (_pb.get("year") or 0) >= _y:
+            _want = True
+    _have = _pb.get("rise_work")
+    if _have is None:
+        P("publications", f"_publications/{_slug}.md",
+          "no `rise_work`. Run `python3 make-rise-flags.py` to write it.")
+    elif bool(_have) != _want:
+        P("publications", f"_publications/{_slug}.md",
+          f"`rise_work` says {_have}, but the people on it and their "
+          f"`rise_since` years say {_want}. Run `python3 make-rise-flags.py`.")
+
 # Publication thumbnails. Every entry should have one: the list draws a tile
 # from front matter where a file is missing, so nothing looks broken, but a
 # designed tile or a title page says more than a year and a kind label.

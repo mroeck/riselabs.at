@@ -10,6 +10,7 @@ people:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2018-lca-bim-visualization.webp
+rise_work: false
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

@@ -11,6 +11,7 @@ projects:
   - analysis-of-life-cycle-greenhouse
   - supporting-the-development-of-a
 thumbnail: /assets/img/pubs/roeck-2024-slice-open-building.webp
+rise_work: true
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

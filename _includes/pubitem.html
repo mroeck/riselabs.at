@@ -3,6 +3,15 @@
   Any RISE person's `cite` name is underlined automatically.
 {%- endcomment -%}
 {%- assign p = include.pub -%}
+{%- comment -%}
+  The full author list, every name, in the order the paper carries them.
+
+  An earlier version shortened long lists to "lead author et al. (incl. ...)"
+  to keep the line down. It read oddly - the brackets singled the team out
+  rather than showing them in place - so the list is whole again and the
+  underlining does that job instead: a reader scanning sees where RISE sits
+  among the authors, first or twenty-ninth.
+{%- endcomment -%}
 {%- assign a = p.authors -%}
 {%- comment -%}
   Every form a person has published under, not just the current one. A name
@@ -26,27 +35,13 @@
   {%- endfor -%}
 {%- endfor -%}
 {%- comment -%}
-  Is this work RISE or GBDI did, or work the author did before joining?
-
-  Derived, never tagged by hand: a publication counts if any person on it
-  has a `rise_since` year in their file and the publication is from that year
-  or later. `rise_since` is one fact per person, and it is the only thing
-  here a file cannot work out for itself: an author string says who wrote a
-  paper, not who they worked for at the time.
-
-  Being attached to a project is deliberately NOT enough. Several projects on
-  this site ran before RISE existed - IEA EBC Annex 72 ended in 2023 - so
-  "has a project" would have counted 2022 work as RISE work. The date a
-  person joined is the only thing that actually answers the question.
-
-  Nobody with no `rise_since` is ever counted, so the filter simply does not
-  appear until those years exist. It never guesses.
+  `rise_work` says whether this is work RISE or GBDI did, or work the author
+  did before joining. It is a field on the publication, written from each
+  person's `rise_since` year and checked by docs-check.py, because the list
+  has to sort on it and a template cannot sort on a value it works out while
+  rendering.
 {%- endcomment -%}
-{%- assign rise_work = false -%}
-{%- for slug in p.people -%}
-  {%- assign who = site.people | where: "slug", slug | first -%}
-  {%- if who.rise_since and p.year >= who.rise_since %}{% assign rise_work = true %}{% endif -%}
-{%- endfor -%}
+{%- assign rise_work = p.rise_work -%}
 {%- comment -%}
   The thumbnail. Every publication has one: a title page where the licence
   allows it, otherwise a designed tile. The three whose title pages are
@@ -59,7 +54,7 @@
   picture does, and a screen reader announcing "title page of..." before every
   entry in a list of sixty-four would be noise.
 {%- endcomment -%}
-<li{% if rise_work %} data-rise="true"{% endif %}>
+<li data-year="{{ p.year }}"{% if p.citations %} data-citations="{{ p.citations }}"{% endif %}{% if rise_work %} data-rise="true"{% endif %}>
   <a class="pub-thumb" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
     {%- if p.thumbnail -%}
     <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" width="150" height="200">

@@ -11,6 +11,7 @@ people:
 #   - project-filename
 thumbnail: /assets/img/pubs/wohnlabor-2019-wohnlabor-gemeinsam-wohnen.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
+rise_work: false
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

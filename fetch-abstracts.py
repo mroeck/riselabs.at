@@ -248,7 +248,15 @@ def main():
             note = (f"<!-- Abstract as held by {where},\n"
                     f"     retrieved {time.strftime('%Y-%m-%d')}. Reproduced as\n"
                     f"     recorded; edit only to fix encoding. -->\n\n")
-            f.write_text(f"---\n{front}\n---\n\n{note}{wrap(abstract)}\n")
+            # A heading, because the body otherwise opens with a wall of text
+            # and nothing says whose words these are; and a line saying they
+            # are the published abstract rather than our summary of it. Which
+            # service the text came through is in the comment above, where
+            # somebody checking provenance will look, and not on the page,
+            # where it would be a line of plumbing under all sixty-four.
+            head = "## Abstract\n\n"
+            tail = "\n\nAbstract as published.\n{: .muted .small}\n"
+            f.write_text(f"---\n{front}\n---\n\n{note}{head}{wrap(abstract)}{tail}")
 
     detail = ", ".join(f"{n} from {s}" for s, n in sorted(by_source.items()))
     print(f"\n{found} abstract(s) found" + (f" ({detail})" if detail else "")

@@ -2,7 +2,29 @@
   A list of publications, newest first. Expects: include.pubs
   include.sections="true" breaks them into kind sections.
 {%- endcomment -%}
-{%- assign pubs = include.pubs | sort: "year" | reverse -%}
+{%- comment -%}
+  Order: newest first, and within one year the team's own RISE or GBDI work
+  ahead of their earlier work. Someone scanning a year wants to see what RISE
+  did that year before what its people did elsewhere before joining.
+
+  Liquid cannot sort on two keys, so the list is sorted by year and then
+  rebuilt a year at a time, RISE work first. `rise_work` is a field on each
+  publication rather than something worked out here: a template cannot sort
+  on a value it computes while rendering, and docs-check.py keeps the field
+  honest against the `rise_since` years it is derived from.
+
+  `pubs` starts as an empty array of the right kind, produced by a `where`
+  that matches nothing. Jekyll's Liquid has no literal for one.
+{%- endcomment -%}
+{%- assign by_year = include.pubs | sort: "year" | reverse -%}
+{%- assign years = by_year | map: "year" | uniq -%}
+{%- assign pubs = include.pubs | where: "__never__", "__never__" -%}
+{%- for y in years -%}
+  {%- assign in_year = by_year | where: "year", y -%}
+  {%- assign ours = in_year | where: "rise_work", true -%}
+  {%- assign theirs = in_year | where_exp: "x", "x.rise_work != true" -%}
+  {%- assign pubs = pubs | concat: ours | concat: theirs -%}
+{%- endfor -%}
 {%- if include.sections == "true" -%}
   {%- assign kinds = "article,book,report,data" | split: "," -%}
   {%- assign names = "Journal articles,Books and chapters,Reports,Data and tools" | split: "," -%}

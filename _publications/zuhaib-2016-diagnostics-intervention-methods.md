@@ -8,6 +8,7 @@ doi: "10.13025/s8c88p"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2016-diagnostics-intervention-methods.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

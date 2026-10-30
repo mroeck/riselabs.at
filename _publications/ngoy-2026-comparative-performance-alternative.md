@@ -10,6 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/ngoy-2026-comparative-performance-alternative.webp
+rise_work: true
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

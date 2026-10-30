@@ -173,6 +173,8 @@ exclude:
   - docs          # the guidance documents, not part of the public site
   - _preview      # local preview output, never published
   - docs-check.py    # site checker - tooling, not a page
+  - make-rise-flags.py  # writes rise_work into publications; see docs-check
+  - fetch-citations.py  # pulls citation counts from OpenAlex; needs network
   - make-figures.py  # redraws the CollaborativeCarbon charts
   - fetch-abstracts.py  # pulls abstracts from Zotero/Crossref
   - add-logos.py        # downloads and normalises partner logos

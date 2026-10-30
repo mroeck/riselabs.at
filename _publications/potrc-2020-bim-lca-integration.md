@@ -12,6 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/potrc-2020-bim-lca-integration.webp
+rise_work: false
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
