@@ -115,8 +115,8 @@ permalink: /
 <section class="band">
   <div class="wrap">
     <h2>The team</h2>
-    <p class="band-note">A small institute in Vienna, working with a wider
-    network across policy, industry and research.</p>
+    <p class="band-note">Based in Vienna, working with a global network across
+    policy, industry, and research.</p>
     {%- comment -%}
       Two at a time, rotating through everyone. The band stays compact and
       the whole team is still reachable, both through the rotation and
