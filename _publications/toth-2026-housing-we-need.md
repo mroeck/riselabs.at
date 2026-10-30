@@ -17,6 +17,7 @@ partners:
   - artelia
 thumbnail: /assets/img/pubs/toth-2026-housing-we-need.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
+rise_work: true
 ---
 
 <!-- Author name form confirmed by Martin, 29 October 2026: "Bjørkskov KBR".

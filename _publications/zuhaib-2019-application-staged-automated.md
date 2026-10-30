@@ -8,6 +8,7 @@ doi: "10.1016/j.jobe.2019.100866"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2019-application-staged-automated.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

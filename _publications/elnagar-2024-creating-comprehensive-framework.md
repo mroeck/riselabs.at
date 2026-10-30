@@ -10,6 +10,7 @@ people:
 partners:
   - bpie
 thumbnail: /assets/img/pubs/elnagar-2024-creating-comprehensive-framework.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

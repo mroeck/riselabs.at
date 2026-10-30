@@ -8,6 +8,7 @@ doi: "10.1088/1742-6596/3140/15/152003"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/sommer-2025-beyond-efficiency-exploring.webp
+rise_work: true
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

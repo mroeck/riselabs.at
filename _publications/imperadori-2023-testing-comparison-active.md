@@ -10,6 +10,7 @@ people:
 partners:
   - polimi
 thumbnail: /assets/img/pubs/imperadori-2023-testing-comparison-active.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

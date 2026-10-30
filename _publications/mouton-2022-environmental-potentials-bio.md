@@ -10,6 +10,7 @@ people:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/mouton-2022-environmental-potentials-bio.webp
+rise_work: false
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

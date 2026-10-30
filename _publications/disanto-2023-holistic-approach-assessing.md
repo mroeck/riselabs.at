@@ -10,6 +10,7 @@ people:
 partners:
   - polimi
 thumbnail: /assets/img/pubs/disanto-2023-holistic-approach-assessing.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

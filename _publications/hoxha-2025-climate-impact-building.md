@@ -13,6 +13,7 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/hoxha-2025-climate-impact-building.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
+rise_work: true
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

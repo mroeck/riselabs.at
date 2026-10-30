@@ -4,6 +4,31 @@
 {%- endcomment -%}
 {%- assign p = include.pub -%}
 {%- assign a = p.authors -%}
+
+{%- comment -%}
+  The citation line, compact. Author lists here run to 32 names, and a list
+  that long is not a citation, it is a wall: the reader wants to know whose
+  paper this is and whether RISE is on it.
+
+  So: the lead author and "et al." from four names up, and then the RISE
+  people who would otherwise disappear, named in the order they appear on the
+  paper. That second part is the whole reason not to stop at "et al." -
+  without it, most of this list stops showing that RISE wrote any of it. The
+  full author list is on the publication's own page, unabridged.
+{%- endcomment -%}
+{%- assign parts = p.authors | split: ", " -%}
+{%- if parts.size > 3 -%}
+  {%- capture forms -%}|{% for who in site.people %}{% if who.cite %}{{ who.cite }}|{% endif %}{% for also in who.cite_also %}{{ also }}|{% endfor %}{% endfor %}{%- endcapture -%}
+  {%- assign hidden = parts | slice: 1, 100 -%}
+  {%- assign ours = "" -%}
+  {%- for h in hidden -%}
+    {%- capture probe %}|{{ h }}|{% endcapture -%}
+    {%- if forms contains probe -%}
+      {%- if ours == "" %}{% assign ours = h %}{% else %}{% assign ours = ours | append: ", " | append: h %}{% endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- capture a -%}{{ parts[0] }} et al.{% if ours != "" %} (incl. {{ ours }}){% endif %}{%- endcapture -%}
+{%- endif -%}
 {%- comment -%}
   Every form a person has published under, not just the current one. A name
   in an author string is the name that paper carries, and people's names
@@ -26,27 +51,13 @@
   {%- endfor -%}
 {%- endfor -%}
 {%- comment -%}
-  Is this work RISE or GBDI did, or work the author did before joining?
-
-  Derived, never tagged by hand: a publication counts if any person on it
-  has a `rise_since` year in their file and the publication is from that year
-  or later. `rise_since` is one fact per person, and it is the only thing
-  here a file cannot work out for itself: an author string says who wrote a
-  paper, not who they worked for at the time.
-
-  Being attached to a project is deliberately NOT enough. Several projects on
-  this site ran before RISE existed - IEA EBC Annex 72 ended in 2023 - so
-  "has a project" would have counted 2022 work as RISE work. The date a
-  person joined is the only thing that actually answers the question.
-
-  Nobody with no `rise_since` is ever counted, so the filter simply does not
-  appear until those years exist. It never guesses.
+  `rise_work` says whether this is work RISE or GBDI did, or work the author
+  did before joining. It is a field on the publication, written from each
+  person's `rise_since` year and checked by docs-check.py, because the list
+  has to sort on it and a template cannot sort on a value it works out while
+  rendering.
 {%- endcomment -%}
-{%- assign rise_work = false -%}
-{%- for slug in p.people -%}
-  {%- assign who = site.people | where: "slug", slug | first -%}
-  {%- if who.rise_since and p.year >= who.rise_since %}{% assign rise_work = true %}{% endif -%}
-{%- endfor -%}
+{%- assign rise_work = p.rise_work -%}
 {%- comment -%}
   The thumbnail. Every publication has one: a title page where the licence
   allows it, otherwise a designed tile. The three whose title pages are
@@ -59,7 +70,7 @@
   picture does, and a screen reader announcing "title page of..." before every
   entry in a list of sixty-four would be noise.
 {%- endcomment -%}
-<li{% if rise_work %} data-rise="true"{% endif %}>
+<li data-year="{{ p.year }}"{% if p.citations %} data-citations="{{ p.citations }}"{% endif %}{% if rise_work %} data-rise="true"{% endif %}>
   <a class="pub-thumb" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
     {%- if p.thumbnail -%}
     <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" width="150" height="200">

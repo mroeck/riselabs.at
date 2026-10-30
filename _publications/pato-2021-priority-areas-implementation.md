@@ -10,6 +10,7 @@ people:
 partners:
   - bpie
 thumbnail: /assets/img/pubs/pato-2021-priority-areas-implementation.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

@@ -13,6 +13,7 @@ partners:
 projects:
   - towards-embodied-carbon-benchmarks-for
 thumbnail: /assets/img/pubs/roeck-2022-embodied-carbon-european.webp
+rise_work: false
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

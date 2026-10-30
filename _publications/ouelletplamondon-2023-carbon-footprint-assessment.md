@@ -10,6 +10,7 @@ people:
 projects:
   - iea-ebc-annex-72
 thumbnail: /assets/img/pubs/ouelletplamondon-2023-carbon-footprint-assessment.webp
+rise_work: true
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

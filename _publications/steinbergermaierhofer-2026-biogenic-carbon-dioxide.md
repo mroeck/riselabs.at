@@ -19,6 +19,7 @@ projects:
   - analysis-of-life-cycle-greenhouse
 thumbnail: /assets/img/pubs/steinbergermaierhofer-2026-biogenic-carbon-dioxide.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
+rise_work: true
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

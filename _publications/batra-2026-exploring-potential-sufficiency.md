@@ -8,6 +8,7 @@ doi: "10.1016/j.enbuild.2025.116727"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/batra-2026-exploring-potential-sufficiency.webp
+rise_work: true
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

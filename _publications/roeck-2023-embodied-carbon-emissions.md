@@ -12,6 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2023-embodied-carbon-emissions.webp
+rise_work: true
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

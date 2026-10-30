@@ -14,6 +14,7 @@ partners:
 projects:
   - global-building-data-initiative
 thumbnail: /assets/img/pubs/disanto-2026-global-building-data.webp
+rise_work: true
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

@@ -12,6 +12,7 @@ partners:
 projects:
   - global-status-report-for-buildings
 thumbnail: /assets/img/pubs/hamilton-2026-global-status-report.webp
+rise_work: true
 ---
 
 <!-- Added 30 Oct 2026. Martin's own: missing from the site and from his ORCID.

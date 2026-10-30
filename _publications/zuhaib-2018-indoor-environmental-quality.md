@@ -8,6 +8,7 @@ doi: "10.1016/j.buildenv.2018.05.001"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2018-indoor-environmental-quality.webp
+rise_work: false
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).
