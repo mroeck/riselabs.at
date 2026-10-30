@@ -484,6 +484,25 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
           "no `affil`, so the team card falls back to the full `org`. Add the "
           "acronym form if that wraps.")
 
+# Publication thumbnails. Every entry should have one: the list draws a tile
+# from front matter where a file is missing, so nothing looks broken, but a
+# designed tile or a title page says more than a year and a kind label.
+# A credit is required wherever the image is not RISE's own; that cannot be
+# told from the front matter, so what is checked is that a credit, where
+# given, is not empty.
+for _slug, (_pb, _body, _f) in coll["publications"].items():
+    _th = _pb.get("thumbnail")
+    if not _th:
+        N(f"_publications/{_slug}.md",
+          "no `thumbnail`, so the list draws a tile from the front matter. "
+          "A title page or a designed tile says more.")
+    elif not (SITE / _th.lstrip("/")).exists():
+        P("asset", f"_publications/{_slug}.md", f"thumbnail missing: {_th}")
+    if "thumbnail_credit" in _pb and not (_pb.get("thumbnail_credit") or "").strip():
+        P("publications", f"_publications/{_slug}.md",
+          "`thumbnail_credit` is empty. Either name whose image it is, or "
+          "remove the line.")
+
 # ---------------------------------------------------------------- testimonials
 # `short` is what the homepage shows where a full quote will not fit. It must
 # be a verbatim substring of `quote`, never a paraphrase: a shortened quote

@@ -8,6 +8,7 @@ people:
   - martin-roeck
 projects:
   - iea-ebc-annex-72
+thumbnail: /assets/img/pubs/frischknecht-2023-iea-ebc-annex.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

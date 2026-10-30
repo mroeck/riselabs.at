@@ -9,6 +9,8 @@ people:
   - martin-roeck
 projects:
   - iea-ebc-annex-72
+thumbnail: /assets/img/pubs/soustverdaguer-2023-using-systematic-building.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

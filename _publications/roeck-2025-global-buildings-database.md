@@ -11,6 +11,8 @@ partners:
   - epfl
 projects:
   - global-building-data-initiative
+thumbnail: /assets/img/pubs/roeck-2025-global-buildings-database.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

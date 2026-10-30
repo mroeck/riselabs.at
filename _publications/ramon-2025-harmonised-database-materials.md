@@ -17,6 +17,7 @@ partners:
   - polimi
 projects:
   - analysis-of-life-cycle-greenhouse
+thumbnail: /assets/img/pubs/ramon-2025-harmonised-database-materials.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

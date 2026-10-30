@@ -9,6 +9,8 @@ people:
   - martin-roeck
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/mastrucci-2026-carbon-storage-mitigation.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

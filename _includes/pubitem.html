@@ -47,11 +47,36 @@
   {%- assign who = site.people | where: "slug", slug | first -%}
   {%- if who.rise_since and p.year >= who.rise_since %}{% assign rise_work = true %}{% endif -%}
 {%- endfor -%}
+{%- comment -%}
+  The thumbnail. Every publication has one: a title page where the licence
+  allows it, otherwise a designed tile. The three whose title pages are
+  CC-BY-NC-ND have neither yet (H20), and they fall through to the tile drawn
+  below in HTML, from the entry's own front matter - so a publication added
+  tomorrow with no image still looks like the others rather than leaving a
+  hole.
+
+  Decorative, with empty alt text: the citation beside it says everything the
+  picture does, and a screen reader announcing "title page of..." before every
+  entry in a list of sixty-four would be noise.
+{%- endcomment -%}
 <li{% if rise_work %} data-rise="true"{% endif %}>
+  <a class="pub-thumb" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
+    {%- if p.thumbnail -%}
+    <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" width="150" height="200">
+    {%- else -%}
+    <span class="pub-tile">
+      <span class="pub-tile-bar"></span>
+      <span class="pub-tile-kind">{{ p.kind | default: "publication" }}</span>
+      <span class="pub-tile-year">{{ p.year }}</span>
+    </span>
+    {%- endif -%}
+  </a>
+  <span class="pub-text">
   {{ a }}.
   <a class="pub-title" href="{{ p.url | relative_url }}">{{ p.title }}</a>.
   {%- if p.journal %} <span class="venue">{{ p.journal }}</span>,{% endif %}
   {{ p.year }}.
   {%- if p.doi %} <a class="doi" href="https://doi.org/{{ p.doi }}">https://doi.org/{{ p.doi }}</a>{% endif -%}
   {%- if p.note %} <em class="muted">- {{ p.note }}</em>{% endif -%}
+  </span>
 </li>

@@ -53,6 +53,21 @@ layout: default
 </div>
 
 <aside class="article-side">
+  {%- comment -%}
+    The thumbnail, where there is one. Here it carries its credit, which the
+    list deliberately does not: a line of licence text under every entry of a
+    sixty-four-item list is noise, but on the work's own page it is where
+    someone checking the provenance of the image would look.
+  {%- endcomment -%}
+  {%- if page.thumbnail %}
+  <figure class="pub-figure">
+    <img src="{{ page.thumbnail | relative_url }}" alt="" loading="lazy">
+    {%- if page.thumbnail_credit %}
+    <figcaption class="muted small">{{ page.thumbnail_credit }}</figcaption>
+    {%- endif %}
+  </figure>
+  {%- endif %}
+
   <dl class="facts">
     {%- if page.journal %}<dt>Published in</dt><dd>{{ page.journal }}</dd>{% endif -%}
     <dt>Year</dt><dd>{{ page.year }}</dd>

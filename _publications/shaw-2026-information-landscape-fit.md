@@ -9,6 +9,8 @@ people:
   - martin-roeck
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/shaw-2026-information-landscape-fit.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

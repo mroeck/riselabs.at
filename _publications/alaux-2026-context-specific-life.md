@@ -17,6 +17,8 @@ partners:
   - polimi
 projects:
   - analysis-of-life-cycle-greenhouse
+thumbnail: /assets/img/pubs/alaux-2026-context-specific-life.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

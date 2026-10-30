@@ -11,6 +11,8 @@ projects:
   - analysis-of-life-cycle-greenhouse
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/hoxha-2025-climate-impact-building.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
