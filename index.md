@@ -154,8 +154,8 @@ permalink: /
       <div>
         <h2>Recent publications</h2>
         <p class="band-note">We publish our methods, data and code openly
-        wherever licensing allows. A benchmark nobody can reproduce is an
-        opinion.</p>
+        wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
+        learn more.</p>
         {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 3 -%}
         {% include publist.html pubs=recent %}
         <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
