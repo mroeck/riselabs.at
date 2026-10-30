@@ -1229,7 +1229,9 @@ body.portraits-bw .person-head .portrait {
 
 /* ---------- publication links ---------- */
 
-.pub-title { font-weight: 600; color: var(--ink); text-decoration: none; }
+/* Bold, not semibold: the author list is whole again and runs to 32 names on
+   some entries, so the title has to be the thing the eye lands on. */
+.pub-title { font-weight: 700; color: var(--ink); text-decoration: none; }
 .pub-title:hover { color: var(--accent); text-decoration: underline; }
 
 .projects.compact li { padding: .8rem 0; }

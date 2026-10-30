@@ -3,32 +3,16 @@
   Any RISE person's `cite` name is underlined automatically.
 {%- endcomment -%}
 {%- assign p = include.pub -%}
-{%- assign a = p.authors -%}
-
 {%- comment -%}
-  The citation line, compact. Author lists here run to 32 names, and a list
-  that long is not a citation, it is a wall: the reader wants to know whose
-  paper this is and whether RISE is on it.
+  The full author list, every name, in the order the paper carries them.
 
-  So: the lead author and "et al." from four names up, and then the RISE
-  people who would otherwise disappear, named in the order they appear on the
-  paper. That second part is the whole reason not to stop at "et al." -
-  without it, most of this list stops showing that RISE wrote any of it. The
-  full author list is on the publication's own page, unabridged.
+  An earlier version shortened long lists to "lead author et al. (incl. ...)"
+  to keep the line down. It read oddly - the brackets singled the team out
+  rather than showing them in place - so the list is whole again and the
+  underlining does that job instead: a reader scanning sees where RISE sits
+  among the authors, first or twenty-ninth.
 {%- endcomment -%}
-{%- assign parts = p.authors | split: ", " -%}
-{%- if parts.size > 3 -%}
-  {%- capture forms -%}|{% for who in site.people %}{% if who.cite %}{{ who.cite }}|{% endif %}{% for also in who.cite_also %}{{ also }}|{% endfor %}{% endfor %}{%- endcapture -%}
-  {%- assign hidden = parts | slice: 1, 100 -%}
-  {%- assign ours = "" -%}
-  {%- for h in hidden -%}
-    {%- capture probe %}|{{ h }}|{% endcapture -%}
-    {%- if forms contains probe -%}
-      {%- if ours == "" %}{% assign ours = h %}{% else %}{% assign ours = ours | append: ", " | append: h %}{% endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-  {%- capture a -%}{{ parts[0] }} et al.{% if ours != "" %} (incl. {{ ours }}){% endif %}{%- endcapture -%}
-{%- endif -%}
+{%- assign a = p.authors -%}
 {%- comment -%}
   Every form a person has published under, not just the current one. A name
   in an author string is the name that paper carries, and people's names
