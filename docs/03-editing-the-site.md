@@ -299,6 +299,22 @@ own page. A person missing one of the three simply shows fewer.
 `docs-check.py` checks an ORCID against its own checksum, because a single
 wrong digit still resolves - to a stranger's publication record.
 
+**`rise_since`** is the year a person started with RISE or GBDI, as a bare
+number. It is what the "With RISE or GBDI" filter on `/publications/` uses: a
+publication counts as RISE or GBDI work when someone on it has a
+`rise_since` and the publication is from that year or later.
+
+It is the one fact in all of this that no file can work out for itself. An
+author string says who wrote a paper, not who they worked for at the time,
+and about half the publication list is work the team did before joining -
+Galway, BPIE, Politecnico di Milano - which belongs on the site because it is
+theirs. **Being attached to a project is deliberately not enough to count:**
+some projects here ran before RISE existed, so that test would have called
+2022 work RISE work.
+
+Until at least one person has a `rise_since`, the filter does not render at
+all. It never guesses.
+
 **`cite_also`** is an optional list of earlier forms of a person's name, for
 anyone who has published under more than one. Zuhaib carries
 `cite_also: ["Zuhaib S"]`, because he published as Sheikh Zuhaib until 2022
