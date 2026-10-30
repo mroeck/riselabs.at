@@ -3,6 +3,9 @@ wip: true   # draft: awaiting this person's own words and approval
 name: "Barbara Droste-Luckmann"
 role: "Head of Office, Stakeholder and Communications Manager"
 cite: "Droste-Luckmann B"
+# joined RISE in 2026. Used by the "With RISE or GBDI" filter on
+# /publications/: work from this year on counts as RISE or GBDI work.
+rise_since: 2026
 group: rise
 affil: "RISE, GBDI"
 order: 2
