@@ -3,6 +3,9 @@ wip: true   # draft: awaiting this person's own words and approval
 name: "Darmarajan (Norman) Chinasamy"
 role: "Intern, WLCA Emerging Markets"
 cite: "Chinasamy D"
+# started at GBDI in 2026. Used by the "With RISE or GBDI" filter on
+# /publications/: work from this year on counts as RISE or GBDI work.
+rise_since: 2026
 group: collaborator
 org: "Global Building Data Initiative, University of Cape Town"
 affil: "GBDI, UCT"
