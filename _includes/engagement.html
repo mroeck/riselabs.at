@@ -34,7 +34,7 @@
     </p>
     {%- endif %}
     <p class="engage-go">
-      <a href="mailto:{{ site.email }}?subject={{ m.subject | uri_escape }}">{{ m.title }} &rarr;</a>
+      <a href="mailto:{{ site.email }}?subject={{ m.subject | default: m.action | uri_escape }}">{{ m.action | default: m.title }} &rarr;</a>
     </p>
   </li>
   {%- endfor -%}

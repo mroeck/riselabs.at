@@ -6,8 +6,12 @@
 #
 #   id        the anchor, and nothing else; keep it stable
 #   title     the name of the way in, as it reads in the sentence
-#   subject   prefills the subject line of the card's mail link, so an
-#             enquiry arrives already sorted
+#   action    what the card's link says, and the subject line it prefills.
+#             `title` names the reader's situation ("You hold building data");
+#             `action` names what happens next ("Join a data programme"). A
+#             button has to say what it does, and a subject line has to sort
+#             the inbox, so neither can be the situation.
+#   subject   the mail subject, normally the same as `action`
 #   body      the description
 #   examples  project slugs, two per card. They render as "For example: …",
 #             each linked to its project page under its `short_title`.
@@ -31,42 +35,41 @@
 # self-contained engagement to the most open-ended.
 
 - id: commission
-  title: "Commission a study"
+  title: "You need a number you can defend"
+  action: "Commission a study"
   subject: "Commission a study"
   body: >-
-    A clear question and an answer that holds up: a baseline, scenarios,
-    benchmarks or a roadmap, written for a legislative process or a board.
+    Commission a baseline, benchmark, limit value or scenario study.
   examples:
     - supporting-the-development-of-a
     - analysis-of-life-cycle-greenhouse
 
 - id: fund
-  title: "Fund a programme"
+  title: "You want change that outlasts a project"
+  action: "Fund a programme"
   subject: "Fund a programme"
   body: >-
-    Shared data and capacity that outlast a single project. We design and run
-    programmes with funders, from the pilot until they stand on their own.
+    Fund a programme that builds shared data and capacity, from pilot to self-sustaining.
   examples:
     - indicate
     - global-building-data-initiative
 
 - id: join-data
-  title: "Join a data programme"
+  title: "You hold building data"
+  action: "Join a data programme"
   subject: "Join a data programme"
   body: >-
-    For national teams, governments and data initiatives: collect and publish
-    building LCA data in an open, shared format, so benchmarks and targets
-    rest on comparable numbers.
+    Join a data programme and publish comparable whole life carbon data for your country.
   examples:
     - indicate-life
     - chile-wlc-data-harmonisation
 
 - id: research-advice
-  title: "Research and advice"
+  title: "You are building a consortium or a curriculum"
+  action: "Research and advice"
   subject: "Research and advice"
   body: >-
-    Joint research in consortia, advisory roles, and the keynote, training or
-    workshop where a group has to agree something.
+    Bring us in for research, advice, keynotes or training.
   examples:
     - iea-ebc-annex-72
     - global-status-report-for-buildings
