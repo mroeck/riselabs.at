@@ -7,6 +7,8 @@ journal: "Sustainable Production and Consumption"
 doi: "10.1016/j.spc.2024.12.015"
 people:
   - martin-roeck
+projects:
+  - analysis-of-life-cycle-greenhouse
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

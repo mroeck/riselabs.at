@@ -7,6 +7,8 @@ journal: "Building and Environment"
 doi: "10.1016/j.buildenv.2020.107530"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

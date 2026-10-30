@@ -7,6 +7,8 @@ journal: "Buildings"
 doi: "10.3390/buildings8080105"
 people:
   - martin-roeck
+projects:
+  - pef4buildings
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

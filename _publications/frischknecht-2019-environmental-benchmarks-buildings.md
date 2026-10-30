@@ -7,6 +7,8 @@ journal: "International Journal of Life Cycle Assessment"
 doi: "10.1007/s11367-019-01690-y"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

@@ -7,6 +7,8 @@ journal: "Sustainability"
 doi: "10.3390/su12145534"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

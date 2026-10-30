@@ -7,6 +7,8 @@ journal: "Energy and Buildings"
 doi: "10.1016/j.enbuild.2025.116307"
 people:
   - martin-roeck
+projects:
+  - indicate
 # projects:                      # one or more, by filename
 #   - project-filename
 ---
