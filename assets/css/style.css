@@ -2374,3 +2374,54 @@ table.listing td.t-partner .t-logo,
   background: var(--surface);
 }
 .pub-figure figcaption { margin-top: .4rem; line-height: 1.45; }
+
+/* The tagline, above the hero headline. Small and quiet: it names RISE, and
+   the headline under it makes the claim. */
+.hero-eyebrow {
+  margin: 0 0 .7rem;
+  font-size: .82rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(255, 255, 255, .78);
+}
+
+/* ---------- the evidence band ----------
+
+   Four published figures. The number comes first and large, because the
+   figure is the point and the sentence explains it; the source sits under
+   both, as a link to the paper on this site.
+
+   Two by two rather than four across: these are sentences, not stat tiles,
+   and four narrow columns would break each one over five or six lines. */
+.figures {
+  list-style: none; padding: 0; margin: 1.8rem 0 1.4rem;
+  display: grid; gap: 1.8rem 2.4rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 46rem) { .figures { grid-template-columns: 1fr; gap: 1.6rem; } }
+.figures li { margin: 0; }
+.fig-val {
+  margin: 0 0 .3rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 500;
+  line-height: 1.05; letter-spacing: -.01em;
+  color: var(--accent);
+  /* Deliberately NOT tabular-nums. These are four headline figures of
+     different lengths, not a column of digits that has to line up, and
+     Circular's tabular figures are wide enough to space the whole line out:
+     measured at 296px against 261px for the same string. Tabular figures are
+     for tables. */
+}
+.fig-val sub { font-size: .62em; }
+.fig-say { margin: 0 0 .45rem; }
+/* Scoped to `.figures`, because `.fig-src` is already taken: figure.html uses
+   it for the source line inside a project-page caption. Unscoped, these three
+   rules would reach back and flatten that one's margin-top and resize it. */
+.figures .fig-src { margin: 0; font-size: .85rem; }
+.figures .fig-src a { color: var(--ink-soft); }
+.figures .fig-src a:hover { color: var(--accent); }
+
+/* Four pillars, not three. `.cols` is a three-column grid, which would leave
+   the fourth alone on a second row. */
+.cols.pillars { grid-template-columns: repeat(4, 1fr); gap: 1.8rem; }
+@media (max-width: 64rem) { .cols.pillars { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 40rem) { .cols.pillars { grid-template-columns: 1fr; } }

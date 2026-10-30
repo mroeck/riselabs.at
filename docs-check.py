@@ -139,7 +139,7 @@ eng = yaml.safe_load((SITE / "_data/engagement.yml").read_text()) or []
 _eng_ids = set()
 for e in eng:
     where = f"entry '{e.get('title', '?')}'"
-    for key in ("id", "title", "subject", "body"):
+    for key in ("id", "title", "action", "subject", "body"):
         if not e.get(key):
             P("data", "_data/engagement.yml", f"{where} has no `{key}`")
     if e.get("id") in _eng_ids:
