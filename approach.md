@@ -142,8 +142,9 @@ archetype-based characterisation, statistical analysis of environmental product
 declarations and building LCA case data, scenario modelling to 2050, and
 open-source tooling in Python.</p>
 
-<p>We publish our methods, data and code openly wherever licensing allows. A
-benchmark nobody can reproduce is an opinion.</p>
+<p>We publish our methods, data and code openly wherever licensing allows.
+<a href="{{ '/#work-with-us' | relative_url }}">Get in touch</a> to learn
+more.</p>
 
 </div>
 </section>
