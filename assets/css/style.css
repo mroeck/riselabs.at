@@ -2384,6 +2384,29 @@ table.listing td.t-partner .t-logo,
   color: rgba(255, 255, 255, .78);
 }
 
+/* The eyebrow has to hold one line on a phone, and the line is forty-eight
+   characters. Set in capitals with .08em of tracking it needs 434px, which is
+   wider than any phone: on a 390px screen there are 342px to put it in, and on
+   a 320px screen 272px. Shrinking alone cannot close that - capitals would
+   have to drop to 9px, which is not a size anyone reads.
+
+   Capitals and tracking are what cost the width, about 45% of it, so below
+   34rem the line is set in sentence case at close to normal tracking, and the
+   size then scales with the viewport: 10.6px on the narrowest phone, 11.7px at
+   390px, back to the full 13.1px by 430px. It stays the same weight and colour,
+   so it still reads as the quiet line above the headline rather than as part
+   of the standfirst.
+
+   Measured across 320 to 560px: one line throughout, and the handover at 34rem
+   is continuous, because capitals fit again from about 500px up. */
+@media (max-width: 34rem) {
+  .hero-eyebrow {
+    text-transform: none;
+    letter-spacing: .01em;
+    font-size: clamp(.66rem, 3vw, .82rem);
+  }
+}
+
 /* ---------- the evidence band ----------
 
    Four published figures. The number comes first and large, because the
