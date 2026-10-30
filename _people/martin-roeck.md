@@ -28,14 +28,18 @@ links:
 ---
 
 <!-- Shortened on 29 October 2026 so that all four team pages could go live at
-     the same scope while the other three are still being confirmed. This is
-     the opening paragraph of the approved text, unedited.
+     the same scope while the other three are still being confirmed. Martin
+     supplied this wording himself on 30 October; it replaces the opening
+     paragraph of the earlier approved text and is reproduced exactly as he
+     wrote it.
 
      The full version is kept in docs/martin-roeck-full-profile.md. Paste it
-     back below this front matter when the pages stop being drafts. -->
+     back below this front matter when the pages stop being drafts. Its own
+     opening paragraph is now out of date against this one. -->
 
-For more than fifteen years I have worked where digital design, sustainable
-construction and life cycle assessment meet. Digitalisation in construction
-has mostly been used to build faster. I think it should also improve social
-and ecological quality, because how we produce and use buildings sits at the
-centre of the climate crisis.
+For more than fifteen years I have worked where regenerative design, digital
+construction and life cycle sustainability assessment meet. Digitalisation in
+construction has mostly been used to build faster, not necessarily better. I
+think it should also improve social and ecological quality, because how we
+produce and use the built environment sits at the centre of the Polcycrisis -
+and can be part of the systemic solutions for solving it.
