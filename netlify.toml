@@ -1,0 +1,40 @@
+# Deploy previews for pull requests.
+#
+# The live site stays on GitHub Pages. Netlify's job here is one thing only:
+# build each pull request and give it a URL, so a visual change can be looked
+# at on a real build before it is merged. Nothing here affects riselabs.at.
+#
+# Set up once in the Netlify UI; docs/08-deploy-previews.md has the steps and
+# the settings that matter.
+
+[build]
+  # The same build GitHub Pages runs, through the same Gemfile, so a preview
+  # cannot pass while production would fail. `bundle exec` matters: without
+  # it a different Jekyll than the Gemfile pins could be picked up.
+  command = "bundle exec jekyll build"
+  publish = "_site"
+
+[build.environment]
+  # Match this to whatever the `github-pages` gem wants. If the first build
+  # fails on a Ruby version, the error names the version it needs, and this
+  # is the one line to change.
+  RUBY_VERSION = "3.3.4"
+
+  # Deliberately NOT "production".
+  #
+  # Jekyll treats production as the real thing, and the site is built to use
+  # that: the analytics snippet of R10 is wrapped in
+  # `{% if jekyll.environment == "production" %}`. If previews built as
+  # production, every preview of every pull request would count itself as
+  # traffic on the real site's statistics. A preview is not production, so it
+  # does not say it is.
+  JEKYLL_ENV = "preview"
+
+# Previews should never be indexed. Netlify already sends X-Robots-Tag:
+# noindex on deploy previews; this says it again on every path, because a
+# second copy of the site turning up in search results is exactly the kind of
+# thing nobody notices until it has happened.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

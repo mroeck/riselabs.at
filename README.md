@@ -27,6 +27,8 @@ excluded from the built site. **Start with `03`.**
 | `docs/04-roadmap.md` | What is not done yet |
 | `docs/05-design-basis.md` | The CI colours, type and layout rules the CSS implements |
 | `docs/06-core-collaborators.md` | Inviting and publishing core collaborator profiles |
+| `docs/07-review-implementation.md` | The review work order: phases P, L, R and W |
+| `docs/08-deploy-previews.md` | Preview builds for pull requests, and how to set them up |
 | `docs/newsletter-page-copy.md` | Text for the Buttondown subscribe page |
 
 ## The two scripts
