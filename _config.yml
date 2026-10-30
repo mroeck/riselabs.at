@@ -79,6 +79,13 @@ nav:
     items:
       - title: Team
         url: /team/
+        # `foot_with` names another link in this same group to sit beside it
+        # on one line, in the footer only; the header order above is
+        # untouched. About has five links where the other groups have two or
+        # three, so its column set the height of the whole footer row and left
+        # the others standing above a gap. Team and Join pair naturally: who
+        # we are, and joining us.
+        foot_with: Join
       - title: Approach
         url: /approach/
       - title: Expertise

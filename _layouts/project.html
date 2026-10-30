@@ -39,7 +39,8 @@ layout: default
 <main id="content">
 
 <section class="band">
-<div class="wrap narrow post-body">
+<div class="wrap article">
+<div class="article-main post-body">
 
   {%- comment -%}
     Page order, deliberately: the project text comes first, because that is
@@ -79,39 +80,6 @@ layout: default
   <div id="project-info">
   {{ content }}
 
-  {%- comment -%}
-    The facts box. The citation sits inside it as a final row rather than in
-    a block of its own, so everything needed to reference the project is in
-    one place. The row only appears when cite_year is set, and the copy
-    button is added by the script to the [data-citeas] element.
-  {%- endcomment -%}
-  <dl class="facts facts-after">
-    {%- if page.project_title %}<dt>Project title</dt><dd>{{ page.project_title }}</dd>{% endif -%}
-    {%- if page.years %}<dt>Duration</dt><dd>{{ page.years }}</dd>{% endif -%}
-    {%- if page.funder %}<dt>Funder</dt><dd>{{ page.funder }}</dd>{% endif -%}
-    {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
-    {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
-    {%- if page.clients.size > 0 -%}
-    <dt>Client</dt><dd>{% include partnernames.html keys=page.clients %}</dd>
-    {%- endif -%}
-    {%- if page.partners.size > 0 or page.partners_note -%}
-    <dt>Collaborators</dt>
-    <dd>
-      {%- if page.partners.size > 0 %}{% include partnernames.html keys=page.partners %}{% endif -%}
-      {%- if page.partners_note %}{% if page.partners.size > 0 %}, {% endif %}{{ page.partners_note }}{% endif -%}
-    </dd>
-    {%- endif -%}
-    {%- if page.link %}<dt>Website</dt><dd><a href="{{ page.link }}">{{ page.link }}</a></dd>{% endif -%}
-    {%- if page.cite_year -%}
-    {%- assign cite_title = page.cite_title | default: page.project_title | default: page.title -%}
-    {%- assign who = page.cite_authors | default: "RISE" -%}
-    {%- capture citation -%}
-{{ who }} ({{ page.cite_year }}). {{ cite_title }}.{% if page.cite_where %} {{ page.cite_where }}.{% endif %}{% if page.cite_doi %} https://doi.org/{{ page.cite_doi }}{% elsif page.link %} {{ page.link }}{% endif %}
-    {%- endcapture -%}
-    <dt>Cite as</dt>
-    <dd class="facts-cite" data-citeas><span data-citeas-text>{{ citation | strip }}</span></dd>
-    {%- endif -%}
-  </dl>
   </div>
 
   {%- comment -%}
@@ -209,6 +177,68 @@ layout: default
   <p class="muted small" style="margin-top:2.5rem;">
     <a href="{{ '/projects/' | relative_url }}">← All projects</a>
   </p>
+</div>
+
+<aside class="article-side">
+  {%- comment -%}
+    The facts box.
+
+    There is no "Cite as" row. A project is not a citable work: most of these
+    were done with partners, and a citation line on the page invites someone
+    to cite RISE for a piece of work RISE contributed to rather than authored.
+    Citations belong to publications, which have authors, a venue and a DOI.
+    If a project produced something citable, that something is a file in
+    _publications/ and gets its citation there.
+
+    Funder and client are one row. They named the same organisation on all
+    fifteen projects, because the body paying for the work is the body that
+    commissioned it; two rows repeating one name read as two different facts.
+    Where `clients` names partners we show those, because they link to the
+    partner's own page; `funder` is the free-text fallback, and is shown
+    alongside when it says something the partner names do not (IEA EBC
+    Annex 72 names an Austrian co-funder that has no partner page).
+  {%- endcomment -%}
+  {%- comment -%}
+    Is the funder text saying anything the client links do not? Compared with
+    punctuation and case stripped, because "European Commission DG GROW" and
+    "European Commission, DG GROW" are the same fact written twice. Liquid has
+    no `not`, hence the flag.
+  {%- endcomment -%}
+  {%- capture client_names %}{% include partnernames.html keys=page.clients %}{% endcapture -%}
+  {%- assign cn = client_names | strip_html | downcase | replace: ",", "" | replace: "/", "" | replace: ".", "" | replace: "  ", " " | strip -%}
+  {%- assign fu = page.funder | downcase | replace: ",", "" | replace: "/", "" | replace: ".", "" | replace: "  ", " " | strip -%}
+  {%- assign funder_adds = false -%}
+  {%- if page.funder and page.clients.size > 0 -%}
+    {%- assign funder_adds = true -%}
+    {%- if cn contains fu %}{% assign funder_adds = false %}{% endif -%}
+    {%- if fu contains cn %}{% assign funder_adds = false %}{% endif -%}
+  {%- endif -%}
+  <dl class="facts facts-after">
+    {%- if page.project_title %}<dt>Project title</dt><dd>{{ page.project_title }}</dd>{% endif -%}
+    {%- if page.years %}<dt>Duration</dt><dd>{{ page.years }}</dd>{% endif -%}
+    {%- if page.clients.size > 0 or page.funder -%}
+    <dt>Funder / client</dt>
+    <dd>
+      {%- if page.clients.size > 0 -%}
+        {{ client_names }}{% if funder_adds %} ({{ page.funder }}){% endif -%}
+      {%- else -%}
+        {{ page.funder }}
+      {%- endif -%}
+    </dd>
+    {%- endif -%}
+    {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
+    {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
+    {%- if page.partners.size > 0 or page.partners_note -%}
+    <dt>Collaborators</dt>
+    <dd>
+      {%- if page.partners.size > 0 %}{% include partnernames.html keys=page.partners %}{% endif -%}
+      {%- if page.partners_note %}{% if page.partners.size > 0 %}, {% endif %}{{ page.partners_note }}{% endif -%}
+    </dd>
+    {%- endif -%}
+    {%- if page.link %}<dt>Website</dt><dd><a href="{{ page.link }}">{{ page.link }}</a></dd>{% endif -%}
+  </dl>
+</aside>
+
 </div>
 </section>
 </main>

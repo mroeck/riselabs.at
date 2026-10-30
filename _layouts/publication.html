@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<div class="page-head wrap narrow">
+<div class="page-head wrap">
   <p class="post-date">
     <span class="post-type">{{ page.kind }}</span> &nbsp;·&nbsp; {{ page.year }}
   </p>
@@ -11,27 +11,9 @@ layout: default
 
 <main id="content">
 <section class="band">
-<div class="wrap narrow post-body">
+<div class="wrap article">
+<div class="article-main post-body">
 
-  <dl class="facts">
-    {%- if page.journal %}<dt>Published in</dt><dd>{{ page.journal }}</dd>{% endif -%}
-    <dt>Year</dt><dd>{{ page.year }}</dd>
-    {%- if page.doi %}<dt>DOI</dt><dd><a href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a></dd>{% endif -%}
-    {%- if page.url_external %}<dt>Link</dt><dd><a href="{{ page.url_external }}">{{ page.url_external }}</a></dd>{% endif -%}
-    {%- if page.note %}<dt>Note</dt><dd>{{ page.note }}</dd>{% endif -%}
-    {%- comment -%}
-      A link out to PlumX rather than the PlumX widget. The widget is a
-      script from plu.mx, which would make every visitor's browser contact
-      Elsevier and hand over their IP address and the page they are on -
-      the same thing the self-hosted fonts exist to avoid, and it would
-      need a privacy section and almost certainly a consent banner. A link
-      sends nothing until somebody chooses to follow it.
-    {%- endcomment -%}
-    {%- if page.doi %}
-    <dt>Metrics</dt>
-    <dd><a href="https://plu.mx/plum/a/?doi={{ page.doi | uri_escape }}">PlumX</a></dd>
-    {%- endif -%}
-  </dl>
 
   {{ content }}
 
@@ -68,6 +50,30 @@ layout: default
   <p class="muted small" style="margin-top:2.5rem;">
     <a href="{{ '/publications/' | relative_url }}">← All publications</a>
   </p>
+</div>
+
+<aside class="article-side">
+  <dl class="facts">
+    {%- if page.journal %}<dt>Published in</dt><dd>{{ page.journal }}</dd>{% endif -%}
+    <dt>Year</dt><dd>{{ page.year }}</dd>
+    {%- if page.doi %}<dt>DOI</dt><dd><a href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a></dd>{% endif -%}
+    {%- if page.url_external %}<dt>Link</dt><dd><a href="{{ page.url_external }}">{{ page.url_external }}</a></dd>{% endif -%}
+    {%- if page.note %}<dt>Note</dt><dd>{{ page.note }}</dd>{% endif -%}
+    {%- comment -%}
+      A link out to PlumX rather than the PlumX widget. The widget is a
+      script from plu.mx, which would make every visitor's browser contact
+      Elsevier and hand over their IP address and the page they are on -
+      the same thing the self-hosted fonts exist to avoid, and it would
+      need a privacy section and almost certainly a consent banner. A link
+      sends nothing until somebody chooses to follow it.
+    {%- endcomment -%}
+    {%- if page.doi %}
+    <dt>Metrics</dt>
+    <dd><a href="https://plu.mx/plum/a/?doi={{ page.doi | uri_escape }}">PlumX</a></dd>
+    {%- endif -%}
+  </dl>
+</aside>
+
 </div>
 </section>
 </main>

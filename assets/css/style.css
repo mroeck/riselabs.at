@@ -575,6 +575,11 @@ strong { font-weight: 600; }
   line-height: 1.5;
   font-weight: 500;
   letter-spacing: -0.012em;
+  /* The page head spans the full 64rem on an Article page (R4), so the title
+     lines up with the text column below it instead of being indented 192px
+     past it. The lede is prose, though, and has no business being 1,024px
+     wide, so it keeps the reading measure while its container does not. */
+  max-width: var(--measure);
 }
 
 .muted { color: var(--ink-soft); }
@@ -698,6 +703,75 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .posts h3 a:hover { color: var(--accent); }
 .posts .sum { margin: 0; color: var(--ink-soft); font-size: .95rem; }
 
+/* ---------- the Article template (R4) ----------
+
+   An inner page used to be a single 40rem column centred in a 64rem wrap, so
+   on a 1,280px screen it was a narrow ribbon with 320px of nothing either
+   side, next to a home page that used the full width. The text column stays
+   at the reading measure, because that is a reading decision and has not
+   changed; what changes is that the facts move out of the flow and into a
+   column beside it, which uses the space instead of leaving it empty.
+
+   The sidebar comes AFTER the main column in the markup, and sits to its
+   right. Both of those are deliberate:
+
+   - After, because the facts are reference material and the text is what the
+     reader came for. That was settled when the facts box was moved below the
+     project text, and it still holds for anyone reading in source order: a
+     screen reader, a phone, a printout.
+   - Right, so that visual order and DOM order agree. A sidebar placed left
+     while coming second in the markup reads in one order and tabs in
+     another, which is the kind of mismatch that only ever bites the people
+     least able to work around it.
+
+   Below 64rem the grid collapses to one column and the facts fall below the
+   text, which is where they already were.  */
+.article { display: grid; gap: 2.2rem; }
+.article-main { min-width: 0; }
+
+@media (min-width: 64rem) {
+  .article {
+    grid-template-columns: minmax(0, var(--measure)) 18rem;
+    gap: 4rem;
+    align-items: start;
+  }
+  /* `top` clears the sticky header; `max-height` plus its own scrollbar stops
+     a long facts list from being cut off on a short window. */
+  .article-side {
+    position: sticky; top: 6rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
+}
+
+/* In the sidebar the facts are the column, not a box inside it: the border
+   and padding that set them apart mid-text would just draw a box around a
+   box. A single rule down the left edge ties them to the text they belong
+   to. */
+@media (min-width: 64rem) {
+  .article-side .facts {
+    margin: 0;
+    border: 0; border-left: 2px solid var(--rule);
+    border-radius: 0;
+    padding: .2rem 0 .2rem 1.1rem;
+    background: none;
+    /* One column, label above value. The two-column form needs 8rem for the
+       label before the value even starts, which leaves about 170px in an
+       18rem sidebar: "Analysis of Life Cycle Greenhouse Gas Emissions and
+       Removals of EU Buildings" came out six lines tall. Stacked, every
+       value gets the full width of the column. */
+    display: block;
+    font-size: .88rem;
+  }
+  .article-side .facts dt {
+    font-size: .75rem; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase;
+    margin-top: .95rem;
+  }
+  .article-side .facts dt:first-child { margin-top: 0; }
+  .article-side .facts dd { margin: .12rem 0 0; line-height: 1.45; }
+}
+
 .post-body { max-width: var(--measure); }
 
 /* One rule for every heading in a body, so a section that follows a list, a
@@ -775,15 +849,19 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .more-btn:hover { text-decoration: underline; }
 
 /* Footer navigation (L17). The nav column holds the groups side by side on a
-   wide screen and wraps on a narrow one, so the footer stays three columns
-   rather than becoming a long ladder of links. */
-.foot-nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+   wide screen and wraps on a narrow one.
+   The flex row that used to be here is gone: R5 makes `.foot-nav` a
+   `display: contents` wrapper so its groups become columns of the footer
+   grid itself, which is declared further down with the rest of the grid. */
 .foot-navhead {
   margin: 0 0 .5rem; font-size: .8rem; font-weight: 600;
   letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft);
 }
-.foot-nav ul { list-style: none; padding: 0; margin: 0; }
-.foot-nav li { margin: 0 0 .35rem; }
+/* every list in the footer: the nav groups and the Follow column alike, so
+   the one outside .foot-nav does not sprout bullets */
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li { margin: 0 0 .35rem; }
+.site-footer .foot-navhead + ul a,
 .foot-nav a, .site-footer .foot-navhead + p a { font-size: .92rem; }
 .opening-facts dd strong { color: var(--ink); }
 
@@ -1125,14 +1203,40 @@ body.portraits-bw .person-head .portrait {
   font-size: .92rem;
 }
 
+/* R5: one row of five. The nav used to be a single 228px column holding
+   every group, so About and Work wrapped above Media and the footer read as
+   a ragged block. `display: contents` on the nav takes it out of the layout
+   and promotes its groups to grid items, so each becomes its own column, and
+   the column count here has to match: one wide column plus one per nav group
+   plus Follow.
+   (The nav element keeps its aria-label and its landmark; `display: contents`
+   dropped elements from the accessibility tree in browsers of a few years
+   ago, but the links sit inside the footer's own contentinfo landmark either
+   way, so nothing becomes unreachable.) */
 .foot-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
   gap: 2rem;
+  align-items: start;
   margin-bottom: 1.6rem;
 }
+.foot-nav { display: contents; }
 
-@media (max-width: 48rem) { .foot-grid { grid-template-columns: 1fr; gap: 1.4rem; } }
+@media (max-width: 48rem) {
+  .foot-grid { grid-template-columns: 1fr 1fr; gap: 1.4rem 1.2rem; }
+  /* the address block spans both columns; the rest pair up beneath it */
+  .foot-grid > :first-child { grid-column: 1 / -1; }
+}
+
+/* The bottom bar: the legal line on the left, the initiatives on the right,
+   on one row where there is room and stacked where there is not. */
+.foot-bar {
+  display: flex; flex-wrap: wrap; gap: .4rem 1.4rem;
+  justify-content: space-between; align-items: baseline;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+}
+.foot-bar p { margin: 0; }
 
 .foot-mark { height: 24px; width: auto; display: block; margin-bottom: .7rem; }
 .site-footer p { margin: 0; }
@@ -1484,7 +1588,9 @@ table.listing tr:hover td { background: var(--surface-2); }
 
 /* ---------- footer alignment ---------- */
 
-.foot-grid { align-items: end; }
+/* `align-items: end` used to be here. It pushed the columns down to their own
+   different baselines, which is what made the footer look uneven; R5 sets
+   `start` where the grid is declared. */
 .foot-mark { height: 30px; }
 
 /* ---------- legal pages ---------- */
@@ -2038,3 +2144,6 @@ table.listing td.t-partner .t-logo,
   color: var(--ink-soft); margin-bottom: .2rem;
 }
 .xfor { margin-top: .5rem; }
+
+/* Two links sharing a footer row (see `foot_with` in _config.yml). */
+.foot-sep { opacity: .45; margin: 0 .15rem; }

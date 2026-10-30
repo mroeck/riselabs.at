@@ -14,9 +14,6 @@ themes:
   - policy-regulation
 link: "https://op.europa.eu/en/publication-detail/-/publication/564726a8-b0b6-11e8-99ee-01aa75ed71a1/language-en"
 project_title: "Study and related guidance documents on the application of the PEF method to a new office building"
-cite_authors: "VITO, KU Leuven and TU Graz"
-cite_year: 2018
-cite_where: "Publications Office of the European Union"
 outputs:
 - title: "Study and related guidance documents on the application of the PEF method to a new office building"
   note: "Final report, with the Task 1-3 reports and workshop minutes as annexes - Publications Office of the EU, 2018"

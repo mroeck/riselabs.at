@@ -546,6 +546,18 @@ for slug, (pr, _body, _f) in coll["projects"].items():
     # ("Supporting the Development of a Roadmap for the Reduction of Whole
     # Life Carbon..."), which swamps a card. The cap is what fits on one line
     # of a card at the smallest column width; above it the point is lost.
+    # A project is not a citable work. Most of these were done with partners,
+    # and a citation line on a project page invites someone to cite RISE for
+    # work RISE contributed to rather than authored. Citations belong to
+    # publications, which have authors, a venue and a DOI. These fields used
+    # to render a "Cite as" row; the row is gone, so a file carrying them
+    # again means someone is expecting one.
+    for _k in [k for k in pr if k.startswith("cite_")]:
+        P("projects", f"_projects/{slug}.md",
+          f"`{_k}` is a citation field, and project pages do not carry a "
+          "citation. If this project produced something citable, give it a "
+          "file in _publications/ and cite it there.")
+
     _st = pr.get("short_title")
     if _st is None:
         N(f"_projects/{slug}.md",

@@ -15,10 +15,6 @@ themes:
   - regenerative-design
 link: "https://livingplaces.velux.com/en/experiments/reliving"
 project_title: "Re:Living - an experiment in scaling renovation, part of the VELUX Living Places programme"
-cite_authors: "Toth, Z., Kockat, J., Guglietti, A., Sarran, L., Feifer, L., Bjørkskov, K. B. R., Röck, M., & Søgaard, R."
-cite_year: 2026
-cite_title: "The Housing We Need For The Future We Want"
-cite_where: "Green paper. The VELUX Group, Living Places"
 # The green paper's hierarchy diagram and its material-intensity vs emissions
 # matrix are the two figures that would carry this page. Both need permission
 # and a credit line - ask VELUX, then drop the file in and uncomment.
