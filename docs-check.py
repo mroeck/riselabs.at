@@ -436,6 +436,18 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
     # longest one, which is the thing the short field exists to avoid. The
     # card falls back to `org` where `affil` is absent, so a missing one is a
     # note rather than a failure.
+    # `rise_since` decides which of a person's publications the "With RISE or
+    # GBDI" filter counts. A wrong year quietly moves work from one side of
+    # that line to the other, and nothing on the page looks wrong, so the
+    # value is checked for being a plausible year rather than a string, a
+    # date, or a typo with a digit too many.
+    _rs = _fm.get("rise_since")
+    if _rs is not None:
+        if not isinstance(_rs, int) or _rs < 1990 or _rs > 2100:
+            P("people", f"_people/{_slug}.md",
+              f"`rise_since` is {_rs!r}. It should be a bare year, like 2024: "
+              "it is compared against each publication's `year`.")
+
     # An ORCID is an identifier, not a link: a wrong digit still resolves, to
     # somebody else's research record. The checksum is cheap to verify, so it
     # is, rather than trusting a number typed from an email.
@@ -572,6 +584,13 @@ for slug, (pr, _body, _f) in coll["projects"].items():
     # ("Supporting the Development of a Roadmap for the Reduction of Whole
     # Life Carbon..."), which swamps a card. The cap is what fits on one line
     # of a card at the smallest column width; above it the point is lost.
+    #
+    # Raised from 34 to 38 on 30 October: the work order supplies "European
+    # embodied carbon benchmarks", 35 characters, so 34 turned out to be a
+    # number picked by eye rather than a limit anything actually hits. 38
+    # still rejects a full project title, which is what the field exists to
+    # prevent.
+
     # A project is not a citable work. Most of these were done with partners,
     # and a citation line on a project page invites someone to cite RISE for
     # work RISE contributed to rather than authored. Citations belong to
@@ -589,7 +608,7 @@ for slug, (pr, _body, _f) in coll["projects"].items():
         N(f"_projects/{slug}.md",
           "no `short_title`, so anything naming this project inside a "
           "sentence falls back to the full title")
-    elif len(_st) > 34:
+    elif len(_st) > 38:
         P("projects", f"_projects/{slug}.md",
           f"`short_title` is {len(_st)} characters, which is no longer short: "
           "it wraps in an engagement card. Keep it to a name.")

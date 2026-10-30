@@ -7,6 +7,8 @@ journal: "Buildings"
 doi: "10.3390/buildings11010006"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

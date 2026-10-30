@@ -5,6 +5,9 @@ tagline: "Building decarbonisation is not a mere technical problem. It's a chall
 group: rise
 affil: "RISE, GBDI"
 cite: "Röck M"   # how the name appears in author lists; underlined automatically
+# founded RISE in 2023. Used by the "With RISE or GBDI" filter on
+# /publications/: work from this year on counts as RISE or GBDI work.
+rise_since: 2023
 order: 1
 # The four he wants highlighted, not the four he appears on most: this is a
 # statement of direction rather than a tally. Slugs from _data/themes.yml.

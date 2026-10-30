@@ -7,6 +7,8 @@ journal: "Renewable and Sustainable Energy Reviews"
 doi: "10.1016/j.rser.2021.111550"
 people:
   - martin-roeck
+projects:
+  - supporting-the-development-of-a
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

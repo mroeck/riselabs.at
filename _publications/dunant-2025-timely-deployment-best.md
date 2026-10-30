@@ -7,6 +7,8 @@ journal: "Nature Communications"
 doi: "10.1038/s41467-025-67489-8"
 people:
   - martin-roeck
+projects:
+  - global-building-data-initiative
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

@@ -572,6 +572,50 @@
     start();
   }
 
+
+  /* ---------- "With RISE or GBDI" on the publications page ----------
+
+     The list carries both: work done here and work the team did before
+     joining. Both belong on the page - it is their work either way - but a
+     visitor asking what RISE has published should be able to ask that.
+
+     The markup decides which is which (see pubitem.html); this only shows
+     and hides. Section headings are hidden too when filtering empties them,
+     so the page never shows "Reports" above nothing.
+  */
+  function setupPubFilter(bar) {
+    var list = document.querySelector("#publist");
+    if (!list) return;
+    var items = Array.prototype.slice.call(list.querySelectorAll("li"));
+    if (!items.length) return;
+
+    bar.hidden = false;
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-pub-filter]") : null;
+      if (!btn) return;
+      var want = btn.getAttribute("data-pub-filter");
+
+      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
+        b.classList.toggle("on", b === btn);
+      });
+
+      items.forEach(function (li) {
+        li.hidden = want === "rise" && li.getAttribute("data-rise") !== "true";
+      });
+
+      // a kind heading with nothing left under it is noise
+      Array.prototype.forEach.call(list.querySelectorAll("ul.pubs"), function (ul) {
+        var any = Array.prototype.some.call(ul.children, function (li) {
+          return !li.hidden;
+        });
+        ul.hidden = !any;
+        var head = ul.previousElementSibling;
+        if (head && head.tagName === "H2") { head.hidden = !any; }
+      });
+    });
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-worldmap]"), setupMap);
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
@@ -585,6 +629,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
     Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), setupCarousel);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pubfilter]"), setupPubFilter);
   }
 
   if (document.readyState === "loading") {

@@ -7,6 +7,8 @@ journal: "One Earth"
 doi: "10.1016/j.oneear.2023.10.018"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 ---

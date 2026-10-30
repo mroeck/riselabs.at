@@ -3,6 +3,14 @@ wip: true   # draft: awaiting this person's own words and approval
 name: "Dr. Zuhaib Batra"
 role: "Senior Scientist, Global Policy Lead: Energy and Emissions"
 cite: "Batra Z"
+# started at GBDI in 2025. Used by the "With RISE or GBDI" filter on
+# /publications/: work from this year on counts as RISE or GBDI work.
+rise_since: 2025
+# Published as "Zuhaib S" (Sheikh Zuhaib) until 2022 and as "Batra Z" from
+# 2024, same ORCID. Author strings keep the form a paper was published under,
+# so without this his earlier work would not be recognised as his.
+cite_also:
+  - "Zuhaib S"
 group: collaborator
 org: "Global Building Data Initiative, EPFL"
 affil: "GBDI, EPFL"

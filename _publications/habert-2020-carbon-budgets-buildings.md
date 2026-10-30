@@ -7,6 +7,8 @@ journal: "Buildings and Cities"
 doi: "10.5334/bc.47"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 ---
