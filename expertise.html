@@ -5,10 +5,10 @@ permalink: /expertise/
 ---
 
 <div class="page-head wrap narrow">
-  <h1>Our expertise</h1>
-  <p class="lede">Six fields of work. Each one is a capability built by doing
-  it repeatedly for people who needed the answer to hold up - not a service
-  line invented for a website.</p>
+  <h1>Six questions we answer</h1>
+  <p class="lede">Each of these fields grew from clients who needed an answer
+  they could defend in public. The methods are ours; the questions are
+  theirs.</p>
 </div>
 
 <main id="content">
@@ -40,7 +40,13 @@ permalink: /expertise/
     <img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">
   </div>
   <div class="xfield-body">
-    <h2>{{ x.title }}</h2>
+    {%- comment -%}
+      The question is the heading and the field name sits under it. A reader
+      arrives with a question, not with the name of a method, and the name is
+      no use to them until they know it answers the thing they came for.
+    {%- endcomment -%}
+    <h2>{{ x.question | default: x.title }}</h2>
+    {%- if x.question %}<p class="xfield-name">{{ x.title }}</p>{% endif %}
     <p class="xlede">{{ x.lede }}</p>
 
     {%- if x.includes.size > 0 %}

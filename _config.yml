@@ -1,8 +1,11 @@
 title: RISE
 tagline: towards regenerative spatial systems
+# The meta description, which is what a search result shows. Keep it under
+# about 155 characters: longer and the end is cut off mid-sentence. This one
+# is 143. Wording from the copy rewrite of 30 October.
 description: >-
-  RISE is a research institute in Vienna working on how the built environment
-  can operate within planetary boundaries - and what has to change to get there.
+  RISE is an independent research institute in Vienna. We model building
+  stocks to show what fits within the carbon budget, and how to give back.
 
 url: "https://riselabs.at"
 baseurl: ""
