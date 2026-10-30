@@ -23,9 +23,15 @@
   already carries because the publication lists need it; `name` would give
   "DM" for "Dr. Martin Röck".
 
-  The employer line is the point of the single grid: "RISE" for our own
-  people, "Core collaborator · <org>" for those employed elsewhere. See
-  docs/06 for why that distinction is kept visible.
+  The affiliation line is the point of the single grid: the person's own
+  institutions for our own people, "Extended team · <institutions>" for those
+  employed elsewhere. See docs/06 for why that distinction is kept visible.
+
+  "Extended team", not "core collaborator" (R8, decided 29 Oct 2026): the
+  older phrase named people by what they are not, which is a poor way to
+  introduce a colleague. The front-matter key is still `group: collaborator`,
+  because it is an internal key and renaming it would touch every file for
+  no gain.
 
   Portrait alt text is deliberately empty here, because the name is printed
   next to it. The profile page carries the name as alt instead.
@@ -58,7 +64,7 @@
         {%- endcomment -%}
         {%- assign affil = person.affil | default: person.org -%}
         {%- if person.group == "collaborator" -%}
-        <span class="where">Core collaborator{% if affil %} &middot; {{ affil }}{% endif %}</span>
+        <span class="where">Extended team{% if affil %} &middot; {{ affil }}{% endif %}</span>
         {%- else -%}
         <span class="where">{{ affil | default: "RISE" }}</span>
         {%- endif -%}

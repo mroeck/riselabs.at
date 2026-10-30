@@ -115,9 +115,20 @@ permalink: /
 <section class="band">
   <div class="wrap">
     <h2>The team</h2>
-    <p class="band-note">A small institute in Vienna, working with a wider
-    network across policy, industry and research.</p>
-    {% include peoplelist.html people=team %}
+    <p class="band-note">Based in Vienna, working with a global network across
+    policy, industry, and research.</p>
+    {%- comment -%}
+      Two at a time, rotating through everyone. The band stays compact and
+      the whole team is still reachable, both through the rotation and
+      through the link below it, which shows the full grid.
+
+      Every card is in the markup; the script hides all but the current pair
+      and adds the controls. Without JavaScript this is the ordinary grid
+      with everybody in it, which is a complete band on its own.
+    {%- endcomment -%}
+    <div class="carousel" data-carousel="2">
+      {% include peoplelist.html people=team %}
+    </div>
     <p class="more"><a href="{{ '/team/' | relative_url }}">The whole team →</a></p>
   </div>
 </section>
