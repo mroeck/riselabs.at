@@ -14,6 +14,8 @@ partners:
   - worldgbc
 projects:
   - indicate
+thumbnail: /assets/img/pubs/toth-2024-establish-whole-life.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

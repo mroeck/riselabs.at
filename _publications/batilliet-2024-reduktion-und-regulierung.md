@@ -13,6 +13,8 @@ partners:
   - agora-industrie
   - ifeu
   - ramboll
+thumbnail: /assets/img/pubs/batilliet-2024-reduktion-und-regulierung.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

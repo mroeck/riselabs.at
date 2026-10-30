@@ -1308,7 +1308,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H17 | Martin | ~~Short testimonial versions~~ Answered 29 Oct: approved; texts in L9 | L9 |
 | H18 | Martin | ~~Approve the shortened profile text~~ Answered 29 Oct: approved unchanged; use `martin-roeck-body-draft.md` as supplied | L18 |
 | H19 | Martin | ~~Light-theme duotone~~ Answered 29 Oct: ramp A, the CI's magenta → blush (first answered B, then changed to A the same evening) | R7 |
-| H20 | Martin | Three title pages are CC-BY-NC-ND. Is RISE's website non-commercial use under that licence? If unsure, keep designed tiles for those three | R6 |
+| H20 | Martin | ~~Three title pages are CC-BY-NC-ND~~ Answered 30 Oct: RISE can use them. All three are installed with their CC-BY-NC-ND credit | R6 |
 | H21 | Martin | ~~Analytics tool~~ Answered 29 Oct: Plausible. Still needed: the account and setup steps in R10, the snippet, and the plan after the 30-day trial (Business for user journeys) | R10 |
 | H22 | Martin | ~~Circular licence~~ Answered 29 Oct: licensed for web and desktop use; switch to Circular | R3 |
 | H23 | Martin | To do, later: PDFs for the EU roadmap and DG GROW reports, IEA EBC Annex 72, TU Graz and the MDPI papers, so their tiles can become title pages. Designed tiles stay as placeholders until then | R6, R11 |

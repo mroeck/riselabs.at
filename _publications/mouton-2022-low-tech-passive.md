@@ -9,6 +9,7 @@ people:
   - martin-roeck
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/mouton-2022-low-tech-passive.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

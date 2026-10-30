@@ -9,6 +9,7 @@ people:
   - martin-roeck
 projects:
   - supporting-the-development-of-a
+thumbnail: /assets/img/pubs/roeck-2023-slice-hotspot-analysis.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

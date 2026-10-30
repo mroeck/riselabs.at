@@ -9,6 +9,7 @@ people:
   - martin-roeck
 projects:
   - iea-ebc-annex-72
+thumbnail: /assets/img/pubs/ouelletplamondon-2023-carbon-footprint-assessment.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

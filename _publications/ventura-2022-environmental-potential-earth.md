@@ -9,6 +9,7 @@ people:
   - martin-roeck
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/ventura-2022-environmental-potential-earth.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

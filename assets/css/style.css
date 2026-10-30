@@ -229,6 +229,19 @@
   --btn-ink:     #001730;
   --btn-bg-hover:#ff6ba6;
 
+  /* Corner radius, two values and no more. Before this the stylesheet used
+     1px, 2px, 3px and 4px in different places, which is not a choice anyone
+     made - it reads as sharp corners that are slightly inconsistent rather
+     than as a deliberate edge.
+
+     --radius-img is the larger one, for anything showing a picture:
+     portraits, project cards, publication thumbnails, figures, logo tiles.
+     Pictures carry their own detail, so a visible curve reads as intentional
+     on them where it would look fussy on a 20px button.
+     --radius-ui is for controls, cards and panels. */
+  --radius-img: 8px;
+  --radius-ui:  4px;
+
   --measure: 40rem;
   --wide:    64rem;
 
@@ -366,7 +379,7 @@ a:hover { color: var(--accent-hover); }
   min-width: 11rem;
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   box-shadow: 0 8px 28px rgba(0, 0, 0, .3);
   z-index: 40;
   display: none;
@@ -390,7 +403,7 @@ a:hover { color: var(--accent-hover); }
 .burger { position: relative; display: block; width: 18px; height: 12px; }
 .burger::before, .burger::after {
   content: ""; position: absolute; left: 0; right: 0; height: 2px;
-  background: currentColor; border-radius: 2px;
+  background: currentColor; border-radius: var(--radius-ui);
   transition: transform .18s ease, top .18s ease;
 }
 .burger::before { top: 0; box-shadow: 0 5px 0 currentColor; }
@@ -735,7 +748,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .posts .pin {
   color: var(--ink-soft);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
   padding: .05rem .4rem;
   font-size: .74rem;
 }
@@ -954,7 +967,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   font-size: .78rem; font-weight: 500;
   color: var(--ink-soft);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
   padding: .12rem .5rem;
 }
 
@@ -974,7 +987,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   background: var(--surface);
   border: 1px solid var(--rule);
   border-bottom: 0;
-  border-radius: 2px 2px 0 0;
+  border-radius: var(--radius-ui) var(--radius-ui) 0 0;
 }
 
 .doc-title { margin: 0; font-weight: 600; font-size: .98rem; }
@@ -987,13 +1000,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   color: var(--btn-ink);
   font-size: .86rem; font-weight: 600;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
 }
 .doc-dl:hover { background: var(--btn-bg-hover); color: var(--btn-ink); }
 
 .doc-view {
   border: 1px solid var(--rule);
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 var(--radius-ui) var(--radius-ui);
   background: #fff;
   overflow: hidden;
 }
@@ -1009,7 +1022,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 /* phones rarely render an inline PDF - show the bar, hide the dead frame */
 @media (max-width: 40rem) {
   .doc-view { display: none; }
-  .doc-bar { border-bottom: 1px solid var(--rule); border-radius: 2px; }
+  .doc-bar { border-bottom: 1px solid var(--rule); border-radius: var(--radius-ui); }
 }
 
 .doc-line {
@@ -1029,7 +1042,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   display: block; width: 100%; height: auto;
   background: #fff;
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
 }
 
 .fig figcaption {
@@ -1081,7 +1094,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   padding: .7rem .85rem;
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
   text-decoration: none;
   color: var(--ink);
 }
@@ -1091,7 +1104,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
    survives squaring, and a circle eats the shoulders. */
 .people .pc-face {
   width: 4.5rem; height: 4.5rem; flex: 0 0 auto;
-  border-radius: 3px; object-fit: cover; object-position: top center;
+  border-radius: var(--radius-ui); object-fit: cover; object-position: top center;
   background: var(--surface);
 }
 
@@ -1127,7 +1140,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   display: flex; flex-direction: column;
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
   padding-bottom: .55rem;
 }
 .people li:hover { border-color: var(--accent); }
@@ -1144,7 +1157,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 
 .person-head .portrait {
   width: 8.5rem; height: 8.5rem; flex: 0 0 auto;
-  border-radius: 2px; object-fit: cover; object-position: top center;
+  border-radius: var(--radius-ui); object-fit: cover; object-position: top center;
   background: var(--surface);
 }
 
@@ -1186,7 +1199,7 @@ body.portraits-bw .person-head .portrait {
   display: flex; flex-direction: column;
   width: 11.5rem;
   background: #fff;
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
   text-decoration: none;
   color: var(--navy);
   overflow: hidden;
@@ -1232,7 +1245,7 @@ body.portraits-bw .person-head .portrait {
   font-weight: 600;
   font-size: .95rem;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
 }
 .cta:hover { background: var(--btn-bg-hover); color: var(--btn-ink); }
 
@@ -1348,7 +1361,7 @@ body.portraits-bw .person-head .portrait {
   color: var(--ink);
   background: var(--field-bg);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
 }
 .filter input::placeholder { color: var(--ink-soft); }
 .filter input:focus { border-color: var(--accent); outline: none; }
@@ -1370,7 +1383,7 @@ body.portraits-bw .person-head .portrait {
   padding: .8rem;
   background: var(--surface);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
   text-decoration: none;
   color: var(--ink);
 }
@@ -1380,7 +1393,7 @@ body.portraits-bw .person-head .portrait {
   flex: 0 0 auto;
   width: 3.4rem; height: 4.6rem;
   background: #fff;
-  border-radius: 1px;
+  border-radius: var(--radius-ui);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
@@ -1418,7 +1431,7 @@ table.listing td.t-partner .t-logo {
   flex: 0 0 6.5rem;
   display: flex; align-items: center; justify-content: center;
   height: 3rem; padding: .35rem .5rem;
-  background: #fff; border-radius: 2px;
+  background: #fff; border-radius: var(--radius-ui);
 }
 table.listing td.t-partner .t-logo img { max-height: 100%; max-width: 100%; width: auto; }
 
@@ -1449,7 +1462,7 @@ table.listing tr:hover td { background: var(--surface-2); }
   position: absolute; left: 0; top: .62em;
   width: 7px; height: 7px;
   background: var(--accent);
-  border-radius: 1px;
+  border-radius: var(--radius-ui);
 }
 
 /* the lead sentence carries the point; the rest explains it */
@@ -1549,7 +1562,7 @@ body.surfaces-gradient .cta-band {
   margin: 0; padding: 1.15rem 1.2rem 1rem;
   background: var(--bg);
   border: 1px solid var(--rule);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   display: flex; flex-direction: column;
 }
 .engage h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
@@ -1587,7 +1600,7 @@ body.surfaces-gradient .cta-band {
   margin-right: 1.1rem;
   background: var(--btn-bg);
   color: var(--btn-ink);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   font-weight: 600;
   text-decoration: none;
 }
@@ -1603,7 +1616,7 @@ body.surfaces-gradient .cta-band {
   padding: 1.6rem;
   border: 1px solid var(--rule);
   border-left: 3px solid var(--accent);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
 }
 .newsletter h2 { margin: 0 0 .4rem; }
 .newsletter p { margin: 0; }
@@ -1616,7 +1629,7 @@ body.surfaces-gradient .cta-band {
   color: var(--ink);
   background: var(--field-bg);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: var(--radius-ui);
 }
 .nl-form input:focus { border-color: var(--accent); outline: none; }
 .nl-form button {
@@ -1624,7 +1637,7 @@ body.surfaces-gradient .cta-band {
   padding: .6rem 1.2rem;
   font: inherit; font-size: .95rem; font-weight: 600;
   color: var(--btn-ink); background: var(--btn-bg);
-  border: 0; border-radius: 2px; cursor: pointer;
+  border: 0; border-radius: var(--radius-ui); cursor: pointer;
 }
 .nl-form button:hover { background: var(--btn-bg-hover); }
 
@@ -1683,7 +1696,7 @@ body.surfaces-gradient .cta-band {
 .legal-warn code {
   background: var(--surface-2);
   padding: .1rem .3rem;
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   font-size: .9em;
 }
 
@@ -1783,7 +1796,7 @@ body.surfaces-gradient .cta-band {
 .quote {
   margin: 0;
   background: var(--surface);
-  border-radius: 4px;
+  border-radius: var(--radius-ui);
   padding: 1.6rem 1.6rem 1.3rem;
 }
 
@@ -1836,7 +1849,7 @@ body.surfaces-gradient .cta-band {
   justify-content: center;
   min-width: 1.65rem;
   padding: .12rem .3rem;
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   background: rgba(249, 45, 132, .16);
   font-size: .82rem;
   font-weight: 600;
@@ -2001,7 +2014,7 @@ table.listing td.t-partner .t-logo,
   display: block;
   padding: 1.1rem 1.2rem;
   border: 1px solid var(--rule);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   text-decoration: none;
   color: inherit;
 }
@@ -2025,7 +2038,7 @@ table.listing td.t-partner .t-logo,
   padding: 1.1rem 1.2rem;
   border: 1px solid var(--rule);
   border-left: 3px solid var(--accent);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   background: var(--surface-2);
 }
 
@@ -2058,7 +2071,7 @@ table.listing td.t-partner .t-logo,
   margin: 0;
   padding: 1.1rem 1.2rem;
   border: 1px solid var(--rule);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   display: block;
 }
 .tools li:hover { border-color: var(--accent); }
@@ -2103,7 +2116,7 @@ table.listing td.t-partner .t-logo,
 
 .pcard-img {
   display: block; aspect-ratio: 4 / 3; width: 100%;
-  border: 1px solid var(--rule); border-radius: 3px;
+  border: 1px solid var(--rule); border-radius: var(--radius-ui);
   overflow: hidden; background: var(--surface);
   /* --surface, not #fff: a photograph covers this frame completely once
      loaded, so the colour is only ever seen while the image is still
@@ -2174,7 +2187,7 @@ table.listing td.t-partner .t-logo,
 }
 
 .xfield-img {
-  aspect-ratio: 3 / 2; border-radius: 3px; overflow: hidden;
+  aspect-ratio: 3 / 2; border-radius: var(--radius-ui); overflow: hidden;
   border: 1px solid var(--rule); background: var(--surface);
   position: sticky; top: 1.5rem;
   /* --surface, not #fff: a photograph covers this frame completely once
@@ -2205,7 +2218,7 @@ table.listing td.t-partner .t-logo,
 .banner {
   background: var(--tint);
   color: var(--ink);
-  border-radius: 3px;
+  border-radius: var(--radius-ui);
   padding: .75rem 1rem;
   margin: 0 0 1.4rem;
   font-size: .92rem;
@@ -2235,7 +2248,7 @@ table.listing td.t-partner .t-logo,
   font: inherit; font-size: .85rem; line-height: 1;
   padding: .4rem .6rem;
   background: none; color: var(--ink-soft);
-  border: 1px solid var(--rule); border-radius: 3px;
+  border: 1px solid var(--rule); border-radius: var(--radius-ui);
   cursor: pointer;
 }
 .carousel-play { margin-left: auto; }
@@ -2261,3 +2274,90 @@ table.listing td.t-partner .t-logo,
   margin: -1px; padding: 0; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
+
+/* ---------- pictures, and their corners ----------
+
+   One radius for everything that shows a picture, applied here in one place
+   rather than left to each component, so a new image surface inherits it by
+   being on this list instead of by someone remembering a number.
+
+   `overflow: hidden` on the wrapper matters as much as the radius: an <img>
+   with square corners inside a rounded box pokes out at the corners, and the
+   result reads as a rendering fault rather than as a style. */
+.pcard-img,
+.pcard-img img,
+.pcard-img-empty,
+.xfield-img,
+.xfield-img img,
+.xfield-img-empty,
+.people .pc-face,
+.person-head .portrait,
+.dl-thumb,
+.dl-thumb img,
+.fig img,
+.tile,
+.pub-thumb,
+.pub-thumb img,
+.pub-tile {
+  border-radius: var(--radius-img);
+}
+.pcard-img, .xfield-img, .dl-thumb, .pub-thumb { overflow: hidden; }
+
+/* ---------- publication thumbnails ----------
+
+   The entry is a thumbnail beside its citation: 84px of picture on a phone,
+   112px from 40rem up. The picture is 3:4, which is the shape of a title
+   page, so a page scan and a designed tile sit at the same size instead of
+   one being letterboxed against the other.
+
+   `align-items: start` keeps the thumbnail level with the first line of the
+   citation rather than centred against a block that may run to four lines. */
+.pubs li {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 40rem) {
+  .pubs li { grid-template-columns: 112px minmax(0, 1fr); gap: 1.25rem; }
+}
+.pub-thumb {
+  display: block; aspect-ratio: 3 / 4;
+  text-decoration: none;   /* the drawn tile's own text is not a link label */
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+.pub-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pub-text { min-width: 0; }
+
+/* The tile drawn here, for an entry with no image file. It is not a blank
+   box with a label: it carries the gradient bar of the designed tiles, so an
+   entry waiting for its picture belongs to the same set as the rest. */
+.pub-tile {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  width: 100%; height: 100%; padding: .5rem;
+  background: var(--surface);
+}
+.pub-tile-bar {
+  display: block; height: 4px; width: 60%;
+  margin-bottom: auto; border-radius: 2px;
+  background: linear-gradient(90deg, #001730, #751094, #f92d84);
+}
+.pub-tile-kind {
+  font-size: .68rem; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.pub-tile-year {
+  font-size: .95rem; font-weight: 600; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The thumbnail on a publication's own page, at the top of the fact column. */
+.pub-figure { margin: 0 0 1.1rem; }
+.pub-figure img {
+  display: block; width: 100%; max-width: 13rem;
+  border: 1px solid var(--rule); border-radius: var(--radius-img);
+  background: var(--surface);
+}
+.pub-figure figcaption { margin-top: .4rem; line-height: 1.45; }

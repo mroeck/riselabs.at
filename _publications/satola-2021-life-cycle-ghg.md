@@ -11,6 +11,7 @@ projects:
   - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/satola-2021-life-cycle-ghg.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

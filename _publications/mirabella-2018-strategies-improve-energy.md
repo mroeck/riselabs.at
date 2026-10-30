@@ -11,6 +11,7 @@ projects:
   - pef4buildings
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/mirabella-2018-strategies-improve-energy.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

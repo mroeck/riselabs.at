@@ -11,6 +11,7 @@ projects:
   - analysis-of-life-cycle-greenhouse
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/roeck-2025-wlc-scenario-explorer.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

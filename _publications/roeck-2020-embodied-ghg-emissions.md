@@ -12,6 +12,8 @@ projects:
   - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
+thumbnail: /assets/img/pubs/roeck-2020-embodied-ghg-emissions.webp
+thumbnail_credit: "Title page © the authors, CC-BY-NC-ND licence"
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

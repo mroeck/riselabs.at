@@ -13,6 +13,7 @@ partners:
   - bpie
 projects:
   - supporting-the-development-of-a
+thumbnail: /assets/img/pubs/ec-2024-supporting-development-roadmap.webp
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
