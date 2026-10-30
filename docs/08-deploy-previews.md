@@ -41,14 +41,29 @@ changes, this decision is worth revisiting rather than worked around.
    everything.
 3. The build settings come from `netlify.toml`, so leave the build command
    and publish directory as they appear. Deploy.
-4. **Site configuration → Build & deploy → Branches and deploy contexts:**
-   - Set the **production branch** to `netlify-unused`, a branch that does
-     not exist. Netlify then never publishes a production copy, and
-     riselabs.at stays the only live site.
-   - Make sure **Deploy Previews** is set to build pull requests.
+4. **Project configuration → Build & deploy → Branches and deploy contexts:**
+   - Leave the **production branch** as `main`.
+   - Leave **Deploy Previews** enabled.
    - Set **branch deploys** to none.
 5. Open any pull request. Within a minute or two the PR shows a
    `netlify/<project>/deploy-preview` check with a link to the built site.
+
+### Why `main` stays the production branch
+
+A first draft of this file said to point the production branch at a branch
+that does not exist, so that Netlify would never publish a production copy.
+That would have switched the previews off along with it. Netlify only builds
+a Deploy Preview when the pull request's **base branch** is either the
+production branch or a branch with branch deploys enabled; with the
+production branch pointing nowhere, every pull request against `main` would
+have had no preview, which is the whole point of this.
+
+So `main` stays the production branch, and Netlify does publish its own copy
+of the site at `<project>.netlify.app`. That copy is harmless: it is not
+linked from anywhere, `netlify.toml` sends `X-Robots-Tag: noindex, nofollow`
+on every path so it stays out of search results, and every canonical tag on
+it points at riselabs.at. riselabs.at remains the live site, served by GitHub
+Pages, and nothing about this changes that.
 
 Optional: **Site configuration → Notifications → Deploy notifications → add a
 GitHub pull request comment**, if a comment in the thread is easier to find
