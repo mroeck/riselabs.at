@@ -299,6 +299,14 @@ own page. A person missing one of the three simply shows fewer.
 `docs-check.py` checks an ORCID against its own checksum, because a single
 wrong digit still resolves - to a stranger's publication record.
 
+**`cite_also`** is an optional list of earlier forms of a person's name, for
+anyone who has published under more than one. Zuhaib carries
+`cite_also: ["Zuhaib S"]`, because he published as Sheikh Zuhaib until 2022
+and as Batra from 2024, under one ORCID. Author strings keep the form the
+paper was published under, so without this half of someone's own work would
+appear in the lists as a stranger's. Every form listed is underlined in the
+publication lists exactly as `cite` is.
+
 ---
 ## 7. Add a partner
 

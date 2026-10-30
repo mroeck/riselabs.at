@@ -4,11 +4,26 @@
 {%- endcomment -%}
 {%- assign p = include.pub -%}
 {%- assign a = p.authors -%}
+{%- comment -%}
+  Every form a person has published under, not just the current one. A name
+  in an author string is the name that paper carries, and people's names
+  change: Zuhaib published as "Zuhaib S" until 2022 and as "Batra Z" from
+  2024, under one ORCID. Matching only the current form would leave half of
+  someone's own work looking like a stranger's.
+
+  `cite` first, then anything in `cite_also`. The longest form has to go
+  first within a person, or a shorter one can match inside a longer one and
+  break the markup.
+{%- endcomment -%}
 {%- for person in site.people -%}
   {%- if person.cite -%}
     {%- capture wrapped %}<span class="self">{{ person.cite }}</span>{% endcapture -%}
     {%- assign a = a | replace: person.cite, wrapped -%}
   {%- endif -%}
+  {%- for also in person.cite_also -%}
+    {%- capture wrapped_also %}<span class="self">{{ also }}</span>{% endcapture -%}
+    {%- assign a = a | replace: also, wrapped_also -%}
+  {%- endfor -%}
 {%- endfor -%}
 <li>
   {{ a }}.

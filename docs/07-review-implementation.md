@@ -1103,6 +1103,183 @@ and 390 px, light and dark, go in each PR.
   copy of one project, one publication and one person shows the matching
   placeholder on the card and on the page, in both themes.
 
+## Phase W: "Work with us" and Expertise, revised content
+
+Source: review of 29 October 2026 of the homepage "Work with us" band and
+`/expertise/` against the projects and publications on the site (repo at
+2158c73): https://claude.ai/artifact/Nr5v6wntREMDGKGCCF7cBh
+
+Both still carried the old services wording. Expertise had no field for the
+"scaling deep" strand of `/approach/`, no Global South, and linked only
+projects. "Work with us" missed the two ways most current work starts
+(funders backing programmes, countries joining data programmes).
+
+Content files, supplied ready to use (Martin approves the wording, H29):
+`drafts/engagement.yml` and `drafts/expertise.yml`. Every slug in them has
+been checked against `_projects/`, `_publications/` and `_posts/` at 2158c73.
+
+Do W1–W4 in one PR, after R7 (photos) or together with it.
+
+### W1 Four ways in, with examples
+
+- **Files:** `_data/engagement.yml`, `_includes/engagement.html`,
+  `index.md`, `docs-check.py`
+- **Change:**
+  - Replace `_data/engagement.yml` with `drafts/engagement.yml`.
+  - Each entry has a new `examples` list of project slugs. In the cards
+    include, render under the body: "For example:" and the project
+    titles, linked, joined with " · ". Use the project's `short_title` if it
+    has one, otherwise `title`. Then the mail link as now.
+  - Add `short_title` to the front matter of these projects (new field;
+    document it in `docs/03`). Values, exactly:
+    | project | short_title |
+    | --- | --- |
+    | supporting-the-development-of-a | EU whole life carbon roadmap |
+    | analysis-of-life-cycle-greenhouse | EU buildings emissions analysis |
+    | towards-embodied-carbon-benchmarks-for | European embodied carbon benchmarks |
+    | agora-leitmaerkte-embodied-carbon | Agora lead markets |
+    | global-status-report-for-buildings | Global Status Report |
+    | global-whole-life-carbon-tracker | Global Whole Life Carbon Tracker |
+    | global-building-data-initiative | GBDI |
+    | gbdi-china-and-india-cooperation | GBDI China and India |
+    | chile-wlc-data-harmonisation | Chile data harmonisation |
+    | indicate | INDICATE |
+    | indicate-life | INDICATE LIFE |
+    | iea-ebc-annex-72 | IEA EBC Annex 72 |
+    | reliving-scaling-renovation | Re:Living |
+    | collaborative-carbon | CollaborativeCarbon |
+    | pef4buildings | PEF4Buildings |
+    W2 uses `short_title` in the same way.
+  - Drop the `style="list"` branch of the include, which nothing uses after
+    W2.
+  - Homepage lede (`index.md`, `#work-with-us`), exactly: "We work with
+    public authorities, international organisations, funders, research
+    partners and the pioneers changing how we build. Most collaborations
+    start in one of four ways."
+  - Keep the fallback email line and the newsletter row.
+  - `docs-check.py`: fail an unknown slug in `engagement.yml` `examples`.
+- **Done when:** four cards, each with two linked examples, the new lede,
+  and mail links whose subject is the card title.
+
+### W2 Expertise page by strand
+
+- **Files:** `_data/expertise.yml`, `expertise.html`, `assets/css/style.css`
+- **Change:**
+  - Replace `_data/expertise.yml` with `drafts/expertise.yml` (eight fields;
+    new keys `publications` and `posts`).
+  - Page head: `h1` "Expertise". Lede, exactly: "What we do, grouped by the
+    three strands of our approach. Under each field are the projects and
+    publications where you can check it."
+  - Index row: the three strands, each followed by its fields as jump
+    links.
+  - Three bands, in order up, wide, deep, alternating `--bg` and
+    `--surface` (R2). Each opens with an `h2`, a one-line intro, and a
+    link "More on this strand →" to the matching Approach section (W3).
+    Exactly:
+    | strand | h2 | intro |
+    | --- | --- | --- |
+    | up | Scaling up: changing the rules | Evidence for the people writing the rules, and the methods that make it hold up. |
+    | wide | Scaling wide: reaching greater numbers | Shared infrastructure that lets many actors act at once. |
+    | deep | Scaling deep: working with pioneers | Testing what is possible with the networks that build differently, and keeping carbon from crowding out everything else. |
+  - Fields render as now (image and text, alternating sides), with field
+    titles as `h3`. Evidence becomes two lines: "Projects" (from
+    `examples`) and "Publications" (from `publications`, then `posts`), each
+    linking the item's title. Publication titles longer than 80 characters
+    are cut at a word boundary with "…"; the link carries the full title in
+    `title`.
+  - A field without `image` shows the R11 project placeholder.
+  - After the deep band, a "Global South and emerging markets" band, text
+    exactly: "Most of the floor area of the coming decades will be built in
+    the Global South. Across all three strands, a growing share of our work
+    is with partners in China, India, Chile and South Africa: shared data,
+    local capacity, and methods built with local teams rather than
+    imported." Then the same two evidence lines, from these slugs:
+    projects `gbdi-china-and-india-cooperation`,
+    `chile-wlc-data-harmonisation`, `global-building-data-initiative`;
+    publications `dunant-2025-timely-deployment-best`,
+    `satola-2021-life-cycle-ghg`; posts `cbpm-cape-town-keynote`,
+    `cbmf-beijing-low-carbon-concrete`, `gbdi-india-webinar`. Put the slugs
+    in the page's front matter (`global_south:`), not in the markup.
+  - Replace both end blocks ("How we work with you" and the "Work with us"
+    box) with the homepage band: `h2` "Work with us", the line "We would
+    rather hear the problem than the brief.", the four cards
+    (`engagement.html style="cards"`), and the fallback email line. No
+    newsletter here.
+- **Done when:** eight fields under three strand headings, every field
+  with at least two project links and at least one publication link, the
+  Global South band, one "Work with us" block at the end; no broken links
+  (`docs-check.py`).
+
+### W3 Anchors on the Approach page
+
+- **File:** `approach.md`
+- **Change:** give the three strand headings stable ids: `scaling-up`,
+  `scaling-wide`, `scaling-deep` (`<h2 id="scaling-up">`). Text unchanged.
+- **Done when:** `/approach/#scaling-deep` jumps to that heading.
+
+### W4 Checker and docs
+
+- **Files:** `docs-check.py`, `docs/03-editing-the-site.md`
+- **Change:** `docs-check.py` fails an unknown slug in `expertise.yml`
+  (`examples`, `publications`, `posts`), in `engagement.yml` `examples`,
+  and in `expertise.html` `global_south`; it fails a `strand` other than
+  up, wide, deep. Document the new keys in `docs/03` (expertise and
+  engagement tables).
+- **Done when:** a misspelt slug in either data file makes the checker
+  fail with the file and the slug named.
+
+## Phase E: publications of the extended team
+
+Source: search of 30 October 2026 (ORCID, Crossref, DataCite, OpenAlex,
+EPFL and UCT records) for Nicole Di Santo, Zuhaib Batra and Darmarajan
+(Norman) Chinasamy, the RISE x GBDI extended team. Partners at other
+organisations are out of scope.
+
+Supplied: `riselabs-extended-team-pubs-2026-10-30.zip` with 26 files for
+`_publications/`, their 26 designed tiles for `assets/img/pubs/`, and
+`manifest-newpubs.yml` (sources, licences, PDF links). The test copy passed
+`docs-check.py` ("no problems found") with the files added at 45f6980.
+
+### E1 Add the entries
+
+- **Files:** `_publications/` (26 new), `assets/img/pubs/` (26 new)
+- **Change:** copy them in unchanged. 25 are the extended team's: 1 shared
+  GBDI paper (Di Santo, Batra, Röck and others, fib Congress 2026), 4 more
+  by Nicole, 14 more by Zuhaib, 6 by Norman. The 26th is Martin's own and
+  was missing: the Global Status Report 2025-2026 (UNEP, GlobalABC), linked
+  to that project.
+- Each entry carries `people:` for the person, so it shows on their profile;
+  `partners:` only where OpenAlex lists that institution for a co-author,
+  and only for partners that already have a file; `projects:` only for the
+  GBDI paper and the Status Report.
+- Conference papers use `kind: article` (the site has no conference kind);
+  their tiles say "Conference paper".
+- Thumbnails are designed tiles for now. Where `manifest-newpubs.yml` says
+  `title_page_possible_later: true`, a CC BY title page can replace the tile
+  later (R6 rule).
+- **Done when:** the three profiles list their publications; the
+  publications page shows 64 entries.
+
+### E2 Earlier name forms
+
+- **Files:** `_people/zuhaib-batra.md`, `_includes/pubitem.html`,
+  `docs/03`
+- **Problem:** Zuhaib published as "Zuhaib S" (Sheikh Zuhaib) until 2022 and
+  as "Batra Z" from 2024 (same ORCID, 0000-0002-3402-0048). Author strings
+  keep the published form, so his older papers would not be underlined.
+- **Change:** a new optional list `cite_also:` on people
+  (`cite_also: ["Zuhaib S"]` for Zuhaib); `pubitem.html` underlines each
+  form like `cite`. Document it in `docs/03`.
+- **Done when:** "Zuhaib S" is underlined in his 2016-2022 entries.
+
+### E3 Optional: tell RISE work from earlier work
+
+- **Problem:** with E1, about half of the list predates RISE and GBDI
+  (Galway, BPIE, Politecnico di Milano). A filter may help visitors.
+- **Change, if Martin wants it (H31):** a filter chip on `/publications/`
+  "With RISE or GBDI". The rule that decides it is agreed with Martin
+  first (H31); derive it from existing fields rather than tagging by hand.
+
 ---
 
 ## Human input
@@ -1135,9 +1312,14 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H21 | Martin | ~~Analytics tool~~ Answered 29 Oct: Plausible. Still needed: the account and setup steps in R10, the snippet, and the plan after the 30-day trial (Business for user journeys) | R10 |
 | H22 | Martin | ~~Circular licence~~ Answered 29 Oct: licensed for web and desktop use; switch to Circular | R3 |
 | H23 | Martin | To do, later: PDFs for the EU roadmap and DG GROW reports, IEA EBC Annex 72, TU Graz and the MDPI papers, so their tiles can become title pages. Designed tiles stay as placeholders until then | R6, R11 |
-| H24 | Martin | The Circular WOFF2 web files (Book, Medium and italics) and any notice the licence requires. **Still open.** Files supplied 29 Oct do not cover this site: see the note below | R3 |
+| H24 | Martin | The Circular WOFF2 web files (Book, Medium and italics) and any notice the licence requires. **Partly answered 29-30 Oct**: files supplied, but Medium only and licensed for another domain. Still needed: the Book cut, and riselabs.at on the licence (or the move to riseregenerate.com). See the implementer's note below | R3 |
 | H25 | Martin or a lawyer | Approve the Datenschutz section for Plausible (`drafts/datenschutz-plausible-draft.html`), including whether consent is needed | R10 |
 | H26 | Norman Chinasamy | Approval of his profile text and portrait (live as a draft since 235b9a8); UCT clearance if required | R8 |
+| H27 | Martin | Does RISE take independent review work (of assessments, tools, benchmark proposals)? If not, drop the review line and the note from the Methods field | W2 |
+| H28 | Martin | A photograph for "Bio-based and regenerative materials" (own work or a project partner's, with permission); placeholder until then | W2 |
+| H29 | Martin | Approve the wording in `drafts/engagement.yml` and `drafts/expertise.yml` | W1, W2 |
+| H30 | Nicole, Zuhaib, Norman | Confirm their list is complete and correct, and name anything to leave out. Norman's public ORCID record is empty; his six entries come from Crossref and OpenAlex. Zuhaib: two items were left out on purpose (an amphibian-biology paper misattributed to "Sheikh Zuhaib" in OpenAlex, and a correction notice); is he an author of the 2022 Global Status Report or the BPIE EU Buildings Climate Tracker (2022)? Neither names him publicly | E1 |
+| H31 | Martin | Whether to add the "With RISE or GBDI" filter (E3) | E3 |
 
 ---
 
@@ -1171,3 +1353,44 @@ Until both are resolved the site stays on Figtree, which is what the order
 above says to do while the files are missing. `assets/css/style.css` keeps
 the `@font-face` block and the `--font` token together at the top of the
 file, so the swap is those two edits and nothing else.
+
+### W1 was already built, from the PDF, before v4 of this order arrived
+
+Shipped in PR #26 on 29 October against the proposal document. v4 then put
+the same task in writing here. The two agree except in three places, all
+resolved in favour of this order on 30 October:
+
+- `short_title` for `towards-embodied-carbon-benchmarks-for` was "Towards
+  Embodied Carbon Benchmarks"; now "European embodied carbon benchmarks".
+- `short_title` for `global-building-data-initiative` was "GBDI pilot"; now
+  "GBDI".
+- The checker's cap on `short_title` was 34 characters, which rejected the
+  first of those at 35. It is 38 now. The cap was a number picked by eye, not
+  a measured limit, so the supplied value won.
+
+Two things W1 asks for are deliberately not done yet, because W2 is what
+needs them:
+
+- The `style="list"` branch of `_includes/engagement.html` is still there.
+  v4 says to drop it "which nothing uses after W2", and /expertise/ still
+  uses it today.
+- `docs-check.py` already fails an unknown slug in `engagement.yml`
+  `examples`, which W1 and W4 both ask for.
+
+### W2 is blocked: the draft content files are not in the pack
+
+The order says `drafts/engagement.yml` and `drafts/expertise.yml` are
+"supplied ready to use". Neither is in
+`riselabs-asset-pack-2026-10-29.zip` (which holds only
+`drafts/datenschutz-plausible-draft.html`) nor in
+`riselabs-extended-team-pubs-2026-10-30.zip`.
+
+`engagement.yml` does not matter any more: W1 is built and its wording came
+from the proposal document, which quotes all four cards in full.
+
+`drafts/expertise.yml` does matter. W2 needs eight fields, each with a lede,
+up to four bullet points, an audience line, and lists of projects,
+publications and posts. The order quotes the strand headings, the strand
+intros and the Global South text verbatim, but not the eight fields'
+contents. Writing those would mean inventing claims about what RISE does,
+which rule 2 forbids. So W2 waits for that file.
