@@ -598,6 +598,7 @@
 
       Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
         b.classList.toggle("on", b === btn);
+        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
       });
 
       items.forEach(function (li) {
@@ -616,6 +617,79 @@
     });
   }
 
+
+  /* ---------- sorting the publications list ----------
+
+     The page is built newest first, with RISE and GBDI work ahead of earlier
+     work inside each year. This reorders within each kind section without
+     touching the sections themselves, so "Journal articles" stays above its
+     own articles.
+
+     Each entry carries what it needs on the element: `data-year`, and
+     `data-citations` where a count exists. Reading values out of the DOM text
+     would mean parsing a citation string, which breaks the first time one is
+     worded differently.
+  */
+  function setupPubSort(bar) {
+    var list = document.querySelector("#publist");
+    if (!list) return;
+    var lists = Array.prototype.slice.call(list.querySelectorAll("ul.pubs"));
+    if (!lists.length) return;
+
+    // the built order, to return to
+    lists.forEach(function (ul) {
+      Array.prototype.forEach.call(ul.children, function (li, i) {
+        li.setAttribute("data-built", i);
+      });
+    });
+
+    bar.hidden = false;
+
+    function num(li, attr) {
+      var v = parseInt(li.getAttribute(attr), 10);
+      return isNaN(v) ? null : v;
+    }
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-pub-sort]") : null;
+      if (!btn) return;
+      var how = btn.getAttribute("data-pub-sort");
+
+      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
+        b.classList.toggle("on", b === btn);
+        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+      });
+
+      /* Every comparison ends in the built order, so each sort is a total
+         order and does not depend on what the previous one left behind.
+         That is what keeps RISE work first inside a year under "Oldest
+         first" as well, and what keeps two papers with the same citation
+         count in a stable order. */
+      function built(a, b) { return num(a, "data-built") - num(b, "data-built"); }
+
+      lists.forEach(function (ul) {
+        var items = Array.prototype.slice.call(ul.children);
+        items.sort(function (a, b) {
+          if (how === "oldest") {
+            var ya = num(a, "data-year") || 0, yb = num(b, "data-year") || 0;
+            return ya === yb ? built(a, b) : ya - yb;
+          }
+          if (how === "cited") {
+            var ca = num(a, "data-citations"), cb = num(b, "data-citations");
+            // an entry with no count sorts last rather than as zero: nobody
+            // has counted it, which is not the same as nobody citing it
+            if (ca === null && cb === null) return built(a, b);
+            if (ca === null) return 1;
+            if (cb === null) return -1;
+            return ca === cb ? built(a, b) : cb - ca;
+          }
+          return built(a, b);
+        });
+        items.forEach(function (li) { ul.appendChild(li); });
+      });
+    });
+  }
+
   function init() {
     Array.prototype.forEach.call(document.querySelectorAll("[data-worldmap]"), setupMap);
     Array.prototype.forEach.call(document.querySelectorAll("[data-theme-toggle]"), setupTheme);
@@ -630,6 +704,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
     Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), setupCarousel);
     Array.prototype.forEach.call(document.querySelectorAll("[data-pubfilter]"), setupPubFilter);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pubsort]"), setupPubSort);
   }
 
   if (document.readyState === "loading") {

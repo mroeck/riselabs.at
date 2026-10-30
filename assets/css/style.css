@@ -2167,6 +2167,17 @@ table.listing td.t-partner .t-logo,
   background: var(--accent); border-color: var(--accent);
   color: var(--btn-ink); font-weight: 600;
 }
+/* Two bars above the publications list, one filtering and one sorting, are
+   two rows of chips that look alike. The label says which is which; on the
+   projects page there is only one bar and no label, and nothing changes. */
+.themebar-label {
+  align-self: center; font-size: .84rem; color: var(--ink-soft);
+  margin-right: .15rem;
+  /* the two labels are different words, so the chips after them would start
+     at two different x positions; this lines the rows up */
+  min-width: 2.6rem;
+}
+@media (max-width: 30rem) { .themebar-label { flex: 0 0 100%; margin: 0; } }
 
 /* ---------- expertise ---------- */
 
