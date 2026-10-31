@@ -11,6 +11,9 @@ people:
 #   - project-filename
 thumbnail: /assets/img/pubs/ventura-2022-environmental-potential-earth.webp
 rise_work: false
+citations: 91
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

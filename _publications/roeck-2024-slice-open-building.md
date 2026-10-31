@@ -12,6 +12,9 @@ projects:
   - supporting-the-development-of-a
 thumbnail: /assets/img/pubs/roeck-2024-slice-open-building.webp
 rise_work: true
+citations: 28
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

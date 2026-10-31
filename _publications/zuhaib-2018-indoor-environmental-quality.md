@@ -9,6 +9,9 @@ people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2018-indoor-environmental-quality.webp
 rise_work: false
+citations: 134
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

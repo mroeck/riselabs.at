@@ -11,6 +11,9 @@ people:
 #   - project-filename
 thumbnail: /assets/img/pubs/mouton-2022-environmental-potentials-bio.webp
 rise_work: false
+citations: 89
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

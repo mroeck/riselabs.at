@@ -12,7 +12,21 @@ partners:
   - vito
 thumbnail: /assets/img/pubs/zuhaib-2021-end-users-survey.webp
 rise_work: false
+citations: 0
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
-<!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).
-     Sources: DataCite; OpenAlex (not on ORCID). -->
+<!-- Abstract as held by OpenAlex for DOI 10.5281/zenodo.5658337,
+     reconstructed from its inverted index and retrieved
+     2026-10-31. Reproduced as recorded; edit only to fix
+     encoding or spacing. -->
+
+## Abstract
+
+The SPSS data file consists of survey data from the X-tendo project on the
+end-user needs and expectations from next-generation energy performance
+certificates.
+
+Abstract as published.
+{: .muted .small}

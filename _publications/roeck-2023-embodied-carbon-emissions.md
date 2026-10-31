@@ -13,6 +13,9 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2023-embodied-carbon-emissions.webp
 rise_work: true
+citations: 74
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
