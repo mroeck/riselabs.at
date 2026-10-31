@@ -12,7 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/mirabella-2018-strategies-improve-energy.webp
-rise_work: false
+rise_tier: prior
 citations: 97
 citations_source: OpenAlex
 citations_date: 2026-10-31

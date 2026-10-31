@@ -16,7 +16,7 @@ projects:
   - indicate
 thumbnail: /assets/img/pubs/toth-2024-establish-whole-life.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: true
+rise_tier: core
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

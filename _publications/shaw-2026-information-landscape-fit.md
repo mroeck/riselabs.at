@@ -11,7 +11,7 @@ people:
 #   - project-filename
 thumbnail: /assets/img/pubs/shaw-2026-information-landscape-fit.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: true
+rise_tier: core
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

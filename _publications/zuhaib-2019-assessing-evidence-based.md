@@ -8,7 +8,7 @@ doi: "10.1007/s12053-019-09812-z"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2019-assessing-evidence-based.webp
-rise_work: false
+rise_tier: prior
 citations: 33
 citations_source: OpenAlex
 citations_date: 2026-10-31

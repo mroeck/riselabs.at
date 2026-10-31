@@ -12,7 +12,7 @@ partners:
 projects:
   - global-status-report-for-buildings
 thumbnail: /assets/img/pubs/hamilton-2026-global-status-report.webp
-rise_work: true
+rise_tier: core
 citations: 6
 citations_source: OpenAlex
 citations_date: 2026-10-31

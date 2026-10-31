@@ -12,7 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/satola-2021-life-cycle-ghg.webp
-rise_work: false
+rise_tier: prior
 citations: 28
 citations_source: OpenAlex
 citations_date: 2026-10-31

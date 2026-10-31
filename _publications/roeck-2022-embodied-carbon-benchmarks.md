@@ -14,7 +14,7 @@ projects:
   - towards-embodied-carbon-benchmarks-for
 thumbnail: /assets/img/pubs/roeck-2022-embodied-carbon-benchmarks.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: false
+rise_tier: prior
 citations: 22
 citations_source: OpenAlex
 citations_date: 2026-10-31

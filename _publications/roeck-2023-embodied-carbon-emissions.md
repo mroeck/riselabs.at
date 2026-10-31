@@ -12,7 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2023-embodied-carbon-emissions.webp
-rise_work: true
+rise_tier: core
 citations: 74
 citations_source: OpenAlex
 citations_date: 2026-10-31

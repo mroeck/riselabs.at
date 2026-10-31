@@ -15,12 +15,22 @@
       {%- comment -%}
         A project with no picture of its own falls back to stock imagery
         rather than an empty box. See _includes/stockimg.html.
+
+        `hero_tone: false` in a project's front matter turns the picture
+        treatment off for its card. Eight of these heroes are maps, charts or
+        screenshots rather than photographs, and the treatment's greyscale
+        takes the colour coding out of them: a pie-chart map of the EU stock
+        becomes eleven shades of the same grey, which is not a picture of
+        anything. The default is on, so a photograph needs no front matter;
+        only an exception is written down.
       {%- endcomment -%}
+      {%- assign tone_class = "pcard-img" -%}
+      {%- if p.hero_tone == false %}{% assign tone_class = "pcard-img no-tone" %}{% endif -%}
       {%- if p.hero -%}
-      <span class="pcard-img"><img src="{{ p.hero | relative_url }}" alt="" loading="lazy"></span>
+      <span class="{{ tone_class }}"><img src="{{ p.hero | relative_url }}" alt="" loading="lazy"></span>
       {%- else -%}
       {%- capture pstock %}{% include stockimg.html key=p.slug %}{% endcapture -%}
-      <span class="pcard-img"><img src="{{ pstock | strip | relative_url }}" alt="" loading="lazy"></span>
+      <span class="{{ tone_class }}"><img src="{{ pstock | strip | relative_url }}" alt="" loading="lazy"></span>
       {%- endif -%}
       <span class="pcard-meta">{{ p.years }}</span>
       <span class="pcard-title">{{ p.title }}</span>

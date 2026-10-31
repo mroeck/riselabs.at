@@ -13,7 +13,7 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/hollberg-2021-review-visualising-lca.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: false
+rise_tier: prior
 citations: 148
 citations_source: OpenAlex
 citations_date: 2026-10-31

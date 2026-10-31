@@ -9,12 +9,18 @@ summary: "Harmonised building LCA methods, workflows and tools across 27 countri
 hero: "/assets/img/projects/lca-life-cycle-stages.png"
 image: "/assets/img/projects/lca-life-cycle-stages.png"   # the social preview; see docs/03
 hero_caption: "Life cycle stages and modules, the common structure the Annex harmonised around."
+# The hero is a map, chart or screenshot, not a photograph, so the
+# site-wide picture treatment is off for this card: greyscale would
+# take the colour coding out of it. See _includes/projectgrid.html.
+hero_tone: false
 themes:
   - whole-life-carbon
   - data-benchmarks
 link: "https://annex72.iea-ebc.org/"
 clients:
   - iea-ebc
+partners:
+  - rise
 people:
   - martin-roeck
 partners_note: "within an international consortium of 27 countries"

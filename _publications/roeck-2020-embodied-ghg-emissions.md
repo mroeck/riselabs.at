@@ -14,7 +14,7 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2020-embodied-ghg-emissions.webp
 thumbnail_credit: "Title page © the authors, CC-BY-NC-ND licence"
-rise_work: false
+rise_tier: prior
 citations: 1185
 citations_source: OpenAlex
 citations_date: 2026-10-31

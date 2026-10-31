@@ -20,6 +20,7 @@ people:
   - zuhaib-batra
   - barbara-droste-luckmann
 partners:
+  - rise
   - bpie
   - ucl
   - arup

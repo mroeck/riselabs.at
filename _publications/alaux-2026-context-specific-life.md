@@ -19,7 +19,7 @@ projects:
   - analysis-of-life-cycle-greenhouse
 thumbnail: /assets/img/pubs/alaux-2026-context-specific-life.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: true
+rise_tier: core
 citations: 9
 citations_source: OpenAlex
 citations_date: 2026-10-31

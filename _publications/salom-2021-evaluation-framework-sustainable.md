@@ -10,7 +10,7 @@ people:
 partners:
   - bpie
 thumbnail: /assets/img/pubs/salom-2021-evaluation-framework-sustainable.webp
-rise_work: false
+rise_tier: prior
 citations: 59
 citations_source: OpenAlex
 citations_date: 2026-10-31

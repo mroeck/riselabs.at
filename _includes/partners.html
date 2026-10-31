@@ -2,12 +2,26 @@
   Partner tiles: logo on white, then the name (logos are not always legible
   as names), then city and country in a smaller second line.
   Expects: include.keys (filenames in _partners/)
+
+  The key `rise` is handled here rather than as a file in _partners/. RISE
+  belongs in a project's list of organisations - leaving it out said the work
+  had no one behind it - but it is not a partner of ours in the sense the rest
+  of that collection means, and a file would put RISE on /partners/ among the
+  organisations we work with, and give it a partner page of its own that
+  duplicated the home page. So the tile is written here and points at the home
+  page, which is the thing a partner page would otherwise be.
 {%- endcomment -%}
 <ul class="partners">
   {%- for key in include.keys -%}
     {%- assign pa = site.partners | where: "slug", key | first -%}
     <li>
-      {%- if pa -%}
+      {%- if key == "rise" -%}
+        <a href="{{ '/' | relative_url }}">
+          <span class="pa-logo"><img src="{{ '/assets/img/rise-logo-navy.png' | relative_url }}" alt="" loading="lazy"></span>
+          <span class="pa-name">{{ site.title }}</span>
+          <span class="pa-where">Vienna, Austria</span>
+        </a>
+      {%- elsif pa -%}
         <a href="{{ pa.url | relative_url }}">
           {%- if pa.logo -%}
           <span class="pa-logo"><img src="{{ '/assets/img/partners/' | append: pa.logo | relative_url }}" alt="" loading="lazy"></span>

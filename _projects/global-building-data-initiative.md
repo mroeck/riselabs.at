@@ -6,9 +6,13 @@ years: "2024–2025"
 funder: "ClimateWorks Foundation"
 role: "Principal Investigator"
 summary: "Launched an open global data commons on resource use and upfront embodied carbon of new buildings"
-hero: "/assets/img/photos/project-gbdi-pilot.jpg"
+hero: "/assets/img/projects/gbdi-platform.png"
 image: "/assets/img/projects/gbdi-platform.png"   # the social preview; see docs/03
-hero_caption: "Photo: Evgeny Matveev / Unsplash"
+hero_caption: "The Global Building Data Initiative platform."
+# The hero is a map, chart or screenshot, not a photograph, so the
+# site-wide picture treatment is off for this card: greyscale would
+# take the colour coding out of it. See _includes/projectgrid.html.
+hero_tone: false
 themes:
   - data-benchmarks
   - whole-life-carbon
@@ -20,6 +24,7 @@ people:
   - nicole-di-santo
   - zuhaib-batra
 partners:
+  - rise
   - usp
   - epfl
 # Related projects, by slug. The link is written on both sides for

@@ -9,7 +9,7 @@ people:
 projects:
   - iea-ebc-annex-72
 thumbnail: /assets/img/pubs/frischknecht-2023-iea-ebc-annex.webp
-rise_work: true
+rise_tier: core
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->

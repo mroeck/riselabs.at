@@ -207,8 +207,8 @@ Worth knowing about, rarely worth changing:
 
 ### Themes
 
-Light is the default; a toggle in the bottom corner switches a page to
-dark, and a visitor whose system is set to dark gets dark without asking.
+Dark is the default; a toggle in the bottom corner switches a page to
+light, and a visitor whose system is set to light gets light without asking.
 Colour lives in two layers at the top of `assets/css/style.css`: brand
 constants that never change, and semantic tokens the theme swaps. Changing
 the palette means editing those tokens, nothing else.

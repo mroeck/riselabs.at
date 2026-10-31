@@ -19,7 +19,7 @@ projects:
   - analysis-of-life-cycle-greenhouse
 thumbnail: /assets/img/pubs/alaux-2024-whole-life-greenhouse.webp
 thumbnail_credit: "Title page © the authors, CC-BY-NC-ND licence"
-rise_work: true
+rise_tier: core
 citations: 46
 citations_source: OpenAlex
 citations_date: 2026-10-31

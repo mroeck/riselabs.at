@@ -1,10 +1,14 @@
 {%- comment -%}
   Partner names as inline links, for the facts block.
   Expects: include.keys
+
+  `rise` is not a file in _partners/ and points at the home page; see the
+  comment in partners.html for why.
 {%- endcomment -%}
 {%- for key in include.keys -%}
   {%- assign pa = site.partners | where: "slug", key | first -%}
-  {%- if pa -%}<a href="{{ pa.url | relative_url }}">{{ pa.name }}</a>
+  {%- if key == "rise" -%}<a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  {%- elsif pa -%}<a href="{{ pa.url | relative_url }}">{{ pa.name }}</a>
   {%- else -%}{{ key }}{%- endif -%}
   {%- unless forloop.last %}, {% endunless -%}
 {%- endfor -%}

@@ -31,6 +31,7 @@ clients:
 people:
   - martin-roeck
 partners:
+  - rise
   - einszueins
   - tu-delft
   - clt-europe

@@ -124,8 +124,8 @@
      word, and it is written only when the visitor presses the button - so it
      is a preference they set, not something that tracks them. It never
      leaves the browser. The matching read is an inline script in <head>, so
-     the remembered theme is applied before first paint; without it every
-     page would flash dark before turning light.
+     the remembered theme is applied before first paint; without it a visitor
+     who chose light would see every page flash dark before turning light.
 
      Storage throws in some privacy modes, so every access is wrapped. If it
      fails the toggle still works for the current page and simply forgets. */
@@ -467,11 +467,85 @@
   function setupReel(box) {
     var track = box.querySelector("ul");
     if (!track) return;
-    var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (!fine) return;
+    var real = Array.prototype.slice.call(track.children);
+    if (real.length < 2) return;
 
     var calm = window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var fine = window.matchMedia &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    /* Looping, with the browser still doing the scrolling.
+
+       A copy of the whole set is placed before the originals and another
+       after, and the scroll position is quietly moved back by one set's
+       width whenever it crosses into a copy. The reader never reaches an
+       end, and swiping, momentum and snapping are all still the browser's -
+       which is the reason not to replace them with a script.
+
+       The copies are hidden from screen readers and taken out of the tab
+       order, so the five people are announced once and tabbed through once,
+       not three times. */
+    function copy(set) {
+      var frag = document.createDocumentFragment();
+      set.forEach(function (li) {
+        var c = li.cloneNode(true);
+        c.setAttribute("aria-hidden", "true");
+        c.setAttribute("data-clone", "");
+        Array.prototype.forEach.call(c.querySelectorAll("a"), function (a) {
+          a.setAttribute("tabindex", "-1");
+        });
+        frag.appendChild(c);
+      });
+      return frag;
+    }
+    var before = copy(real), after = copy(real);
+    track.insertBefore(before, real[0]);
+    track.appendChild(after);
+    box.classList.add("reel-loop");
+
+    function setWidth() {
+      // the width of one full set, measured rather than assumed, so a card
+      // that wraps to a taller name does not throw the arithmetic off
+      var first = real[0].getBoundingClientRect().left;
+      var last = real[real.length - 1];
+      return last.getBoundingClientRect().right - first +
+        (parseFloat(getComputedStyle(track).columnGap) || 0);
+    }
+
+    var setW = 0, settling = false;
+    function recentre(smooth) {
+      setW = setWidth();
+      settling = true;
+      track.style.scrollBehavior = "auto";
+      track.scrollLeft = setW;
+      track.style.scrollBehavior = "";
+      requestAnimationFrame(function () { settling = false; });
+    }
+
+    function wrap() {
+      if (settling || !setW) return;
+      if (track.scrollLeft < setW * 0.5) {
+        settling = true;
+        track.style.scrollBehavior = "auto";
+        track.scrollLeft += setW;
+        track.style.scrollBehavior = "";
+        requestAnimationFrame(function () { settling = false; });
+      } else if (track.scrollLeft > setW * 1.5) {
+        settling = true;
+        track.style.scrollBehavior = "auto";
+        track.scrollLeft -= setW;
+        track.style.scrollBehavior = "";
+        requestAnimationFrame(function () { settling = false; });
+      }
+    }
+
+    track.addEventListener("scroll", wrap, { passive: true });
+    window.addEventListener("resize", function () { recentre(); });
+    if (window.ResizeObserver) { new ResizeObserver(function () { recentre(); }).observe(track); }
+    recentre();
+
+    if (!fine) return;
 
     function arrow(dir, label, d) {
       var b = document.createElement("button");
@@ -489,34 +563,27 @@
     function step() {
       var card = track.querySelector("li");
       if (!card) return 300;
-      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 16;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
       return card.getBoundingClientRect().width + gap;
     }
-
-    function update() {
-      var max = track.scrollWidth - track.clientWidth - 2;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max;
-      // the arrows sit level with the middle of the portraits, not of the
-      // whole card, so they do not drift down as names wrap to two lines
-      var face = track.querySelector(".pc-face");
-      if (face) box.style.setProperty("--face-h", face.getBoundingClientRect().height + "px");
-    }
-
     function go(by) {
       track.scrollBy({ left: by, behavior: calm ? "auto" : "smooth" });
     }
     prev.addEventListener("click", function () { go(-step()); });
     next.addEventListener("click", function () { go(step()); });
 
+    // the arrows sit level with the middle of the portraits, not of the whole
+    // card, so they do not drift down as names wrap to two lines
+    function level() {
+      var face = track.querySelector(".pc-face");
+      if (face) box.style.setProperty("--face-h", face.getBoundingClientRect().height + "px");
+    }
+    track.addEventListener("scroll", level, { passive: true });
+    window.addEventListener("resize", level);
+    level();
+
     box.appendChild(prev);
     box.appendChild(next);
-    box.classList.add("reel-arrows");
-
-    track.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    if (window.ResizeObserver) { new ResizeObserver(update).observe(track); }
-    update();
   }
 
   function setupPubControls(box) {

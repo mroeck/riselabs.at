@@ -10,7 +10,7 @@ people:
 partners:
   - polimi
 thumbnail: /assets/img/pubs/disanto-2023-holistic-approach-assessing.webp
-rise_work: false
+rise_tier: prior
 citations: 35
 citations_source: OpenAlex
 citations_date: 2026-10-31

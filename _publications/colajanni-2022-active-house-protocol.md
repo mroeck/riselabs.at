@@ -8,7 +8,7 @@ url_external: "https://hdl.handle.net/11311/1220833"
 people:
   - nicole-di-santo
 thumbnail: /assets/img/pubs/colajanni-2022-active-house-protocol.webp
-rise_work: false
+rise_tier: prior
 ---
 
 <!-- Added 30 Oct 2026 for the extended team (RISE x GBDI).

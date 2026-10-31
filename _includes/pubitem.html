@@ -43,10 +43,14 @@
 {%- endfor -%}
 
 {%- comment -%}
-  `rise_work` says whether this is work RISE or GBDI did, or work the author
-  did before joining. The filter chip that used it is gone (M1), but the field
-  stays: the list still puts RISE work first inside a year, which costs
-  nothing and is what a visitor scanning a year wants to see first.
+  `rise_tier` says whose work this is: `core` for RISE's own, `extended` for
+  the wider team's, `prior` for what an author published before joining. The
+  filter chip that used the old boolean is gone (M1), but the field decides
+  the order inside a year, which is what a visitor scanning a year wants.
+
+  It rides on the `<li>` as `data-tier` so the sort control can fall back to
+  the built order, and so the order is legible in the markup to anyone
+  wondering why a year is arranged as it is. Nothing styles it.
 
   The thumbnail. Every publication has one: a title page where the licence
   allows it, otherwise a designed tile. Decorative, with empty alt text: the
@@ -54,7 +58,7 @@
   announcing "title page of..." before every entry in a list of sixty-four
   would be noise.
 {%- endcomment -%}
-<li data-year="{{ p.year }}"{% if p.citations %} data-citations="{{ p.citations }}"{% endif %}{% if p.rise_work %} data-rise="true"{% endif %}>
+<li data-year="{{ p.year }}"{% if p.citations %} data-citations="{{ p.citations }}"{% endif %}{% if p.rise_tier %} data-tier="{{ p.rise_tier }}"{% endif %}>
   <a class="cite-thumb" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
     {%- if p.thumbnail -%}
     <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" width="150" height="200">

@@ -10,7 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/windapo-2026-promoting-regenerative-construction.webp
-rise_work: true
+rise_tier: extended
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

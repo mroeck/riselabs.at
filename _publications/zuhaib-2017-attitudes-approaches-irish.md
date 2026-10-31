@@ -8,7 +8,7 @@ doi: "10.1108/ijbpa-07-2016-0015"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2017-attitudes-approaches-irish.webp
-rise_work: false
+rise_tier: prior
 citations: 35
 citations_source: OpenAlex
 citations_date: 2026-10-31

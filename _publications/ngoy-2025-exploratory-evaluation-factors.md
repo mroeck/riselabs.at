@@ -10,7 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/ngoy-2025-exploratory-evaluation-factors.webp
-rise_work: false
+rise_tier: prior
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

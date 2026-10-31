@@ -13,7 +13,7 @@ partners:
 projects:
   - towards-embodied-carbon-benchmarks-for
 thumbnail: /assets/img/pubs/roeck-2022-embodied-carbon-european.webp
-rise_work: false
+rise_tier: prior
 ---
 
 <!-- Abstract as held by the RISE Zotero group library for DOI
