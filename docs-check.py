@@ -822,6 +822,19 @@ for f in sorted(SITE.rglob("*.md")):
                     "safer as .html, where Liquid still runs but kramdown cannot "
                     "mangle the markup. (Keep the permalink when renaming.)")
 
+# `hero_tone` is a lever with no users. Eight projects carried it until
+# 31 Oct 2026, when Martin dropped the exceptions in favour of one consistent
+# picture treatment. The mechanism is four lines in projectgrid.html and two
+# in style.css and is kept for the next diagram hero that wants it, but an
+# unused switch quietly rots, so it is counted here rather than forgotten.
+_tone_users = [s for s, (pr, _b, _f) in coll["projects"].items()
+               if "hero_tone" in pr]
+if not _tone_users:
+    N("_includes/projectgrid.html",
+      "no project sets `hero_tone`, so the picture-treatment opt-out is "
+      "carried but unused. Keep it for the next diagram hero, or remove it "
+      "from projectgrid.html and the two `.no-tone` rules in style.css.")
+
 # ------------------------------------------------------ compound `where_exp`
 # GitHub Pages runs Jekyll 3.10 on Liquid 4.0.4, whose `where_exp` takes one
 # comparison and nothing more. Joining two with `and` raises

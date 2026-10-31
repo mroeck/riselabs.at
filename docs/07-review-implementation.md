@@ -1530,11 +1530,14 @@ project cards and portraits. Three things it deliberately does not reach:
 - **Heroes.** Measured, not guessed: tinting the hero bed takes the
   standfirst from 8.45:1 to 4.23:1, below the 4.5 AA needs, and the h1 from
   2.82:1 to 1.12:1. The hero keeps its own treatment.
-- **Eight project heroes** that are maps, charts or screenshots rather than
-  photographs. Greyscale takes the colour coding out of them: the EU stock
-  map becomes eleven shades of one grey. `hero_tone: false` in a project's
-  front matter turns it off for that card. The default is on, so only the
-  exception is written down.
+- ~~**Eight project heroes** that are maps, charts or screenshots.~~
+  **Reversed 31 Oct 2026.** Those eight carried `hero_tone: false`, and
+  Martin dropped all of them: one consistent surface, every card toned. It
+  surfaced because the home page selection changed the same evening and
+  INDICATE LIFE's map appeared in colour among five toned cards. The cost is
+  real and was accepted: the EU stock map's country colours and the INDICATE
+  pilot regions are now shades of grey. The `hero_tone` lever still exists
+  and nothing uses it, which `docs-check.py` notes.
 - **Charts and logo tiles**, which were never in it.
 
 Two borderline images were put to Martin on 31 October and he chose to treat

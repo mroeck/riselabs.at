@@ -9,10 +9,6 @@ summary: "Helps national consortia generate the building LCA data their governme
 hero: "/assets/img/projects/indicate-life-map.png"
 image: "/assets/img/projects/indicate-life-map.png"   # the social preview; see docs/03
 hero_caption: "INDICATE LIFE runs in Austria, Croatia, Hungary, Italy and Luxembourg."
-# The hero is a map, chart or screenshot, not a photograph, so the
-# site-wide picture treatment is off for this card: greyscale would
-# take the colour coding out of it. See _includes/projectgrid.html.
-hero_tone: false
 themes:
   - data-benchmarks
   - policy-regulation

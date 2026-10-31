@@ -150,7 +150,8 @@ produces, why it matters.
 | `people` | no | Person filenames |
 | `hero` | no | A wide photo at the top: `/assets/img/name.jpg` |
 | `hero_caption` | no | What the photo shows |
-| `hero_tone` | no | `false` turns the picture treatment off for this project's card. Set it where the hero is a map, chart or screenshot: greyscale takes the colour coding out of it. Photographs need nothing |
+| `hero_tone` | no | `false` turns the picture treatment off for this project's card. **No project uses it.** Eight did, the map and screenshot heroes, until Martin dropped the exceptions on 31 Oct 2026 for one consistent surface. Kept for the next diagram hero that wants it; `docs-check.py` notes that nothing does |
+| `featured` | no | `true` puts this project at the front of the home page grid, ahead of anything newer. Nothing carries it today. Seven featured projects would fill the grid and push every recent one off it |
 | `tags` | no | Free-text labels |
 | `partners_note` | no | A line explaining the partner list. Shown in the sidebar row, on its own where there are no names |
 | `partners_omitted` | no | `true` means this project shows no partner tiles at all, RISE included, because any list short enough to show would be an arbitrary selection. Requires `partners_note` to say why, and the project must list no partners. One project uses it: IEA EBC Annex 72, 27 countries |

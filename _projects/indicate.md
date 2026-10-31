@@ -9,10 +9,6 @@ summary: "Piloted the data accelerator in three countries, and showed the approa
 hero: "/assets/img/projects/indicate-pilot-map.png"
 image: "/assets/img/projects/indicate-pilot-map.png"   # the social preview; see docs/03
 hero_caption: "The pilot ran in Ireland, Spain and Czechia, 2022 to 2024."
-# The hero is a map, chart or screenshot, not a photograph, so the
-# site-wide picture treatment is off for this card: greyscale would
-# take the colour coding out of it. See _includes/projectgrid.html.
-hero_tone: false
 themes:
   - data-benchmarks
   - policy-regulation

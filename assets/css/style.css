@@ -1899,10 +1899,26 @@ body.surfaces-gradient .cta-band {
 
 /* ---------- theme toggle ---------- */
 
-/* One logo file per theme; the stylesheet shows the right one. */
-.logo-light { display: none; }
-:root[data-theme="light"] .logo-dark  { display: none; }
-:root[data-theme="light"] .logo-light { display: block; }
+/* One logo file per theme; the stylesheet shows the right one.
+
+   Both rules are written against :root so they carry two classes' worth of
+   specificity. They have to: the components that place a logo set their own
+   `display`, and `.brand img` (0,1,1) outweighed the plain `.logo-light`
+   (0,1,0) this used to be. The effect was that in the dark theme the header
+   showed both logos, one under the other, and stood 25px taller on a phone
+   and 30px on a desktop than in the light theme, which hid one correctly
+   because its rule happened to carry the theme attribute. Switching theme
+   moved the whole page down and back up (Martin, 31 Oct 2026). The footer
+   was never affected, because `.foot-mark` is (0,1,0) and lost the tie on
+   source order instead of winning it.
+
+   `:not([data-theme="light"])` rather than `[data-theme="dark"]`: the
+   attribute is always on <html>, but if it ever went missing both logos
+   would show again, and this way the dark pair is the fallback. The visible
+   logo needs no rule of its own; the components already give it one, and an
+   <img> with no `display` is visible anyway. */
+:root:not([data-theme="light"]) .logo-light { display: none; }
+:root[data-theme="light"] .logo-dark { display: none; }
 
 /* the fixed cluster: work-in-progress note, then the theme toggle */
 .corner {
@@ -2679,21 +2695,25 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   color: rgba(255, 255, 255, .78);
 }
 
-/* The eyebrow has to hold one line on a phone, and the line is forty-eight
-   characters. Set in capitals with .08em of tracking it needs 434px, which is
-   wider than any phone: on a 390px screen there are 342px to put it in, and on
-   a 320px screen 272px. Shrinking alone cannot close that - capitals would
-   have to drop to 9px, which is not a size anyone reads.
+/* The eyebrow has to hold one line on a phone. Capitals and .08em of tracking
+   are what cost the width, about 45% of it, so below 34rem the line is set in
+   sentence case at close to normal tracking, and the size then scales with the
+   viewport. It stays the same weight and colour, so it still reads as the
+   quiet line above the headline rather than as part of the standfirst.
 
-   Capitals and tracking are what cost the width, about 45% of it, so below
-   34rem the line is set in sentence case at close to normal tracking, and the
-   size then scales with the viewport: 10.6px on the narrowest phone, 11.7px at
-   390px, back to the full 13.1px by 430px. It stays the same weight and colour,
-   so it still reads as the quiet line above the headline rather than as part
-   of the standfirst.
+   The line is now thirty-eight characters ("Our buildings must not cost the
+   Earth.", Martin, 31 Oct 2026), ten shorter than the one this rule was
+   written for. Measured again at that length: one line from 320px up, and
+   capitals at full size would now hold one line from 386px, where the old
+   line needed about 500px.
 
-   Measured across 320 to 560px: one line throughout, and the handover at 34rem
-   is continuous, because capitals fit again from about 500px up. */
+   The 34rem switch is therefore more conservative than it has to be: between
+   386px and 544px the line is set in sentence case although capitals would
+   fit. That is deliberate for now. 386px is the exact edge for this wording,
+   and a line that wraps on a 384px phone is a worse failure than one set in
+   sentence case on a 430px one. Moving the breakpoint down is a decision
+   about how much margin to keep, not a bug to fix, and it would have to be
+   measured again for any new wording. */
 @media (max-width: 34rem) {
   .hero-eyebrow {
     text-transform: none;

@@ -9,10 +9,6 @@ summary: "Launched an open global data commons on resource use and upfront embod
 hero: "/assets/img/projects/gbdi-platform.png"
 image: "/assets/img/projects/gbdi-platform.png"   # the social preview; see docs/03
 hero_caption: "The Global Building Data Initiative platform."
-# The hero is a map, chart or screenshot, not a photograph, so the
-# site-wide picture treatment is off for this card: greyscale would
-# take the colour coding out of it. See _includes/projectgrid.html.
-hero_tone: false
 themes:
   - data-benchmarks
   - whole-life-carbon
