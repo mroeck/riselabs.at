@@ -1,3 +1,18 @@
+> **Parked, 31 October 2026.** Martin asked for this to be archived until he
+> asks for it again; it may not happen at all. Nothing is set up: no Netlify
+> site was ever connected to this repository, and no preview build has ever
+> run on a pull request.
+>
+> The file is kept rather than deleted because the research in it still
+> holds - why Netlify over Cloudflare Pages, and the one thing Cloudflare
+> does better - and redoing that work would cost more than storing it. If
+> this is revived, read the dated note at the end first: the advice here was
+> wrong once and was corrected.
+>
+> Nothing in the repository depends on this. `netlify.toml` sits at the root
+> doing nothing, because a build file only does something once a Netlify site
+> points at the repository.
+
 # Deploy previews
 
 Every pull request gets its own built copy of the site at its own URL, so a
