@@ -1225,6 +1225,18 @@ body.portraits-bw .person-head .portrait img {
 }
 .partners a:hover { outline: 2px solid var(--accent); outline-offset: -2px; }
 
+/* On a phone the tiles are a fixed 11.5rem, and two of them plus the gap are
+   wider than the content column, so the flex row above collapsed to a single
+   tall column of logos (Martin, 31 Oct 2026). Below 34rem the list becomes a
+   two-column grid and the tiles give up their fixed width to fit it. */
+@media (max-width: 34rem) {
+  .partners { display: grid; grid-template-columns: repeat(2, 1fr); }
+  /* `height: 100%` as well as `width: auto`: the grid stretches the <li>, but
+     the tile is the <a> inside it, and without this a two-line name next to a
+     one-line name leaves the shorter tile floating with a gap beneath it. */
+  .partners a, .partners .unknown { width: auto; height: 100%; }
+}
+
 .partners .pa-logo {
   display: flex; align-items: center; justify-content: center;
   height: 3.6rem; padding: .7rem .9rem .4rem;
@@ -2125,7 +2137,16 @@ table.listing td.t-partner .t-logo,
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem 1.4rem;
 }
 @media (max-width: 62rem) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 40rem) { .pgrid { grid-template-columns: 1fr; } }
+/* Two columns all the way down to a very narrow phone (Martin, 31 Oct 2026),
+   matching the facts grid above it. One full-width card per screen turned six
+   projects into six screens of scrolling, and the picture is the point of
+   this grid: two of them side by side read as a body of work, one at a time
+   reads as a list. Below 22rem two columns leave no room for a title, so it
+   drops to one, which is the same breakpoint the facts use. */
+@media (max-width: 40rem) {
+  .pgrid { gap: 1.2rem .9rem; }
+}
+@media (max-width: 22rem) { .pgrid { grid-template-columns: 1fr; } }
 
 .pgrid li { margin: 0; }
 .pgrid a { display: block; text-decoration: none; color: inherit; }
