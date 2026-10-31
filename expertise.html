@@ -111,8 +111,8 @@ global_south:
     {%- endcomment -%}
     {%- assign xi = x.image -%}
     {%- unless xi %}{% capture xi %}{% include stockimg.html key=x.title %}{% endcapture %}{% endunless -%}
-    <figure class="xfield-img{% if x.image_credit %} duotone{% endif %}">
-      <img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">
+    <figure class="xfield-img">
+      {%- if x.image_credit -%}<span class="tone"><img src="{{ xi | strip | relative_url }}" alt="" loading="lazy"></span>{%- else -%}<img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">{%- endif -%}
       {%- if x.image_credit %}<figcaption class="muted small">{{ x.image_credit }}</figcaption>{% endif %}
     </figure>
     <div class="xfield-body">

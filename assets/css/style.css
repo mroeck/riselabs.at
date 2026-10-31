@@ -2212,28 +2212,54 @@ table.listing td.t-partner .t-logo,
 .strand-body { min-width: 0; max-width: var(--measure); }
 .strand-body h2 { margin-top: 0; }
 
-/* ---------- duotone (R7) ----------
+/* ---------- the picture treatment (R7) ----------
 
-   Built and kept off. The switch is `surfaces: duotone` in _config.yml, which
-   puts `duotone` on <body>; without it every picture renders as shot, which is
-   what ships. Martin asked for the option to exist without it going live
-   unreviewed, the same arrangement as the hero gradient.
+   Black and white with a subtle navy cast, so photographs from half a dozen
+   sources read as one set.
 
-   Two layers over a greyscale image: `lighten` with the dark colour lifts the
-   shadows to it, `multiply` with the light colour tints the highlights. Ramp A
-   (H19), the CI's magenta to blush. */
-:root { --duo-dark: #f92d84; --duo-light: #ffe1ee; }
-:root[data-theme="dark"], :root:not([data-theme="light"]) { --duo-dark: #751094; --duo-light: #ff6ba6; }
+   The cast is a `color` blend, not a `lighten` one. Lighten lifts only the
+   pixels darker than the tint, and the CI navy is so dark that on most of
+   these pictures nothing moved: the treatment was visible on a night-time
+   city and invisible on everything else. A `color` blend carries the hue
+   across the whole tonal range, which is what makes five photographs look
+   like a set rather than five photographs.
 
-body.duotone .duotone { position: relative; isolation: isolate; }
-body.duotone .duotone img { filter: grayscale(1) contrast(1.1); }
-body.duotone .duotone::before,
-body.duotone .duotone::after {
+   Two numbers to turn, and only these two:
+     --photo-tint           the hue. The CI navy.
+     --photo-tint-strength  how much of it. 0 is plain black and white; at
+                            about .55 it stops reading as black and white and
+                            starts reading as blue.
+
+   On by default (`photo_treatment: mono` in _config.yml); `plain` turns it
+   off and every picture renders as shot.
+
+   Portraits are not in here. They have their own switch (`portraits: bw`),
+   because a row of faces and a row of buildings do not want the same
+   treatment and should not be tied to one word. */
+:root {
+  --photo-tint: #001730;          /* the CI navy */
+  --photo-tint-strength: .30;
+}
+/* The dark theme's own background is this navy, so a tinted photograph sitting
+   on it loses its edge. A lighter tint at the same strength keeps the picture
+   separate from the surface behind it. */
+:root[data-theme="dark"], :root:not([data-theme="light"]) {
+  --photo-tint: #16325a;
+  --photo-tint-strength: .28;
+}
+
+/* `.tone` wraps the image and nothing else. It used to sit on the <figure>,
+   which also holds the credit, and the overlay covered the credit line. */
+.tone { display: block; position: relative; isolation: isolate;
+        border-radius: var(--radius-img); overflow: hidden; }
+body.photo-mono .tone img { filter: grayscale(1) contrast(1.05); }
+body.photo-mono .tone::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   border-radius: inherit;
+  background: var(--photo-tint);
+  opacity: var(--photo-tint-strength);
+  mix-blend-mode: color;
 }
-body.duotone .duotone::before { background: var(--duo-dark); mix-blend-mode: lighten; }
-body.duotone .duotone::after  { background: var(--duo-light); mix-blend-mode: multiply; }
 
 /* ---------- expertise: the strand index ----------
 

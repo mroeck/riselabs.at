@@ -80,8 +80,8 @@ bring them all forward at once.</p>
 <div class="wrap">
 
 <div class="strand">
-  <figure class="strand-img duotone">
-    <img src="{{ '/assets/img/photos/approach-scaling-up.jpg' | relative_url }}" alt="" loading="lazy">
+  <figure class="strand-img">
+    <span class="tone"><img src="{{ '/assets/img/photos/approach-scaling-up.jpg' | relative_url }}" alt="" loading="lazy"></span>
     <figcaption class="muted small">Photo: paws and prints (Unsplash user) / Unsplash</figcaption>
   </figure>
   <div class="strand-body">
@@ -112,8 +112,8 @@ bring them all forward at once.</p>
 <div class="wrap">
 
 <div class="strand flip">
-  <figure class="strand-img duotone">
-    <img src="{{ '/assets/img/photos/approach-scaling-wide.jpg' | relative_url }}" alt="" loading="lazy">
+  <figure class="strand-img">
+    <span class="tone"><img src="{{ '/assets/img/photos/approach-scaling-wide.jpg' | relative_url }}" alt="" loading="lazy"></span>
     <figcaption class="muted small">Photo: Zoshua Colah / Unsplash</figcaption>
   </figure>
   <div class="strand-body">
@@ -145,8 +145,8 @@ bring them all forward at once.</p>
 <div class="wrap">
 
 <div class="strand">
-  <figure class="strand-img duotone">
-    <img src="{{ '/assets/img/projects/collaborative-housing.jpg' | relative_url }}" alt="" loading="lazy">
+  <figure class="strand-img">
+    <span class="tone"><img src="{{ '/assets/img/projects/collaborative-housing.jpg' | relative_url }}" alt="" loading="lazy"></span>
   </figure>
   <div class="strand-body">
     <h2 id="scaling-deep">Scaling deep: working with pioneers</h2>

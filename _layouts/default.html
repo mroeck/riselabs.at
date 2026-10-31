@@ -69,7 +69,7 @@
 {%- capture body_class -%}
   {% if site.portraits == "bw" %}portraits-bw {% endif %}
   {%- if site.surfaces == "gradient" %}surfaces-gradient {% endif %}
-  {%- if site.photo_treatment == "duotone" %}duotone{% endif %}
+  {%- if site.photo_treatment != "plain" %}photo-mono{% endif %}
 {%- endcapture -%}
 {%- assign body_class = body_class | strip -%}
 <body{% if body_class != "" %} class="{{ body_class }}"{% endif %}>
