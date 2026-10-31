@@ -8,7 +8,7 @@ doi: "10.1016/j.buildenv.2018.05.001"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2018-indoor-environmental-quality.webp
-rise_work: false
+rise_tier: prior
 citations: 134
 citations_source: OpenAlex
 citations_date: 2026-10-31

@@ -3,27 +3,47 @@
   include.sections="true" breaks them into kind sections.
 {%- endcomment -%}
 {%- comment -%}
-  Order: newest first, and within one year the team's own RISE or GBDI work
-  ahead of their earlier work. Someone scanning a year wants to see what RISE
-  did that year before what its people did elsewhere before joining.
+  Order: newest first, and within one year by tier - RISE's own work, then the
+  wider team's, then what the authors published before joining. Someone
+  scanning a year wants to see what RISE did that year before anything else.
+
+  The tier is `rise_tier` on each publication: `core`, `extended` or `prior`.
+  It is a field rather than something worked out here, because Liquid cannot
+  sort on a value it computes while rendering; make-rise-flags.py writes it
+  from each author's `group` and `rise_since`, and docs-check.py recomputes it
+  every run so a stale tier cannot reach the site.
+
+  This replaced a `rise_work` boolean on 31 October 2026. The boolean held
+  `core` and `extended` in one bucket, so a year could open with a wider-team
+  paper while RISE's own most recent work sat beneath it.
+
+  Within one tier in one year the order is the build order. The files carry a
+  year and no month, so there is no recency to sort on, and nothing here
+  invents one.
 
   Liquid cannot sort on two keys, so the list is sorted by year and then
-  rebuilt a year at a time, RISE work first. `rise_work` is a field on each
-  publication rather than something worked out here: a template cannot sort
-  on a value it computes while rendering, and docs-check.py keeps the field
-  honest against the `rise_since` years it is derived from.
-
-  `pubs` starts as an empty array of the right kind, produced by a `where`
-  that matches nothing. Jekyll's Liquid has no literal for one.
+  rebuilt a year at a time, tier by tier. `pubs` starts as an empty array of
+  the right kind, produced by a `where` that matches nothing: Jekyll's Liquid
+  has no literal for one.
 {%- endcomment -%}
 {%- assign by_year = include.pubs | sort: "year" | reverse -%}
 {%- assign years = by_year | map: "year" | uniq -%}
+{%- assign tiers = "core,extended,prior" | split: "," -%}
 {%- assign pubs = include.pubs | where: "__never__", "__never__" -%}
 {%- for y in years -%}
   {%- assign in_year = by_year | where: "year", y -%}
-  {%- assign ours = in_year | where: "rise_work", true -%}
-  {%- assign theirs = in_year | where_exp: "x", "x.rise_work != true" -%}
-  {%- assign pubs = pubs | concat: ours | concat: theirs -%}
+  {%- for t in tiers -%}
+    {%- assign band = in_year | where: "rise_tier", t -%}
+    {%- assign pubs = pubs | concat: band -%}
+  {%- endfor -%}
+  {%- comment -%}
+    An entry with no tier, or a tier not in the list above, would vanish from
+    the page silently. docs-check.py fails on either, so this is a belt on top
+    of that brace: an unplaced entry lands at the end of its year rather than
+    nowhere at all.
+  {%- endcomment -%}
+  {%- assign rest = in_year | where_exp: "x", "x.rise_tier != 'core' and x.rise_tier != 'extended' and x.rise_tier != 'prior'" -%}
+  {%- assign pubs = pubs | concat: rest -%}
 {%- endfor -%}
 {%- if include.sections == "true" -%}
   {%- assign kinds = "article,book,report,data" | split: "," -%}

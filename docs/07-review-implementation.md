@@ -1386,7 +1386,8 @@ both tasks (open it on a phone and on a desktop).
 - **Change:**
   - Delete the `data-pubfilter` bar and `setupPubFilter` in `ui.js`. Keep
     `rise_work` and the RISE-first order within a year; it costs nothing
-    on the page.
+    on the page. *(`rise_work` became the three-valued `rise_tier` on
+    31 Oct 2026; see the implementer's note above.)*
   - Replace the sort buttons with one `<select id="pub-sort">` labelled
     "Sort" (Newest first, Oldest first, Most cited; the last only when
     counts exist), on one row with the filter box: the input takes the
@@ -1488,6 +1489,100 @@ Items the implementer cannot resolve. Ask, and do not guess.
 
 Added by whoever is doing the work, as things are found. Facts only, each
 with the date and where it came from.
+
+### The picture treatment, and where it stops (Martin, 29-31 October)
+
+Black and white plus a navy tint (`--photo-tint: #16325a`, option B of four
+that Martin compared on 31 October). It reaches figures wrapped in `.tone`,
+project cards and portraits. Three things it deliberately does not reach:
+
+- **Heroes.** Measured, not guessed: tinting the hero bed takes the
+  standfirst from 8.45:1 to 4.23:1, below the 4.5 AA needs, and the h1 from
+  2.82:1 to 1.12:1. The hero keeps its own treatment.
+- **Eight project heroes** that are maps, charts or screenshots rather than
+  photographs. Greyscale takes the colour coding out of them: the EU stock
+  map becomes eleven shades of one grey. `hero_tone: false` in a project's
+  front matter turns it off for that card. The default is on, so only the
+  exception is written down.
+- **Charts and logo tiles**, which were never in it.
+
+Two borderline images were put to Martin on 31 October and he chose to treat
+both: the UNEP Global Status Report cover, which is another organisation's
+branded artwork, and the ISS aurora photograph, whose whole subject is
+coloured light. Neither carries `hero_tone`.
+
+Portraits needed a wrapper to carry the overlay at all. A pseudo-element
+never renders on a replaced element, so `img::after` draws nothing; the
+portrait is now inside `<span class="pc-shot">` in `peoplelist.html` and
+`_layouts/person.html`.
+
+### RISE is listed among a project's organisations (Martin, 31 October)
+
+Project pages named every organisation on a piece of work except the one
+whose site this is, which read as though the work had nobody behind it. RISE
+now leads the tile block and the sidebar row.
+
+Three decisions, all Martin's on 31 October:
+
+- **The tile points at the home page.** RISE has no file in `_partners/` and
+  gets none: that would give it a partner page duplicating the home page, and
+  list RISE on /partners/ among the organisations we work *with*. The key
+  `rise` is special-cased in `_includes/partners.html` and
+  `_includes/partnernames.html`, and the cross-reference check in
+  `docs-check.py` skips it for the same reason.
+- **Only where RISE existed.** A project lists RISE when it ran to 2023 or
+  later with a core RISE person on it, which is the test `rise_tier` uses on
+  publications. Thirteen of fifteen qualify. PEF4Buildings (2017-2018) and
+  Towards embodied carbon benchmarks (2021-2022) ran entirely before RISE was
+  founded and keep the lists they had. `docs-check.py` fails a project that
+  gets this wrong in either direction, or that lists `rise` anywhere but
+  first; all three failures are tested.
+- **"Partners", not "Collaborators".** The heading and the sidebar label
+  changed, because RISE is not a collaborator on its own work and the word
+  had to cover both. It is also already the site's word for these
+  organisations: the page is /partners/ and the link under the block reads
+  "All partners".
+
+One edge worth knowing: IEA EBC Annex 72 ran 2016-2023 and so qualifies on
+its last year alone, and it has no other partner files, so its block reads
+"Partners: RISE". Accurate, but thin. If that reads wrong, the fix is either
+to add the Annex partners or to move that project to the stricter rule.
+
+Publications were left alone. They carry their own `partners` lists and the
+same question applies to them, but adding RISE to twenty-four files is a
+separate decision and nobody has made it.
+
+### R1 is reversed: dark is the default again (Martin, 31 October)
+
+R1 made light the default on 29 October. Martin reversed it on 31 October:
+dark is what the markup ships and what a visitor without a stored choice and
+without a light system setting gets. Both themes still have to work equally
+well, which is the half of R1 that stands.
+
+Three things moved, and nothing else: `data-theme="dark"` on `<html>`, the
+inline `<head>` script now testing `prefers-color-scheme: light` instead of
+`dark`, and `docs/02` and `docs/05` rewritten to match. The stylesheet needed
+no reordering: `:root` already carried the dark values with
+`[data-theme="light"]` overriding them, which is how R1 was built.
+
+Two things that were wrong under the light default and are now right:
+
+- The toggle's markup in `_layouts/default.html` still shipped
+  `aria-pressed="false"`, `title="Switch to the light theme"` and the label
+  "Light". Under a light default a visitor with JavaScript off saw a button
+  offering the theme they were already on. R1 changed the attribute but not
+  the button, and this reversal fixes it by accident rather than by design.
+- The `matchMedia` test was negated rather than written for the theme it
+  selects. A browser with no `prefers-color-scheme` support answers false to
+  every such query, so under the old code it fell through to the markup's
+  light, which was also the default and so looked correct. Written the new
+  way it has to be explicit, and it is: the query asks for `light`.
+
+Added since: each theme block carries `color-scheme`, so the sort select on
+/publications/, text inputs, scrollbars and the focus ring follow the theme.
+Without it the browser draws its own furniture in the system's scheme, which
+on a dark default is a light-grey select on a navy page. This was missing
+before the reversal too; the dark default is what made it visible.
 
 ### H24, Circular: the files supplied on 29 October do not cover this site
 

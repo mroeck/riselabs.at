@@ -4,7 +4,7 @@ layout: default
 <div class="page-head wrap narrow">
   <div class="person-head">
     {%- if page.portrait -%}
-    <img class="portrait" src="{{ page.portrait | relative_url }}" alt="{{ page.name }}">
+    <span class="portrait pc-shot"><img src="{{ page.portrait | relative_url }}" alt="{{ page.name }}"></span>
     {%- endif -%}
     <div>
       <h1>{{ page.name }}</h1>

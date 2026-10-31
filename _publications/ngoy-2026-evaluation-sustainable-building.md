@@ -10,7 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/ngoy-2026-evaluation-sustainable-building.webp
-rise_work: true
+rise_tier: extended
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

@@ -15,6 +15,8 @@ themes:
   - global-south
 clients:
   - unep
+partners:
+  - rise
 people:
   - martin-roeck
 # Related projects, by slug. The link is written on both sides for

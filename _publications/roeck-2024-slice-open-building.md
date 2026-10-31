@@ -11,7 +11,7 @@ projects:
   - analysis-of-life-cycle-greenhouse
   - supporting-the-development-of-a
 thumbnail: /assets/img/pubs/roeck-2024-slice-open-building.webp
-rise_work: true
+rise_tier: core
 citations: 28
 citations_source: OpenAlex
 citations_date: 2026-10-31

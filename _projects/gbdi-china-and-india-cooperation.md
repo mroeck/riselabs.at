@@ -22,6 +22,7 @@ people:
   - barbara-droste-luckmann
   - darmarajan-chinasamy
 partners:
+  - rise
   - epfl
 # Related projects, by slug. The link is written on both sides for
 # readability, but the layout also resolves it in reverse, so naming a

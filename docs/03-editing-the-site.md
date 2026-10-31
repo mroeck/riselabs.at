@@ -146,12 +146,20 @@ produces, why it matters.
 | `summary` | yes | One sentence. No full stop - it sits in lists |
 | `link` | no | The project's own website |
 | `clients` | no | Partner filenames. Shown in the **Funder / client** row as links to their partner pages |
-| `partners` | no | Partner filenames. Shown as collaborators |
+| `partners` | no | Partner filenames, shown as tiles under **Partners**. The first is `rise` on every project that ran while RISE existed: it is not a file in `_partners/` but a tile written by the include, pointing at the home page. `docs-check.py` adds it to the rule below and fails a project that claims RISE for work it predates |
 | `people` | no | Person filenames |
 | `hero` | no | A wide photo at the top: `/assets/img/name.jpg` |
 | `hero_caption` | no | What the photo shows |
+| `hero_tone` | no | `false` turns the picture treatment off for this project's card. Set it where the hero is a map, chart or screenshot: greyscale takes the colour coding out of it. Photographs need nothing |
 | `tags` | no | Free-text labels |
 | `partners_note` | no | A line explaining the partner list |
+
+**`rise` in `partners` is written by the rule, not by hand.** A project
+lists RISE when it ran to 2023 or later with a core RISE person on it, which
+is the same test the publications list uses for `rise_tier`. Two projects ran
+entirely before RISE was founded - PEF4Buildings and Towards embodied carbon
+benchmarks - and must not claim it. `docs-check.py` fails a project that has
+it wrong in either direction, or that lists `rise` anywhere but first.
 
 **The hero photo must actually be of this project.** Nothing in the system
 checks that. A photo from a different project on a project page is the kind
@@ -211,9 +219,17 @@ partners:
 | `doi` | no | The bare DOI, no `https://doi.org/` prefix |
 | `url_external` | no | Only when there is no DOI |
 | `people`, `projects`, `partners` | no | Filenames |
+| `rise_tier` | written for you | `core`, `extended` or `prior`. Decides the order inside a year on /publications/. Never edit it by hand: run `python3 make-rise-flags.py`, which derives it from `people` and each person's `group` and `rise_since` |
 
 The body can be left empty. Add a paragraph only when there is something
 worth saying beyond the citation.
+
+**On the order of the list.** /publications/ runs newest year first, and
+inside a year `core` (someone with `group: rise` was on it, from their
+`rise_since`), then `extended` (the wider team), then `prior` (what an author
+published before joining). Inside one tier the order is the order the files
+build in: the entries carry a year and no month, so there is no recency to
+sort on and nothing invents one.
 
 **On `partners`:** this should reflect the real affiliations of the
 co-authors. Some entries were seeded from the relevant project's partner list

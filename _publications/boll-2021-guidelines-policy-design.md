@@ -10,7 +10,7 @@ people:
 partners:
   - bpie
 thumbnail: /assets/img/pubs/boll-2021-guidelines-policy-design.webp
-rise_work: false
+rise_tier: prior
 citations: 2
 citations_source: OpenAlex
 citations_date: 2026-10-31

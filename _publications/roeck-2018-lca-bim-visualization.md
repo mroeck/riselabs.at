@@ -12,7 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2018-lca-bim-visualization.webp
-rise_work: false
+rise_tier: prior
 citations: 344
 citations_source: OpenAlex
 citations_date: 2026-10-31

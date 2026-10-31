@@ -47,7 +47,7 @@
   <li>
     <a href="{{ person.url | relative_url }}">
       {%- if person.portrait -%}
-      <img class="pc-face" src="{{ person.portrait | relative_url }}" alt="" loading="lazy">
+      <span class="pc-face pc-shot"><img src="{{ person.portrait | relative_url }}" alt="" loading="lazy"></span>
       {%- else -%}
         {%- assign cite_parts = person.cite | default: person.name | split: " " -%}
         {%- capture initials -%}

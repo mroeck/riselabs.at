@@ -33,6 +33,7 @@ people:
   - martin-roeck
   - barbara-droste-luckmann
 partners:
+  - rise
   - velux
   - bpie
   - no-objectives

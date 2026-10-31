@@ -13,7 +13,7 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/dunant-2025-timely-deployment-best.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: true
+rise_tier: core
 citations: 10
 citations_source: OpenAlex
 citations_date: 2026-10-31

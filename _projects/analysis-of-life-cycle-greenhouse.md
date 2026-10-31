@@ -9,6 +9,10 @@ summary: "Quantified the baseline and the plausible futures for emissions and re
 hero: "/assets/img/projects/eu-stock-by-country.png"
 image: "/assets/img/projects/eu-stock-by-country.png"   # the social preview; see docs/03
 hero_caption: "Building stock composition by country across the EU."
+# The hero is a map, chart or screenshot, not a photograph, so the
+# site-wide picture treatment is off for this card: greyscale would
+# take the colour coding out of it. See _includes/projectgrid.html.
+hero_tone: false
 themes:
   - building-stock
   - whole-life-carbon
@@ -34,6 +38,7 @@ clients:
 people:
   - martin-roeck
 partners:
+  - rise
   - ku-leuven
   - tu-graz
   - ramboll

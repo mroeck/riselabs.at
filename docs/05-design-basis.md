@@ -102,15 +102,22 @@ card on navy is a deliberate surface, not an oversight.
 
 ## Themes
 
-**Light is the default; dark must work equally well.** (Decided 29 October
-2026, replacing "dark is primary".) Neither is a second-class rendering:
-every change is checked in both, and the contrast figures above are met in
-both.
+**Dark is the default; light must work equally well.** (Decided 31 October
+2026 by Martin, replacing R1's "light is the default" of 29 October, which in
+turn replaced "dark is primary".) Neither is a second-class rendering: every
+change is checked in both, and the contrast figures above are met in both.
 
 What a visitor actually gets, in order: a theme they chose here before, else
-their operating system's `prefers-color-scheme`, else light. The markup ships
-`data-theme="light"`, so that is also what anyone with JavaScript off sees.
+their operating system's `prefers-color-scheme`, else dark. The markup ships
+`data-theme="dark"`, so that is also what anyone with JavaScript off sees.
 The toggle sits in the bottom-right corner and flips `data-theme` on `<html>`.
+
+The `prefers-color-scheme` test is written for `light`, not negated from
+`dark`: a browser too old to know the feature answers false to both queries,
+and that visitor has to land on the default rather than on light. Each theme
+block also carries `color-scheme`, which is what makes the browser's own
+furniture - the sort select on /publications/, text inputs, scrollbars, the
+focus ring - follow the theme instead of staying in the system's.
 
 The choice is remembered in `localStorage` under `rise-theme` - one word, set
 only when the visitor presses the button, never transmitted. An inline script

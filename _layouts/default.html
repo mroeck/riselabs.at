@@ -1,10 +1,11 @@
 <!doctype html>
-<!-- Light is the default (R1, decided 29 Oct 2026); dark has to work just as
-     well. This attribute is what every visitor gets before any script runs,
-     which includes anyone with JavaScript off, so it is light. The script
-     below upgrades it to a remembered choice or to the operating system's
-     preference; the toggle in the corner switches it afterwards. -->
-<html lang="{{ site.lang | default: "en" }}" data-theme="light">
+<!-- Dark is the default (Martin, 31 Oct 2026, replacing R1's light default);
+     light has to work just as well. This attribute is what every visitor gets
+     before any script runs, which includes anyone with JavaScript off, so it
+     is dark. The script below adjusts it to a remembered choice or to the
+     operating system's preference; the toggle in the corner switches it
+     afterwards. -->
+<html lang="{{ site.lang | default: "en" }}" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,13 +34,18 @@
 
     Two steps, in this order. A choice the visitor made here wins, because
     they made it. Failing that, the operating system's setting is followed,
-    so someone who runs their machine dark gets a dark site without having to
-    ask. Failing both, the markup's light stands.
+    so someone who runs their machine light gets a light site without having
+    to ask. Failing both, the markup's dark stands.
+
+    `prefers-color-scheme: light` is tested rather than inferred from the dark
+    query being false: a browser that does not support the feature at all
+    answers false to both, and that case must land on the default, not on
+    light.
 
     Storage can throw - private windows, blocked site data - and an old
     browser may not know `matchMedia`, so each is wrapped separately: a
     failure in one must not cost the other. If everything fails the page is
-    light, which is the default rather than a fallback.
+    dark, which is the default rather than a fallback.
   {%- endcomment -%}
   <script>
     (function () {
@@ -49,8 +55,8 @@
         t = null;
         try {
           if (window.matchMedia &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            t = "dark";
+              window.matchMedia("(prefers-color-scheme: light)").matches) {
+            t = "light";
           }
         } catch (e) {}
       }

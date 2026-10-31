@@ -104,6 +104,14 @@ for src, key, target in XREF:
         for v in vals:
             if v in coll[target]:
                 continue
+            # `rise` is a partner key with no file behind it on purpose:
+            # _includes/partners.html writes that tile itself and points it at
+            # the home page, because a file would give RISE a partner page of
+            # its own and list it on /partners/ among the organisations we
+            # work with. The rule just above this loop's block checks where it
+            # is allowed to appear.
+            if target == "partners" and v == "rise":
+                continue
             if v in on_disk[target]:
                 N(f"_{src}/{slug}.md",
                   f"`{key}` names {v}, whose file is still unpublished, so the "
@@ -521,27 +529,82 @@ for _slug, (_fm, _body, _f) in coll["people"].items():
           "no `affil`, so the team card falls back to the full `org`. Add the "
           "acronym form if that wraps.")
 
-# `rise_work` is derived, not decided: a publication is RISE or GBDI work when
-# someone on it has a `rise_since` year and the publication is from that year
-# or later. It lives in the file because the list sorts on it and a template
-# cannot sort on something it computes while rendering - which means it can
-# drift the moment a `rise_since` changes or a person is added to a paper.
-# So it is recomputed here and compared, every run.
-_since = {s: fm.get("rise_since") for s, (fm, _b, _f) in coll["people"].items()}
+# `rise_tier` is derived, not decided. A publication is `core` when someone
+# with `group: rise` is on it from their `rise_since` year, `extended` when
+# that person is a collaborator instead, and `prior` when nobody on it was
+# with RISE yet. It lives in the file because the list sorts on it and a
+# template cannot sort on something it computes while rendering - which means
+# it can drift the moment a `rise_since` or a `group` changes, or a person is
+# added to a paper. So it is recomputed here and compared, every run.
+#
+# A tier outside the three is failed as well as a missing one: publist.html
+# builds each year by selecting the three in turn, so a fourth value would
+# drop the entry to the end of its year, which is a silent demotion rather
+# than a visible error.
+_TIERS = ("core", "extended", "prior")
+_who = {s: (fm.get("rise_since"), fm.get("group"))
+        for s, (fm, _b, _f) in coll["people"].items()}
 for _slug, (_pb, _body, _f) in coll["publications"].items():
-    _want = False
+    _found = set()
     for _s in (_pb.get("people") or []):
-        _y = _since.get(_s)
+        _y, _g = _who.get(_s, (None, None))
         if _y and (_pb.get("year") or 0) >= _y:
-            _want = True
-    _have = _pb.get("rise_work")
+            _found.add("core" if _g == "rise" else "extended")
+    _want = next((_t for _t in _TIERS if _t in _found), "prior")
+    _have = _pb.get("rise_tier")
     if _have is None:
         P("publications", f"_publications/{_slug}.md",
-          "no `rise_work`. Run `python3 make-rise-flags.py` to write it.")
-    elif bool(_have) != _want:
+          "no `rise_tier`. Run `python3 make-rise-flags.py` to write it.")
+    elif _have not in _TIERS:
         P("publications", f"_publications/{_slug}.md",
-          f"`rise_work` says {_have}, but the people on it and their "
-          f"`rise_since` years say {_want}. Run `python3 make-rise-flags.py`.")
+          f"`rise_tier` is {_have!r}, which is not one of "
+          f"{', '.join(_TIERS)}. Run `python3 make-rise-flags.py`.")
+    elif _have != _want:
+        P("publications", f"_publications/{_slug}.md",
+          f"`rise_tier` says {_have}, but the people on it, their "
+          f"`rise_since` years and their `group` say {_want}. "
+          f"Run `python3 make-rise-flags.py`.")
+    if "rise_work" in _pb:
+        P("publications", f"_publications/{_slug}.md",
+          "still carries `rise_work`, which `rise_tier` replaced on 31 Oct "
+          "2026. Run `python3 make-rise-flags.py` to drop it.")
+
+# `rise` at the head of a project's `partners`. RISE belongs in the list of
+# organisations on its own project pages (Martin, 31 Oct 2026) - leaving it
+# out read as though the work had nobody behind it - but only where RISE
+# existed to do the work. Two projects ran entirely before it was founded and
+# must not claim it. The rule is the one `rise_tier` uses on publications:
+# the project runs to a core person's `rise_since` year or later.
+#
+# `rise` is not a file in _partners/; _includes/partners.html writes that tile
+# itself and points it at the home page, so the unknown-key check below has to
+# skip it as well.
+_rise_people = {s for s, (fm, _b, _f) in coll["people"].items()
+                if fm.get("group") == "rise" and fm.get("rise_since")}
+for _slug, (_pr, _body, _f) in coll["projects"].items():
+    _years = re.findall(r"\d{4}", str(_pr.get("years") or ""))
+    _end = int(_years[-1]) if _years else 0
+    _want = any(
+        _s in _rise_people
+        and _end >= coll["people"][_s][0]["rise_since"]
+        for _s in (_pr.get("people") or [])
+    )
+    _parts = _pr.get("partners") or []
+    _has = "rise" in _parts
+    if _want and not _has:
+        P("projects", f"_projects/{_slug}.md",
+          f"ran to {_end or 'an unreadable year'} with a RISE person on it, "
+          "but `partners` does not open with `rise`. The project pages list "
+          "RISE among the organisations from 31 Oct 2026.")
+    elif _has and not _want:
+        P("projects", f"_projects/{_slug}.md",
+          f"lists `rise` in `partners`, but it ran to {_end or 'an unreadable year'} "
+          "and no core RISE person was with RISE by then. Saying RISE did "
+          "work it predates is the one error this rule exists to catch.")
+    elif _has and _parts[0] != "rise":
+        P("projects", f"_projects/{_slug}.md",
+          "lists `rise` in `partners` but not first. The tile block reads as "
+          "the organisations behind the project, and RISE leads it.")
 
 # Publication thumbnails. Every entry should have one: the list draws a tile
 # from front matter where a file is missing, so nothing looks broken, but a

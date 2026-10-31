@@ -13,7 +13,7 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/habert-2020-carbon-budgets-buildings.webp
 thumbnail_credit: "Title page © the authors, CC-BY licence"
-rise_work: false
+rise_tier: prior
 citations: 108
 citations_source: OpenAlex
 citations_date: 2026-10-31

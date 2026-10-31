@@ -35,6 +35,7 @@ clients:
 people:
   - martin-roeck
 partners:
+  - rise
   - agora-industrie
   - ifeu
   - ramboll

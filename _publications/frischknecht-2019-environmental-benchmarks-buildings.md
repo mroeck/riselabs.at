@@ -12,7 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/frischknecht-2019-environmental-benchmarks-buildings.webp
-rise_work: false
+rise_tier: prior
 citations: 66
 citations_source: OpenAlex
 citations_date: 2026-10-31

@@ -1,4 +1,9 @@
-# Deploy previews for pull requests.
+# Deploy previews for pull requests. PARKED, 31 October 2026.
+#
+# This file does nothing today and has never run: no Netlify site is
+# connected to this repository. A build file is inert until one is, so it is
+# left here rather than deleted, ready if the topic is revived. See the note
+# at the top of docs/08-deploy-previews.md.
 #
 # The live site stays on GitHub Pages. Netlify's job here is one thing only:
 # build each pull request and give it a URL, so a visual change can be looked

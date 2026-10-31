@@ -10,7 +10,7 @@ people:
 partners:
   - bpie
 thumbnail: /assets/img/pubs/pato-2021-priority-areas-implementation.webp
-rise_work: false
+rise_tier: prior
 citations: 1
 citations_source: OpenAlex
 citations_date: 2026-10-31

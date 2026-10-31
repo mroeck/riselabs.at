@@ -10,7 +10,7 @@ people:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/mouton-2022-low-tech-passive.webp
-rise_work: false
+rise_tier: prior
 citations: 23
 citations_source: OpenAlex
 citations_date: 2026-10-31

@@ -11,6 +11,7 @@ image: "/assets/img/projects/santiago.jpg"   # the social preview; see docs/03
 hero_caption: "Santiago de Chile."
 link: "https://www.gbdi.io"
 partners:
+  - rise
   - ebp-chile
   - universidad-de-chile
   - epfl

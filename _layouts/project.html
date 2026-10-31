@@ -111,8 +111,15 @@ layout: default
   {% include peoplelist.html people=team %}
   {%- endif %}
 
+  {%- comment -%}
+    "Partners", not "Collaborators" (31 Oct 2026). The list now opens with
+    RISE on every project that ran while RISE existed, and RISE is not a
+    collaborator on its own work. "Partners" covers both, and it is already
+    the site's word for these organisations: the page below is /partners/ and
+    the link at the foot of this block says "All partners".
+  {%- endcomment -%}
   {%- if page.partners.size > 0 %}
-  <h2{% if team.size == 0 %} id="team"{% endif %}>Collaborators</h2>
+  <h2{% if team.size == 0 %} id="team"{% endif %}>Partners</h2>
   {% include partners.html keys=page.partners %}
   {%- if page.partners_note %}<p class="muted small">{{ page.partners_note }}</p>{% endif %}
   <p class="more"><a href="{{ '/partners/' | relative_url }}">All partners →</a></p>
@@ -229,7 +236,7 @@ layout: default
     {%- if page.grant %}<dt>Grant / contract</dt><dd>{{ page.grant }}</dd>{% endif -%}
     {%- if page.role %}<dt>Our role</dt><dd>{{ page.role }}</dd>{% endif -%}
     {%- if page.partners.size > 0 or page.partners_note -%}
-    <dt>Collaborators</dt>
+    <dt>Partners</dt>
     <dd>
       {%- if page.partners.size > 0 %}{% include partnernames.html keys=page.partners %}{% endif -%}
       {%- if page.partners_note %}{% if page.partners.size > 0 %}, {% endif %}{{ page.partners_note }}{% endif -%}

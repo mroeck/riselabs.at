@@ -8,7 +8,7 @@ doi: "10.1016/j.enbuild.2025.116727"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/batra-2026-exploring-potential-sufficiency.webp
-rise_work: true
+rise_tier: extended
 citations: 4
 citations_source: OpenAlex
 citations_date: 2026-10-31

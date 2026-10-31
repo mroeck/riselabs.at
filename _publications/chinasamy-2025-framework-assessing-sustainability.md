@@ -10,7 +10,7 @@ people:
 partners:
   - uct
 thumbnail: /assets/img/pubs/chinasamy-2025-framework-assessing-sustainability.webp
-rise_work: false
+rise_tier: prior
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

@@ -8,7 +8,7 @@ doi: "10.13025/s8c88p"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2016-diagnostics-intervention-methods.webp
-rise_work: false
+rise_tier: prior
 citations: 2
 citations_source: OpenAlex
 citations_date: 2026-10-31

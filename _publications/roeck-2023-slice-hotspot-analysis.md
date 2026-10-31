@@ -10,7 +10,7 @@ people:
 projects:
   - supporting-the-development-of-a
 thumbnail: /assets/img/pubs/roeck-2023-slice-hotspot-analysis.webp
-rise_work: true
+rise_tier: core
 ---
 
 <!-- Abstract as held by the RISE Zotero group library for DOI

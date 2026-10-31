@@ -8,7 +8,7 @@ doi: "10.1016/j.enbuild.2025.116425"
 people:
   - nicole-di-santo
 thumbnail: /assets/img/pubs/disanto-2025-ensuring-excellent-indoor.webp
-rise_work: true
+rise_tier: extended
 citations: 3
 citations_source: OpenAlex
 citations_date: 2026-10-31

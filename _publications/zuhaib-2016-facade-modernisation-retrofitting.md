@@ -8,7 +8,7 @@ doi: "10.1201/b20891-83"
 people:
   - zuhaib-batra
 thumbnail: /assets/img/pubs/zuhaib-2016-facade-modernisation-retrofitting.webp
-rise_work: false
+rise_tier: prior
 citations: 2
 citations_source: OpenAlex
 citations_date: 2026-10-31

@@ -12,7 +12,7 @@ projects:
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/potrc-2020-bim-lca-integration.webp
-rise_work: false
+rise_tier: prior
 citations: 289
 citations_source: OpenAlex
 citations_date: 2026-10-31

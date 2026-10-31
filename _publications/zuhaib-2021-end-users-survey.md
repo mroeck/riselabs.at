@@ -11,7 +11,7 @@ partners:
   - bpie
   - vito
 thumbnail: /assets/img/pubs/zuhaib-2021-end-users-survey.webp
-rise_work: false
+rise_tier: prior
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31

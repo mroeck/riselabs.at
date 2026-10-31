@@ -9,6 +9,10 @@ summary: "Established a first European baseline for embodied carbon from real bu
 hero: "/assets/img/projects/eu-ecb-boxplot.png"
 image: "/assets/img/projects/eu-ecb-boxplot.png"   # the social preview; see docs/03
 hero_caption: "Embodied carbon per m2 of floor area by building use subtype, harmonised EU-ECB data."
+# The hero is a map, chart or screenshot, not a photograph, so the
+# site-wide picture treatment is off for this card: greyscale would
+# take the colour coding out of it. See _includes/projectgrid.html.
+hero_tone: false
 themes:
   - whole-life-carbon
   - data-benchmarks

@@ -18,7 +18,7 @@ partners:
 projects:
   - analysis-of-life-cycle-greenhouse
 thumbnail: /assets/img/pubs/ramon-2025-harmonised-database-materials.webp
-rise_work: true
+rise_tier: core
 citations: 0
 citations_source: OpenAlex
 citations_date: 2026-10-31
