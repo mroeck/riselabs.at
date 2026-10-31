@@ -9,10 +9,6 @@ summary: "Provided the archetype modelling behind the EU's roadmap for bringing 
 hero: "/assets/img/projects/modelling-framework.png"
 image: "/assets/img/projects/modelling-framework.png"   # the social preview; see docs/03
 hero_caption: "Reduction solutions applied to a building LCA model, scaled up with a building stock model."
-# The hero is a map, chart or screenshot, not a photograph, so the
-# site-wide picture treatment is off for this card: greyscale would
-# take the colour coding out of it. See _includes/projectgrid.html.
-hero_tone: false
 themes:
   - policy-regulation
   - whole-life-carbon

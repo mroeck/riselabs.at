@@ -158,13 +158,29 @@ permalink: /
     Commission, national governments, international organisations and
     philanthropic funders.</p>
     {%- comment -%}
-      Six, not three (31 Oct 2026), which is every current project: there are
-      exactly six, so this is the whole of the live work rather than a
-      selection, and the grid is two even rows of three on a wide screen.
-      Should a seventh start, `slice` keeps this to the six most recent by
-      end year, and "All projects" below carries the rest.
+      Six projects, newest first, whatever their status (Martin, 31 Oct
+      2026). This used to show only `status: current`, which meant a piece
+      of work vanished from the home page the day it finished, however
+      recent or well known it was. A visitor asking what RISE works on is
+      not asking which contracts are open.
+
+      `featured: true` on a project puts it at the front, in front of
+      anything newer. Nothing carries it today, so the six are simply the
+      most recent. Add it when a project should lead the page for a reason
+      the dates do not express, and remove it when that reason passes:
+      seven featured projects would fill the grid and push every recent one
+      off it, which docs-check.py notes.
+
+      "Newest" is the `years` string sorted in reverse, so it is the start
+      year. A project that began earlier but runs longer therefore sits
+      below one that began later, which is what reads correctly on a page
+      about what is being worked on now. Two projects with identical
+      `years` fall back to the order the files load in, which is arbitrary;
+      `featured` is the way to settle that deliberately.
     {%- endcomment -%}
-    {%- assign current = site.projects | where: "status", "current" | sort: "years" | reverse | slice: 0, 6 -%}
+    {%- assign feat = site.projects | where: "featured", true | sort: "years" | reverse -%}
+    {%- assign unfeat = site.projects | where_exp: "p", "p.featured != true" | sort: "years" | reverse -%}
+    {%- assign current = feat | concat: unfeat | slice: 0, 6 -%}
     {% include projectgrid.html projects=current %}
     <p class="more"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
   </div>

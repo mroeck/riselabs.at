@@ -17,12 +17,15 @@
         rather than an empty box. See _includes/stockimg.html.
 
         `hero_tone: false` in a project's front matter turns the picture
-        treatment off for its card. Eight of these heroes are maps, charts or
-        screenshots rather than photographs, and the treatment's greyscale
-        takes the colour coding out of them: a pie-chart map of the EU stock
-        becomes eleven shades of the same grey, which is not a picture of
-        anything. The default is on, so a photograph needs no front matter;
-        only an exception is written down.
+        treatment off for that card. No project uses it: eight did, the
+        heroes that are maps, charts or screenshots, and Martin dropped all
+        eight on 31 Oct 2026 in favour of one consistent surface. Greyscale
+        does flatten their colour coding, which was the argument for the
+        exception and is the price of the decision.
+
+        The lever is kept because it costs four lines and the next diagram
+        hero may want it. docs-check.py notes that nothing uses it, so it
+        does not sit here unexamined.
       {%- endcomment -%}
       {%- assign tone_class = "pcard-img" -%}
       {%- if p.hero_tone == false %}{% assign tone_class = "pcard-img no-tone" %}{% endif -%}

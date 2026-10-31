@@ -7,10 +7,6 @@ funder: "European Commission"
 role: "Researcher, TU Graz (before RISE)"
 summary: "Tested whether the EU's Product Environmental Footprint method works on whole buildings, and set out how benchmarks and performance classes for offices could be defined"
 hero: "/assets/img/projects/pef4buildings.png"
-# The hero is a map, chart or screenshot, not a photograph, so the
-# site-wide picture treatment is off for this card: greyscale would
-# take the colour coding out of it. See _includes/projectgrid.html.
-hero_tone: false
 image: "/assets/img/projects/pef4buildings.png"   # the social preview; see docs/03
 themes:
   - whole-life-carbon
