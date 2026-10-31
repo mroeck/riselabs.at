@@ -2695,31 +2695,33 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   color: rgba(255, 255, 255, .78);
 }
 
-/* The eyebrow has to hold one line on a phone. Capitals and .08em of tracking
-   are what cost the width, about 45% of it, so below 34rem the line is set in
-   sentence case at close to normal tracking, and the size then scales with the
-   viewport. It stays the same weight and colour, so it still reads as the
-   quiet line above the headline rather than as part of the standfirst.
+/* The eyebrow has to hold one line on a phone, and from 31 Oct 2026 it does
+   so in capitals at every width. Martin asked for the capitals and gave a
+   line short enough to carry them: "Building for planet and people." is
+   thirty-one characters, against thirty-eight before it and forty-eight
+   before that.
 
-   The line is now thirty-eight characters ("Our buildings must not cost the
-   Earth.", Martin, 31 Oct 2026), ten shorter than the one this rule was
-   written for. Measured again at that length: one line from 320px up, and
-   capitals at full size would now hold one line from 386px, where the old
-   line needed about 500px.
+   This rule used to drop to sentence case below 34rem, because capitals and
+   .08em of tracking cost about 45% of the width and the older lines could
+   not fit on a phone with them. This one can, but only with help, and the
+   clamp below is doing real work rather than providing margin.
 
-   The 34rem switch is therefore more conservative than it has to be: between
-   386px and 544px the line is set in sentence case although capitals would
-   fit. That is deliberate for now. 386px is the exact edge for this wording,
-   and a line that wraps on a 384px phone is a worse failure than one set in
-   sentence case on a 430px one. Moving the breakpoint down is a decision
-   about how much margin to keep, not a bug to fix, and it would have to be
-   measured again for any new wording. */
-@media (max-width: 34rem) {
-  .hero-eyebrow {
-    text-transform: none;
-    letter-spacing: .01em;
-    font-size: clamp(.66rem, 3vw, .82rem);
-  }
+   Measured at the full 13.1px, capitals hold one line from 318px in Figtree
+   and from 328px in the fallback stack. The fallback figure is above 320px:
+   on the narrowest phone, with the webfont still arriving or never arriving,
+   full-size capitals would wrap.
+
+   So the size eases off below 24rem rather than the capitals doing so:
+   11.2px at 320px, back to the full 13.1px by 384px, where the clamp meets
+   .82rem exactly so there is no step at the breakpoint. Measured at 320px
+   that leaves 42px of slack in Figtree and 34px in the fallback, and one
+   line in both.
+
+   Any rewording has to be measured again. A line much longer than this one
+   will not hold capitals on a phone, and the honest fix then is a shorter
+   line rather than smaller type. */
+@media (max-width: 24rem) {
+  .hero-eyebrow { font-size: clamp(.70rem, 3.41vw, .82rem); }
 }
 
 /* ---------- the evidence band ----------
