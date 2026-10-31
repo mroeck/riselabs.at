@@ -61,9 +61,13 @@ permalink: /
 {%- endcomment -%}
 <section class="band" id="evidence">
   <div class="wrap">
+    {%- comment -%}
+      No lede here since 31 Oct 2026: its sentence is now the hero's second
+      line. The heading and the six facts under it say what this band is
+      without a sentence in between, and repeating the line a screen apart
+      would have made the hero sound like a trailer for this band.
+    {%- endcomment -%}
     <h2>What the evidence says</h2>
-    <p class="band-lede">From single buildings to the regenerative evolution
-    of the world's building stock: our research shows what works at scale.</p>
 
     <ul class="facts">
       {%- for f in site.data.facts %}
@@ -141,13 +145,26 @@ permalink: /
   </div>
 </section>
 
-<section class="band">
+{%- comment -%}
+  `id` added 31 Oct 2026 so the hero can point here. The hero used to send a
+  visitor to #evidence, which is the band directly beneath it: a button that
+  scrolls one screen is not worth pressing. This band is four bands down and
+  is what someone asking "what do they actually do" wants.
+{%- endcomment -%}
+<section class="band" id="working-on">
   <div class="wrap">
     <h2>What we are working on</h2>
     <p class="band-note">Research and advisory work for the European
     Commission, national governments, international organisations and
     philanthropic funders.</p>
-    {%- assign current = site.projects | where: "status", "current" | sort: "years" | reverse | slice: 0, 3 -%}
+    {%- comment -%}
+      Six, not three (31 Oct 2026), which is every current project: there are
+      exactly six, so this is the whole of the live work rather than a
+      selection, and the grid is two even rows of three on a wide screen.
+      Should a seventh start, `slice` keeps this to the six most recent by
+      end year, and "All projects" below carries the rest.
+    {%- endcomment -%}
+    {%- assign current = site.projects | where: "status", "current" | sort: "years" | reverse | slice: 0, 6 -%}
     {% include projectgrid.html projects=current %}
     <p class="more"><a href="{{ '/projects/' | relative_url }}">All projects →</a></p>
   </div>
