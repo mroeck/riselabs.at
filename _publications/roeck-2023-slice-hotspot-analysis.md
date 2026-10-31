@@ -13,4 +13,72 @@ thumbnail: /assets/img/pubs/roeck-2023-slice-hotspot-analysis.webp
 rise_work: true
 ---
 
-<!-- Optional: a paragraph about this publication shows on its page. -->
+<!-- Abstract as held by the RISE Zotero group library for DOI
+     10.5281/zenodo.8366478, retrieved 2026-10-31. Reproduced as recorded;
+     edit only to fix encoding or spacing. -->
+
+## Abstract
+
+SLiCE: An Open Data Model for Scalable High-Definition Life Cycle Engineering,
+Hotspot Analysis and Dynamic Assessment of Buildings Hotspot Analysis Tool
+This repository offers a tool for systematic hotspot analysis using data
+compliant with the SLiCE building data model. Protocol The basis for the
+environmental hotspot analysis routine and prototype implementation presented
+here are the EF hotspot analysis protocol developed by [11] and experiences
+from its application within the PEF4Buildings project [12–14]. A summary of
+the hotspot analysis methodology [11] and specificities of this implementation
+is offered in Table 1 and elaborated in the following. In this implementation,
+the hotspot analysis protocol follows a three-step procedure, which involves
+identifying the most relevant indicators (e.g., impact categories), temporal
+hotspots (e.g., life cycle stages), and spatial hotspots (e.g., materials,
+processes and/or elementary flows). Prototype The SLiCE hotspots tool enables
+the analysis of environmental hotspots within building assessment results
+following the SLiCE data model – see Figure 8 for a conceptual overview of the
+tool, based on snippets of the current prototype of the tool, implemented via
+JupyterNotebook [36] and Panel [25]. To start, the hotspot analysis script
+requires some user inputs and settings: First, a SLiCE-compliant dataset as
+well as a file with weighting factors related to the impact indicators in the
+dataset have to be specified. Second, the ‘level 0’ attribute object must be
+specified, which represents the baseline for the analysis and determines the
+attribute value(s) that can be selected for inclusion in the analysis.
+Depending on whether one or more items (attribute values) are selected, the
+results will provide insights on one item and its hotspots or allow for
+comparison of different items. Third, the indicators to be considered in the
+hotspot analysis must be selected. These will be normalised and weighted to
+obtain a common base unit, based on the weighting factors/sets which also must
+be selected here (if several weighting sets are available, including an option
+of “equal weighting”). Here it is furthermore possible to unselect indicators
+or select just one, in which case the consecutive steps of the analysis will
+only consider the active indicators. Fourth, the temporal attribute is
+defined, i.e., the attribute based on which the most relevant life cycle
+stages will be determined. The selection mask allows to select one or many
+life cycle stages, with all stages selected by default. Here it is possible to
+focus the analysis on selected life cycle stages, for example, to assess the
+most relevant indicators, life cycle stages and processes within the building
+use-phase, or for embodied impacts only. Fifth, the ‘level -1’ attribute is
+specified, which represents the ‘process’ level in this analysis. The SLiCE
+tool is flexible with regards to defining ‘level-1’ as any spatial level below
+the initial ‘level0’ attribute. This means, for example, if ‘level0’ is the
+‘building level’, then ‘level-1’ can be ‘building element’, ‘work section’, or
+‘material level’, respectively. Sixth, the threshold value for the cumulative
+impact of ‘most relevant’ items is defined. By default, it is set at 80%, as
+per the PEF/OEF hotspot analysis protocol, but can be changed as needed.
+Lastly, when the above settings have been defined (or changed), pushing the
+‘Run hotspot analysis’ button will run the analysis and generate (or updated)
+results tables and plots. For further information on the SLiCE building data
+model please review the related article (linked below) Software and data
+availability The SLiCE building data model as well as the presented
+implementation in the SLiCE hotspot analysis prototype are open source and
+available with this article. The SLiCE hotspot analysis, implemented as an
+IPython Jupyer Notebook with interactive widgets, tool is available on Github
+(https://github.com/mroeck/slice_hotspots/), with the submission pre-release
+published via Zenodo (https://zenodo.org/badge/latestdoi/645859866). All items
+are published under a GNU General Public License v3.0. We encourage you to
+review, reuse, and refine the model and scripts and share-alike. Preprint (not
+peer-reviewed) Röck M, Passer A, Allacker K. “SLiCE: An Open Data Model for
+Scalable High-Definition Life Cycle Engineering, Hotspot Analysis and Dynamic
+Assessment of Buildings.” 2023, Preprint DOI:
+https://doi.org/10.5281/zenodo.8369244
+
+Abstract as published.
+{: .muted .small}

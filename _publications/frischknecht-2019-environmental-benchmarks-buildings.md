@@ -13,6 +13,9 @@ projects:
 #   - project-filename
 thumbnail: /assets/img/pubs/frischknecht-2019-environmental-benchmarks-buildings.webp
 rise_work: false
+citations: 66
+citations_source: OpenAlex
+citations_date: 2026-10-31
 ---
 
 <!-- Optional: a paragraph about this publication shows on its page. -->
