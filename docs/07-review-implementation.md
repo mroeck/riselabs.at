@@ -1163,6 +1163,18 @@ Do W1–W4 in one PR, after R7 (photos) or together with it.
 
 ### W2 Expertise page by strand
 
+> **Update 31 Oct 2026.** `drafts/expertise.yml` is now rebased on the
+> positioning-led copy of PR #38: the six existing fields keep their
+> `question`, lede and bullet points exactly as merged; the draft only adds
+> `publications`, `posts`, extra `examples`, moves Methods to `strand: wide`,
+> and appends the two deep-strand fields (each with a `question`). It passes
+> `docs-check.py` against 9993724. Where the text below conflicts with PR
+> #38, PR #38 wins: keep the question-led headings and the page title
+> pattern, so the `h1` becomes "Eight questions we answer", and keep the
+> current page lede (adjusting "six" if it says so). Images stay on the stock
+> paths until R7 installs the photos. Wording approved by Martin on 31 Oct
+> (H29); review work dropped from Methods (H27).
+
 - **Files:** `_data/expertise.yml`, `expertise.html`, `assets/css/style.css`
 - **Change:**
   - Replace `_data/expertise.yml` with `drafts/expertise.yml` (eight fields;
@@ -1228,6 +1240,17 @@ Do W1–W4 in one PR, after R7 (photos) or together with it.
 - **Done when:** a misspelt slug in either data file makes the checker
   fail with the file and the slug named.
 
+### W5 Approach: drop the review line
+
+- **File:** `approach.md`, the list under "How we hold ourselves to account"
+- **Decision (Martin, 31 Oct 2026, H27):** RISE does not offer review work.
+- **Change:** delete the list item "We review only where we have no stake in
+  the outcome, and say so in writing." The other three items stay as they
+  are. Check `docs/10-boilerplate.md` for the same line and remove it there
+  too.
+- **Done when:** no page on the built site mentions review work or "no
+  stake".
+
 ## Phase E: publications of the extended team
 
 Source: search of 30 October 2026 (ORCID, Crossref, DataCite, OpenAlex,
@@ -1280,6 +1303,63 @@ Supplied: `riselabs-extended-team-pubs-2026-10-30.zip` with 26 files for
   "With RISE or GBDI". The rule that decides it is agreed with Martin
   first (H31); derive it from existing fields rather than tagging by hand.
 
+## Phase F: homepage facts, six perspectives
+
+Source: facts review of 31 October 2026:
+https://claude.ai/artifact/UrPGudha3ecLT2MUgxcWMw
+
+Decisions (Martin, 31 Oct 2026):
+- The VELUX green paper (`toth-2026-housing-we-need`) may be used, labelled
+  as a green paper in the source line ("Toth et al., 2026, green paper").
+  Update the comment in `index.md` that says every figure must come from a
+  peer-reviewed paper: "published, with a DOI, on this site; non-peer-reviewed
+  sources labelled as such".
+- Numbers for Mouton et al. 2022 (2/2) may come from its open preprint
+  (10.21203/rs.3.rs-2199079/v1); the source line links the published entry.
+- Publication titles follow the published versions (F2).
+
+### F1 Six facts in a 3 x 2 grid
+
+- **Files:** new `_data/facts.yml`, `index.md` (`#evidence`),
+  `assets/css/style.css`, `docs-check.py`, `docs/03`
+- **Change:** the six picked facts move into `_data/facts.yml`, one entry
+  each: `perspective`, `value`, `say`, `source_label`, `publication` (slug).
+  The band renders them as a grid: 3 columns from 64rem, 2 below, 1 under
+  30rem; each cell shows the perspective label (small caps, accent colour),
+  the value, the sentence and the linked source line(s). `docs-check.py`
+  fails a fact whose `publication` slug does not exist.
+- **Content (decided 31 Oct 2026):** use `_data/facts.yml` from
+  `riselabs-w2-f2-2026-10-31.zip` exactly. Each entry has `perspective`,
+  `value`, `say` and a `sources` list (`label`, `publication`); Scaling has
+  two sources, joined with "; " in the source line. Order as in the file:
+  Europe, Existing buildings, Global, Global South, Single building,
+  Scaling. Sentences that start lower-case ("could be created…", "of the
+  world's…") continue the value and are rendered directly after it.
+- **Band lede (decided 31 Oct 2026):** replace "Efficiency alone will not
+  get Europe's buildings within their limits. Our research shows why, and
+  what does." with, exactly: "From single buildings to the regenerative
+  evolution of the world's building stock: our research shows what works at
+  scale." 
+- **Done when:** six cards, 3 x 2 at 1,280 px and 2 x 3 at 390 px; every
+  source line links to its publication page; the four old figures are gone
+  from `index.md`.
+
+### F2 Published titles for the two Mouton papers
+
+- **Files:** `_publications/mouton-2022-low-tech-passive.md`,
+  `_publications/mouton-2022-environmental-potentials-bio.md`
+- **Change:** set `title:` to the published titles, exactly (slugs and URLs
+  unchanged):
+  - 2/2: "Low-tech passive solar design concepts and bio-based material
+    solutions for reducing life cycle GHG emissions of buildings – Life cycle
+    assessment of regenerative design strategies (2/2)"
+  - 1/2: "Bio-based building material solutions for environmental benefits
+    over conventional construction products – Life cycle assessment of
+    regenerative design strategies (1/2)"
+  Re-render both tiles with `make_tiles.py` if the publication has a designed
+  tile rather than a title page.
+- **Done when:** both titles match the DOI landing pages.
+
 ---
 
 ## Human input
@@ -1315,11 +1395,13 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H24 | Martin | The Circular WOFF2 web files (Book, Medium and italics) and any notice the licence requires. **Partly answered 29-30 Oct**: files supplied, but Medium only and licensed for another domain. Still needed: the Book cut, and riselabs.at on the licence (or the move to riseregenerate.com). See the implementer's note below | R3 |
 | H25 | Martin or a lawyer | Approve the Datenschutz section for Plausible (`drafts/datenschutz-plausible-draft.html`), including whether consent is needed | R10 |
 | H26 | Norman Chinasamy | Approval of his profile text and portrait (live as a draft since 235b9a8); UCT clearance if required | R8 |
-| H27 | Martin | Does RISE take independent review work (of assessments, tools, benchmark proposals)? If not, drop the review line and the note from the Methods field | W2 |
+| H27 | Martin | ~~Independent review work~~ Answered 31 Oct: dropped, not an offer RISE sells. The Methods field in `drafts/expertise.yml` no longer mentions review (lede, bullets and note rewritten); W5 removes the line from Approach | W2, W5 |
 | H28 | Martin | A photograph for "Bio-based and regenerative materials" (own work or a project partner's, with permission); placeholder until then | W2 |
-| H29 | Martin | Approve the wording in `drafts/engagement.yml` and `drafts/expertise.yml` | W1, W2 |
+| H29 | Martin | ~~Approve the wording~~ Answered 31 Oct: approved, including Methods moving to the wide strand | W1, W2 |
 | H30 | Nicole, Zuhaib, Norman | Confirm their list is complete and correct, and name anything to leave out. Norman's public ORCID record is empty; his six entries come from Crossref and OpenAlex. Zuhaib: two items were left out on purpose (an amphibian-biology paper misattributed to "Sheikh Zuhaib" in OpenAlex, and a correction notice); is he an author of the 2022 Global Status Report or the BPIE EU Buildings Climate Tracker (2022)? Neither names him publicly | E1 |
 | H31 | Martin | Whether to add the "With RISE or GBDI" filter (E3) | E3 |
+| H32 | Martin | ~~Pick one fact per perspective~~ Answered 31 Oct: combined picks, texts in `_data/facts.yml` | F1 |
+| H33 | Martin | ~~New lede for the facts band~~ Answered 31 Oct: text in F1 | F1 |
 
 ---
 
@@ -1377,20 +1459,53 @@ needs them:
 - `docs-check.py` already fails an unknown slug in `engagement.yml`
   `examples`, which W1 and W4 both ask for.
 
-### W2 is blocked: the draft content files are not in the pack
+### W2 was blocked and is not any more (31 Oct 2026)
 
-The order says `drafts/engagement.yml` and `drafts/expertise.yml` are
-"supplied ready to use". Neither is in
-`riselabs-asset-pack-2026-10-29.zip` (which holds only
-`drafts/datenschutz-plausible-draft.html`) nor in
-`riselabs-extended-team-pubs-2026-10-30.zip`.
+`drafts/expertise.yml` was missing from both earlier packs, and W2 needs the
+eight fields' own contents, which the order quotes only the headings of.
+Writing them would have meant inventing claims about what RISE does, which
+rule 2 forbids, so W2 waited.
 
-`engagement.yml` does not matter any more: W1 is built and its wording came
-from the proposal document, which quotes all four cards in full.
+The packs of 31 October (`riselabs-asset-pack-2026-10-29_3.zip` and
+`riselabs-w2-f2-2026-10-31.zip`) carry it, identically in both. W2, R7 and
+R11 are built. `drafts/engagement.yml` is in the pack too and was not needed:
+W1 shipped from the proposal document, which quotes all four cards in full.
 
-`drafts/expertise.yml` does matter. W2 needs eight fields, each with a lede,
-up to four bullet points, an audience line, and lists of projects,
-publications and posts. The order quotes the strand headings, the strand
-intros and the Global South text verbatim, but not the eight fields'
-contents. Writing those would mean inventing claims about what RISE does,
-which rule 2 forbids. So W2 waits for that file.
+### Three places where the built site differs from this order, and why
+
+**F1, the single-column breakpoint.** The order says "3 columns from 64rem, 2
+below, 1 under 30rem", and also "2 x 3 at 390 px". 390px is under 30rem, so
+the two cannot both hold. The acceptance test won: the single column starts at
+22rem, so two columns hold down to 360px and one below that. Measured at 1280,
+900, 390, 360 and 320px.
+
+**R7, where the photo credits sit on the two GBDI projects.** The order says
+each photograph carries its `image_credit` in small text. The project layout
+has no such field; it prints `hero_caption`. Both projects already had one,
+describing the diagrams these photographs replaced, so those captions had to
+change anyway. The credit went into `hero_caption` rather than into a new
+field nothing renders.
+
+**R7, duotone is built and off.** The order describes the treatment but
+Martin asked on 30 October for the option to exist without it going live
+before he has seen it on the real site, as with the hero gradient.
+`photo_treatment: duotone` in `_config.yml` turns it on; `plain` ships.
+
+### What the title-page and abstract work actually found (31 Oct 2026)
+
+Citation counts and abstracts came from the sources through a browser tab,
+since this environment cannot reach api.openalex.org, api.crossref.org or
+api.zotero.org.
+
+- **Counts: 54 of 64**, from OpenAlex. Not Google Scholar, which has no API,
+  does not permit scraping, and whose counts are not RISE's to republish.
+  Four Zenodo records answer with the concept DOI rather than the version DOI
+  the site holds; each was confirmed separately rather than inferred.
+- **Abstracts: 50 of 64.** OpenAlex 42, Crossref 0 - it holds none for any of
+  the 21 OpenAlex missed, which is normal for Elsevier and Springer deposits
+  - and the RISE Zotero group library 8. Finding those eight meant paging all
+  6,996 items: Zotero's free-text search does not cover the DOI field, so a
+  DOI query answers "not found" for items that are plainly there.
+- **Only 20 of the 64 thumbnails are real title pages**; the other 44 are
+  designed tiles. Reading abstracts off the images could never have covered
+  the list, whatever H23 adds later.
