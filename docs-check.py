@@ -822,6 +822,36 @@ for f in sorted(SITE.rglob("*.md")):
                     "safer as .html, where Liquid still runs but kramdown cannot "
                     "mangle the markup. (Keep the permalink when renaming.)")
 
+# ------------------------------------------------------ compound `where_exp`
+# GitHub Pages runs Jekyll 3.10 on Liquid 4.0.4, whose `where_exp` takes one
+# comparison and nothing more. Joining two with `and` raises
+#
+#   Liquid syntax error: Expected end_of_string but found id
+#
+# which is a parse error, so the whole site fails to build and the last good
+# version stays live. That happened on 31 Oct 2026 and went unnoticed for six
+# hours, because a failed Pages build is silent unless someone looks: the site
+# does not break, it simply stops changing, and every merge after it looked
+# fine and shipped nothing.
+#
+# Write it as chained filters instead, which is the same thing and parses:
+#   | where_exp: "x", "x.a != 'one'" | where_exp: "x", "x.a != 'two'"
+#
+# This check exists because the local renderer is python-liquid, which accepts
+# the compound form happily. Anything the two engines disagree about has to be
+# caught here or it is caught by the deploy.
+_WHERE_EXP = re.compile(r"where_exp\s*:\s*(\"[^\"]*\"|'[^']*')\s*,\s*(\"[^\"]*\"|'[^']*')")
+for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
+    if any(p in _f.parts for p in ("_site", "docs", ".git")):
+        continue
+    for _m in _WHERE_EXP.finditer(_f.read_text()):
+        _exp = _m.group(2)[1:-1]
+        if re.search(r"\b(and|or)\b", _exp):
+            P("liquid", str(_f.relative_to(SITE)),
+              f"`where_exp` joins comparisons with and/or: {_exp}. Liquid 4 "
+              "cannot parse that and the whole Pages build fails. Chain one "
+              "`where_exp` per comparison instead.")
+
 # --------------------------------------------------- duplicated stylesheet runs
 # Two whole blocks of style.css have been pasted in twice now: the picture
 # treatment on 31 Oct, and the expertise block the same day, 98 lines of it.

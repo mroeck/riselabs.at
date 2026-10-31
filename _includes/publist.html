@@ -41,8 +41,15 @@
     the page silently. docs-check.py fails on either, so this is a belt on top
     of that brace: an unplaced entry lands at the end of its year rather than
     nowhere at all.
+
+    Three chained filters rather than one expression joined by `and`. The
+    single `and` version broke the build on GitHub Pages: Jekyll 3.10 with
+    Liquid 4.0.4 raises "Expected end_of_string but found id" on a compound
+    `where_exp`, and because it is a parse error the whole site fails to
+    build rather than the page rendering wrong. Chaining says the same thing
+    and uses only what every other `where_exp` in this repo uses.
   {%- endcomment -%}
-  {%- assign rest = in_year | where_exp: "x", "x.rise_tier != 'core' and x.rise_tier != 'extended' and x.rise_tier != 'prior'" -%}
+  {%- assign rest = in_year | where_exp: "x", "x.rise_tier != 'core'" | where_exp: "x", "x.rise_tier != 'extended'" | where_exp: "x", "x.rise_tier != 'prior'" -%}
   {%- assign pubs = pubs | concat: rest -%}
 {%- endfor -%}
 {%- if include.sections == "true" -%}
