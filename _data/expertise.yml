@@ -189,8 +189,13 @@
 
 - title: "Bio-based and regenerative materials"
   question: "Can the building itself store carbon?"
-  # image: none fitting on the site yet (H28). The stock fallback, later the
-  # R11 placeholder, shows until one is supplied.
+  # H28, answered by Martin on 31 Oct 2026. Straw-bale infill in a timber
+  # frame under a CLT deck, before the linings go on: the one state of a
+  # building where the material is still visible as material.
+  #
+  # No `image_credit` line, which the page reads as RISE's own photograph.
+  # If it is someone else's, add the credit and it appears under the frame.
+  image: /assets/img/photos/expertise-biobased-materials.jpg
   strand: deep
   lede: >-
     We assess building with bio-based, earth-based and low-carbon materials

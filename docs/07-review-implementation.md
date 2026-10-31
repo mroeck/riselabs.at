@@ -1476,7 +1476,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H25 | Martin or a lawyer | Approve the Datenschutz section for Plausible (`drafts/datenschutz-plausible-draft.html`), including whether consent is needed | R10 |
 | H26 | Norman Chinasamy | Approval of his profile text and portrait (live as a draft since 235b9a8); UCT clearance if required | R8 |
 | H27 | Martin | ~~Independent review work~~ Answered 31 Oct: dropped, not an offer RISE sells. The Methods field in `drafts/expertise.yml` no longer mentions review (lede, bullets and note rewritten); W5 removes the line from Approach | W2, W5 |
-| H28 | Martin | A photograph for "Bio-based and regenerative materials" (own work or a project partner's, with permission); placeholder until then | W2 |
+| H28 | Martin | ~~A photograph for "Bio-based and regenerative materials"~~ **Answered 31 Oct 2026**: straw-bale infill in a timber frame, supplied by Martin. Filed as `expertise-biobased-materials.jpg`. No credit line was given with it, so the page renders it as RISE's own; if it is someone else's, add `image_credit` to that entry in `_data/expertise.yml` | W2 |
 | H29 | Martin | ~~Approve the wording~~ Answered 31 Oct: approved, including Methods moving to the wide strand | W1, W2 |
 | H30 | Nicole, Zuhaib, Norman | Confirm their list is complete and correct, and name anything to leave out. Norman's public ORCID record is empty; his six entries come from Crossref and OpenAlex. Zuhaib: two items were left out on purpose (an amphibian-biology paper misattributed to "Sheikh Zuhaib" in OpenAlex, and a correction notice); is he an author of the 2022 Global Status Report or the BPIE EU Buildings Climate Tracker (2022)? Neither names him publicly | E1 |
 | H31 | Martin | ~~"With RISE or GBDI" filter~~ Answered 31 Oct: no; removed in M1 | E3, M1 |
@@ -1489,6 +1489,32 @@ Items the implementer cannot resolve. Ask, and do not guess.
 
 Added by whoever is doing the work, as things are found. Facts only, each
 with the date and where it came from.
+
+### The expertise pictures: H28 closed, and the band that stayed plain
+
+Two things on /expertise/, both on 31 October.
+
+**H28 is answered.** Martin supplied the bio-based photograph - straw-bale
+infill in a timber frame under a CLT deck, before the linings go on. It is
+cropped to the 3:2 the page frames every field picture at, from the top, so
+the browser is not asked to throw away half a portrait on every load. That
+was the last field falling through to the R11 placeholder, so no field uses
+it now. No credit came with the image and none is written: the page reads a
+missing `image_credit` as RISE's own work, and if that is wrong the fix is
+one line in `_data/expertise.yml`.
+
+**The whole "scaling deep" band was rendering plain**, which is what Martin
+noticed. The `.tone` wrapper that carries the picture treatment was written
+as `{% if x.image_credit %}`, so it only reached pictures that happened to
+have a credit line. The six fields under "scaling up" and "scaling wide" are
+Unsplash photographs and all carry one; the two under "scaling deep" are the
+only ones that do not, so exactly that band missed the treatment. The credit
+says who took the photograph and the wrapper carries the treatment, and the
+two have nothing to do with each other; the wrapper is now unconditional.
+
+Worth saying plainly: this was not a rule that did the wrong thing, it was
+two unrelated things tied to one condition, and it held for weeks because the
+fields that proved it were the ones nobody looked at twice.
 
 ### The picture treatment, and where it stops (Martin, 29-31 October)
 

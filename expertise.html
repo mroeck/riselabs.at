@@ -106,13 +106,21 @@ global_south:
   <div class="xfield" id="{{ x.title | slugify }}">
     {%- comment -%}
       A field with no picture of its own falls through to the one R11
-      placeholder. One field is in that state on purpose: H28, no photograph
-      for bio-based materials that RISE has the right to publish yet.
+      placeholder. No field is in that state now: H28, the missing bio-based
+      photograph, was supplied on 31 Oct 2026 and was the last one.
     {%- endcomment -%}
     {%- assign xi = x.image -%}
     {%- unless xi %}{% capture xi %}{% include stockimg.html key=x.title %}{% endcapture %}{% endunless -%}
+    {%- comment -%}
+      `.tone` wraps the picture whether or not there is a credit. It used to
+      be tied to `image_credit`, which was a mistake: the credit says who took
+      the photograph and the wrapper carries the picture treatment, and the
+      two have nothing to do with each other. The effect was that the whole
+      "scaling deep" band rendered plain, because its two images are the only
+      ones on the page without a credit line.
+    {%- endcomment -%}
     <figure class="xfield-img">
-      {%- if x.image_credit -%}<span class="tone"><img src="{{ xi | strip | relative_url }}" alt="" loading="lazy"></span>{%- else -%}<img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">{%- endif -%}
+      <span class="tone"><img src="{{ xi | strip | relative_url }}" alt="" loading="lazy"></span>
       {%- if x.image_credit %}<figcaption class="muted small">{{ x.image_credit }}</figcaption>{% endif %}
     </figure>
     <div class="xfield-body">

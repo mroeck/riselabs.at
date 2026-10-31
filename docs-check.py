@@ -822,6 +822,38 @@ for f in sorted(SITE.rglob("*.md")):
                     "safer as .html, where Liquid still runs but kramdown cannot "
                     "mangle the markup. (Keep the permalink when renaming.)")
 
+# --------------------------------------------------- duplicated stylesheet runs
+# Two whole blocks of style.css have been pasted in twice now: the picture
+# treatment on 31 Oct, and the expertise block the same day, 98 lines of it.
+# A duplicate is invisible when the copies agree - the second simply wins - and
+# becomes a bug the moment someone edits one of them, because the other goes on
+# overriding it from further down the file and the edit appears to do nothing.
+#
+# Eight identical lines is well past coincidence: the longest honest repeat in
+# this file is a four-line media query. Overlapping windows are collapsed to
+# one report so a 98-line duplicate is one problem rather than ninety.
+_css = SITE / "assets/css/style.css"
+if _css.exists():
+    _lines = _css.read_text().splitlines()
+    _RUN = 8
+    _first, _dupes = {}, []
+    for _i in range(len(_lines) - _RUN):
+        _win = tuple(l.strip() for l in _lines[_i:_i + _RUN])
+        if sum(1 for _w in _win if _w) < _RUN - 1:
+            continue                      # mostly blank, not a real block
+        if _win in _first:
+            if _dupes and _i == _dupes[-1][1] + 1:
+                _dupes[-1] = (_dupes[-1][0], _i)      # same run, extend it
+            else:
+                _dupes.append((_first[_win], _i))
+        else:
+            _first[_win] = _i
+    for _a, _b in _dupes:
+        P("css", "assets/css/style.css",
+          f"the block starting at line {_a + 1} is repeated at line {_b + 1}. "
+          "Delete the second copy: while they agree it is dead weight, and "
+          "once they differ the later one silently wins.")
+
 # ---------------------------------------------------------------- report
 print()
 if problems:
