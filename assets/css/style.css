@@ -2214,21 +2214,21 @@ table.listing td.t-partner .t-logo,
 
 /* ---------- the picture treatment (R7) ----------
 
-   Black and white with a subtle navy cast, so photographs from half a dozen
-   sources read as one set.
+   Black and white with the navy lifted into the shadows, so photographs from
+   half a dozen sources read as one set. Chosen from a sheet of four
+   treatments rendered on five real photographs; this is B.
 
-   The cast is a `color` blend, not a `lighten` one. Lighten lifts only the
-   pixels darker than the tint, and the CI navy is so dark that on most of
-   these pictures nothing moved: the treatment was visible on a night-time
-   city and invisible on everything else. A `color` blend carries the hue
-   across the whole tonal range, which is what makes five photographs look
-   like a set rather than five photographs.
+   `lighten` means no pixel ends up darker than the tint: the blacks become
+   navy and everything above them is left alone. That is why the tint is
+   #16325a and not the CI's own #001730 - at #001730 almost nothing moved,
+   because the CI navy is darker than the shadows in most of these pictures.
+   A single layer, so the highlights stay neutral; a second `multiply` layer
+   would tint those too and make it a duotone rather than a tone.
 
-   Two numbers to turn, and only these two:
-     --photo-tint           the hue. The CI navy.
-     --photo-tint-strength  how much of it. 0 is plain black and white; at
-                            about .55 it stops reading as black and white and
-                            starts reading as blue.
+   Two values to turn, and only these two:
+     --photo-tint           the navy lifted into the shadows
+     --photo-tint-strength  how far. 1 is the full lift; lower leaves the
+                            shadows nearer black.
 
    On by default (`photo_treatment: mono` in _config.yml); `plain` turns it
    off and every picture renders as shot.
@@ -2237,28 +2237,25 @@ table.listing td.t-partner .t-logo,
    because a row of faces and a row of buildings do not want the same
    treatment and should not be tied to one word. */
 :root {
-  --photo-tint: #001730;          /* the CI navy */
-  --photo-tint-strength: .30;
-}
-/* The dark theme's own background is this navy, so a tinted photograph sitting
-   on it loses its edge. A lighter tint at the same strength keeps the picture
-   separate from the surface behind it. */
-:root[data-theme="dark"], :root:not([data-theme="light"]) {
   --photo-tint: #16325a;
-  --photo-tint-strength: .28;
+  --photo-tint-strength: 1;
 }
+/* The same tint in both themes: one treatment, not two. A lighter navy was
+   tried for dark, to stop a photograph dissolving into a page that is already
+   navy, and it read as blue rather than as black and white. The picture's own
+   border is what separates it from the surface instead. */
 
-/* `.tone` wraps the image and nothing else. It used to sit on the <figure>,
-   which also holds the credit, and the overlay covered the credit line. */
+/* `.tone` wraps the image and nothing else. It sat on the <figure> at first,
+   which also holds the photographer's credit, and the overlay covered the
+   credit line. */
 .tone { display: block; position: relative; isolation: isolate;
         border-radius: var(--radius-img); overflow: hidden; }
 body.photo-mono .tone img { filter: grayscale(1) contrast(1.05); }
 body.photo-mono .tone::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  border-radius: inherit;
   background: var(--photo-tint);
   opacity: var(--photo-tint-strength);
-  mix-blend-mode: color;
+  mix-blend-mode: lighten;
 }
 
 /* ---------- expertise: the strand index ----------
