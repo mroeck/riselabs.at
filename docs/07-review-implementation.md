@@ -1360,6 +1360,85 @@ Decisions (Martin, 31 Oct 2026):
   tile rather than a title page.
 - **Done when:** both titles match the DOI landing pages.
 
+## Phase M: phone fixes for publications and the team band
+
+Source: Martin's phone screenshots of 31 October 2026 (publications page and
+homepage, dark theme) and the prototype
+https://claude.ai/artifact/ULwzsM5THXyzE2LH53v1Ph, which is the reference for
+both tasks (open it on a phone and on a desktop).
+
+### M1 Publications: one control row, title first, readable on a phone
+
+- **Files:** `publications.md`, `_includes/pubitem.html`,
+  `_includes/filter.html` (if needed), `assets/js/ui.js`,
+  `assets/css/style.css`, `docs/03`
+- **Problem:**
+  - On Martin's phone the list shows only the covers: no titles, authors or
+    venues, on `/publications/` and in "Recent publications" on the
+    homepage. In desktop Chrome at 390 px the text renders (in a 207 px
+    column, with up to 32 authors running six lines and more), so the cause
+    is device-specific and not yet found.
+  - The controls break up on a phone: two rows of pill buttons with labels
+    on their own lines, and the filter box sits directly against the sort
+    buttons.
+- **Decision (Martin, 31 Oct 2026):** remove the "With RISE or GBDI" filter
+  (H31) and simplify sorting.
+- **Change:**
+  - Delete the `data-pubfilter` bar and `setupPubFilter` in `ui.js`. Keep
+    `rise_work` and the RISE-first order within a year; it costs nothing
+    on the page.
+  - Replace the sort buttons with one `<select id="pub-sort">` labelled
+    "Sort" (Newest first, Oldest first, Most cited; the last only when
+    counts exist), on one row with the filter box: the input takes the
+    remaining width, the select sits to its right, and both wrap onto two
+    lines under about 30rem with a gap of .6rem. Space above the list:
+    2rem. Without JavaScript the select is hidden, as the buttons are now.
+  - Each entry leads with its title (bold, linked), then the full author
+    list in a smaller, muted size with team names underlined, then venue,
+    year and DOI. On a phone (below 40rem): a 64 px cover beside the title,
+    and authors and venue full width underneath (`grid-template-areas:
+    "thumb title" "authors authors" "meta meta"`). From 40rem: a 96 px
+    cover, with title, authors and venue stacked beside it. Same markup and
+    CSS for the homepage "Recent publications".
+  - Find the cause of the missing text before closing this task: test on a
+    real Android phone in Chrome and in Samsung Internet, light and dark
+    theme, with and without a content blocker, and with a cleared cache.
+    Note what it was in the PR. If it was a content blocker hiding
+    class names that start with `pub`, rename the classes (for example
+    `cite-`).
+- **Done when:** on a real phone, every entry on `/publications/` and on the
+  homepage shows its title, authors and venue; the controls are one row on a
+  desktop and at most two on a phone; there is no filter by RISE or GBDI.
+
+### M2 Team band: a one-row swipe carousel
+
+- **Files:** `index.md` (team band), `_includes/peoplelist.html` (if the
+  card needs a class), `assets/js/ui.js` (`setupCarousel`),
+  `assets/css/style.css` (the carousel section)
+- **Problem:** the carousel shows two people per page with dots, a counter,
+  arrows and a play button, and the page jumps when the last page holds one
+  person (five people, two per page).
+- **Change:** follow the prototype exactly:
+  - One row of cards that scrolls sideways with native scrolling and
+    `scroll-snap-type: x mandatory`; each card snaps to its start.
+  - Card width: 78% below 40rem (one card and a slice of the next), 42% from
+    40rem (two and a bit), 29% from 64rem (three and a bit). On a phone the
+    row bleeds to the screen edge, so the next card visibly continues.
+  - The card is the existing person card: 1:1 portrait in black and white,
+    name, role, affiliation line. Every card has the same height.
+  - No dots, no counter, no play button, no autoplay, no hidden items. Remove
+    that code from `setupCarousel` and its CSS.
+  - Two subtle round arrow buttons (prev, next), shown only when
+    `(hover: hover) and (pointer: fine)`, vertically centred on the
+    portraits. Each scrolls by one card width; each is disabled and faded
+    out at its end of the row. Smooth scrolling unless
+    `prefers-reduced-motion`.
+  - Without JavaScript: the same swipeable row, without arrows.
+  - Hide the scrollbar; keep keyboard focus visible on each card link.
+- **Done when:** at 390 px one card and part of the next show and swiping
+  moves card by card; at 1,280 px three and part of a fourth show, with
+  arrows; the band never changes height while scrolling.
+
 ---
 
 ## Human input
@@ -1399,7 +1478,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H28 | Martin | A photograph for "Bio-based and regenerative materials" (own work or a project partner's, with permission); placeholder until then | W2 |
 | H29 | Martin | ~~Approve the wording~~ Answered 31 Oct: approved, including Methods moving to the wide strand | W1, W2 |
 | H30 | Nicole, Zuhaib, Norman | Confirm their list is complete and correct, and name anything to leave out. Norman's public ORCID record is empty; his six entries come from Crossref and OpenAlex. Zuhaib: two items were left out on purpose (an amphibian-biology paper misattributed to "Sheikh Zuhaib" in OpenAlex, and a correction notice); is he an author of the 2022 Global Status Report or the BPIE EU Buildings Climate Tracker (2022)? Neither names him publicly | E1 |
-| H31 | Martin | Whether to add the "With RISE or GBDI" filter (E3) | E3 |
+| H31 | Martin | ~~"With RISE or GBDI" filter~~ Answered 31 Oct: no; removed in M1 | E3, M1 |
 | H32 | Martin | ~~Pick one fact per perspective~~ Answered 31 Oct: combined picks, texts in `_data/facts.yml` | F1 |
 | H33 | Martin | ~~New lede for the facts band~~ Answered 31 Oct: text in F1 | F1 |
 
@@ -1461,40 +1540,56 @@ needs them:
 
 ### W2 was blocked and is not any more (31 Oct 2026)
 
-`drafts/expertise.yml` was missing from both earlier packs, and W2 needs the
-eight fields' own contents, which the order quotes only the headings of.
-Writing them would have meant inventing claims about what RISE does, which
-rule 2 forbids, so W2 waited.
-
-The packs of 31 October (`riselabs-asset-pack-2026-10-29_3.zip` and
-`riselabs-w2-f2-2026-10-31.zip`) carry it, identically in both. W2, R7 and
-R11 are built. `drafts/engagement.yml` is in the pack too and was not needed:
+`drafts/expertise.yml` was missing from both earlier packs. W2 needs the
+eight fields' own contents, which the order quotes only the headings of, and
+writing them would have meant inventing claims about what RISE does, which
+rule 2 forbids. The packs of 31 October carry it, identically in both. W2,
+R7 and R11 are built. `drafts/engagement.yml` arrived too and was not needed:
 W1 shipped from the proposal document, which quotes all four cards in full.
 
-### Three places where the built site differs from this order, and why
+### Four places where the built site differs from this order, and why
 
 **F1, the single-column breakpoint.** The order says "3 columns from 64rem, 2
 below, 1 under 30rem", and also "2 x 3 at 390 px". 390px is under 30rem, so
-the two cannot both hold. The acceptance test won: the single column starts at
-22rem, so two columns hold down to 360px and one below that. Measured at 1280,
-900, 390, 360 and 320px.
+the two cannot both hold. The acceptance test won: the single column starts
+at 22rem, so two columns hold down to 360px.
 
 **R7, where the photo credits sit on the two GBDI projects.** The order says
 each photograph carries its `image_credit` in small text. The project layout
 has no such field; it prints `hero_caption`. Both projects already had one,
 describing the diagrams these photographs replaced, so those captions had to
-change anyway. The credit went into `hero_caption` rather than into a new
-field nothing renders.
+change anyway. The credit went there rather than into a new field nothing
+renders.
 
-**R7, duotone is built and off.** The order describes the treatment but
-Martin asked on 30 October for the option to exist without it going live
-before he has seen it on the real site, as with the hero gradient.
-`photo_treatment: duotone` in `_config.yml` turns it on; `plain` ships.
+**R7, the treatment is black and white with navy in the shadows, and it is
+on.** The order describes a magenta-to-blush duotone kept off. Martin asked
+on 31 October for a simple black and white with a subtle navy tone instead,
+and picked it from a sheet of four rendered on five real photographs: a
+`lighten` layer with #16325a. The CI's own #001730 was tried first and moved
+almost nothing, because it is darker than the shadows in most of these
+pictures. One tint in both themes. `photo_treatment: plain` turns it off.
+
+**M2, the card in the row.** The order says "the existing person card". The
+prototype shows that card stood up: portrait full width as a 1:1 crop, text
+under it, no card chrome. The prototype won, since the order names it as the
+reference. The grid on /team/ is untouched.
+
+### M1: the missing text on Martin's phone is almost certainly a content blocker
+
+Not confirmed on a device, and it cannot be from here. But the symptom is
+exact: the covers rendered and the text did not. The classes were `pub-text`,
+`pub-title`, `pub-thumb`. `pub` is the French word for advertisement, and the
+widely used filter lists hide elements whose class contains it. A rule
+catching `pub-text` and not `pub-thumb` produces precisely what the
+screenshots show.
+
+The classes are `cite-` now. If the text is still missing after this, the
+next thing to rule out is the browser itself, not the markup.
 
 ### What the title-page and abstract work actually found (31 Oct 2026)
 
-Citation counts and abstracts came from the sources through a browser tab,
-since this environment cannot reach api.openalex.org, api.crossref.org or
+Counts and abstracts came from the sources through a browser tab, since this
+environment cannot reach api.openalex.org, api.crossref.org or
 api.zotero.org.
 
 - **Counts: 54 of 64**, from OpenAlex. Not Google Scholar, which has no API,
