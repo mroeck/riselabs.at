@@ -452,145 +452,73 @@
   }
 
 
-  /* ---------- people carousel ----------
+  /* ---------- the team row (M2) ----------
 
-     Used by the home page team band: show N people at a time and rotate
-     through the whole list, so the band stays compact without hiding anyone.
+     One row that scrolls sideways and snaps card by card, using the
+     browser's own scrolling and `scroll-snap-type`. What this replaced was
+     pages of two with dots, a counter, a play button and autoplay, and the
+     band changed height whenever the last page held one person.
 
-     Progressive enhancement, as everywhere here. Without JavaScript the list
-     renders as the ordinary grid with everybody in it, which is a complete
-     band on its own; this only ever takes things away and gives back
-     controls to reach them.
-
-     An auto-rotating carousel is a known accessibility hazard, so:
-       - it stops on hover, and on keyboard focus anywhere inside it;
-       - it never starts when the visitor asks for reduced motion;
-       - there is a pause button, not just a hover behaviour;
-       - every card stays in the DOM and in the tab order of its own page.
+     Nothing here is needed for the row to work: swiping is the browser's.
+     The script only adds the two arrows, and only where there is a mouse to
+     use them, so a phone never carries controls it cannot use and a page
+     without JavaScript still has the full band.
   */
-  function setupCarousel(box) {
-    var per = parseInt(box.getAttribute("data-carousel"), 10) || 2;
-    var list = box.querySelector("ul");
-    if (!list) return;
+  function setupReel(box) {
+    var track = box.querySelector("ul");
+    if (!track) return;
+    var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!fine) return;
 
-    var items = Array.prototype.slice.call(list.children);
-    if (items.length <= per) return;          // nothing to rotate through
+    var calm = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    var pages = Math.ceil(items.length / per);
-    var at = 0;
-    var timer = null;
-    var calm = false;
-    try {
-      calm = window.matchMedia &&
-             window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    } catch (e) {}
+    function arrow(dir, label, d) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "reel-arrow reel-" + dir;
+      b.setAttribute("aria-label", label);
+      b.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" ' +
+        'stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="' + d + '"/></svg>';
+      return b;
+    }
+    var prev = arrow("prev", "Previous people", "M15 6l-6 6 6 6");
+    var next = arrow("next", "Next people", "M9 6l6 6-6 6");
 
-    box.classList.add("carousel-on");
-    list.style.setProperty("--carousel-per", per);
-
-    function show(i) {
-      at = (i + pages) % pages;
-      items.forEach(function (li, n) {
-        var on = Math.floor(n / per) === at;
-        li.hidden = !on;
-      });
-      dots.forEach(function (d, n) {
-        d.setAttribute("aria-selected", n === at ? "true" : "false");
-      });
-      live.textContent = "Showing " + (at + 1) + " of " + pages;
+    // one card plus the gap between cards
+    function step() {
+      var card = track.querySelector("li");
+      if (!card) return 300;
+      var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 16;
+      return card.getBoundingClientRect().width + gap;
     }
 
-    function stop() {
-      if (timer) { window.clearInterval(timer); timer = null; }
-      play.setAttribute("aria-pressed", "true");
-      play.textContent = "Play";
-    }
-    function start() {
-      if (calm || timer) return;
-      timer = window.setInterval(function () { show(at + 1); }, 5000);
-      play.setAttribute("aria-pressed", "false");
-      play.textContent = "Pause";
+    function update() {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max;
+      // the arrows sit level with the middle of the portraits, not of the
+      // whole card, so they do not drift down as names wrap to two lines
+      var face = track.querySelector(".pc-face");
+      if (face) box.style.setProperty("--face-h", face.getBoundingClientRect().height + "px");
     }
 
-    var bar = document.createElement("div");
-    bar.className = "carousel-bar";
-
-    var prev = document.createElement("button");
-    prev.type = "button"; prev.className = "carousel-arrow";
-    prev.setAttribute("aria-label", "Previous");
-    prev.textContent = "\u2190";
-
-    var next = document.createElement("button");
-    next.type = "button"; next.className = "carousel-arrow";
-    next.setAttribute("aria-label", "Next");
-    next.textContent = "\u2192";
-
-    var dotwrap = document.createElement("div");
-    dotwrap.className = "carousel-dots";
-    dotwrap.setAttribute("role", "tablist");
-    dotwrap.setAttribute("aria-label", "Team members");
-
-    var dots = [];
-    for (var i = 0; i < pages; i++) {
-      (function (n) {
-        var d = document.createElement("button");
-        d.type = "button"; d.className = "carousel-dot";
-        d.setAttribute("role", "tab");
-        d.setAttribute("aria-label", "Show " + (n + 1) + " of " + pages);
-        d.addEventListener("click", function () { stop(); show(n); });
-        dotwrap.appendChild(d);
-        dots.push(d);
-      })(i);
+    function go(by) {
+      track.scrollBy({ left: by, behavior: calm ? "auto" : "smooth" });
     }
+    prev.addEventListener("click", function () { go(-step()); });
+    next.addEventListener("click", function () { go(step()); });
 
-    var play = document.createElement("button");
-    play.type = "button"; play.className = "carousel-play";
-    play.setAttribute("aria-pressed", "false");
-    play.textContent = "Pause";
-    play.addEventListener("click", function () {
-      if (timer) { stop(); } else { start(); }
-    });
+    box.appendChild(prev);
+    box.appendChild(next);
+    box.classList.add("reel-arrows");
 
-    var live = document.createElement("p");
-    live.className = "carousel-live";
-    live.setAttribute("aria-live", "polite");
-
-    prev.addEventListener("click", function () { stop(); show(at - 1); });
-    next.addEventListener("click", function () { stop(); show(at + 1); });
-
-    bar.appendChild(prev);
-    bar.appendChild(dotwrap);
-    bar.appendChild(next);
-    if (!calm) { bar.appendChild(play); }
-    bar.appendChild(live);
-    box.appendChild(bar);
-
-    box.addEventListener("mouseenter", function () { if (timer) stop(); });
-    box.addEventListener("focusin", function () { if (timer) stop(); });
-
-    show(0);
-    start();
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    if (window.ResizeObserver) { new ResizeObserver(update).observe(track); }
+    update();
   }
 
-
-    /* ---------- the publications controls ----------
-
-     M1: one select, not a row of buttons, and no "With RISE or GBDI" filter.
-     The chips made the visitor do the sorting; the list already puts RISE and
-     GBDI work first inside each year, which says the same thing.
-
-     The page is built newest first. Sorting reorders within each kind
-     section, so "Journal articles" keeps its own articles, and every
-     comparison ends in the built order, so each sort is a total order rather
-     than a reshuffle of whatever the last one left behind. That is what keeps
-     RISE work first inside a year under "oldest first" too, and two papers
-     with the same citation count in a stable order.
-
-     Each entry carries what it needs on the element: `data-year`, and
-     `data-citations` where a count exists. Reading values out of the DOM text
-     would mean parsing a citation string, which breaks the first time one is
-     worded differently.
-  */
   function setupPubControls(box) {
     var list = document.querySelector("#publist");
     if (!list) return;
@@ -650,7 +578,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
-    Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), setupCarousel);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-reel]"), setupReel);
     Array.prototype.forEach.call(document.querySelectorAll("[data-pubcontrols]"), setupPubControls);
   }
 

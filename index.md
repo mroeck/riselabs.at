@@ -188,7 +188,15 @@ permalink: /
       and adds the controls. Without JavaScript this is the ordinary grid
       with everybody in it, which is a complete band on its own.
     {%- endcomment -%}
-    <div class="carousel" data-carousel="2">
+    {%- comment -%}
+      M2: one row that scrolls sideways and snaps card by card, rather than
+      pages of two with dots, a counter and a play button. The row bleeds to
+      the screen edge on a phone so the next card visibly continues, which is
+      what tells a reader it scrolls. Arrows are added by the script and only
+      where there is a mouse; without JavaScript this is the same swipeable
+      row with no arrows, which is a complete band.
+    {%- endcomment -%}
+    <div class="reel" data-reel>
       {% include peoplelist.html people=team %}
     </div>
     <p class="more"><a href="{{ '/team/' | relative_url }}">The whole team →</a></p>
