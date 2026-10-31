@@ -1,5 +1,5 @@
 ---
-title: "Low-tech passive building concepts to meet climate targets - life cycle assessment of regenerative design strategies (2/2)"
+title: "Low-tech passive solar design concepts and bio-based material solutions for reducing life cycle GHG emissions of buildings – Life cycle assessment of regenerative design strategies (2/2)"
 kind: article
 authors: "Mouton L, Trigaux D, Allacker K, Röck M"
 year: 2022

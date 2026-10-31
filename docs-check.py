@@ -169,6 +169,31 @@ for e in eng:
           "name two projects that started this way; if there are not two, the "
           "card may be describing something RISE does not actually do.")
 
+# The six homepage facts (F1). Each figure on that band is a claim about the
+# world with a paper behind it, and the whole point of the band is that a
+# visitor can follow any number to the work it came from. A `publication` slug
+# with no file behind it would render as a dead link under a headline figure,
+# which is worse than no figure at all - so it fails rather than warns.
+facts = yaml.safe_load((SITE / "_data/facts.yml").read_text()) or []
+_f_seen = set()
+for f in facts:
+    where = f"fact '{f.get('perspective', '?')}'"
+    for key in ("perspective", "value", "say", "sources"):
+        if not f.get(key):
+            P("data", "_data/facts.yml", f"{where} has no `{key}`")
+    if f.get("perspective") in _f_seen:
+        P("data", "_data/facts.yml", f"duplicate perspective '{f['perspective']}'")
+    _f_seen.add(f.get("perspective"))
+    for s in f.get("sources") or []:
+        if not s.get("label"):
+            P("data", "_data/facts.yml", f"{where} has a source with no `label`")
+        slug = s.get("publication")
+        if not slug:
+            P("data", "_data/facts.yml", f"{where} has a source with no `publication`")
+        elif slug not in coll["publications"]:
+            P("xref", "_data/facts.yml",
+              f"{where} cites '{slug}', which has no file in _publications/")
+
 tst = yaml.safe_load((SITE / "_data/testimonials.yml").read_text()) or []
 seen_ids = set()
 for t in tst:

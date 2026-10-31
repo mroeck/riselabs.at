@@ -176,8 +176,6 @@ position.</p>
   allow.</li>
   <li><strong>We state our assumptions.</strong> Allocation rules, system
   boundaries and uncertainty ranges come with every result.</li>
-  <li><strong>We review only where we have no stake</strong> in the outcome,
-  and say so in writing.</li>
   <li><strong>We build models to be repeated</strong> by national teams, not
   bought from us.</li>
 </ul>

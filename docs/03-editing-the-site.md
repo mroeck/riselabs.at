@@ -600,6 +600,44 @@ haven't is both misleading and the kind of thing people object to.
 
 ---
 
+## 11c. The six facts on the home page
+
+The "What the evidence says" band reads `_data/facts.yml`. Nothing on that
+band is written into `index.md`, so the page and `docs-check.py` read the same
+source and cannot disagree.
+
+```yaml
+- perspective: "Europe"            # the small label above the figure
+  value: "8.5 billion tonnes CO₂e" # the large figure
+  say: >-                          # what it means, one or two sentences
+    What EU buildings and construction must avoid from 2020 to 2050 …
+  sources:                         # one or more
+    - label: "Alaux et al., 2026, Nature Communications"
+      publication: alaux-2026-context-specific-life
+```
+
+Three rules, and the checker enforces the third:
+
+1. **Every figure is published, has a DOI, and is on this site.** The
+   `publication` slug is a file in `_publications/`, and the band builds the
+   link from it. A number nobody can follow to a paper does not belong here.
+2. **A source that is not peer-reviewed says so in its label**, as the VELUX
+   green paper does: "Toth et al., 2026, green paper (not peer-reviewed)".
+3. **A slug with no file behind it fails the check.** It would otherwise
+   render as a dead link under a headline figure, which is worse than showing
+   no figure at all.
+
+Several of the sentences continue the figure rather than starting after it -
+"50-107 million homes *could be created within Europe's existing buildings*" -
+which is why the figure and the sentence are one paragraph in the markup and
+not two boxes. Write `say` to follow on from `value` or to stand alone, and it
+will read correctly either way.
+
+A fact with two sources lists both, joined with a semicolon. Six is what the
+grid is built for: three columns on a laptop, two on a phone.
+
+---
+
 ## 11a. The "Page in progress" note
 
 The magenta pill in the bottom corner, next to the theme toggle, is switched
