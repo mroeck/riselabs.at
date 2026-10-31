@@ -591,7 +591,21 @@ for _slug, (_pr, _body, _f) in coll["projects"].items():
     )
     _parts = _pr.get("partners") or []
     _has = "rise" in _parts
-    if _want and not _has:
+    # `partners_omitted: true` is the deliberate exemption: a project whose
+    # consortium is too large for any honest short list shows no tiles at all,
+    # RISE included, and says so in `partners_note` instead. IEA EBC Annex 72
+    # is the one case (27 countries).
+    if _pr.get("partners_omitted"):
+        if _parts:
+            P("projects", f"_projects/{_slug}.md",
+              "sets `partners_omitted` but still lists partners. It means no "
+              "tiles at all; drop the list or drop the flag.")
+        elif not _pr.get("partners_note"):
+            P("projects", f"_projects/{_slug}.md",
+              "sets `partners_omitted` with no `partners_note`. The page then "
+              "says nothing at all about who else was on it. Say why the "
+              "names are missing.")
+    elif _want and not _has:
         P("projects", f"_projects/{_slug}.md",
           f"ran to {_end or 'an unreadable year'} with a RISE person on it, "
           "but `partners` does not open with `rise`. The project pages list "

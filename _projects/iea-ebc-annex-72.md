@@ -19,10 +19,16 @@ themes:
 link: "https://annex72.iea-ebc.org/"
 clients:
   - iea-ebc
-partners:
-  - rise
 people:
   - martin-roeck
+# No partner tiles on this one, RISE included (Martin, 31 Oct 2026). The
+# consortium is 27 countries and the institutions run to dozens, so any
+# list short enough to show would be a selection nobody made on purpose.
+# `partners_note` below carries the fact instead, and the sidebar row
+# shows it where the names would have gone. docs-check.py reads this flag
+# as the deliberate exemption from the rule that every project running
+# since 2023 opens its partner list with `rise`.
+partners_omitted: true
 partners_note: "within an international consortium of 27 countries"
 # Related projects, by slug. The link is written on both sides for
 # readability, but the layout also resolves it in reverse, so naming a

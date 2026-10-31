@@ -1543,10 +1543,15 @@ Three decisions, all Martin's on 31 October:
   organisations: the page is /partners/ and the link under the block reads
   "All partners".
 
-One edge worth knowing: IEA EBC Annex 72 ran 2016-2023 and so qualifies on
-its last year alone, and it has no other partner files, so its block reads
-"Partners: RISE". Accurate, but thin. If that reads wrong, the fix is either
-to add the Annex partners or to move that project to the stricter rule.
+One exemption, decided the same day. IEA EBC Annex 72 qualifies on its last
+year alone, and with no other partner files its block read "Partners: RISE".
+Martin's call: that project should list no partners at all, RISE included,
+because the consortium is 27 countries and any list short enough to show
+would be a selection nobody made on purpose. `partners_omitted: true` in its
+front matter is the deliberate exemption; `docs-check.py` honours it, and
+fails it if the project still lists partners or drops the `partners_note`
+that has to say why the names are missing. The sidebar row shows that note
+where the names would have gone.
 
 Publications were left alone. They carry their own `partners` lists and the
 same question applies to them, but adding RISE to twenty-four files is a
