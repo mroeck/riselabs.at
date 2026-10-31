@@ -193,9 +193,11 @@
   # frame under a CLT deck, before the linings go on: the one state of a
   # building where the material is still visible as material.
   #
-  # No `image_credit` line, which the page reads as RISE's own photograph.
-  # If it is someone else's, add the credit and it appears under the frame.
+  # The building is Hyllie and the image came from Ecococon (ecococon.eu),
+  # which is what the credit says and all that is known here. It is not
+  # RISE's own photograph, so the credit line is required, not optional.
   image: /assets/img/photos/expertise-biobased-materials.jpg
+  image_credit: "Hyllie. Image: Ecococon"
   strand: deep
   lede: >-
     We assess building with bio-based, earth-based and low-carbon materials
