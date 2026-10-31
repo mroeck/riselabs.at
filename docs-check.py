@@ -591,7 +591,21 @@ for _slug, (_pr, _body, _f) in coll["projects"].items():
     )
     _parts = _pr.get("partners") or []
     _has = "rise" in _parts
-    if _want and not _has:
+    # `partners_omitted: true` is the deliberate exemption: a project whose
+    # consortium is too large for any honest short list shows no tiles at all,
+    # RISE included, and says so in `partners_note` instead. IEA EBC Annex 72
+    # is the one case (27 countries).
+    if _pr.get("partners_omitted"):
+        if _parts:
+            P("projects", f"_projects/{_slug}.md",
+              "sets `partners_omitted` but still lists partners. It means no "
+              "tiles at all; drop the list or drop the flag.")
+        elif not _pr.get("partners_note"):
+            P("projects", f"_projects/{_slug}.md",
+              "sets `partners_omitted` with no `partners_note`. The page then "
+              "says nothing at all about who else was on it. Say why the "
+              "names are missing.")
+    elif _want and not _has:
         P("projects", f"_projects/{_slug}.md",
           f"ran to {_end or 'an unreadable year'} with a RISE person on it, "
           "but `partners` does not open with `rise`. The project pages list "
@@ -807,6 +821,38 @@ for f in sorted(SITE.rglob("*.md")):
         N(str(rel), "is all HTML and Liquid with no markdown prose. It would be "
                     "safer as .html, where Liquid still runs but kramdown cannot "
                     "mangle the markup. (Keep the permalink when renaming.)")
+
+# --------------------------------------------------- duplicated stylesheet runs
+# Two whole blocks of style.css have been pasted in twice now: the picture
+# treatment on 31 Oct, and the expertise block the same day, 98 lines of it.
+# A duplicate is invisible when the copies agree - the second simply wins - and
+# becomes a bug the moment someone edits one of them, because the other goes on
+# overriding it from further down the file and the edit appears to do nothing.
+#
+# Eight identical lines is well past coincidence: the longest honest repeat in
+# this file is a four-line media query. Overlapping windows are collapsed to
+# one report so a 98-line duplicate is one problem rather than ninety.
+_css = SITE / "assets/css/style.css"
+if _css.exists():
+    _lines = _css.read_text().splitlines()
+    _RUN = 8
+    _first, _dupes = {}, []
+    for _i in range(len(_lines) - _RUN):
+        _win = tuple(l.strip() for l in _lines[_i:_i + _RUN])
+        if sum(1 for _w in _win if _w) < _RUN - 1:
+            continue                      # mostly blank, not a real block
+        if _win in _first:
+            if _dupes and _i == _dupes[-1][1] + 1:
+                _dupes[-1] = (_dupes[-1][0], _i)      # same run, extend it
+            else:
+                _dupes.append((_first[_win], _i))
+        else:
+            _first[_win] = _i
+    for _a, _b in _dupes:
+        P("css", "assets/css/style.css",
+          f"the block starting at line {_a + 1} is repeated at line {_b + 1}. "
+          "Delete the second copy: while they agree it is dead weight, and "
+          "once they differ the later one silently wins.")
 
 # ---------------------------------------------------------------- report
 print()
