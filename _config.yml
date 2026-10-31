@@ -70,6 +70,17 @@ portraits: bw
 # for a look and flipped back without touching a stylesheet.
 surfaces: plain
 
+# The photographs on Expertise, Approach and the two GBDI projects.
+#
+#   plain    (the default) they render as shot
+#   duotone  the CI duotone, magenta through blush in light, purple through
+#            pink in dark (ramp A, H19)
+#
+# Built and kept off, the same arrangement as the gradient above: Martin asked
+# for the option to exist without it going live before he has seen it on the
+# real site. One word here and a class on <body>.
+photo_treatment: plain
+
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
 #   newsletter_action = the API embed endpoint - renders a form on the page

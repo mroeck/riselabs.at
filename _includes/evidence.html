@@ -1,0 +1,80 @@
+{%- comment -%}
+  The two evidence lines under an Expertise field: the projects where the work
+  was done, and the publications where it can be checked.
+
+    include.projects      slugs in _projects/
+    include.publications  slugs in _publications/
+    include.posts         slugs in _posts/, without the date
+
+  Publications and posts share the second line, publications first, because to
+  a reader they are the same thing: somewhere to go and read it.
+
+  Nothing here carries a title. Every one is pulled in by slug, so editing a
+  publication's title changes it everywhere at once and nothing on this page
+  can drift. docs-check.py fails a slug with no file behind it.
+
+  Titles over 80 characters are cut at a word boundary, because several run
+  past 180 and would push the line to four rows on a phone. The full title
+  stays in the link's `title`, so hovering or a screen reader gets all of it.
+  Liquid has no filter that does this: `truncate` cuts mid-word and
+  `truncatewords` counts words, not characters, so the cut is made by
+  truncating one character long and dropping whatever partial word is left.
+{%- endcomment -%}
+
+{%- comment -%}
+  Used directly rather than through `default:`: Liquid has no literal for an
+  empty array, and `nil.size` is already 0, so the guards below work as they
+  are on a field that passes none.
+{%- endcomment -%}
+{%- assign projects = include.projects -%}
+{%- assign publications = include.publications -%}
+{%- assign posts = include.posts -%}
+
+{%- if projects.size > 0 %}
+<p class="xeg"><span class="xeg-l">Projects</span>
+  {%- for slug in projects -%}
+    {%- assign p = site.projects | where: "slug", slug | first -%}
+    {%- if p %}<a href="{{ p.url | relative_url }}">{{ p.short_title | default: p.title }}</a>{% unless forloop.last %} &middot; {% endunless %}{% endif -%}
+  {%- endfor -%}
+</p>
+{%- endif %}
+
+{%- if publications.size > 0 or posts.size > 0 %}
+<p class="xeg"><span class="xeg-l">Publications</span>
+  {%- assign shown = 0 -%}
+  {%- for slug in publications -%}
+    {%- assign p = site.publications | where: "slug", slug | first -%}
+    {%- if p -%}
+      {%- if shown > 0 %} &middot; {% endif -%}
+      {%- assign full = p.title -%}
+      {%- if full.size > 80 -%}
+        {%- assign cut = full | truncate: 81, "" -%}
+        {%- assign words = cut | split: " " -%}
+        {%- assign drop = words.size | minus: 1 -%}
+        {%- assign short = words | slice: 0, drop | join: " " | append: "…" -%}
+      {%- else -%}
+        {%- assign short = full -%}
+      {%- endif -%}
+      <a href="{{ p.url | relative_url }}" title="{{ full }}">{{ short }}</a>
+      {%- assign shown = shown | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- for slug in posts -%}
+    {%- assign n = site.posts | where: "slug", slug | first -%}
+    {%- if n -%}
+      {%- if shown > 0 %} &middot; {% endif -%}
+      {%- assign full = n.title -%}
+      {%- if full.size > 80 -%}
+        {%- assign cut = full | truncate: 81, "" -%}
+        {%- assign words = cut | split: " " -%}
+        {%- assign drop = words.size | minus: 1 -%}
+        {%- assign short = words | slice: 0, drop | join: " " | append: "…" -%}
+      {%- else -%}
+        {%- assign short = full -%}
+      {%- endif -%}
+      <a href="{{ n.url | relative_url }}" title="{{ full }}">{{ short }}</a>
+      {%- assign shown = shown | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+</p>
+{%- endif %}

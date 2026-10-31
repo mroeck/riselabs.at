@@ -2183,6 +2183,93 @@ table.listing td.t-partner .t-logo,
 
 /* ---------- expertise ---------- */
 
+/* ---------- approach: the three strands ----------
+
+   Image and text side by side, swapping sides down the page so the three read
+   as a sequence. The text keeps `--measure` so the line length does not grow
+   with the column; the picture takes the rest. */
+.strand {
+  display: grid; grid-template-columns: 1fr 1.25fr; gap: 2.6rem;
+  align-items: start;
+}
+@media (max-width: 52rem) { .strand { grid-template-columns: 1fr; gap: 1.2rem; } }
+/* Each band holds exactly one .strand, so nothing here can alternate them by
+   position: an :nth-of-type rule would count bands, and silently pick the
+   wrong ones the day a band is added above. The side is marked in the page
+   instead, on the one strand that is flipped. */
+.strand.flip .strand-img { order: 2; }
+@media (max-width: 52rem) { .strand.flip .strand-img { order: 0; } }
+
+.strand-img { margin: 0; position: sticky; top: 1.5rem; }
+@media (max-width: 52rem) { .strand-img { position: static; } }
+.strand-img img {
+  display: block; width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--rule); background: var(--surface);
+  border-radius: var(--radius-img);
+}
+.strand-img figcaption { margin-top: .4rem; line-height: 1.4; }
+.strand-body { min-width: 0; max-width: var(--measure); }
+.strand-body h2 { margin-top: 0; }
+
+/* ---------- duotone (R7) ----------
+
+   Built and kept off. The switch is `surfaces: duotone` in _config.yml, which
+   puts `duotone` on <body>; without it every picture renders as shot, which is
+   what ships. Martin asked for the option to exist without it going live
+   unreviewed, the same arrangement as the hero gradient.
+
+   Two layers over a greyscale image: `lighten` with the dark colour lifts the
+   shadows to it, `multiply` with the light colour tints the highlights. Ramp A
+   (H19), the CI's magenta to blush. */
+:root { --duo-dark: #f92d84; --duo-light: #ffe1ee; }
+:root[data-theme="dark"], :root:not([data-theme="light"]) { --duo-dark: #751094; --duo-light: #ff6ba6; }
+
+body.duotone .duotone { position: relative; isolation: isolate; }
+body.duotone .duotone img { filter: grayscale(1) contrast(1.1); }
+body.duotone .duotone::before,
+body.duotone .duotone::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+}
+body.duotone .duotone::before { background: var(--duo-dark); mix-blend-mode: lighten; }
+body.duotone .duotone::after  { background: var(--duo-light); mix-blend-mode: multiply; }
+
+/* ---------- expertise: the strand index ----------
+
+   Three groups, one per strand, instead of eight links in a row. A flat list
+   said nothing about how the fields relate; this shows the shape of the page
+   before the reader scrolls into it. Three columns on a laptop, one on a
+   phone, where three narrow columns would break every field name in half. */
+.xindex-strands {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem 2.4rem;
+  margin: 0 0 1rem;
+}
+@media (max-width: 52rem) { .xindex-strands { grid-template-columns: 1fr; gap: 1.2rem; } }
+.xindex-strand { min-width: 0; }
+.xindex-head {
+  margin: 0 0 .4rem;
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent);
+}
+.xindex-strand .xindex { margin: 0; gap: .35rem .9rem; }
+
+/* The heading of each strand band. `--measure` keeps the intro to a readable
+   line length while the fields below it use the full width. */
+.xstrand-head { margin: 0 0 2.4rem; }
+.xstrand-head h2 { margin: 0 0 .4rem; }
+.xstrand-intro { max-width: var(--measure); margin: 0 0 .6rem; color: var(--ink-soft); }
+.xstrand-head .more { margin: 0; }
+
+/* The Global South band carries the two evidence lines but no field, so its
+   body needs the width the fields' text column normally gives it. */
+.xglobal-south { max-width: var(--measure); }
+
+/* The photograph credit, under the picture. Small and quiet: it is a
+   requirement of using the image, not something to read. */
+.xfield-img figcaption { margin-top: .4rem; line-height: 1.4; }
+
 .xindex {
   display: flex; flex-wrap: wrap; gap: .5rem 1.1rem;
   margin: 0 0 1rem; font-size: .9rem;
@@ -2199,19 +2286,25 @@ table.listing td.t-partner .t-logo,
   .xfield:nth-child(odd) .xfield-img { order: 0; }
 }
 
+/* A <figure> since R7: the photograph and its credit. The frame moved from
+   the figure to the image, because the figure now also holds the caption and
+   `overflow: hidden` on an aspect-ratio box would have clipped it. */
 .xfield-img {
-  aspect-ratio: 3 / 2; border-radius: var(--radius-ui); overflow: hidden;
-  border: 1px solid var(--rule); background: var(--surface);
+  margin: 0;
   position: sticky; top: 1.5rem;
+}
+@media (max-width: 46rem) { .xfield-img { position: static; } }
+.xfield-img img {
+  display: block; width: 100%; aspect-ratio: 3 / 2;
+  object-fit: cover; object-position: top left;
+  border: 1px solid var(--rule); background: var(--surface);
   /* --surface, not #fff: a photograph covers this frame completely once
      loaded, so the colour is only ever seen while the image is still
      arriving, and white flashed against the dark theme. */
 }
-@media (max-width: 46rem) { .xfield-img { position: static; } }
-.xfield-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 .xfield-img-empty { background: var(--surface); }
 
-.xfield h2 { margin: 0 0 .55rem; font-size: 1.3rem; }
+.xfield h3 { margin: 0 0 .55rem; font-size: 1.3rem; }
 .xlede { margin: 0 0 1rem; font-size: 1.02rem; line-height: 1.55; }
 .xlist { margin: 0 0 1rem; padding-left: 1.1rem; }
 .xlist li { margin: .25rem 0; font-size: .92rem; line-height: 1.5; color: var(--ink-soft); }
@@ -2300,7 +2393,6 @@ table.listing td.t-partner .t-logo,
 .pcard-img,
 .pcard-img img,
 .pcard-img-empty,
-.xfield-img,
 .xfield-img img,
 .xfield-img-empty,
 .people .pc-face,
@@ -2314,7 +2406,7 @@ table.listing td.t-partner .t-logo,
 .pub-tile {
   border-radius: var(--radius-img);
 }
-.pcard-img, .xfield-img, .dl-thumb, .pub-thumb { overflow: hidden; }
+.pcard-img, .dl-thumb, .pub-thumb { overflow: hidden; }
 
 /* ---------- publication thumbnails ----------
 

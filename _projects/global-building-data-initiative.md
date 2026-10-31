@@ -6,9 +6,9 @@ years: "2024–2025"
 funder: "ClimateWorks Foundation"
 role: "Principal Investigator"
 summary: "Launched an open global data commons on resource use and upfront embodied carbon of new buildings"
-hero: "/assets/img/projects/gbdi-platform.png"
+hero: "/assets/img/photos/project-gbdi-pilot.jpg"
 image: "/assets/img/projects/gbdi-platform.png"   # the social preview; see docs/03
-hero_caption: "The Global Building Data Initiative platform."
+hero_caption: "Photo: Evgeny Matveev / Unsplash"
 themes:
   - data-benchmarks
   - whole-life-carbon

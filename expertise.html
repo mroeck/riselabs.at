@@ -2,91 +2,185 @@
 layout: default
 title: Expertise
 permalink: /expertise/
+# The Global South band's evidence, by slug, so the markup below carries no
+# titles of its own and nothing has to be kept in sync by hand. docs-check.py
+# fails any slug with no file behind it.
+global_south:
+  projects:
+    - gbdi-china-and-india-cooperation
+    - chile-wlc-data-harmonisation
+    - global-building-data-initiative
+  publications:
+    - dunant-2025-timely-deployment-best
+    - satola-2021-life-cycle-ghg
+  posts:
+    - cbpm-cape-town-keynote
+    - cbmf-beijing-low-carbon-concrete
+    - gbdi-india-webinar
 ---
 
+{%- comment -%}
+  W2. The page is grouped by the three strands of /approach/, because that is
+  the argument the rest of the site makes: what RISE does only means something
+  once you know which problem it is aimed at. Eight fields in three bands, in
+  the order of the Approach page, each band linking back to its section there.
+
+  Two evidence lines under every field, Projects and Publications, built from
+  slugs. Titles are never written here, so nothing drifts when one is edited.
+{%- endcomment -%}
+
 <div class="page-head wrap narrow">
-  <h1>Six questions we answer</h1>
-  <p class="lede">Each of these fields grew from clients who needed an answer
-  they could defend in public. The methods are ours; the questions are
-  theirs.</p>
+  <h1>Expertise</h1>
+  <p class="lede">What we do, grouped by the three strands of our approach.
+  Under each field are the projects and publications where you can check
+  it.</p>
 </div>
 
 <main id="content">
-<section class="band">
-<div class="wrap">
 
 {%- comment -%}
-  Fields come from _data/expertise.yml. The index jumps down the page; the
-  fields alternate image and text, so the page reads as a sequence rather
-  than a list. Projects named in `examples` are pulled in by slug, so their
-  titles never need keeping in sync.
+  The index: three strands, each followed by its own fields. A flat list of
+  eight links said nothing about how they relate; this one shows the shape of
+  the page before the reader scrolls into it.
 {%- endcomment -%}
-
-<p class="xindex">
-  {%- for x in site.data.expertise -%}
-  <a href="#{{ x.title | slugify }}">{{ x.title }}</a>
-  {%- endfor -%}
-</p>
-
-{%- for x in site.data.expertise %}
-<div class="xfield" id="{{ x.title | slugify }}">
-  {%- comment -%}
-    Fields all carry an image now. The fallback stays for any field added
-    later without one, so the page never shows an empty box.
-  {%- endcomment -%}
-  {%- assign xi = x.image -%}
-  {%- unless xi %}{% capture xi %}{% include stockimg.html key=x.title %}{% endcapture %}{% endunless -%}
-  <div class="xfield-img">
-    <img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">
-  </div>
-  <div class="xfield-body">
-    {%- comment -%}
-      The question is the heading and the field name sits under it. A reader
-      arrives with a question, not with the name of a method, and the name is
-      no use to them until they know it answers the thing they came for.
-    {%- endcomment -%}
-    <h2>{{ x.question | default: x.title }}</h2>
-    {%- if x.question %}<p class="xfield-name">{{ x.title }}</p>{% endif %}
-    <p class="xlede">{{ x.lede }}</p>
-
-    {%- if x.includes.size > 0 %}
-    <ul class="xlist">
-      {%- for i in x.includes %}<li>{{ i }}</li>{% endfor -%}
-    </ul>
-    {%- endif %}
-
-    {%- if x.note %}<p class="muted small">{{ x.note }}</p>{% endif %}
-
-    {%- if x.examples.size > 0 %}
-    <p class="xeg"><span class="xeg-l">Where you can see it</span>
-      {%- for slug in x.examples -%}
-        {%- assign p = site.projects | where: "slug", slug | first -%}
-        {%- if p %}<a href="{{ p.url | relative_url }}">{{ p.title }}</a>{% unless forloop.last %} · {% endunless %}{% endif -%}
-      {%- endfor -%}
-    </p>
-    {%- endif %}
-
-    {%- if x.audience %}<p class="muted small xfor"><strong>Typically for:</strong> {{ x.audience }}</p>{% endif %}
+<section class="band">
+<div class="wrap">
+  <div class="xindex-strands">
+    {%- assign strands = "up,wide,deep" | split: "," -%}
+    {%- assign strand_names = "Scaling up,Scaling wide,Scaling deep" | split: "," -%}
+    {%- for s in strands -%}
+    {%- assign fields = site.data.expertise | where: "strand", s -%}
+    {%- if fields.size > 0 %}
+    <div class="xindex-strand">
+      <p class="xindex-head">{{ strand_names[forloop.index0] }}</p>
+      <p class="xindex">
+        {%- for x in fields -%}
+        <a href="#{{ x.title | slugify }}">{{ x.title }}</a>
+        {%- endfor -%}
+      </p>
+    </div>
+    {%- endif -%}
+    {%- endfor %}
   </div>
 </div>
+</section>
+
+{%- comment -%}
+  The three strand bands, alternating surface so each reads as its own
+  stretch of page (R2). The intro and the "More on this strand" target are
+  fixed per strand and live here rather than in the data file, because they
+  belong to the Approach page's wording, not to any field.
+{%- endcomment -%}
+{%- assign intros = site.data.expertise -%}
+{%- for s in strands %}
+{%- assign fields = site.data.expertise | where: "strand", s -%}
+{%- if fields.size > 0 -%}
+
+{%- case s -%}
+{%- when "up" -%}
+  {%- assign band_class = "band" -%}
+  {%- assign strand_h2 = "Scaling up: changing the rules" -%}
+  {%- assign strand_intro = "Evidence for the people writing the rules, and the methods that make it hold up." -%}
+  {%- assign strand_anchor = "/approach/#scaling-up" -%}
+{%- when "wide" -%}
+  {%- assign band_class = "band alt" -%}
+  {%- assign strand_h2 = "Scaling wide: reaching greater numbers" -%}
+  {%- assign strand_intro = "Shared infrastructure that lets many actors act at once." -%}
+  {%- assign strand_anchor = "/approach/#scaling-wide" -%}
+{%- when "deep" -%}
+  {%- assign band_class = "band" -%}
+  {%- assign strand_h2 = "Scaling deep: working with pioneers" -%}
+  {%- assign strand_intro = "Testing what is possible with the networks that build differently, and keeping carbon from crowding out everything else." -%}
+  {%- assign strand_anchor = "/approach/#scaling-deep" -%}
+{%- endcase %}
+
+<section class="{{ band_class }}">
+<div class="wrap">
+  <div class="xstrand-head">
+    <h2>{{ strand_h2 }}</h2>
+    <p class="xstrand-intro">{{ strand_intro }}</p>
+    <p class="more"><a href="{{ strand_anchor | relative_url }}">More on this strand →</a></p>
+  </div>
+
+  {%- for x in fields %}
+  <div class="xfield" id="{{ x.title | slugify }}">
+    {%- comment -%}
+      A field with no picture of its own falls through to the one R11
+      placeholder. One field is in that state on purpose: H28, no photograph
+      for bio-based materials that RISE has the right to publish yet.
+    {%- endcomment -%}
+    {%- assign xi = x.image -%}
+    {%- unless xi %}{% capture xi %}{% include stockimg.html key=x.title %}{% endcapture %}{% endunless -%}
+    <figure class="xfield-img{% if x.image_credit %} duotone{% endif %}">
+      <img src="{{ xi | strip | relative_url }}" alt="" loading="lazy">
+      {%- if x.image_credit %}<figcaption class="muted small">{{ x.image_credit }}</figcaption>{% endif %}
+    </figure>
+    <div class="xfield-body">
+      {%- comment -%}
+        The question is the heading and the field name sits under it. A reader
+        arrives with a question, not with the name of a method, and the name is
+        no use to them until they know it answers the thing they came for.
+
+        h3 here, not h2: the strand above is the h2, so the page outline runs
+        strand, then field, which is what the grouping means.
+      {%- endcomment -%}
+      <h3>{{ x.question | default: x.title }}</h3>
+      {%- if x.question %}<p class="xfield-name">{{ x.title }}</p>{% endif %}
+      <p class="xlede">{{ x.lede }}</p>
+
+      {%- if x.includes.size > 0 %}
+      <ul class="xlist">
+        {%- for i in x.includes %}<li>{{ i }}</li>{% endfor -%}
+      </ul>
+      {%- endif %}
+
+      {%- if x.note %}<p class="muted small">{{ x.note }}</p>{% endif %}
+
+      {% include evidence.html projects=x.examples publications=x.publications posts=x.posts %}
+
+      {%- if x.audience %}<p class="muted small xfor"><strong>Typically for:</strong> {{ x.audience }}</p>{% endif %}
+    </div>
+  </div>
+  {%- endfor %}
+</div>
+</section>
+{%- endif -%}
 {%- endfor %}
 
+{%- comment -%}
+  The Global South band sits after the three strands because it cuts across
+  all of them: it is not a fourth way of working but a growing share of where
+  the first three are applied.
+{%- endcomment -%}
+<section class="band alt">
+<div class="wrap">
+  <div class="xstrand-head">
+    <h2>Global South and emerging markets</h2>
+    <p class="xstrand-intro">Most of the floor area of the coming decades will
+    be built in the Global South. Across all three strands, a growing share of
+    our work is with partners in China, India, Chile and South Africa: shared
+    data, local capacity, and methods built with local teams rather than
+    imported.</p>
+  </div>
+  <div class="xfield-body xglobal-south">
+    {% include evidence.html projects=page.global_south.projects publications=page.global_south.publications posts=page.global_south.posts %}
+  </div>
 </div>
 </section>
 
-<section class="band">
-<div class="wrap narrow">
-  <p class="eyebrow">How we work with you</p>
-  {% include engagement.html style="list" %}
-</div>
-</section>
-
-<section class="band cta-band">
-  <div class="wrap narrow">
+{%- comment -%}
+  The same closing band as the home page, from the same data, so the four ways
+  in are worded identically in both places. No newsletter here: this page ends
+  on an enquiry, not on a subscription.
+{%- endcomment -%}
+<section class="band cta-band" id="work-with-us">
+  <div class="wrap">
     <h2>Work with us</h2>
-    <p>If your work touches any of the above, write to us. We would rather hear
-    the problem than the brief.</p>
-    <a class="cta" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <p class="band-lede">We would rather hear the problem than the brief.</p>
+    {% include engagement.html style="cards" %}
+    <p class="muted small">Or write to
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a> if none of those
+    quite fits.</p>
   </div>
 </section>
 

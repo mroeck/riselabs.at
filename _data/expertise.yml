@@ -1,6 +1,11 @@
 # ---------------------------------------------------------------------------
 # Our expertise. Each entry renders as one field on /expertise/.
 #
+# Revised 31 Oct 2026 for W2: grouped by the three strands of /approach/,
+# two fields added for the deep strand, every field cites publications.
+# The questions, ledes and bullet points of the six existing fields are the
+# positioning-led copy of 30 Oct (PR #38), unchanged.
+#
 # This replaced _data/services.yml. The framing changed from "what you can
 # buy" to "what we do", but nothing was thrown away: every `includes` line
 # below came from the services page, so the page is no thinner than it was,
@@ -17,6 +22,9 @@
 #   includes  the concrete pieces of work. Things, not adjectives.
 #   examples  slugs of projects in _projects/ that prove it. Titles and
 #             summaries are pulled in automatically - nothing to keep in sync.
+#   publications  slugs of entries in _publications/ (2-3), shown as a
+#                 second evidence line under the projects
+#   posts         optional slugs of news posts, without the date
 #   audience  who typically commissions it
 #   note      optional caveat, shown smaller
 #   image     a figure or photograph. Every field should have one.
@@ -24,7 +32,8 @@
 
 - title: "Whole life carbon assessment and benchmarking"
   question: "How much is too much?"
-  image: /assets/img/stock/concrete-blue-grey.jpg
+  image: /assets/img/photos/expertise-wlc-assessment.jpg
+  image_credit: "Photo: Troy Mortier / Unsplash"
   strand: up
   # image: /assets/img/expertise/whole-life-carbon.jpg
   lede: >-
@@ -39,11 +48,17 @@
   examples:
     - collaborative-carbon
     - towards-embodied-carbon-benchmarks-for
+    - pef4buildings
+  publications:
+    - roeck-2023-embodied-carbon-emissions
+    - habert-2020-carbon-budgets-buildings
+    - roeck-2022-embodied-carbon-european
   audience: "Public authorities, portfolio holders, industry bodies, funders"
 
 - title: "Building stock modelling and scenarios"
   question: "Where is the stock heading, and what changes that?"
-  image: /assets/img/stock/glass-facade-sky.jpg
+  image: /assets/img/photos/expertise-stock-modelling.jpg
+  image_credit: "Photo: Peter Nguyen / Unsplash"
   strand: up
   # image: /assets/img/expertise/building-stock.jpg
   lede: >-
@@ -58,6 +73,11 @@
   examples:
     - analysis-of-life-cycle-greenhouse
     - global-whole-life-carbon-tracker
+    - supporting-the-development-of-a
+  publications:
+    - alaux-2026-context-specific-life
+    - roeck-2021-environmental-modelling-building
+    - roeck-2025-wlc-scenario-explorer
   note: >-
     The models are built to be repeated by national teams rather than bought
     from us. The EU27 baseline behind the revised EPBD came out of this work.
@@ -65,7 +85,8 @@
 
 - title: "Policy evidence and advisory"
   question: "What should the rule say?"
-  image: /assets/img/stock/concrete-forms-sky.jpg
+  image: /assets/img/photos/expertise-policy-evidence.jpg
+  image_credit: "Photo: Christian Lue / Unsplash"
   strand: up
   # image: /assets/img/expertise/policy-evidence.jpg
   lede: >-
@@ -82,11 +103,17 @@
   examples:
     - supporting-the-development-of-a
     - agora-leitmaerkte-embodied-carbon
+    - global-status-report-for-buildings
+  publications:
+    - shaw-2026-information-landscape-fit
+    - stocker-2025-analysis-life-cycle
+    - frischknecht-2019-environmental-benchmarks-buildings
   audience: "Public authorities and large public portfolio holders, cities and regions, industry associations"
 
 - title: "Open data infrastructure"
   question: "What data does a country need to govern this?"
-  image: /assets/img/stock/ceiling-terracotta-lines.jpg
+  image: /assets/img/photos/expertise-open-data.jpg
+  image_credit: "Photo: Pawel Nolbert / Unsplash"
   strand: wide
   # image: /assets/img/expertise/open-data.jpg
   lede: >-
@@ -100,33 +127,44 @@
   examples:
     - global-building-data-initiative
     - indicate-life
+    - chile-wlc-data-harmonisation
+  publications:
+    - roeck-2025-global-buildings-database
+    - roeck-2024-slice-open-building
+    - soustverdaguer-2025-data-infrastructure-whole
   audience: "Governments setting benchmarks, data initiatives, funders and philanthropies"
 
 - title: "Methods, standards and harmonisation"
   question: "Can these numbers be compared?"
-  image: /assets/img/stock/white-stair-soffit.jpg
-  strand: up
+  image: /assets/img/photos/expertise-methods-standards.jpg
+  image_credit: "Photo: Patrick Robert Doyle / Unsplash"
+  strand: wide   # moved from up for W2: harmonised methods let many teams act at once
   # image: /assets/img/expertise/methods-standards.jpg
+  # Review work dropped 31 Oct 2026 (Martin, H27): not an offer RISE sells.
   lede: >-
-    Method development, tool and study reviews, and data-quality
-    appraisal. We take review work only where we have no stake in the
-    outcome.
+    We make numbers comparable across tools, standards and countries:
+    methods where none exist yet, and alignment where several compete.
   includes:
     - "Method development where no accepted method yet exists"
-    - "Review of assessment methods, tools and benchmark proposals"
-    - "Critical review of life cycle assessment studies"
+    - "Harmonised LCA methods and workflows across countries"
+    - "Alignment of data formats and reporting, such as OpenBDF"
     - "Data quality and reproducibility appraisal"
-    - "Expert statements and technical opinions"
   examples:
     - iea-ebc-annex-72
-  note: >-
-    We take review work only where we have no stake in the outcome, and we say
-    so in writing when we do.
-  audience: "Public authorities, standardisation and industry bodies, investors"
+    - pef4buildings
+    - chile-wlc-data-harmonisation
+  publications:
+    - frischknecht-2023-iea-ebc-annex
+    - soustverdaguer-2023-using-systematic-building
+    - disanto-2026-global-building-data
+  posts:
+    - clear-coalition-launch
+  audience: "Public authorities, standardisation and industry bodies, data initiatives"
 
 - title: "Teaching and capacity building"
   question: "Who will do this after we leave?"
-  image: /assets/img/stock/facade-terracotta-curves.jpg
+  image: /assets/img/photos/expertise-teaching.jpg
+  image_credit: "Photo: Jo Szczepanska / Unsplash"
   strand: wide
   # image: /assets/img/expertise/teaching.jpg
   lede: >-
@@ -141,4 +179,55 @@
   examples:
     - gbdi-china-and-india-cooperation
     - indicate
+    - indicate-life
+  publications:
+    - toth-2024-establish-whole-life
+  posts:
+    - cop31-whole-life-carbon-session
+    - gbdi-india-webinar
   audience: "National consortia, professional bodies, universities, conference organisers"
+
+- title: "Bio-based and regenerative materials"
+  question: "Can the building itself store carbon?"
+  # image: none fitting on the site yet (H28). The stock fallback, later the
+  # R11 placeholder, shows until one is supplied.
+  strand: deep
+  lede: >-
+    We assess building with bio-based, earth-based and low-carbon materials
+    over the whole life cycle, including how much carbon a building stock can
+    store, and what that asks of forests and supply chains.
+  includes:
+    - "Life cycle assessment of bio-based, earth-based and low-tech construction"
+    - "Biogenic carbon accounting and storage potential, from building to global stock"
+    - "Carbon uptake in buildings through mineral carbonation"
+    - "Lead markets for low-carbon steel and cement"
+  examples:
+    - agora-leitmaerkte-embodied-carbon
+    - collaborative-carbon
+  publications:
+    - mastrucci-2026-carbon-storage-mitigation
+    - steinbergermaierhofer-2026-biogenic-carbon-dioxide
+    - mouton-2022-environmental-potentials-bio
+  audience: "Material producers and industry, funders, public authorities"
+
+- title: "Sufficiency, renovation and housing"
+  question: "Do we need to build this at all?"
+  image: /assets/img/projects/towards-reliving.webp
+  strand: deep
+  lede: >-
+    Using what exists before building new: renovating, extending and sharing
+    space, and housing designed with the people who live in it. We quantify
+    what that saves, from one home to Europe's building stock.
+  includes:
+    - "Impact hierarchies and savings potential for renovation and extension"
+    - "Whole life carbon of collaborative and community-led housing"
+    - "Sufficiency as a measurable strategy"
+    - "Low-tech passive design"
+  examples:
+    - reliving-scaling-renovation
+    - collaborative-carbon
+  publications:
+    - toth-2026-housing-we-need
+    - mouton-2022-low-tech-passive
+    - wohnlabor-2019-wohnlabor-gemeinsam-wohnen
+  audience: "Housing providers and cooperatives, cities, industry partners, foundations"

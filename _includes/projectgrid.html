@@ -14,7 +14,7 @@
     <a href="{{ p.url | relative_url }}">
       {%- comment -%}
         A project with no picture of its own falls back to stock imagery
-        rather than an empty box. See _data/stock.yml.
+        rather than an empty box. See _includes/stockimg.html.
       {%- endcomment -%}
       {%- if p.hero -%}
       <span class="pcard-img"><img src="{{ p.hero | relative_url }}" alt="" loading="lazy"></span>
