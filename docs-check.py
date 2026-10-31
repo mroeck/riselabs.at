@@ -169,6 +169,31 @@ for e in eng:
           "name two projects that started this way; if there are not two, the "
           "card may be describing something RISE does not actually do.")
 
+# The six homepage facts (F1). Each figure on that band is a claim about the
+# world with a paper behind it, and the whole point of the band is that a
+# visitor can follow any number to the work it came from. A `publication` slug
+# with no file behind it would render as a dead link under a headline figure,
+# which is worse than no figure at all - so it fails rather than warns.
+facts = yaml.safe_load((SITE / "_data/facts.yml").read_text()) or []
+_f_seen = set()
+for f in facts:
+    where = f"fact '{f.get('perspective', '?')}'"
+    for key in ("perspective", "value", "say", "sources"):
+        if not f.get(key):
+            P("data", "_data/facts.yml", f"{where} has no `{key}`")
+    if f.get("perspective") in _f_seen:
+        P("data", "_data/facts.yml", f"duplicate perspective '{f['perspective']}'")
+    _f_seen.add(f.get("perspective"))
+    for s in f.get("sources") or []:
+        if not s.get("label"):
+            P("data", "_data/facts.yml", f"{where} has a source with no `label`")
+        slug = s.get("publication")
+        if not slug:
+            P("data", "_data/facts.yml", f"{where} has a source with no `publication`")
+        elif slug not in coll["publications"]:
+            P("xref", "_data/facts.yml",
+              f"{where} cites '{slug}', which has no file in _publications/")
+
 tst = yaml.safe_load((SITE / "_data/testimonials.yml").read_text()) or []
 seen_ids = set()
 for t in tst:
@@ -606,18 +631,31 @@ if not _social:
 elif not (SITE / _social.lstrip("/")).exists():
     P("config", "_config.yml", f"`image` points at {_social}, which does not exist")
 
-# ---------------------------------------------------------------- stock images
-stock = (yaml.safe_load((SITE / "_data/stock.yml").read_text()) or [])
-if not stock:
-    P("stock", "_data/stock.yml", "no stock images listed; the fallback has nothing to pick")
-for i, s in enumerate(stock):
-    if not s.get("file"):
-        P("stock", "_data/stock.yml", f"entry {i} has no `file`")
-        continue
-    if not (SITE / s["file"].lstrip("/")).exists():
-        P("stock", "_data/stock.yml", f"missing file {s['file']}")
-    if not s.get("alt"):
-        N("_data/stock.yml", f"{s['file']} has no `alt`")
+# ----------------------------------------------------------------- placeholder
+# R11: one placeholder for anything without a picture of its own, resolved by
+# _includes/stockimg.html. It is one file, so this is one check - but a hard
+# one, because every project card, project page and expertise field without an
+# image falls through to it, and a missing file would break all of them at
+# once rather than one page quietly.
+_ph = "assets/img/placeholders/placeholder-project.webp"
+if not (SITE / _ph).exists():
+    P("placeholder", _ph,
+      "missing. Every project, post or event without a `hero` falls back to "
+      "this one file, so it cannot be absent.")
+
+# _data/stock.yml held the eight texture photographs the fallback used to pick
+# from by slug length. Nothing reads it since R11. The file is left in place in
+# case the textures are wanted elsewhere, and said so here rather than being
+# deleted quietly.
+_stock_file = SITE / "_data/stock.yml"
+if _stock_file.exists():
+    _used = any("data.stock" in p.read_text()
+                for p in SITE.glob("_includes/*.html"))
+    if not _used:
+        N("_data/stock.yml",
+          "nothing reads this any more: the picture fallback is one "
+          f"placeholder ({_ph}) since R11. Keep it only if the textures are "
+          "wanted somewhere else.")
 
 # ------------------------------------------------------------ related projects
 # `related` names other projects by slug. A typo would simply render nothing,

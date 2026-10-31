@@ -61,13 +61,15 @@
   {%- feed_meta -%}
 </head>
 {%- comment -%}
-  Two switches from _config.yml ride on <body>: `portraits` and `surfaces`.
-  Both exist so a look can be turned on, viewed on the real site, and turned
-  back off by changing one word, rather than by editing a stylesheet.
+  Three switches from _config.yml ride on <body>: `portraits`, `surfaces` and
+  `photo_treatment`. All three exist so a look can be turned on, viewed on the
+  real site, and turned back off by changing one word, rather than by editing
+  a stylesheet.
 {%- endcomment -%}
 {%- capture body_class -%}
   {% if site.portraits == "bw" %}portraits-bw {% endif %}
-  {%- if site.surfaces == "gradient" %}surfaces-gradient{% endif %}
+  {%- if site.surfaces == "gradient" %}surfaces-gradient {% endif %}
+  {%- if site.photo_treatment != "plain" %}photo-mono{% endif %}
 {%- endcapture -%}
 {%- assign body_class = body_class | strip -%}
 <body{% if body_class != "" %} class="{{ body_class }}"{% endif %}>

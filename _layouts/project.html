@@ -6,7 +6,7 @@ layout: default
   in .hero-full::after is what keeps the text legible over any frame, so the
   picture can be a photograph or a chart without the heading becoming hard to
   read. A project with no image of its own gets stock imagery rather
-  than a bare heading; see _data/stock.yml.
+  than a bare heading; see _includes/stockimg.html.
 {%- endcomment -%}
 {%- assign head_img = page.hero -%}
 {%- unless head_img %}{% capture head_img %}{% include stockimg.html key=page.slug %}{% endcapture %}{% endunless -%}

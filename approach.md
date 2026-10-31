@@ -67,59 +67,107 @@ bring them all forward at once.</p>
 </div>
 </section>
 
+{%- comment -%}
+  R7. The three strands as image-and-text bands, image and text swapping sides
+  so the page reads as a sequence rather than a list, on alternating surfaces
+  (R2). The headings keep their ids: /expertise/ links back to each one, and so
+  do the strand bands there.
+
+  Scaling deep uses the photograph already on the CollaborativeCarbon project
+  rather than a stock one, because it is a picture of the work itself.
+{%- endcomment -%}
 <section class="band">
-<div class="wrap narrow">
+<div class="wrap">
 
-<h2 id="scaling-up">Scaling up: changing the rules</h2>
+<div class="strand">
+  <figure class="strand-img">
+    <span class="tone"><img src="{{ '/assets/img/photos/approach-scaling-up.jpg' | relative_url }}" alt="" loading="lazy"></span>
+    <figcaption class="muted small">Photo: paws and prints (Unsplash user) / Unsplash</figcaption>
+  </figure>
+  <div class="strand-body">
+    <h2 id="scaling-up">Scaling up: changing the rules</h2>
 
-<p>The science-to-policy interface: establishing the life cycle perspective in
-law and making it operational.</p>
+    <p>The science-to-policy interface: establishing the life cycle perspective
+    in law and making it operational.</p>
 
-<p>Our work here has moved from single-building assessment to transnational
-building stock modelling. We led the analysis behind the European Commission's
-roadmap for reducing whole life carbon of buildings, and quantified the
-baseline and future scenarios for emissions and removals across the EU building
-stock to 2050. That evidence feeds instruments with teeth - the revised EPBD,
-which will require whole life carbon disclosure for all new buildings by 2030,
-and the EU Taxonomy, which steers where capital goes.</p>
+    <p>Our work here has moved from single-building assessment to transnational
+    building stock modelling. We led the analysis behind the European
+    Commission's roadmap for reducing whole life carbon of buildings, and
+    quantified the baseline and future scenarios for emissions and removals
+    across the EU building stock to 2050. That evidence feeds instruments with
+    teeth - the revised EPBD, which will require whole life carbon disclosure
+    for all new buildings by 2030, and the EU Taxonomy, which steers where
+    capital goes.</p>
 
-<p>The next step is widening the lens beyond greenhouse gases: a full
-environmental footprint, and the social and economic dimensions of a transition
-that has to be just as well as fast.</p>
+    <p>The next step is widening the lens beyond greenhouse gases: a full
+    environmental footprint, and the social and economic dimensions of a
+    transition that has to be just as well as fast.</p>
+  </div>
+</div>
 
-<h2 id="scaling-wide">Scaling wide: reaching greater numbers</h2>
+</div>
+</section>
 
-<p>Methods only matter at the scale they are used. Much of our work is
-therefore building the shared infrastructure that lets many actors act at
-once.</p>
+<section class="band alt">
+<div class="wrap">
 
-<p><a href="https://www.indicatedata.com/">INDICATE</a> is a funding and
-support framework helping national consortia generate the building LCA data
-their governments need to set benchmarks - piloted in Ireland, Spain and
-Czechia, now running in Austria, Croatia, Hungary, Italy and Luxembourg under the EU
-LIFE programme. <a href="https://www.gbdi.io">GBDI</a>, developed with EPFL
-under the GLOBE consensus, is building an open global data commons on resource
-use and embodied carbon, with particular attention to the Global South, where
-most of the floor area of the coming decades will be built.</p>
+<div class="strand flip">
+  <figure class="strand-img">
+    <span class="tone"><img src="{{ '/assets/img/photos/approach-scaling-wide.jpg' | relative_url }}" alt="" loading="lazy"></span>
+    <figcaption class="muted small">Photo: Zoshua Colah / Unsplash</figcaption>
+  </figure>
+  <div class="strand-body">
+    <h2 id="scaling-wide">Scaling wide: reaching greater numbers</h2>
 
-<p>Both began as pilots and both outgrew them. Both now have lives of their
-own, which is the point.</p>
+    <p>Methods only matter at the scale they are used. Much of our work is
+    therefore building the shared infrastructure that lets many actors act at
+    once.</p>
 
-<h2 id="scaling-deep">Scaling deep: working with pioneers</h2>
+    <p><a href="https://www.indicatedata.com/">INDICATE</a> is a funding and
+    support framework helping national consortia generate the building LCA data
+    their governments need to set benchmarks - piloted in Ireland, Spain and
+    Czechia, now running in Austria, Croatia, Hungary, Italy and Luxembourg
+    under the EU LIFE programme. <a href="https://www.gbdi.io">GBDI</a>,
+    developed with EPFL under the GLOBE consensus, is building an open global
+    data commons on resource use and embodied carbon, with particular attention
+    to the Global South, where most of the floor area of the coming decades
+    will be built.</p>
 
-<p>The third strand is the smallest in budget and the least comfortable in a
-policy meeting, and we think it is where the interesting questions live.</p>
+    <p>Both began as pilots and both outgrew them. Both now have lives of their
+    own, which is the point.</p>
+  </div>
+</div>
 
-<p>Here we work with the networks pioneering radical alternatives: bio-based
-and earth-based construction, low-tech passive design, community-led and
-collaborative housing, reuse of existing structures, and sufficiency strategies
-that reduce how much needs to be built in the first place. These rarely scale by
-replication. They matter because they test what is possible, and because they
-shift what the mainstream considers normal.</p>
+</div>
+</section>
 
-<p>This is also where we guard against carbon tunnel vision. An intervention
-that cuts emissions while worsening affordability, biodiversity or material
-justice is not a success, it is a transfer.</p>
+<section class="band">
+<div class="wrap">
+
+<div class="strand">
+  <figure class="strand-img">
+    <span class="tone"><img src="{{ '/assets/img/projects/collaborative-housing.jpg' | relative_url }}" alt="" loading="lazy"></span>
+  </figure>
+  <div class="strand-body">
+    <h2 id="scaling-deep">Scaling deep: working with pioneers</h2>
+
+    <p>The third strand is the smallest in budget and the least comfortable in
+    a policy meeting, and we think it is where the interesting questions
+    live.</p>
+
+    <p>Here we work with the networks pioneering radical alternatives:
+    bio-based and earth-based construction, low-tech passive design,
+    community-led and collaborative housing, reuse of existing structures, and
+    sufficiency strategies that reduce how much needs to be built in the first
+    place. These rarely scale by replication. They matter because they test
+    what is possible, and because they shift what the mainstream considers
+    normal.</p>
+
+    <p>This is also where we guard against carbon tunnel vision. An
+    intervention that cuts emissions while worsening affordability,
+    biodiversity or material justice is not a success, it is a transfer.</p>
+  </div>
+</div>
 
 </div>
 </section>
@@ -176,8 +224,6 @@ position.</p>
   allow.</li>
   <li><strong>We state our assumptions.</strong> Allocation rules, system
   boundaries and uncertainty ranges come with every result.</li>
-  <li><strong>We review only where we have no stake</strong> in the outcome,
-  and say so in writing.</li>
   <li><strong>We build models to be repeated</strong> by national teams, not
   bought from us.</li>
 </ul>

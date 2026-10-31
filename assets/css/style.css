@@ -53,7 +53,6 @@
    @fontsource/figtree package and a block here, or it will fall back to the
    system sans-serif. */
 
-
 @font-face {
   font-family: "Figtree";
   font-style: normal;
@@ -147,13 +146,11 @@
 /* The hidden attribute is only `display: none` in the browser's own
    stylesheet, so any author rule that sets `display` beats it. Several lists
    here set `display: flex` or `grid` on their items, and the scripts hide
-   items with `el.hidden = true` - the people carousel and the "show all"
+   items with `el.hidden = true` - the text filters and the "show all"
    collapse both do. Without this they stay on screen while believing
    themselves hidden. `!important` because the whole point is to outrank
    whatever a component set. */
 [hidden] { display: none !important; }
-
-
 
 /* ---------- colour tokens ----------
 
@@ -297,7 +294,6 @@
 
 /* The toggle only ever sets data-theme explicitly, so there is no stored
    preference to apply before first paint and no flash of the wrong theme. */
-
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -1231,8 +1227,6 @@ body.portraits-bw .person-head .portrait {
 
 /* Bold, not semibold: the author list is whole again and runs to 32 names on
    some entries, so the title has to be the thing the eye lands on. */
-.pub-title { font-weight: 700; color: var(--ink); text-decoration: none; }
-.pub-title:hover { color: var(--accent); text-decoration: underline; }
 
 .projects.compact li { padding: .8rem 0; }
 
@@ -1301,7 +1295,6 @@ body.portraits-bw .person-head .portrait {
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
-
 
 /* ---------- tabs ---------- */
 
@@ -1447,7 +1440,6 @@ table.listing tr:hover td { background: var(--surface-2); }
   table.listing th:nth-child(2), table.listing td:nth-child(2) { display: none; }
 }
 
-
 /* ---------- key findings on a project page ---------- */
 
 /* authored as a markdown list inside <div class="findings" markdown="1"> */
@@ -1480,7 +1472,6 @@ table.listing tr:hover td { background: var(--surface-2); }
 
 .findings li p { margin: 0; }
 .findings li p + p { margin-top: .5rem; }
-
 
 /* ---------- home sections ---------- */
 
@@ -2183,6 +2174,116 @@ table.listing td.t-partner .t-logo,
 
 /* ---------- expertise ---------- */
 
+/* ---------- approach: the three strands ----------
+
+   Image and text side by side, swapping sides down the page so the three read
+   as a sequence. The text keeps `--measure` so the line length does not grow
+   with the column; the picture takes the rest. */
+.strand {
+  display: grid; grid-template-columns: 1fr 1.25fr; gap: 2.6rem;
+  align-items: start;
+}
+@media (max-width: 52rem) { .strand { grid-template-columns: 1fr; gap: 1.2rem; } }
+/* Each band holds exactly one .strand, so nothing here can alternate them by
+   position: an :nth-of-type rule would count bands, and silently pick the
+   wrong ones the day a band is added above. The side is marked in the page
+   instead, on the one strand that is flipped. */
+.strand.flip .strand-img { order: 2; }
+@media (max-width: 52rem) { .strand.flip .strand-img { order: 0; } }
+
+.strand-img { margin: 0; position: sticky; top: 1.5rem; }
+@media (max-width: 52rem) { .strand-img { position: static; } }
+.strand-img img {
+  display: block; width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--rule); background: var(--surface);
+  border-radius: var(--radius-img);
+}
+.strand-img figcaption { margin-top: .4rem; line-height: 1.4; }
+.strand-body { min-width: 0; max-width: var(--measure); }
+.strand-body h2 { margin-top: 0; }
+
+/* ---------- the picture treatment (R7) ----------
+
+   Black and white with the navy lifted into the shadows, so photographs from
+   half a dozen sources read as one set. Chosen from a sheet of four
+   treatments rendered on five real photographs; this is B.
+
+   `lighten` means no pixel ends up darker than the tint: the blacks become
+   navy and everything above them is left alone. That is why the tint is
+   #16325a and not the CI's own #001730 - at #001730 almost nothing moved,
+   because the CI navy is darker than the shadows in most of these pictures.
+   A single layer, so the highlights stay neutral; a second `multiply` layer
+   would tint those too and make it a duotone rather than a tone.
+
+   Two values to turn, and only these two:
+     --photo-tint           the navy lifted into the shadows
+     --photo-tint-strength  how far. 1 is the full lift; lower leaves the
+                            shadows nearer black.
+
+   On by default (`photo_treatment: mono` in _config.yml); `plain` turns it
+   off and every picture renders as shot.
+
+   Portraits are not in here. They have their own switch (`portraits: bw`),
+   because a row of faces and a row of buildings do not want the same
+   treatment and should not be tied to one word. */
+:root {
+  --photo-tint: #16325a;
+  --photo-tint-strength: 1;
+}
+/* The same tint in both themes: one treatment, not two. A lighter navy was
+   tried for dark, to stop a photograph dissolving into a page that is already
+   navy, and it read as blue rather than as black and white. The picture's own
+   border is what separates it from the surface instead. */
+
+/* `.tone` wraps the image and nothing else. It sat on the <figure> at first,
+   which also holds the photographer's credit, and the overlay covered the
+   credit line. */
+.tone { display: block; position: relative; isolation: isolate;
+        border-radius: var(--radius-img); overflow: hidden; }
+body.photo-mono .tone img { filter: grayscale(1) contrast(1.05); }
+body.photo-mono .tone::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--photo-tint);
+  opacity: var(--photo-tint-strength);
+  mix-blend-mode: lighten;
+}
+
+/* ---------- expertise: the strand index ----------
+
+   Three groups, one per strand, instead of eight links in a row. A flat list
+   said nothing about how the fields relate; this shows the shape of the page
+   before the reader scrolls into it. Three columns on a laptop, one on a
+   phone, where three narrow columns would break every field name in half. */
+.xindex-strands {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem 2.4rem;
+  margin: 0 0 1rem;
+}
+@media (max-width: 52rem) { .xindex-strands { grid-template-columns: 1fr; gap: 1.2rem; } }
+.xindex-strand { min-width: 0; }
+.xindex-head {
+  margin: 0 0 .4rem;
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent);
+}
+.xindex-strand .xindex { margin: 0; gap: .35rem .9rem; }
+
+/* The heading of each strand band. `--measure` keeps the intro to a readable
+   line length while the fields below it use the full width. */
+.xstrand-head { margin: 0 0 2.4rem; }
+.xstrand-head h2 { margin: 0 0 .4rem; }
+.xstrand-intro { max-width: var(--measure); margin: 0 0 .6rem; color: var(--ink-soft); }
+.xstrand-head .more { margin: 0; }
+
+/* The Global South band carries the two evidence lines but no field, so its
+   body needs the width the fields' text column normally gives it. */
+.xglobal-south { max-width: var(--measure); }
+
+/* The photograph credit, under the picture. Small and quiet: it is a
+   requirement of using the image, not something to read. */
+.xfield-img figcaption { margin-top: .4rem; line-height: 1.4; }
+
 .xindex {
   display: flex; flex-wrap: wrap; gap: .5rem 1.1rem;
   margin: 0 0 1rem; font-size: .9rem;
@@ -2199,19 +2300,25 @@ table.listing td.t-partner .t-logo,
   .xfield:nth-child(odd) .xfield-img { order: 0; }
 }
 
+/* A <figure> since R7: the photograph and its credit. The frame moved from
+   the figure to the image, because the figure now also holds the caption and
+   `overflow: hidden` on an aspect-ratio box would have clipped it. */
 .xfield-img {
-  aspect-ratio: 3 / 2; border-radius: var(--radius-ui); overflow: hidden;
-  border: 1px solid var(--rule); background: var(--surface);
+  margin: 0;
   position: sticky; top: 1.5rem;
+}
+@media (max-width: 46rem) { .xfield-img { position: static; } }
+.xfield-img img {
+  display: block; width: 100%; aspect-ratio: 3 / 2;
+  object-fit: cover; object-position: top left;
+  border: 1px solid var(--rule); background: var(--surface);
   /* --surface, not #fff: a photograph covers this frame completely once
      loaded, so the colour is only ever seen while the image is still
      arriving, and white flashed against the dark theme. */
 }
-@media (max-width: 46rem) { .xfield-img { position: static; } }
-.xfield-img img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 .xfield-img-empty { background: var(--surface); }
 
-.xfield h2 { margin: 0 0 .55rem; font-size: 1.3rem; }
+.xfield h3 { margin: 0 0 .55rem; font-size: 1.3rem; }
 .xlede { margin: 0 0 1rem; font-size: 1.02rem; line-height: 1.55; }
 .xlist { margin: 0 0 1rem; padding-left: 1.1rem; }
 .xlist li { margin: .25rem 0; font-size: .92rem; line-height: 1.5; color: var(--ink-soft); }
@@ -2239,54 +2346,242 @@ table.listing td.t-partner .t-logo,
 }
 .banner a { font-weight: 500; }
 
-/* ---------- people carousel (home page team band) ----------
+/* ---------- the team row (M2) ----------
 
-   `carousel-on` is added by the script, so every rule that assumes the
-   carousel is running hangs off it: without JavaScript the list is just the
-   people grid, untouched, with everyone in it. */
-.carousel-on .people {
-  /* exactly as many columns as the carousel shows at once, so a pair fills
-     the row instead of sitting in the left two thirds of a three-up grid */
-  grid-template-columns: repeat(var(--carousel-per, 2), 1fr);
+   One row that scrolls sideways and snaps card by card. The browser does the
+   scrolling; the only script is the two arrows, and only where there is a
+   mouse. What this replaced was pages of two with dots, a counter, a play
+   button and autoplay, and a band that changed height when the last page
+   held one person.
+
+   The card widths are the point: 78% on a phone shows one card and a slice
+   of the next, which is what tells a reader the row moves. 42% and 29% do
+   the same at the two wider sizes.
+
+   On a phone the row bleeds to the screen edge - negative margin out to the
+   gutter, the same padding back in, and `scroll-padding-inline` so a snapped
+   card lands at the gutter and not against the glass. From 64rem the row
+   fits inside the column and the bleed is removed. */
+.reel { position: relative; }
+
+.reel .people {
+  --card: 78%;
+  --reel-gut: max(16px, env(safe-area-inset-left, 0px));
+  display: flex; gap: 1rem;
+  grid-template-columns: none;     /* .people is a grid elsewhere */
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--reel-gut);
+  margin: 0 calc(-1 * var(--reel-gut));
+  padding: 0 var(--reel-gut) .25rem;
+  scrollbar-width: none;           /* the cards themselves show it scrolls */
+  list-style: none;
 }
-@media (max-width: 40rem) {
-  .carousel-on .people { grid-template-columns: 1fr; }
+.reel .people::-webkit-scrollbar { display: none; }
+@media (min-width: 40rem) { .reel .people { --card: 42%; } }
+@media (min-width: 64rem) {
+  .reel .people {
+    --card: 29%;
+    margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0;
+  }
+}
+.reel .people > li {
+  flex: 0 0 var(--card);
+  scroll-snap-align: start;
+  min-width: 0;
+  /* the grid rules elsewhere give these a row height; in the row they size
+     themselves, and every card is the same height because the flex line is */
+  height: auto;
+}
+@media (prefers-reduced-motion: reduce) { .reel .people { scroll-behavior: auto; } }
+
+/* The card in the row is the same card, stood up: the portrait fills the
+   width as a 1:1 crop and the text sits under it, as in the prototype. In
+   the grid on /team/ the portrait is a thumbnail beside the text, which is
+   right for a dense list and wrong for a row where each card is most of the
+   screen. Same markup, same classes, different shape. */
+.reel .people > li {
+  background: none; border: 0; border-radius: 0; padding: 0;
+}
+.reel .people > li:hover { border-color: transparent; }
+.reel .people a {
+  display: block;
+  padding: 0; gap: 0;
+  background: none; border: 0; border-radius: 0;
+}
+.reel .people .pc-face {
+  width: 100%; height: auto; aspect-ratio: 1 / 1;
+  border-radius: var(--radius-img);
+}
+.reel .people .pc-initials { display: grid; place-items: center; font-size: 2rem; }
+.reel .people .person-txt { display: block; margin-top: .7rem; }
+.reel .people .who { font-weight: 700; line-height: 1.25; }
+.reel .people .what { margin-top: .2rem; }
+.reel .people .where { margin-top: .35rem; }
+/* The contact row belongs on a card you are reading, not on one you are
+   swiping past; the whole card is already a link to the person's page. */
+.reel .people .pc-links { display: none; }
+
+/* Arrows, added by the script and only under a fine pointer, so a phone
+   never carries a control it cannot use. Centred on the portraits rather
+   than on the whole card, so they do not drift down as a name wraps. */
+.reel-arrow {
+  display: grid; place-items: center;
+  position: absolute; top: calc(var(--face-h, 0px) / 2);
+  transform: translateY(-50%);
+  width: 2.6rem; height: 2.6rem; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--bg); color: var(--ink);
+  cursor: pointer; opacity: .85; transition: opacity .2s;
+  z-index: 2;
+}
+.reel-arrow:hover { opacity: 1; border-color: var(--ink-soft); }
+.reel-arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.reel-arrow[disabled] { opacity: 0; pointer-events: none; }
+.reel-prev { left: -1.3rem; }
+.reel-next { right: -1.3rem; }
+
+/* ---------- the picture treatment (R7) ----------
+
+   Black and white with the navy lifted into the shadows, so photographs from
+   half a dozen sources read as one set. Chosen from a sheet of four
+   treatments rendered on five real photographs; this is B.
+
+   `lighten` means no pixel ends up darker than the tint: the blacks become
+   navy and everything above them is left alone. That is why the tint is
+   #16325a and not the CI's own #001730 - at #001730 almost nothing moved,
+   because the CI navy is darker than the shadows in most of these pictures.
+   A single layer, so the highlights stay neutral; a second `multiply` layer
+   would tint those too and make it a duotone rather than a tone.
+
+   Two values to turn, and only these two:
+     --photo-tint           the navy lifted into the shadows
+     --photo-tint-strength  how far. 1 is the full lift; lower leaves the
+                            shadows nearer black.
+
+   On by default (`photo_treatment: mono` in _config.yml); `plain` turns it
+   off and every picture renders as shot.
+
+   Portraits are not in here. They have their own switch (`portraits: bw`),
+   because a row of faces and a row of buildings do not want the same
+   treatment and should not be tied to one word. */
+:root {
+  --photo-tint: #16325a;
+  --photo-tint-strength: 1;
+}
+/* The same tint in both themes: one treatment, not two. A lighter navy was
+   tried for dark, to stop a photograph dissolving into a page that is already
+   navy, and it read as blue rather than as black and white. The picture's own
+   border is what separates it from the surface instead. */
+
+/* `.tone` wraps the image and nothing else. It sat on the <figure> at first,
+   which also holds the photographer's credit, and the overlay covered the
+   credit line. */
+.tone { display: block; position: relative; isolation: isolate;
+        border-radius: var(--radius-img); overflow: hidden; }
+body.photo-mono .tone img { filter: grayscale(1) contrast(1.05); }
+body.photo-mono .tone::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: var(--photo-tint);
+  opacity: var(--photo-tint-strength);
+  mix-blend-mode: lighten;
 }
 
-.carousel-bar {
-  display: flex; align-items: center; gap: .5rem;
-  margin-top: 1rem;
+/* ---------- expertise: the strand index ----------
+
+   Three groups, one per strand, instead of eight links in a row. A flat list
+   said nothing about how the fields relate; this shows the shape of the page
+   before the reader scrolls into it. Three columns on a laptop, one on a
+   phone, where three narrow columns would break every field name in half. */
+.xindex-strands {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem 2.4rem;
+  margin: 0 0 1rem;
 }
-.carousel-arrow, .carousel-play {
-  font: inherit; font-size: .85rem; line-height: 1;
-  padding: .4rem .6rem;
-  background: none; color: var(--ink-soft);
-  border: 1px solid var(--rule); border-radius: var(--radius-ui);
-  cursor: pointer;
+@media (max-width: 52rem) { .xindex-strands { grid-template-columns: 1fr; gap: 1.2rem; } }
+.xindex-strand { min-width: 0; }
+.xindex-head {
+  margin: 0 0 .4rem;
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent);
 }
-.carousel-play { margin-left: auto; }
-.carousel-arrow:hover, .carousel-play:hover,
-.carousel-arrow:focus-visible, .carousel-play:focus-visible {
-  color: var(--ink); border-color: var(--ink-soft);
+.xindex-strand .xindex { margin: 0; gap: .35rem .9rem; }
+
+/* The heading of each strand band. `--measure` keeps the intro to a readable
+   line length while the fields below it use the full width. */
+.xstrand-head { margin: 0 0 2.4rem; }
+.xstrand-head h2 { margin: 0 0 .4rem; }
+.xstrand-intro { max-width: var(--measure); margin: 0 0 .6rem; color: var(--ink-soft); }
+.xstrand-head .more { margin: 0; }
+
+/* The Global South band carries the two evidence lines but no field, so its
+   body needs the width the fields' text column normally gives it. */
+.xglobal-south { max-width: var(--measure); }
+
+/* The photograph credit, under the picture. Small and quiet: it is a
+   requirement of using the image, not something to read. */
+.xfield-img figcaption { margin-top: .4rem; line-height: 1.4; }
+
+.xindex {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.1rem;
+  margin: 0 0 1rem; font-size: .9rem;
 }
 
-.carousel-dots { display: flex; gap: .4rem; }
-.carousel-dot {
-  width: .55rem; height: .55rem; padding: 0;
-  border: 1px solid var(--ink-soft); border-radius: 50%;
-  background: none; cursor: pointer;
+.xfield {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 2.2rem;
+  align-items: start; padding: 2.6rem 0; border-top: 1px solid var(--rule);
 }
-.carousel-dot[aria-selected="true"] {
-  background: var(--accent); border-color: var(--accent);
+/* alternate the image side so the page reads as a sequence, not a list */
+.xfield:nth-child(odd) .xfield-img { order: 2; }
+@media (max-width: 46rem) {
+  .xfield { grid-template-columns: 1fr; gap: 1.2rem; padding: 2rem 0; }
+  .xfield:nth-child(odd) .xfield-img { order: 0; }
 }
 
-/* The running commentary is for screen readers; it says the same thing the
-   dots say visually, so it is not shown twice. */
-.carousel-live {
-  position: absolute; width: 1px; height: 1px;
-  margin: -1px; padding: 0; overflow: hidden;
-  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+/* A <figure> since R7: the photograph and its credit. The frame moved from
+   the figure to the image, because the figure now also holds the caption and
+   `overflow: hidden` on an aspect-ratio box would have clipped it. */
+.xfield-img {
+  margin: 0;
+  position: sticky; top: 1.5rem;
 }
+@media (max-width: 46rem) { .xfield-img { position: static; } }
+.xfield-img img {
+  display: block; width: 100%; aspect-ratio: 3 / 2;
+  object-fit: cover; object-position: top left;
+  border: 1px solid var(--rule); background: var(--surface);
+  /* --surface, not #fff: a photograph covers this frame completely once
+     loaded, so the colour is only ever seen while the image is still
+     arriving, and white flashed against the dark theme. */
+}
+.xfield-img-empty { background: var(--surface); }
+
+.xfield h3 { margin: 0 0 .55rem; font-size: 1.3rem; }
+.xlede { margin: 0 0 1rem; font-size: 1.02rem; line-height: 1.55; }
+.xlist { margin: 0 0 1rem; padding-left: 1.1rem; }
+.xlist li { margin: .25rem 0; font-size: .92rem; line-height: 1.5; color: var(--ink-soft); }
+.xeg { margin: 1rem 0 .4rem; font-size: .9rem; }
+.xeg-l {
+  display: block; font-size: .74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ink-soft); margin-bottom: .2rem;
+}
+.xfor { margin-top: .5rem; }
+
+/* Two links sharing a footer row (see `foot_with` in _config.yml). */
+.foot-sep { opacity: .45; margin: 0 .15rem; }
+
+/* The "we are growing" banner on /team/ (R8). This is what --tint is for: a
+   small highlight, a paragraph at most. It is the only blush on the page. */
+.banner {
+  background: var(--tint);
+  color: var(--ink);
+  border-radius: var(--radius-ui);
+  padding: .75rem 1rem;
+  margin: 0 0 1.4rem;
+  font-size: .92rem;
+  line-height: 1.5;
+}
+.banner a { font-weight: 500; }
 
 /* ---------- pictures, and their corners ----------
 
@@ -2300,7 +2595,6 @@ table.listing td.t-partner .t-logo,
 .pcard-img,
 .pcard-img img,
 .pcard-img-empty,
-.xfield-img,
 .xfield-img img,
 .xfield-img-empty,
 .people .pc-face,
@@ -2309,71 +2603,127 @@ table.listing td.t-partner .t-logo,
 .dl-thumb img,
 .fig img,
 .tile,
-.pub-thumb,
-.pub-thumb img,
-.pub-tile {
+.cite-thumb,
+.cite-thumb img,
+.cite-tile {
   border-radius: var(--radius-img);
 }
-.pcard-img, .xfield-img, .dl-thumb, .pub-thumb { overflow: hidden; }
+.pcard-img, .dl-thumb { overflow: hidden; }
 
-/* ---------- publication thumbnails ----------
+/* ---------- publication entries ----------
 
-   The entry is a thumbnail beside its citation: 84px of picture on a phone,
-   112px from 40rem up. The picture is 3:4, which is the shape of a title
-   page, so a page scan and a designed tile sit at the same size instead of
-   one being letterboxed against the other.
+   M1. Title first, then the authors small and muted, then venue, year and
+   DOI. The entry used to open with the author list, which on a long paper is
+   thirty-two names, and on a phone pushed the title six lines down.
 
-   `align-items: start` keeps the thumbnail level with the first line of the
-   citation rather than centred against a block that may run to four lines. */
+   On a phone the cover sits beside the title and the authors and the venue
+   run full width underneath; from 40rem the cover is taller and everything
+   stacks beside it. `grid-template-areas` says that in one place rather than
+   in four rules.
+
+   The class names are `cite-`, not `pub-`: see _includes/pubitem.html. */
+.pubs { list-style: none; margin: 0; padding: 0; }
 .pubs li {
   display: grid;
-  grid-template-columns: 84px minmax(0, 1fr);
-  gap: 1rem;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-areas:
+    "thumb   title"
+    "authors authors"
+    "meta    meta";
+  column-gap: 1rem; row-gap: .45rem;
+  padding: 1.1rem 0; border-top: 1px solid var(--rule);
   align-items: start;
-  margin-bottom: 1.5rem;
 }
+.pubs li:first-child { border-top: 0; }
 @media (min-width: 40rem) {
-  .pubs li { grid-template-columns: 112px minmax(0, 1fr); gap: 1.25rem; }
+  .pubs li {
+    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-areas:
+      "thumb title"
+      "thumb authors"
+      "thumb meta";
+    column-gap: 1.25rem;
+  }
 }
-.pub-thumb {
-  display: block; aspect-ratio: 3 / 4;
+
+.cite-thumb {
+  grid-area: thumb;
+  display: block; aspect-ratio: 3 / 4; max-width: 100%;
   text-decoration: none;   /* the drawn tile's own text is not a link label */
   background: var(--surface);
   border: 1px solid var(--rule);
+  overflow: hidden;
 }
-.pub-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.pub-text { min-width: 0; }
+.cite-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.cite-title {
+  grid-area: title;
+  font-weight: 700; line-height: 1.3;
+  color: var(--ink); text-decoration: none;
+  min-width: 0; overflow-wrap: anywhere;
+}
+.cite-title:hover { color: var(--accent); text-decoration: underline; }
+
+.cite-authors {
+  grid-area: authors; margin: 0;
+  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
+  min-width: 0; overflow-wrap: anywhere;
+}
+.cite-meta {
+  grid-area: meta; margin: 0;
+  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
+  min-width: 0; overflow-wrap: anywhere;
+}
 
 /* The tile drawn here, for an entry with no image file. It is not a blank
    box with a label: it carries the gradient bar of the designed tiles, so an
    entry waiting for its picture belongs to the same set as the rest. */
-.pub-tile {
+.cite-tile {
   display: flex; flex-direction: column; justify-content: flex-end;
   width: 100%; height: 100%; padding: .5rem;
   background: var(--surface);
 }
-.pub-tile-bar {
+.cite-tile-bar {
   display: block; height: 4px; width: 60%;
   margin-bottom: auto; border-radius: 2px;
   background: linear-gradient(90deg, #001730, #751094, #f92d84);
 }
-.pub-tile-kind {
+.cite-tile-kind {
   font-size: .68rem; font-weight: 600; letter-spacing: .06em;
   text-transform: uppercase; color: var(--ink-soft);
 }
-.pub-tile-year {
+.cite-tile-year {
   font-size: .95rem; font-weight: 600; color: var(--ink);
-  font-variant-numeric: tabular-nums;
 }
 
+/* ---------- the publications control row ----------
+
+   One row: the filter box takes the width that is left, the sort select sits
+   beside it, and both wrap onto two lines under about 30rem. Two rows of
+   pill buttons with their labels on separate lines is what this replaced. */
+.pubcontrols {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  margin: 0 0 2rem;
+}
+.pubcontrols .filter { flex: 1 1 14rem; min-width: 0; margin: 0; }
+.sortwrap { display: flex; align-items: center; gap: .4rem; margin: 0; }
+.sortwrap label { font-size: .9rem; color: var(--ink-soft); }
+.sortwrap select {
+  font: inherit; font-size: .95rem;
+  padding: .55rem .7rem;
+  border: 1px solid var(--rule); border-radius: var(--radius-ui);
+  background: var(--bg); color: var(--ink);
+}
+.sortwrap select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
 /* The thumbnail on a publication's own page, at the top of the fact column. */
-.pub-figure { margin: 0 0 1.1rem; }
-.pub-figure img {
+.cite-figure { margin: 0 0 1.1rem; }
+.cite-figure img {
   display: block; width: 100%; max-width: 13rem;
   border: 1px solid var(--rule); border-radius: var(--radius-img);
   background: var(--surface);
 }
-.pub-figure figcaption { margin-top: .4rem; line-height: 1.45; }
+.cite-figure figcaption { margin-top: .4rem; line-height: 1.45; }
 
 /* The tagline, above the hero headline. Small and quiet: it names RISE, and
    the headline under it makes the claim. */
@@ -2409,39 +2759,48 @@ table.listing td.t-partner .t-logo,
 
 /* ---------- the evidence band ----------
 
-   Four published figures. The number comes first and large, because the
-   figure is the point and the sentence explains it; the source sits under
-   both, as a link to the paper on this site.
+   Six facts, one per perspective, from a single building up to the whole
+   world's stock. Three columns from 64rem, two below that, one under 30rem,
+   so the set reads 3 x 2 on a laptop and 2 x 3 on a phone.
 
-   Two by two rather than four across: these are sentences, not stat tiles,
-   and four narrow columns would break each one over five or six lines. */
-.figures {
+   The value and the sentence share one paragraph rather than sitting in two
+   boxes, because several sentences continue the value and do not start a new
+   one: "50-107 million homes could be created within Europe's existing
+   buildings". Splitting them would break the sentence in half. */
+.facts {
   list-style: none; padding: 0; margin: 1.8rem 0 1.4rem;
-  display: grid; gap: 1.8rem 2.4rem;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid; gap: 2rem 2.4rem;
+  grid-template-columns: repeat(3, 1fr);
 }
-@media (max-width: 46rem) { .figures { grid-template-columns: 1fr; gap: 1.6rem; } }
-.figures li { margin: 0; }
-.fig-val {
-  margin: 0 0 .3rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 500;
-  line-height: 1.05; letter-spacing: -.01em;
+@media (max-width: 64rem) { .facts { grid-template-columns: repeat(2, 1fr); gap: 1.8rem 2rem; } }
+/* The order says "1 under 30rem" but also asks for 2 x 3 at 390px, and 390px
+   is under 30rem. The acceptance test wins, so the single column starts at
+   22rem instead: two columns hold down to 360px, one below that. */
+@media (max-width: 22rem) { .facts { grid-template-columns: 1fr; gap: 1.6rem; } }
+@media (max-width: 46rem) { .facts { gap: 1.5rem 1.3rem; } }
+.facts li { margin: 0; min-width: 0; }
+
+.fact-perspective {
+  margin: 0 0 .45rem;
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
   color: var(--accent);
-  /* Deliberately NOT tabular-nums. These are four headline figures of
-     different lengths, not a column of digits that has to line up, and
-     Circular's tabular figures are wide enough to space the whole line out:
-     measured at 296px against 261px for the same string. Tabular figures are
-     for tables. */
 }
-.fig-val sub { font-size: .62em; }
-.fig-say { margin: 0 0 .45rem; }
-/* Scoped to `.figures`, because `.fig-src` is already taken: figure.html uses
-   it for the source line inside a project-page caption. Unscoped, these three
-   rules would reach back and flatten that one's margin-top and resize it. */
-.figures .fig-src { margin: 0; font-size: .85rem; }
-.figures .fig-src a { color: var(--ink-soft); }
-.figures .fig-src a:hover { color: var(--accent); }
+.fact-body { margin: 0 0 .5rem; }
+.fact-val {
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem); font-weight: 500;
+  line-height: 1.15; letter-spacing: -.01em;
+  color: var(--ink);
+  /* Deliberately NOT tabular-nums. These are headline figures of different
+     lengths, not a column of digits that has to line up, and Circular's
+     tabular figures are wide enough to space the whole line out: measured at
+     296px against 261px for the same string. Tabular figures are for tables. */
+  margin-right: .3rem;
+}
+.fact-src { margin: 0; font-size: .85rem; line-height: 1.45; }
+.fact-src a { color: var(--ink-soft); }
+.fact-src a:hover { color: var(--accent); }
 
 /* Four pillars, not three. `.cols` is a three-column grid, which would leave
    the fourth alone on a second row. */

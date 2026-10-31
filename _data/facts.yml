@@ -1,0 +1,80 @@
+# Homepage facts: "What the evidence says", six perspectives in a 3 x 2 grid.
+#
+# Picked by Martin on 31 Oct 2026 from the facts review
+# (https://claude.ai/artifact/UrPGudha3ecLT2MUgxcWMw). Each fact combines two
+# findings from one source, as he asked.
+#
+#   perspective   small label above the value
+#   value         the large figure
+#   say           what it means, in one or two sentences
+#   sources       one or more: label (shown) and publication (slug in
+#                 _publications/, so the link is built and checked)
+#
+# Every figure is published, with a DOI, and on this site. A source that is
+# not peer-reviewed says so in its label.
+
+- perspective: "Europe"
+  value: "8.5 billion tonnes CO₂e"
+  say: >-
+    What EU buildings and construction must avoid from 2020 to 2050, about ten
+    years of 2020 emissions. Efficiency and cleaner materials reach only two
+    thirds of it; less floor space per person, better use of existing and
+    empty buildings, and bio-based materials close most of the gap.
+  sources:
+    - label: "Alaux et al., 2026, Nature Communications"
+      publication: alaux-2026-context-specific-life
+
+- perspective: "Existing buildings"
+  value: "50–107 million homes"
+  say: >-
+    could be created within Europe's existing buildings, housing 120–250
+    million more people, while avoiding 3.9–19 billion tonnes CO₂ over the
+    next fifty years.
+  sources:
+    - label: "Toth et al., 2026, green paper (not peer-reviewed)"
+      publication: toth-2026-housing-we-need
+
+- perspective: "Global"
+  value: "249 billion tonnes CO₂e"
+  say: >-
+    The embodied emissions of new urban buildings worldwide to 2100 if we keep
+    building as today. Structural wood with sufficiency and circularity could
+    cut them by up to 64%, and most of that construction will be in Asia and
+    Africa.
+  sources:
+    - label: "Mastrucci et al., 2026, Environmental Research Letters"
+      publication: mastrucci-2026-carbon-storage-mitigation
+
+- perspective: "Global South"
+  value: "Three quarters"
+  say: >-
+    of the world's demand for construction materials to 2050 will be in low-
+    and middle-income countries. They can build the housing and
+    infrastructure the Sustainable Development Goals call for while their
+    per-person CO₂ from structural materials falls.
+  sources:
+    - label: "Dunant et al., 2025, Nature Communications"
+      publication: dunant-2025-timely-deployment-best
+
+- perspective: "Single building"
+  value: "Less than a third"
+  say: >-
+    The life cycle emissions of a low-tech timber building compared with a
+    low-tech brick and concrete one. Fast-growing materials such as straw cut
+    embodied carbon by up to 58%, where they suit the building.
+  sources:
+    - label: "Mouton et al., 2022, Energy and Buildings"
+      publication: mouton-2022-low-tech-passive
+
+- perspective: "Scaling"
+  value: "73%"
+  say: >-
+    Lower CO₂ from construction materials by 2050 than business as usual,
+    with technologies available today: 60–80 times the saving from building
+    with more wood instead. The rest takes a mix that avoids, shifts and
+    improves, from sufficiency to efficiency and renewables.
+  sources:
+    - label: "Dunant et al., 2025, Nature Communications"
+      publication: dunant-2025-timely-deployment-best
+    - label: "Alaux et al., 2024, Journal of Environmental Management"
+      publication: alaux-2024-whole-life-greenhouse

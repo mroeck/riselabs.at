@@ -70,6 +70,22 @@ portraits: bw
 # for a look and flipped back without touching a stylesheet.
 surfaces: plain
 
+# The photographs on Expertise, Approach and the two GBDI projects.
+#
+#   mono   (the default) black and white, with the CI navy lifted into the
+#          shadows, so photographs from different sources read as one set
+#   plain  they render as shot
+#
+# This replaced a magenta-to-blush duotone (ramp A, H19) on 31 Oct 2026:
+# Martin asked for a simple black and white with a subtle navy tone instead.
+# The strength is `--photo-tint-strength` in the stylesheet, not here, because
+# it is a number to look at rather than a choice to make.
+#
+# Portraits have their own switch above; the two are not tied together on
+# purpose, since a row of faces and a row of buildings do not want the same
+# treatment.
+photo_treatment: mono
+
 # Newsletter. Two different URLs, doing two different jobs:
 #   newsletter_url    = the public Buttondown page - renders a button
 #   newsletter_action = the API embed endpoint - renders a form on the page

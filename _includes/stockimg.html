@@ -3,15 +3,18 @@
 
     include.key  a stable string for this item, normally its slug or title
 
-  The same key always returns the same photograph: the choice is made from
-  the key's own length, not from a counter or the build order, so a card does
-  not change picture when an unrelated project is added. Collisions between
-  two items are possible and harmless, but where two of them would sit side
-  by side it is better to set a real image and not rely on this.
+  R11: projects, posts and events now get one dedicated placeholder in the CI
+  rather than one of eight stock texture photographs. A texture told a visitor
+  nothing; worse, it read as a deliberate choice, so an item still waiting for
+  its picture looked finished. The placeholder says "no picture yet" the same
+  way every time, which is the honest signal and is also why it is one file
+  and not a set.
 
-  Returns a bare site path, as written in _data/stock.yml. The caller
-  applies relative_url and supplies the markup.
+  `_data/stock.yml` and the length-modulo picker that went with it are gone
+  from here. Every project on the site has a `hero` today, so in practice this
+  only showed on Expertise, and W2 gives those fields real photographs.
+
+  Returns a bare site path. The caller applies relative_url and supplies the
+  markup, which is unchanged, so nothing that calls this needed editing.
 {%- endcomment -%}
-{%- assign stock = site.data.stock -%}
-{%- assign i = include.key | default: "rise" | size | modulo: stock.size -%}
-{{ stock[i].file }}
+/assets/img/placeholders/placeholder-project.webp

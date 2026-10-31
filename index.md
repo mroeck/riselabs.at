@@ -48,46 +48,37 @@ permalink: /
   works on; it now opens on what the work found, with the figure, its unit
   and its source in the first line of each.
 
-  Every figure is from a published, peer-reviewed paper that is on this site,
-  so each links to its own entry rather than to a claim nobody can check.
-  Nothing unpublished goes in this band. If a number here cannot be followed
-  to a paper, it does not belong.
+  Six perspectives, from one building to the whole world's stock, in
+  `_data/facts.yml` rather than written out here, so the band and the
+  checker read the same source. Every figure is published, with a DOI, and
+  on this site, so each links to its own entry rather than to a claim nobody
+  can check; a source that is not peer-reviewed says so in its label.
+  docs-check.py fails a fact whose `publication` slug has no file behind it.
+
+  Some sentences continue the value rather than starting a new one ("could
+  be created within Europe's existing buildings"), which is why the value
+  and the sentence sit in one flow and not in two boxes.
 {%- endcomment -%}
 <section class="band" id="evidence">
   <div class="wrap">
     <h2>What the evidence says</h2>
-    <p class="band-lede">Efficiency alone will not get Europe's buildings
-    within their limits. Our research shows why, and what does.</p>
+    <p class="band-lede">From single buildings to the regenerative evolution
+    of the world's building stock: our research shows what works at scale.</p>
 
-    <ul class="figures">
+    <ul class="facts">
+      {%- for f in site.data.facts %}
       <li>
-        <p class="fig-val">8.5 billion tonnes CO<sub>2</sub>e</p>
-        <p class="fig-say">what EU buildings and construction must avoid
-        between 2020 and 2050 to meet EU climate targets. That is about ten
-        years of 2020 emissions.</p>
-        <p class="fig-src"><a href="{{ '/publications/alaux-2026-context-specific-life/' | relative_url }}">Alaux et al., 2026, Nature Communications</a></p>
+        <p class="fact-perspective">{{ f.perspective }}</p>
+        <p class="fact-body"><span class="fact-val">{{ f.value }}</span>
+        {{ f.say }}</p>
+        <p class="fact-src">
+          {%- for s in f.sources -%}
+          {%- unless forloop.first %}; {% endunless -%}
+          <a href="{{ '/publications/' | append: s.publication | append: '/' | relative_url }}">{{ s.label }}</a>
+          {%- endfor -%}
+        </p>
       </li>
-      <li>
-        <p class="fig-val">32%</p>
-        <p class="fig-say">the share of that reduction which efficiency and
-        cleaner materials alone could not deliver within national capacities,
-        2.72 billion tonnes short.</p>
-        <p class="fig-src"><a href="{{ '/publications/alaux-2026-context-specific-life/' | relative_url }}">Alaux et al., 2026</a></p>
-      </li>
-      <li>
-        <p class="fig-val">2.2 billion tonnes CO<sub>2</sub>e</p>
-        <p class="fig-say">the additional reduction within national capacities
-        from using less floor space per person, circular construction and
-        bio-based materials.</p>
-        <p class="fig-src"><a href="{{ '/publications/alaux-2026-context-specific-life/' | relative_url }}">Alaux et al., 2026</a></p>
-      </li>
-      <li>
-        <p class="fig-val">45&ndash;50%</p>
-        <p class="fig-say">the share of life cycle emissions that are embodied
-        in highly energy-efficient buildings, from more than 650 building life
-        cycle assessments.</p>
-        <p class="fig-src"><a href="{{ '/publications/roeck-2020-embodied-ghg-emissions/' | relative_url }}">Röck et al., 2020, Applied Energy</a></p>
-      </li>
+      {%- endfor %}
     </ul>
 
     <p class="more"><a href="{{ '/publications/' | relative_url }}">Read the research →</a></p>
@@ -197,7 +188,15 @@ permalink: /
       and adds the controls. Without JavaScript this is the ordinary grid
       with everybody in it, which is a complete band on its own.
     {%- endcomment -%}
-    <div class="carousel" data-carousel="2">
+    {%- comment -%}
+      M2: one row that scrolls sideways and snaps card by card, rather than
+      pages of two with dots, a counter and a play button. The row bleeds to
+      the screen edge on a phone so the next card visibly continues, which is
+      what tells a reader it scrolls. Arrows are added by the script and only
+      where there is a mouse; without JavaScript this is the same swipeable
+      row with no arrows, which is a complete band.
+    {%- endcomment -%}
+    <div class="reel" data-reel>
       {% include peoplelist.html people=team %}
     </div>
     <p class="more"><a href="{{ '/team/' | relative_url }}">The whole team →</a></p>

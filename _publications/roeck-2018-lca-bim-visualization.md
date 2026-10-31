@@ -7,6 +7,8 @@ journal: "Building and Environment"
 doi: "10.1016/j.buildenv.2018.05.006"
 people:
   - martin-roeck
+projects:
+  - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
 thumbnail: /assets/img/pubs/roeck-2018-lca-bim-visualization.webp

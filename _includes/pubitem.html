@@ -1,29 +1,36 @@
 {%- comment -%}
-  One publication, formatted as a citation. Expects: include.pub
-  Any RISE person's `cite` name is underlined automatically.
+  One publication. Expects: include.pub
+
+  M1. The title leads, because that is what a reader scans for; the author
+  list follows in a smaller, muted size, with the team's names underlined;
+  then the venue, year and DOI. Before this the entry opened with up to 32
+  author names, and on a phone the title was six lines down.
+
+  The class names are `cite-`, not `pub-`. They were `pub-` and the text did
+  not render at all on Martin's phone while the covers did - the signature of
+  a content blocker, which is exactly what `pub` attracts: it is the French
+  word for advertisement, and the widely used filter lists hide elements whose
+  class contains it. The cover survived because `pub-thumb` happened not to
+  match a rule and `pub-text` did. Renaming costs nothing and removes a whole
+  class of failure we cannot reproduce or control.
 {%- endcomment -%}
 {%- assign p = include.pub -%}
-{%- comment -%}
-  The full author list, every name, in the order the paper carries them.
 
-  An earlier version shortened long lists to "lead author et al. (incl. ...)"
-  to keep the line down. It read oddly - the brackets singled the team out
-  rather than showing them in place - so the list is whole again and the
-  underlining does that job instead: a reader scanning sees where RISE sits
-  among the authors, first or twenty-ninth.
+{%- comment -%}
+  The full author list, every name, in the order the paper carries them. The
+  underlining shows where RISE sits among them, first or twenty-ninth.
+
+  Every form a person has published under, not just the current one. A name in
+  an author string is the name that paper carries, and people's names change:
+  Zuhaib published as "Zuhaib S" until 2022 and as "Batra Z" from 2024, under
+  one ORCID. Matching only the current form would leave half of someone's own
+  work looking like a stranger's.
+
+  `cite` first, then anything in `cite_also`. The longest form has to go first
+  within a person, or a shorter one can match inside a longer one and break
+  the markup.
 {%- endcomment -%}
 {%- assign a = p.authors -%}
-{%- comment -%}
-  Every form a person has published under, not just the current one. A name
-  in an author string is the name that paper carries, and people's names
-  change: Zuhaib published as "Zuhaib S" until 2022 and as "Batra Z" from
-  2024, under one ORCID. Matching only the current form would leave half of
-  someone's own work looking like a stranger's.
-
-  `cite` first, then anything in `cite_also`. The longest form has to go
-  first within a person, or a shorter one can match inside a longer one and
-  break the markup.
-{%- endcomment -%}
 {%- for person in site.people -%}
   {%- if person.cite -%}
     {%- capture wrapped %}<span class="self">{{ person.cite }}</span>{% endcapture -%}
@@ -34,44 +41,37 @@
     {%- assign a = a | replace: also, wrapped_also -%}
   {%- endfor -%}
 {%- endfor -%}
+
 {%- comment -%}
   `rise_work` says whether this is work RISE or GBDI did, or work the author
-  did before joining. It is a field on the publication, written from each
-  person's `rise_since` year and checked by docs-check.py, because the list
-  has to sort on it and a template cannot sort on a value it works out while
-  rendering.
-{%- endcomment -%}
-{%- assign rise_work = p.rise_work -%}
-{%- comment -%}
-  The thumbnail. Every publication has one: a title page where the licence
-  allows it, otherwise a designed tile. The three whose title pages are
-  CC-BY-NC-ND have neither yet (H20), and they fall through to the tile drawn
-  below in HTML, from the entry's own front matter - so a publication added
-  tomorrow with no image still looks like the others rather than leaving a
-  hole.
+  did before joining. The filter chip that used it is gone (M1), but the field
+  stays: the list still puts RISE work first inside a year, which costs
+  nothing and is what a visitor scanning a year wants to see first.
 
-  Decorative, with empty alt text: the citation beside it says everything the
-  picture does, and a screen reader announcing "title page of..." before every
-  entry in a list of sixty-four would be noise.
+  The thumbnail. Every publication has one: a title page where the licence
+  allows it, otherwise a designed tile. Decorative, with empty alt text: the
+  citation beside it says everything the picture does, and a screen reader
+  announcing "title page of..." before every entry in a list of sixty-four
+  would be noise.
 {%- endcomment -%}
-<li data-year="{{ p.year }}"{% if p.citations %} data-citations="{{ p.citations }}"{% endif %}{% if rise_work %} data-rise="true"{% endif %}>
-  <a class="pub-thumb" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
+<li data-year="{{ p.year }}"{% if p.citations %} data-citations="{{ p.citations }}"{% endif %}{% if p.rise_work %} data-rise="true"{% endif %}>
+  <a class="cite-thumb" href="{{ p.url | relative_url }}" tabindex="-1" aria-hidden="true">
     {%- if p.thumbnail -%}
     <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" width="150" height="200">
     {%- else -%}
-    <span class="pub-tile">
-      <span class="pub-tile-bar"></span>
-      <span class="pub-tile-kind">{{ p.kind | default: "publication" }}</span>
-      <span class="pub-tile-year">{{ p.year }}</span>
+    <span class="cite-tile">
+      <span class="cite-tile-bar"></span>
+      <span class="cite-tile-kind">{{ p.kind | default: "publication" }}</span>
+      <span class="cite-tile-year">{{ p.year }}</span>
     </span>
     {%- endif -%}
   </a>
-  <span class="pub-text">
-  {{ a }}.
-  <a class="pub-title" href="{{ p.url | relative_url }}">{{ p.title }}</a>.
-  {%- if p.journal %} <span class="venue">{{ p.journal }}</span>,{% endif %}
-  {{ p.year }}.
-  {%- if p.doi %} <a class="doi" href="https://doi.org/{{ p.doi }}">https://doi.org/{{ p.doi }}</a>{% endif -%}
-  {%- if p.note %} <em class="muted">- {{ p.note }}</em>{% endif -%}
-  </span>
+  <a class="cite-title" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+  <p class="cite-authors">{{ a }}</p>
+  <p class="cite-meta">
+    {%- if p.journal %}<span class="venue">{{ p.journal }}</span>, {% endif -%}
+    {{ p.year }}.
+    {%- if p.doi %} <a class="doi" href="https://doi.org/{{ p.doi }}">https://doi.org/{{ p.doi }}</a>{% endif -%}
+    {%- if p.note %} <em class="muted">- {{ p.note }}</em>{% endif -%}
+  </p>
 </li>
