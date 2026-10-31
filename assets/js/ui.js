@@ -573,68 +573,30 @@
   }
 
 
-  /* ---------- "With RISE or GBDI" on the publications page ----------
+    /* ---------- the publications controls ----------
 
-     The list carries both: work done here and work the team did before
-     joining. Both belong on the page - it is their work either way - but a
-     visitor asking what RISE has published should be able to ask that.
+     M1: one select, not a row of buttons, and no "With RISE or GBDI" filter.
+     The chips made the visitor do the sorting; the list already puts RISE and
+     GBDI work first inside each year, which says the same thing.
 
-     The markup decides which is which (see pubitem.html); this only shows
-     and hides. Section headings are hidden too when filtering empties them,
-     so the page never shows "Reports" above nothing.
-  */
-  function setupPubFilter(bar) {
-    var list = document.querySelector("#publist");
-    if (!list) return;
-    var items = Array.prototype.slice.call(list.querySelectorAll("li"));
-    if (!items.length) return;
-
-    bar.hidden = false;
-
-    bar.addEventListener("click", function (e) {
-      var btn = e.target.closest ? e.target.closest("[data-pub-filter]") : null;
-      if (!btn) return;
-      var want = btn.getAttribute("data-pub-filter");
-
-      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
-        b.classList.toggle("on", b === btn);
-        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
-      });
-
-      items.forEach(function (li) {
-        li.hidden = want === "rise" && li.getAttribute("data-rise") !== "true";
-      });
-
-      // a kind heading with nothing left under it is noise
-      Array.prototype.forEach.call(list.querySelectorAll("ul.pubs"), function (ul) {
-        var any = Array.prototype.some.call(ul.children, function (li) {
-          return !li.hidden;
-        });
-        ul.hidden = !any;
-        var head = ul.previousElementSibling;
-        if (head && head.tagName === "H2") { head.hidden = !any; }
-      });
-    });
-  }
-
-
-  /* ---------- sorting the publications list ----------
-
-     The page is built newest first, with RISE and GBDI work ahead of earlier
-     work inside each year. This reorders within each kind section without
-     touching the sections themselves, so "Journal articles" stays above its
-     own articles.
+     The page is built newest first. Sorting reorders within each kind
+     section, so "Journal articles" keeps its own articles, and every
+     comparison ends in the built order, so each sort is a total order rather
+     than a reshuffle of whatever the last one left behind. That is what keeps
+     RISE work first inside a year under "oldest first" too, and two papers
+     with the same citation count in a stable order.
 
      Each entry carries what it needs on the element: `data-year`, and
      `data-citations` where a count exists. Reading values out of the DOM text
      would mean parsing a citation string, which breaks the first time one is
      worded differently.
   */
-  function setupPubSort(bar) {
+  function setupPubControls(box) {
     var list = document.querySelector("#publist");
     if (!list) return;
     var lists = Array.prototype.slice.call(list.querySelectorAll("ul.pubs"));
-    if (!lists.length) return;
+    var sort = box.querySelector("[data-pub-sort]");
+    if (!lists.length || !sort) return;
 
     // the built order, to return to
     lists.forEach(function (ul) {
@@ -643,30 +605,16 @@
       });
     });
 
-    bar.hidden = false;
+    box.hidden = false;
 
     function num(li, attr) {
       var v = parseInt(li.getAttribute(attr), 10);
       return isNaN(v) ? null : v;
     }
+    function built(a, b) { return num(a, "data-built") - num(b, "data-built"); }
 
-    bar.addEventListener("click", function (e) {
-      var btn = e.target.closest ? e.target.closest("[data-pub-sort]") : null;
-      if (!btn) return;
-      var how = btn.getAttribute("data-pub-sort");
-
-      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
-        b.classList.toggle("on", b === btn);
-        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
-      });
-
-      /* Every comparison ends in the built order, so each sort is a total
-         order and does not depend on what the previous one left behind.
-         That is what keeps RISE work first inside a year under "Oldest
-         first" as well, and what keeps two papers with the same citation
-         count in a stable order. */
-      function built(a, b) { return num(a, "data-built") - num(b, "data-built"); }
-
+    sort.addEventListener("change", function () {
+      var how = sort.value;
       lists.forEach(function (ul) {
         var items = Array.prototype.slice.call(ul.children);
         items.sort(function (a, b) {
@@ -703,8 +651,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
     Array.prototype.forEach.call(document.querySelectorAll("[data-carousel]"), setupCarousel);
-    Array.prototype.forEach.call(document.querySelectorAll("[data-pubfilter]"), setupPubFilter);
-    Array.prototype.forEach.call(document.querySelectorAll("[data-pubsort]"), setupPubSort);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pubcontrols]"), setupPubControls);
   }
 
   if (document.readyState === "loading") {

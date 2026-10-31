@@ -1231,8 +1231,6 @@ body.portraits-bw .person-head .portrait {
 
 /* Bold, not semibold: the author list is whole again and runs to 32 names on
    some entries, so the title has to be the thing the eye lands on. */
-.pub-title { font-weight: 700; color: var(--ink); text-decoration: none; }
-.pub-title:hover { color: var(--accent); text-decoration: underline; }
 
 .projects.compact li { padding: .8rem 0; }
 
@@ -2424,71 +2422,127 @@ body.photo-mono .tone::after {
 .dl-thumb img,
 .fig img,
 .tile,
-.pub-thumb,
-.pub-thumb img,
-.pub-tile {
+.cite-thumb,
+.cite-thumb img,
+.cite-tile {
   border-radius: var(--radius-img);
 }
-.pcard-img, .dl-thumb, .pub-thumb { overflow: hidden; }
+.pcard-img, .dl-thumb { overflow: hidden; }
 
-/* ---------- publication thumbnails ----------
+/* ---------- publication entries ----------
 
-   The entry is a thumbnail beside its citation: 84px of picture on a phone,
-   112px from 40rem up. The picture is 3:4, which is the shape of a title
-   page, so a page scan and a designed tile sit at the same size instead of
-   one being letterboxed against the other.
+   M1. Title first, then the authors small and muted, then venue, year and
+   DOI. The entry used to open with the author list, which on a long paper is
+   thirty-two names, and on a phone pushed the title six lines down.
 
-   `align-items: start` keeps the thumbnail level with the first line of the
-   citation rather than centred against a block that may run to four lines. */
+   On a phone the cover sits beside the title and the authors and the venue
+   run full width underneath; from 40rem the cover is taller and everything
+   stacks beside it. `grid-template-areas` says that in one place rather than
+   in four rules.
+
+   The class names are `cite-`, not `pub-`: see _includes/pubitem.html. */
+.pubs { list-style: none; margin: 0; padding: 0; }
 .pubs li {
   display: grid;
-  grid-template-columns: 84px minmax(0, 1fr);
-  gap: 1rem;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-areas:
+    "thumb   title"
+    "authors authors"
+    "meta    meta";
+  column-gap: 1rem; row-gap: .45rem;
+  padding: 1.1rem 0; border-top: 1px solid var(--rule);
   align-items: start;
-  margin-bottom: 1.5rem;
 }
+.pubs li:first-child { border-top: 0; }
 @media (min-width: 40rem) {
-  .pubs li { grid-template-columns: 112px minmax(0, 1fr); gap: 1.25rem; }
+  .pubs li {
+    grid-template-columns: 96px minmax(0, 1fr);
+    grid-template-areas:
+      "thumb title"
+      "thumb authors"
+      "thumb meta";
+    column-gap: 1.25rem;
+  }
 }
-.pub-thumb {
-  display: block; aspect-ratio: 3 / 4;
+
+.cite-thumb {
+  grid-area: thumb;
+  display: block; aspect-ratio: 3 / 4; max-width: 100%;
   text-decoration: none;   /* the drawn tile's own text is not a link label */
   background: var(--surface);
   border: 1px solid var(--rule);
+  overflow: hidden;
 }
-.pub-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.pub-text { min-width: 0; }
+.cite-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.cite-title {
+  grid-area: title;
+  font-weight: 700; line-height: 1.3;
+  color: var(--ink); text-decoration: none;
+  min-width: 0; overflow-wrap: anywhere;
+}
+.cite-title:hover { color: var(--accent); text-decoration: underline; }
+
+.cite-authors {
+  grid-area: authors; margin: 0;
+  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
+  min-width: 0; overflow-wrap: anywhere;
+}
+.cite-meta {
+  grid-area: meta; margin: 0;
+  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
+  min-width: 0; overflow-wrap: anywhere;
+}
 
 /* The tile drawn here, for an entry with no image file. It is not a blank
    box with a label: it carries the gradient bar of the designed tiles, so an
    entry waiting for its picture belongs to the same set as the rest. */
-.pub-tile {
+.cite-tile {
   display: flex; flex-direction: column; justify-content: flex-end;
   width: 100%; height: 100%; padding: .5rem;
   background: var(--surface);
 }
-.pub-tile-bar {
+.cite-tile-bar {
   display: block; height: 4px; width: 60%;
   margin-bottom: auto; border-radius: 2px;
   background: linear-gradient(90deg, #001730, #751094, #f92d84);
 }
-.pub-tile-kind {
+.cite-tile-kind {
   font-size: .68rem; font-weight: 600; letter-spacing: .06em;
   text-transform: uppercase; color: var(--ink-soft);
 }
-.pub-tile-year {
+.cite-tile-year {
   font-size: .95rem; font-weight: 600; color: var(--ink);
-  font-variant-numeric: tabular-nums;
 }
 
+/* ---------- the publications control row ----------
+
+   One row: the filter box takes the width that is left, the sort select sits
+   beside it, and both wrap onto two lines under about 30rem. Two rows of
+   pill buttons with their labels on separate lines is what this replaced. */
+.pubcontrols {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  margin: 0 0 2rem;
+}
+.pubcontrols .filter { flex: 1 1 14rem; min-width: 0; margin: 0; }
+.sortwrap { display: flex; align-items: center; gap: .4rem; margin: 0; }
+.sortwrap label { font-size: .9rem; color: var(--ink-soft); }
+.sortwrap select {
+  font: inherit; font-size: .95rem;
+  padding: .55rem .7rem;
+  border: 1px solid var(--rule); border-radius: var(--radius-ui);
+  background: var(--bg); color: var(--ink);
+}
+.sortwrap select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
 /* The thumbnail on a publication's own page, at the top of the fact column. */
-.pub-figure { margin: 0 0 1.1rem; }
-.pub-figure img {
+.cite-figure { margin: 0 0 1.1rem; }
+.cite-figure img {
   display: block; width: 100%; max-width: 13rem;
   border: 1px solid var(--rule); border-radius: var(--radius-img);
   background: var(--surface);
 }
-.pub-figure figcaption { margin-top: .4rem; line-height: 1.45; }
+.cite-figure figcaption { margin-top: .4rem; line-height: 1.45; }
 
 /* The tagline, above the hero headline. Small and quiet: it names RISE, and
    the headline under it makes the claim. */
