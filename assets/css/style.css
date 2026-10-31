@@ -1899,10 +1899,26 @@ body.surfaces-gradient .cta-band {
 
 /* ---------- theme toggle ---------- */
 
-/* One logo file per theme; the stylesheet shows the right one. */
-.logo-light { display: none; }
-:root[data-theme="light"] .logo-dark  { display: none; }
-:root[data-theme="light"] .logo-light { display: block; }
+/* One logo file per theme; the stylesheet shows the right one.
+
+   Both rules are written against :root so they carry two classes' worth of
+   specificity. They have to: the components that place a logo set their own
+   `display`, and `.brand img` (0,1,1) outweighed the plain `.logo-light`
+   (0,1,0) this used to be. The effect was that in the dark theme the header
+   showed both logos, one under the other, and stood 25px taller on a phone
+   and 30px on a desktop than in the light theme, which hid one correctly
+   because its rule happened to carry the theme attribute. Switching theme
+   moved the whole page down and back up (Martin, 31 Oct 2026). The footer
+   was never affected, because `.foot-mark` is (0,1,0) and lost the tie on
+   source order instead of winning it.
+
+   `:not([data-theme="light"])` rather than `[data-theme="dark"]`: the
+   attribute is always on <html>, but if it ever went missing both logos
+   would show again, and this way the dark pair is the fallback. The visible
+   logo needs no rule of its own; the components already give it one, and an
+   <img> with no `display` is visible anyway. */
+:root:not([data-theme="light"]) .logo-light { display: none; }
+:root[data-theme="light"] .logo-dark { display: none; }
 
 /* the fixed cluster: work-in-progress note, then the theme toggle */
 .corner {
