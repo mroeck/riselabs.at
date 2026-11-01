@@ -2690,39 +2690,31 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
    the headline under it makes the claim. */
 .hero-eyebrow {
   margin: 0 0 .7rem;
-  font-size: .82rem; font-weight: 600;
+  font-size: .76rem; font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase;
   color: rgba(255, 255, 255, .78);
 }
 
-/* The eyebrow has to hold one line on a phone, and from 31 Oct 2026 it does
-   so in capitals at every width. Martin asked for the capitals and gave a
-   line short enough to carry them: "Building for planet and people." is
-   thirty-one characters, against thirty-eight before it and forty-eight
-   before that.
+/* The eyebrow holds one line in capitals at every width, with no breakpoint
+   of its own. It did not always: at forty-eight characters, and then at
+   thirty-eight, capitals and .08em of tracking cost too much width for a
+   phone, so the rule set the line in sentence case below 34rem. At
+   thirty-two it fitted only because the size shrank on the narrowest screens.
 
-   This rule used to drop to sentence case below 34rem, because capitals and
-   .08em of tracking cost about 45% of the width and the older lines could
-   not fit on a phone with them. This one can, but only with help, and the
-   clamp below is doing real work rather than providing margin.
+   "Space for people and planet." is twenty-eight characters, and at .76rem
+   it needs 270px in Figtree and 278px in the fallback stack. Both are well
+   inside a 320px phone, so the clamp that used to sit here is gone and the
+   size is one number again.
 
-   Measured at the full 13.1px, capitals hold one line from 318px in Figtree
-   and from 328px in the fallback stack. The fallback figure is above 320px:
-   on the narrowest phone, with the webfont still arriving or never arriving,
-   full-size capitals would wrap.
+   The size is .76rem rather than .82rem because Martin asked for it to come
+   down a little on 1 Nov 2026. That is a change of appearance, not of fit:
+   measured across .70rem to .82rem, this line holds one line on a 320px
+   phone at every one of them, in both faces.
 
-   So the size eases off below 24rem rather than the capitals doing so:
-   11.2px at 320px, back to the full 13.1px by 384px, where the clamp meets
-   .82rem exactly so there is no step at the breakpoint. Measured at 320px
-   that leaves 42px of slack in Figtree and 34px in the fallback, and one
-   line in both.
-
-   Any rewording has to be measured again. A line much longer than this one
-   will not hold capitals on a phone, and the honest fix then is a shorter
-   line rather than smaller type. */
-@media (max-width: 24rem) {
-  .hero-eyebrow { font-size: clamp(.70rem, 3.41vw, .82rem); }
-}
+   Roughly 42px of slack at 320px, so there is room to reword. A line that
+   grows much past thirty characters will spend it: at thirty-two the
+   fallback stack already needed 328px at full size, which is wider than the
+   phone. Measure before trusting a longer one. */}
 
 /* ---------- the evidence band ----------
 
