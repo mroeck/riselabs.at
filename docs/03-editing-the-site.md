@@ -214,7 +214,7 @@ partners:
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | |
-| `kind` | yes | `article`, `conference`, `report`, `book` or `data`. It picks the section and the tab on /publications/, and a kind with nothing in it renders neither. `conference` is in that state: no publication carries it yet |
+| `kind` | yes | `article`, `conference`, `report`, `book` or `data`. It picks the section and the tab on /publications/, and a kind with nothing in it renders neither. Use `conference` where the venue is a conference, a congress or a proceedings series, even where the series calls itself a journal |
 | `authors` | yes | One string, `Surname I` format, comma-separated, **in the published order**. `Röck M` is underlined automatically |
 | `year` | yes | A number, unquoted. Sorting depends on it |
 | `journal` | no | Journal, publisher or repository |

@@ -1,6 +1,6 @@
 ---
 title: "An Exploratory Evaluation of the Factors impacting the Adoption of Innovative Sustainable Building Materials in Housing Construction Across Socio-Economic Contexts"
-kind: article
+kind: conference
 authors: "Ngoy KS, Daweti E, Molise R, Chinasamy D, Windapo AO"
 year: 2025
 journal: "Construction Business and Project Management Conference (CBPM 2025)"

@@ -1,6 +1,6 @@
 ---
 title: "Comparative Performance of Alternative building technologies vs convential in Reconstruction and Development Programme RDP Housing Construction"
-kind: article
+kind: conference
 authors: "Ngoy KS, Windapo AO, Lefoka M, Harilall Y, Adam U, Chinasamy D"
 year: 2026
 journal: "Construction Business and Project Management Conference (CBPM 2026)"

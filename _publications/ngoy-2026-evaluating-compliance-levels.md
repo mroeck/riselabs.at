@@ -1,6 +1,6 @@
 ---
 title: "Evaluating Compliance Levels of Informal Housing Construction Practices with Building and Environmental Regulations in South Africa"
-kind: article
+kind: conference
 authors: "Ngoy KS, Paruk Y, Mashangana V, Mthethwa S, Chinasamy D, Windapo AO"
 year: 2026
 journal: "Construction Business and Project Management Conference (CBPM 2026)"
