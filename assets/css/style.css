@@ -2499,33 +2499,68 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
 }
 @media (prefers-reduced-motion: reduce) { .reel .people { scroll-behavior: auto; } }
 
-/* The card in the row is the same card, stood up: the portrait fills the
-   width as a 1:1 crop and the text sits under it, as in the prototype. In
-   the grid on /team/ the portrait is a thumbnail beside the text, which is
-   right for a dense list and wrong for a row where each card is most of the
-   screen. Same markup, same classes, different shape. */
-.reel .people > li {
+/* The card stood up: the portrait fills the width as a 1:1 crop and the text
+   sits under it. Two places use it, and they are listed together so the two
+   cannot drift: the home page reel, where each card is most of the screen,
+   and the grid on /team/ since 1 Nov 2026, where it matches the project and
+   publication cards and gives the portraits room.
+
+   The flat card is still the right shape elsewhere - a thumbnail beside the
+   text suits a dense list - so this is a variant rather than the default. */
+.reel .people > li,
+.people.stacked > li {
   background: none; border: 0; border-radius: 0; padding: 0;
 }
-.reel .people > li:hover { border-color: transparent; }
-.reel .people a {
+.reel .people > li:hover,
+.people.stacked > li:hover { border-color: transparent; }
+.reel .people a,
+.people.stacked a {
   display: block;
   padding: 0; gap: 0;
   background: none; border: 0; border-radius: 0;
 }
-.reel .people .pc-face {
+.reel .people .pc-face,
+.people.stacked .pc-face {
   width: 100%; height: auto; aspect-ratio: 1 / 1;
   border-radius: var(--radius-img);
   display: block;
 }
-.reel .people .pc-initials { display: grid; place-items: center; font-size: 2rem; }
-.reel .people .person-txt { display: block; margin-top: .7rem; }
-.reel .people .who { font-weight: 700; line-height: 1.25; }
-.reel .people .what { margin-top: .2rem; }
-.reel .people .where { margin-top: .35rem; }
-/* The contact row belongs on a card you are reading, not on one you are
-   swiping past; the whole card is already a link to the person's page. */
+.reel .people .pc-initials,
+.people.stacked .pc-initials { display: grid; place-items: center; font-size: 2rem; }
+.reel .people .person-txt,
+.people.stacked .person-txt { display: block; margin-top: .7rem; }
+.reel .people .who,
+.people.stacked .who { font-weight: 700; line-height: 1.25; }
+.reel .people .what,
+.people.stacked .what { margin-top: .2rem; }
+.reel .people .where,
+.people.stacked .where { margin-top: .35rem; }
+/* In the reel the contact row belongs on a card you are reading, not on one
+   you are swiping past, and the whole card is already a link to the person's
+   page. On /team/ the row stays: that page is where someone goes to write to
+   a colleague, which is the one thing a portrait grid cannot do for them. */
 .reel .people .pc-links { display: none; }
+.people.stacked .pc-links { margin: .5rem 0 0; }
+
+/* Three across on a desktop, two on a phone, the same count and the same
+   floor as the projects and the publications. `auto-fill` with a minimum is
+   what the flat grid wants, because its cards carry a job title beside a
+   thumbnail and need 21rem to do it; a stood-up card is as wide as its
+   portrait and wants a fixed count instead. */
+/* "Where we work" on /team/ borrows the expertise field's two-column shape.
+   That layout alternates which side the picture sits on, by `nth-child`, so
+   the one here would swap sides the moment anything is added above it. It is
+   pinned instead: there is one of these and it reads left to right. */
+#where-we-work .xfield-img { order: 0; }
+
+.people.stacked {
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 2rem 1.4rem;
+}
+@media (max-width: 62rem) { .people.stacked { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 46rem) { .people.stacked { gap: 1.5rem 1.1rem; } }
+@media (max-width: 22rem) { .people.stacked { grid-template-columns: 1fr; } }
 
 /* Arrows, added by the script and only under a fine pointer, so a phone
    never carries a control it cannot use. Centred on the portraits rather

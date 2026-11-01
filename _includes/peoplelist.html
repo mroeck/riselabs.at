@@ -1,5 +1,9 @@
 {%- comment -%}
   People as cards. Expects: include.people
+  include.stacked="true" stands the card up: portrait on top as a 1:1 crop,
+  text beneath. That is the shape the home page reel uses, and since 1 Nov
+  2026 the shape /team/ uses too. Without it the portrait is a thumbnail
+  beside the text, which suits a dense list.
 
   Each card shows a square portrait, the name, the role, the employer line,
   and a row with the person's email and LinkedIn.
@@ -42,7 +46,7 @@
   Portrait alt text is deliberately empty here, because the name is printed
   next to it. The profile page carries the name as alt instead.
 {%- endcomment -%}
-<ul class="people">
+<ul class="people{% if include.stacked %} stacked{% endif %}">
   {%- for person in include.people -%}
   <li>
     <a href="{{ person.url | relative_url }}">
