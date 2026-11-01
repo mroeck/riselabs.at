@@ -2714,7 +2714,7 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
    Roughly 42px of slack at 320px, so there is room to reword. A line that
    grows much past thirty characters will spend it: at thirty-two the
    fallback stack already needed 328px at full size, which is wider than the
-   phone. Measure before trusting a longer one. */}
+   phone. Measure before trusting a longer one. */
 
 /* ---------- the evidence band ----------
 

@@ -73,7 +73,14 @@ permalink: /
       {%- for f in site.data.facts %}
       <li>
         <p class="fact-perspective">{{ f.perspective }}</p>
-        <p class="fact-body"><span class="fact-val">{{ f.value }}</span>
+        {%- comment -%}
+          `escape` because a value may open with a comparison: "<1/3" is one
+          of them since 1 Nov 2026. A browser does render `<1` as text,
+          because a tag name cannot start with a digit, but that is the
+          parser being forgiving rather than the markup being right, and a
+          value starting "<a" or carrying an & would not be so lucky.
+        {%- endcomment -%}
+        <p class="fact-body"><span class="fact-val">{{ f.value | escape }}</span>
         {{ f.say }}</p>
         <p class="fact-src">
           {%- for s in f.sources -%}

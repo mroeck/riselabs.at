@@ -4,8 +4,17 @@
 # (https://claude.ai/artifact/UrPGudha3ecLT2MUgxcWMw). Each fact combines two
 # findings from one source, as he asked.
 #
-#   perspective   small label above the value
-#   value         the large figure
+#   perspective   small label above the value. Eighteen characters is the
+#                 ceiling: the band is two cards wide on a phone, which
+#                 leaves about 146px for a label at 360px, and anything
+#                 longer takes two lines. Measured 320 to 1200px on 1 Nov
+#                 2026 with the six below, all one line throughout
+#   value         the large figure. Numerals, not words: "3/4" and "<1/3"
+#                 rather than "three quarters" and "less than a third"
+#                 (Martin, 1 Nov 2026). The band is read by scanning, and a
+#                 figure spelled out does not scan. Prose inside `say` keeps
+#                 words, which is why the Europe fact still says "two thirds".
+#                 A value containing < or & is escaped where it is printed
 #   say           what it means, in one or two sentences
 #   sources       one or more: label (shown) and publication (slug in
 #                 _publications/, so the link is built and checked)
@@ -13,18 +22,18 @@
 # Every figure is published, with a DOI, and on this site. A source that is
 # not peer-reviewed says so in its label.
 
-- perspective: "Europe"
+- perspective: "Europe's challenge"
   value: "8.5 billion tonnes CO₂e"
   say: >-
     What EU buildings and construction must avoid from 2020 to 2050, about ten
     years of 2020 emissions. Efficiency and cleaner materials reach only two
-    thirds of it; less floor space per person, better use of existing and
-    empty buildings, and bio-based materials close most of the gap.
+    thirds of it; scaling sufficiency, re-activating existing and under-used
+    buildings, and bio-based materials close most of the gap.
   sources:
     - label: "Alaux et al., 2026, Nature Communications"
       publication: alaux-2026-context-specific-life
 
-- perspective: "Existing buildings"
+- perspective: "Existing potential"
   value: "50–107 million homes"
   say: >-
     could be created within Europe's existing buildings, housing 120–250
@@ -34,7 +43,7 @@
     - label: "Toth et al., 2026, green paper (not peer-reviewed)"
       publication: toth-2026-housing-we-need
 
-- perspective: "Global"
+- perspective: "Global projections"
   value: "249 billion tonnes CO₂e"
   say: >-
     The embodied emissions of new urban buildings worldwide to 2100 if we keep
@@ -45,8 +54,8 @@
     - label: "Mastrucci et al., 2026, Environmental Research Letters"
       publication: mastrucci-2026-carbon-storage-mitigation
 
-- perspective: "Global South"
-  value: "Three quarters"
+- perspective: "Emerging regions"
+  value: "3/4"
   say: >-
     of the world's demand for construction materials to 2050 will be in low-
     and middle-income countries. They can build the housing and
@@ -56,8 +65,8 @@
     - label: "Dunant et al., 2025, Nature Communications"
       publication: dunant-2025-timely-deployment-best
 
-- perspective: "Single building"
-  value: "Less than a third"
+- perspective: "Single buildings"
+  value: "<1/3"
   say: >-
     The life cycle emissions of a low-tech timber building compared with a
     low-tech brick and concrete one. Fast-growing materials such as straw cut
@@ -66,7 +75,7 @@
     - label: "Mouton et al., 2022, Energy and Buildings"
       publication: mouton-2022-low-tech-passive
 
-- perspective: "Scaling"
+- perspective: "Scaling solutions"
   value: "73%"
   say: >-
     Lower CO₂ from construction materials by 2050 than business as usual,

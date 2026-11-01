@@ -865,6 +865,44 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
               "cannot parse that and the whole Pages build fails. Chain one "
               "`where_exp` per comparison instead.")
 
+# ------------------------------------------------------- stylesheet structure
+# One stray brace puts every rule after it out of the cascade, and CSS fails
+# silently: the browser drops what it cannot parse and renders the rest, so
+# the page looks almost right. On 1 Nov 2026 an edit to the eyebrow comment
+# left a `}` welded to the end of a `*/`, and the whole evidence band lost its
+# grid while the colours and type above it stayed correct. Nothing in this
+# checker noticed, and nothing would have until someone looked at the page.
+#
+# Comments are stripped before counting, because a brace inside one is prose.
+# This does not validate CSS; it catches the one error that breaks everything
+# downstream rather than one declaration.
+_css = SITE / "assets/css/style.css"
+if _css.exists():
+    _src = re.sub(r"/\*.*?\*/", "", _css.read_text(), flags=re.S)
+    _open, _close = _src.count("{"), _src.count("}")
+    if _open != _close:
+        P("css", "assets/css/style.css",
+          f"{_open} '{{' against {_close} '}}'. One stray brace puts every "
+          "rule after it out of the cascade, and the page still renders, so "
+          "this will not look broken until someone finds the missing styles.")
+    else:
+        # character by character, not line by line: a dip that recovers
+        # inside one line ("} {" after a rule) never shows in a per-line
+        # count, and that is exactly how an extra brace tends to be typed.
+        _depth = 0
+        for _i, _ch in enumerate(_src):
+            if _ch == "{":
+                _depth += 1
+            elif _ch == "}":
+                _depth -= 1
+                if _depth < 0:
+                    P("css", "assets/css/style.css",
+                      f"line {_src.count(chr(10), 0, _i) + 1} closes a block "
+                      "that was never opened. The braces balance overall, so "
+                      "everything between here and the matching stray opener "
+                      "is nested wrongly and does not apply.")
+                    break
+
 # --------------------------------------------------- duplicated stylesheet runs
 # Two whole blocks of style.css have been pasted in twice now: the picture
 # treatment on 31 Oct, and the expertise block the same day, 98 lines of it.
@@ -875,7 +913,6 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
 # Eight identical lines is well past coincidence: the longest honest repeat in
 # this file is a four-line media query. Overlapping windows are collapsed to
 # one report so a 98-line duplicate is one problem rather than ninety.
-_css = SITE / "assets/css/style.css"
 if _css.exists():
     _lines = _css.read_text().splitlines()
     _RUN = 8
