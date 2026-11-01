@@ -308,7 +308,7 @@ permalink: /
 {%- endcomment -%}
 <section class="band">
   <div class="wrap">
-    <h2>Who relies on our evidence</h2>
+    <h2>Who we work with</h2>
     <p class="band-note">The European Commission, UN agencies, national
     governments, research institutes and philanthropic funders use our work to
     set targets, write rules and fund change.</p>
