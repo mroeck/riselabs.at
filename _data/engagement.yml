@@ -46,10 +46,13 @@
 
 - id: fund
   title: "You want change that outlasts a project"
-  action: "Fund a programme"
-  subject: "Fund a programme"
+  # "initiative", not "programme" (Martin, 1 Nov 2026). The `id` is `fund`
+  # and is untouched: it is the anchor, and the comment at the top of this
+  # file asks for it to stay stable.
+  action: "Fund an initiative"
+  subject: "Fund an initiative"
   body: >-
-    Fund a programme that builds shared data and capacity, from pilot to self-sustaining.
+    Fund an initiative that builds shared data and capacity, from pilot to self-sustaining.
   examples:
     - indicate
     - global-building-data-initiative
