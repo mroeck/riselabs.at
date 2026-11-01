@@ -411,6 +411,26 @@ for p, t in all_text:
         elif target not in pages:
             P("link", str(p.relative_to(SITE)), f"links to {target}, which no page produces")
 
+# The ids a nav fragment may point at. Most are written literally in a page
+# or an include; the kind sections on /publications/ are not, because
+# publist.html gives each one id="<kind>" from the data, so those are added
+# from the publications themselves. Computed once, on first use.
+_anchor_cache = None
+
+
+def _anchors():
+    global _anchor_cache
+    if _anchor_cache is None:
+        ids = set()
+        for _f in list(SITE.glob("*.md")) + list(SITE.glob("*.html")) + \
+                list((SITE / "_includes").glob("*.html")) + \
+                list((SITE / "_layouts").glob("*.html")):
+            ids |= set(re.findall(r'id="([^"{]+)"', _f.read_text()))
+        ids |= {pb.get("kind") for _s, (pb, _b, _f) in coll["publications"].items()}
+        _anchor_cache = {i for i in ids if i}
+    return _anchor_cache
+
+
 # nav entries. An entry is either a link (`url`) or a group (`items`); a
 # group's children are links. Both shapes are checked, and a group with no
 # children is flagged, because the header silently skips it.
@@ -426,8 +446,19 @@ def _check_nav(entry, parent=None):
         for kid in kids:
             _check_nav(kid, entry.get("title"))
     elif "url" in entry:
-        if entry["url"] not in pages:
+        # A nav url may carry a fragment: "Data & tools" points at
+        # /publications/#data, which opens that page on its Data and tools
+        # tab rather than being a page of its own (1 Nov 2026). The page and
+        # the anchor are checked separately, because a fragment that names
+        # nothing lands the reader at the top of the page with no sign that
+        # anything was meant to happen.
+        _url, _, _frag = entry["url"].partition("#")
+        if _url not in pages:
             P("config", "_config.yml", f"{where} points at {entry['url']}, no such page")
+        elif _frag and _frag not in _anchors():
+            P("config", "_config.yml",
+              f"{where} points at {entry['url']}, and nothing on the site "
+              f"renders an #{_frag} to land on")
     else:
         P("config", "_config.yml", f"{where} has neither a url nor items")
 

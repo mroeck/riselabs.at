@@ -53,15 +53,31 @@
   {%- assign pubs = pubs | concat: rest -%}
 {%- endfor -%}
 {%- if include.sections == "true" -%}
-  {%- assign kinds = "article,book,report,data" | split: "," -%}
-  {%- assign names = "Journal articles,Books and chapters,Reports,Data and tools" | split: "," -%}
+  {%- comment -%}
+    The kinds, in the order the sections and the tab bar both use. A kind with
+    nothing in it renders no section and gets no tab, so this list can name a
+    kind before any file carries it: `conference` is in that state today, and
+    the tab appears by itself the moment a publication says `kind: conference`.
+
+    Each section is wrapped so the tab bar has something to show and hide. The
+    heading stays inside it, because hiding a grid and leaving its heading
+    behind reads as an empty section rather than a filtered one.
+
+    The id is the kind, so /publications/#data opens on that tab. Without
+    JavaScript the tab bar never appears and the browser simply scrolls to
+    the section, which is the same destination by a slower route.
+  {%- endcomment -%}
+  {%- assign kinds = "article,conference,report,book,data" | split: "," -%}
+  {%- assign names = "Journal articles,Conference papers,Reports,Books and chapters,Data and tools" | split: "," -%}
   {%- for k in kinds -%}
     {%- assign group = pubs | where: "kind", k -%}
     {%- if group.size > 0 %}
+<section class="pubkind" id="{{ k }}" data-kind="{{ k }}">
 <h2>{{ names[forloop.index0] }}</h2>
 <ul class="pubs">
   {%- for pub in group %}{% include pubitem.html pub=pub %}{% endfor -%}
 </ul>
+</section>
     {%- endif -%}
   {%- endfor -%}
 {%- else -%}

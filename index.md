@@ -252,6 +252,16 @@ permalink: /
 {%- endcomment -%}
 <section class="band">
   <div class="wrap">
+    {%- comment -%}
+      Publications left this split on 1 Nov 2026 and took the band below.
+      They are cards now, three across, and three cards do not fit in half a
+      page: at 1200px that column is about 480px, which would have given
+      150px cards with titles running long and thin.
+
+      "Latest" keeps the split's markup and simply fills it. One column in a
+      two-column grid stretches to the full width, which is what a list of
+      three news items wants anyway.
+    {%- endcomment -%}
     <div class="home-split">
       <div>
         <h2>Latest</h2>
@@ -261,16 +271,29 @@ permalink: /
         {% include newslist.html posts=latest %}
         <p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
       </div>
-      <div>
-        <h2>Recent publications</h2>
-        <p class="band-note">We publish our methods, data and code openly
-        wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
-        learn more.</p>
-        {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 3 -%}
-        {% include publist.html pubs=recent %}
-        <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
-      </div>
     </div>
+  </div>
+</section>
+
+{%- comment -%}
+  Recent publications, in its own band since 1 Nov 2026 so the cards get the
+  width the three-column grid needs. It is `.alt` because the band above it
+  is `--bg`, and the partners band below flipped from `.alt` to plain for the
+  same reason: THE RULE at the top of this file is that two adjacent bands
+  never share a background, and adding a band here moves every one after it.
+
+  Three publications, the most recent by year, which is the same selection
+  the split carried.
+{%- endcomment -%}
+<section class="band alt">
+  <div class="wrap">
+    <h2>Recent publications</h2>
+    <p class="band-note">We publish our methods, data and code openly
+    wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
+    learn more.</p>
+    {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 3 -%}
+    {% include publist.html pubs=recent %}
+    <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
   </div>
 </section>
 
@@ -278,7 +301,12 @@ permalink: /
   Partners and the quotes on one surface band: both are other people vouching
   for the work, and they were two separate full-width bands doing the same job.
 {%- endcomment -%}
-<section class="band alt">
+{%- comment -%}
+  Plain, not `.alt`, since 1 Nov 2026: the publications band above it took
+  the `.alt` surface when it was split out, and two `.alt` bands in a row
+  merge into one long stretch.
+{%- endcomment -%}
+<section class="band">
   <div class="wrap">
     <h2>Who relies on our evidence</h2>
     <p class="band-note">The European Commission, UN agencies, national

@@ -157,6 +157,66 @@
     });
   }
 
+  /* ---------- publication kind tabs ---------- */
+
+  /* One button per kind section on /publications/. Clicking one shows that
+     section and hides the rest; "All" shows everything.
+
+     It hides sections rather than entries, because on this page the sections
+     are the kinds. That also keeps it out of the way of the other two
+     controls: the filter box and the sort select act on the entries inside
+     whatever is visible, so the three compose instead of fighting.
+
+     A section with no entries is never rendered and never gets a button, so
+     unlike the theme bar there is no dead button to prune here. */
+
+  function setupKinds(bar) {
+    var sections = Array.prototype.slice.call(
+      document.querySelectorAll("#publist .pubkind"));
+    if (!sections.length) return;
+
+    bar.hidden = false;
+
+    function show(want) {
+      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
+        b.classList.toggle("on", b.getAttribute("data-kind-filter") === want);
+      });
+      sections.forEach(function (s) {
+        s.hidden = want !== "" && s.getAttribute("data-kind") !== want;
+      });
+    }
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-kind-filter]") : null;
+      if (!btn) return;
+      var want = btn.getAttribute("data-kind-filter");
+      show(want);
+      // the address bar follows the tab, so the state can be linked to and
+      // the back button steps through the tabs rather than leaving the page
+      if (history.replaceState) {
+        history.replaceState(null, "", want ? "#" + want : location.pathname);
+      }
+    });
+
+    /* A kind in the fragment opens on that tab. This is how the navigation
+       reaches data and tools: /publications/#data rather than a page of its
+       own. Only a fragment that names a section counts, so an ordinary
+       anchor elsewhere on the page is left alone.
+
+       The browser has already scrolled to the section by the time this runs,
+       which is the right place to be looking. */
+    function fromHash() {
+      var want = (location.hash || "").replace(/^#/, "");
+      if (!want) return;
+      var known = sections.some(function (s) {
+        return s.getAttribute("data-kind") === want;
+      });
+      if (known) show(want);
+    }
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+  }
+
   /* ---------- navigation ---------- */
 
   /* One markup structure serves both layouts. On a wide screen the groups sit
@@ -646,6 +706,7 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
     Array.prototype.forEach.call(document.querySelectorAll("[data-reel]"), setupReel);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-kindbar]"), setupKinds);
     Array.prototype.forEach.call(document.querySelectorAll("[data-pubcontrols]"), setupPubControls);
   }
 

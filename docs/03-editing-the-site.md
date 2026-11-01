@@ -214,7 +214,7 @@ partners:
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | |
-| `kind` | yes | `article`, `report`, `data` or `book` |
+| `kind` | yes | `article`, `conference`, `report`, `book` or `data`. It picks the section and the tab on /publications/, and a kind with nothing in it renders neither. `conference` is in that state: no publication carries it yet |
 | `authors` | yes | One string, `Surname I` format, comma-separated, **in the published order**. `Röck M` is underlined automatically |
 | `year` | yes | A number, unquoted. Sorting depends on it |
 | `journal` | no | Journal, publisher or repository |
