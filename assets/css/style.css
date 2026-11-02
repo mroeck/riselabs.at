@@ -1564,11 +1564,11 @@ body.surfaces-gradient .cta-band {
 /* Latest and Recent publications side by side on a wide screen. They were two
    full-width bands of text in sequence, which is most of why the page read as
    a single column of prose. Stacked below 64rem. */
-.home-split { display: grid; gap: 2.4rem; }
-@media (min-width: 64rem) {
-  .home-split { grid-template-columns: 1fr 1fr; gap: 3rem; }
-}
-.home-split > div > h2:first-child { margin-top: 0; }
+/* `.home-split` is gone. It put "Latest" and "Recent publications" side by
+   side; publications took a band of their own on 1 Nov 2026 and "Latest"
+   went full width on 2 Nov, so nothing was left in it but one column of a
+   two-column grid, which is how three cards ended up crammed into half the
+   page with the other half empty. */
 
 /* The newsletter as the last row of the offer band rather than a band of its
    own: it is the smaller ask for a reader not ready for the larger one. */
@@ -2747,22 +2747,28 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
 /* The tile drawn here, for an entry with no image file. It is not a blank
    box with a label: it carries the gradient bar of the designed tiles, so an
    entry waiting for its picture belongs to the same set as the rest. */
+/* The drawn tile, for a publication with no title page on file. White with
+   its text on it, which is what the sixty-four designed tiles are: they are
+   images, so they stay white in both themes, and a drawn tile that followed
+   the theme would be the one odd card in the grid. Same reasoning as the
+   logo tiles and the figures, which are white by design because they are the
+   paper the artwork sits on.
+
+   The gradient strip is gone (Martin, 2 Nov 2026). It was the one piece of
+   CI colour on an otherwise plain card and it read as decoration on a
+   placeholder, which is the last place that earns it. */
 .cite-tile {
-  display: flex; flex-direction: column; justify-content: flex-end;
-  width: 100%; height: 100%; padding: .5rem;
-  background: var(--surface);
-}
-.cite-tile-bar {
-  display: block; height: 4px; width: 60%;
-  margin-bottom: auto; border-radius: 2px;
-  background: linear-gradient(90deg, #001730, #751094, #f92d84);
+  display: flex; flex-direction: column; justify-content: space-between;
+  width: 100%; height: 100%; padding: .7rem .75rem;
+  background: #fff; color: #001730;
+  border: 1px solid var(--tile-edge);
 }
 .cite-tile-kind {
   font-size: .68rem; font-weight: 600; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--ink-soft);
+  text-transform: uppercase; color: #52616f;
 }
 .cite-tile-year {
-  font-size: .95rem; font-weight: 600; color: var(--ink);
+  font-size: 1.05rem; font-weight: 700; color: #001730;
 }
 
 /* ---------- the publications control row ----------
@@ -2959,28 +2965,32 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
 }
 @media (max-width: 40rem) { .pcard-shot, .pcard-tile { aspect-ratio: 21 / 9; } }
 .pcard-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* The drawn tile. White with its text on it, matching the publications
+   placeholder, which in turn matches the sixty-four designed tiles that are
+   white images and stay white in both themes (Martin, 2 Nov 2026).
+
+   The CI gradients are gone: a tile is what a card shows when it has no
+   picture, and four different gradients made the cards with nothing to show
+   the loudest things on the page. */
 .pcard-tile {
   position: relative;
   display: flex; align-items: flex-end; justify-content: space-between;
-  padding: .9rem 1rem; color: #fff;
+  padding: .8rem .9rem;
+  background: #fff; color: #001730;
+  border: 1px solid var(--tile-edge);
 }
-/* A direction or a stop per type, so a grid of tiles reads as a set of
-   different things rather than one block of navy. */
-.tile-event   { background: linear-gradient(120deg, #001730 10%, #751094); }
-.tile-project { background: linear-gradient(120deg, #001730, #16325a); }
-.tile-output  { background: linear-gradient(120deg, #751094, #f92d84); }
-.tile-opening { background: linear-gradient(120deg, #f92d84, #ff8fbd); }
 .pcard-kind {
-  font-size: .76rem; letter-spacing: .1em; text-transform: uppercase;
-  font-weight: 700;
+  font-size: .72rem; letter-spacing: .09em; text-transform: uppercase;
+  font-weight: 700; color: #52616f;
 }
 .pcard-big {
-  font-size: 2.2rem; font-weight: 700; line-height: .9; text-align: right;
+  font-size: 1.9rem; font-weight: 700; line-height: .9; text-align: right;
+  color: #001730;
 }
 .pcard-big span {
   display: block; margin-top: .25rem;
-  font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
-  font-weight: 500;
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  font-weight: 600; color: #52616f;
 }
 
 .pcard-meta {
