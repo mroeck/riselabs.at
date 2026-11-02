@@ -63,8 +63,12 @@
     {%- if p.thumbnail -%}
     <img src="{{ p.thumbnail | relative_url }}" alt="" loading="lazy" width="150" height="200">
     {%- else -%}
+    {%- comment -%}
+      The gradient strip went on 2 Nov 2026. A placeholder is the one card
+      that has nothing to show, and dressing it in CI colour made it the
+      loudest thing in the grid.
+    {%- endcomment -%}
     <span class="cite-tile">
-      <span class="cite-tile-bar"></span>
       <span class="cite-tile-kind">{{ p.kind | default: "publication" }}</span>
       <span class="cite-tile-year">{{ p.year }}</span>
     </span>

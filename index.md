@@ -262,21 +262,21 @@ permalink: /
       two-column grid stretches to the full width, which is what a list of
       three news items wants anyway.
     {%- endcomment -%}
-    <div class="home-split">
-      <div>
-        <h2>Latest</h2>
-        {%- comment -%}
-          The same cards as /news/ since 2 Nov 2026 (N5), so the home page
-          and the listing page show one thing in one shape. Featured first,
-          then by date, three of them.
-        {%- endcomment -%}
-        {%- assign featured = site.posts | where: "featured", true -%}
-        {%- assign others = site.posts | where_exp: "p", "p.featured != true" -%}
-        {%- assign latest = featured | concat: others | slice: 0, 3 -%}
-        {% include postcards.html posts=latest %}
-        <p class="more"><a href="{{ '/news/' | relative_url }}">All news and events →</a></p>
-      </div>
-    </div>
+    {%- comment -%}
+      Full width, not the two-column split it inherited. Publications left
+      that split on 1 Nov and took a band of their own, which left "Latest"
+      alone in a grid still set to two columns: three cards crammed into
+      half the page with the other half empty. The cards are the same three
+      across as everywhere else now.
+
+      Featured first, then by date.
+    {%- endcomment -%}
+    <h2>Latest</h2>
+    {%- assign featured = site.posts | where: "featured", true -%}
+    {%- assign others = site.posts | where_exp: "p", "p.featured != true" -%}
+    {%- assign latest = featured | concat: others | slice: 0, 3 -%}
+    {% include postcards.html posts=latest %}
+    <p class="more"><a href="{{ '/news/' | relative_url }}">All news and events →</a></p>
   </div>
 </section>
 

@@ -25,10 +25,25 @@
       {%- if post.hero -%}
       <span class="pcard-shot"><img src="{{ post.hero | relative_url }}" alt="" loading="lazy"></span>
       {%- else -%}
-      <span class="pcard-tile tile-{{ post.type }}" aria-hidden="true">
+      {%- comment -%}
+        The drawn tile, for a post with no picture. White with its text on
+        it, the same card the publications list draws for an entry with no
+        title page (Martin, 2 Nov 2026): the two grids sit a screen apart on
+        the home page and had nothing in common. The CI gradients are gone
+        with it. A placeholder is the one card with nothing to show, and
+        colour made it the loudest thing on the page.
+
+        The date is the event's where there is one, because that is the fact
+        a reader wants off an event; otherwise the year the post went up.
+      {%- endcomment -%}
+      <span class="pcard-tile" aria-hidden="true">
         <span class="pcard-kind">{{ t.label | default: post.type }}</span>
         {%- if post.type == "event" and post.event_start -%}
         <span class="pcard-big">{{ post.event_start | date: "%-d" }}<span>{{ post.event_start | date: "%b %Y" }}</span></span>
+        {%- elsif post.type == "event" and post.event_month -%}
+        <span class="pcard-big">{{ post.event_month | append: "-01" | date: "%b" }}<span>{{ post.event_month | append: "-01" | date: "%Y" }}</span></span>
+        {%- else -%}
+        <span class="pcard-big">{{ post.date | date: "%Y" }}</span>
         {%- endif -%}
       </span>
       {%- endif -%}
