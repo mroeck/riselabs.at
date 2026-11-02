@@ -1577,15 +1577,50 @@ body.surfaces-gradient .cta-band {
 /* The four ways of working, on the home page. Cards rather than a list,
    because each one is a different conversation to start and the mail link at
    the foot of each is the point of the band. */
+/* Three by two from 64rem since W6 (1 Nov 2026), which is six cards and
+   echoes the six facts at the top of the page. Two columns from 40rem, one
+   below. A fixed count rather than auto-fit: the descriptions are uneven
+   enough that letting the columns find their own width makes the longest
+   card tower over the rest. */
 .engage {
   list-style: none; padding: 0; margin: 1.8rem 0 1.4rem;
   display: grid; gap: 1rem;
-  /* Two by two, not auto-fit: four cards across a 64rem container left a
-     three-plus-one orphan, and the four descriptions are uneven enough that
-     narrow columns made the longest one tower over the rest. */
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
-@media (max-width: 46rem) { .engage { grid-template-columns: 1fr; } }
+@media (max-width: 64rem) { .engage { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 40rem) { .engage { grid-template-columns: 1fr; } }
+
+/* The strand a card belongs to, above its title. Small, uppercase and in the
+   accent, the same shape as the fact labels on the home page, so the two
+   bands that bracket the page read as a pair. It is a link where the strand
+   has a heading on /approach/ to point at. */
+.engage-label {
+  margin: 0 0 .35rem !important;
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent) !important;
+}
+.engage-label a { color: inherit; text-decoration: none; }
+.engage-label a:hover { text-decoration: underline; }
+/* In the list shape on /expertise/ the label runs inline before the title,
+   so it needs none of the block spacing above. */
+.findings .engage-label { display: inline; margin: 0 !important; }
+
+/* The two lines under the grid, and the last row. */
+.engage-more { margin: .6rem 0 0; font-size: .92rem; color: var(--ink-soft); }
+.engage-more + .engage-more { margin-top: .3rem; }
+.engage-last {
+  display: grid; gap: 1.6rem;
+  margin-top: 2.6rem; padding-top: 1.8rem;
+  border-top: 1px solid var(--rule);
+}
+@media (min-width: 40rem) { .engage-last { grid-template-columns: 1fr 1fr; gap: 2.4rem; } }
+/* The newsletter block already carries this rule from its own band; inside
+   the last row the row draws the line instead, once, for both blocks. */
+.engage-last .home-news { margin-top: 0; padding-top: 0; border-top: 0; }
+.engage-join h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+.engage-join p { margin: 0 0 .4rem; font-size: .92rem; color: var(--ink-soft); }
+.engage-join .more { margin: 0; }
 .engage li {
   margin: 0; padding: 1.15rem 1.2rem 1rem;
   background: var(--bg);

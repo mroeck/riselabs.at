@@ -1,0 +1,21 @@
+{%- comment -%}
+  The two lines under the "Work with us" cards (W6). One include, because
+  the home page and the end of /expertise/ both carry them and the wording
+  must not drift; everything else in those two bands differs.
+
+  The first line is where training, workshops and speaking went when the
+  cards became six situations rather than four services. The second is for
+  a reader who does not see themselves in any card: /expertise/ asks the
+  same thing as eight questions instead of six situations, and one of them
+  usually lands.
+{%- endcomment -%}
+<p class="engage-more">Looking for training, a workshop or a speaker, or
+something else entirely? Write to
+<a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+{%- comment -%}
+  "eight" is a count of the fields in _data/expertise.yml. It is written out
+  rather than computed, because the sentence is the wording W6 specifies;
+  docs-check.py compares the two so the number cannot go stale quietly.
+{%- endcomment -%}
+<p class="engage-more"><a href="{{ '/expertise/' | relative_url }}">Not sure
+where you fit? See the eight questions we answer &rarr;</a></p>

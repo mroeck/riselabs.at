@@ -1251,6 +1251,56 @@ Do W1–W4 in one PR, after R7 (photos) or together with it.
 - **Done when:** no page on the built site mentions review work or "no
   stake".
 
+### W6 "Work with us": six ways in, scope, and next steps
+
+- **Files:** `_data/engagement.yml`, `_includes/engagement.html`, `index.md`
+  (`#work-with-us`), `expertise.html` (closing band), `assets/css/style.css`,
+  `docs/03`, new `_publications/dejaco-2020-combining-lca-lcc.md`
+- **Source:** Martin's decisions of 1 Nov 2026. Supplied in
+  `riselabs-w6-2026-11-01.zip`: `_data/engagement.yml` (replace the file),
+  the new publication and its tile. Both pass `docs-check.py` at 368a636.
+- **Problem:** the hero button "Work with us" lands on a band called "Start
+  with the problem"; the band uses a third framing beside Expertise's
+  questions and the cards' situations; it has no way in for the deep strand
+  or for research consortia, and it closes on the newsletter only while job
+  posts are going out.
+- **Change:**
+  - Heading: "Work with us" (keep `id="work-with-us"`).
+  - Lede, exactly: "We would rather hear the problem than the brief. We
+    cover the whole life cycle, from cost and carbon to environmental and,
+    increasingly, social impacts, and every scale from a single building to
+    national and global building stocks. Tell us the decision in front of
+    you, and we will tell you what evidence would hold up."
+  - Six cards from `engagement.yml`, in file order, in a 3 x 2 grid from
+    64rem, 2 columns from 40rem, 1 below. Each card: `label` as a small
+    uppercase line in the accent colour (linked to `label_url` where given),
+    `title`, `body`, "For example:" with the two projects, then the mail
+    link with `action` and the `subject` prefilled. Same height per row.
+  - Under the grid, two lines:
+    - "Looking for training, a workshop or a speaker, or something else
+      entirely? Write to office@riselabs.at." (mail link)
+    - "Not sure where you fit? See the eight questions we answer →" linking
+      to `/expertise/`.
+  - Last row, two blocks side by side from 40rem: the newsletter as now, and
+    "Join us". While a post with `type: opening` is published: "We are
+    growing, and hiring in Vienna." with "Open positions →" to `/join/`.
+    Otherwise: "Other ways in: theses, visiting researchers →" to `/join/`.
+  - `expertise.html`: the closing band uses the same six cards and the two
+    lines; no newsletter or Join row there.
+  - Add `dejaco-2020-combining-lca-lcc` (backs "cost" in the lede), then run
+    the citation and abstract scripts for it. Its title page is CC BY and can
+    replace the tile.
+  - `docs-check.py`: fail a card without `label`, `title`, `action` and two
+    `examples`, and a project used on two cards. Document `label` and
+    `label_url` in `docs/03`.
+- **Wording notes (decided):** "social impacts" is qualified with
+  "increasingly" because the Approach page still calls the social and
+  economic dimensions "the next step"; cities are not named until a
+  city-scale project is on the site.
+- **Done when:** the band reads "Work with us" with the lede above; six cards,
+  3 x 2 on a desktop; every card shows a label, two linked examples and a
+  working mail link; the Join block switches with the opening post.
+
 ## Phase E: publications of the extended team
 
 Source: search of 30 October 2026 (ORCID, Crossref, DataCite, OpenAlex,
@@ -1440,6 +1490,200 @@ both tasks (open it on a phone and on a desktop).
   moves card by card; at 1,280 px three and part of a fourth show, with
   arrows; the band never changes height while scrolling.
 
+## Phase T: team page
+
+### T1 "Where we work", below the team
+
+- **Files:** `team.md` (or the team page template), `assets/css/style.css`,
+  `assets/img/place/`, `docs/03`
+- **Source:** Martin, 1 Nov 2026. Draft and layout:
+  https://claude.ai/artifact/DPf6Aoekbi8ZC16iQeF5sY (prototype). Facts from
+  climatelab.at, its press page, ORF Wien (2 Oct 2022) and EIT Climate-KIC
+  (13 Mar 2022).
+- **Change:** a new band below the team groups (and above any Join block),
+  on `--surface`, with this text exactly:
+  - `h2` "Where we work"
+  - Lede: "We work mostly remotely, with colleagues in Austria, Switzerland
+    and South Africa, and come together for team retreats and regular
+    in-person meetings."
+  - `h3` "Climate Lab Vienna", then: "Our on-site team is based at Climate
+    Lab, an innovation centre for the climate transition at Spittelau on the
+    Donaukanal. It is run by Impact Hub Vienna in premises provided by Wien
+    Energie, beside the waste-to-energy plant designed by Friedensreich
+    Hundertwasser." and "We share it with start-ups, companies and
+    researchers working on the energy transition, sustainable building and
+    the circular economy."
+  - Address block: "Climate Lab / Spittelauer Lände 45, 1090 Vienna / U4 and
+    U6 Spittelau", then a link "climatelab.at" to https://climatelab.at/.
+  - Images, right of the text from 56rem, below it on a phone: one wide
+    (16:9) and two smaller (3:2) underneath. Inside the workspace only; no
+    picture of the building exterior (Martin, 1 Nov 2026). Supplied by Martin
+    on 2 Nov 2026, in `riselabs-t1-photos-2026-11-02.zip`
+    (`assets/img/place/`, with `_data/place.yml` ready to use):
+    1. Wide: `climate-lab-event.jpg`, the Climate Lab floor during an event,
+       caption "Climate Lab, Spittelau."
+    2. Small: `rise-desks.jpg`, caption "Our desks at Climate Lab."
+    3. Small: `team-sbc-summit-2026.jpg`, caption "The team at the
+       Sustainable Buildings and Construction Summit, Lausanne, April 2026."
+    Crop with `object-fit: cover` and the `focus` value from `place.yml` as
+    `object-position`. Each caption ends with "Photo: <credit>": 1 "Climate
+    Lab / Fetz", 2 "Climate Lab", 3 "Rue Munemo". All three go live now
+    (Martin, 2 Nov 2026).
+    With none shown, the text runs full width. No empty boxes on the live
+    site.
+  - Photos follow R7 (duotone in both themes); captions sit below, never on
+    the image.
+  - Put the place in `_data/place.yml` (name, text, address, link, images
+    with credit), so a move is a data change, not a template change.
+- **Prepared for a move (early 2027, only when Martin says so):** replace
+  the Climate Lab block with "dieHauswirtschaft", text: "Our on-site team is
+  based at dieHauswirtschaft in Vienna's Nordbahnviertel, a cooperatively
+  run house where people live and work under one roof, with coworking,
+  workshop rooms and a hall for events. It is a low-energy building with its
+  own solar power." Address: Bruno-Marek-Allee 5/1, 1020 Vienna. Link:
+  https://diehauswirtschaft.at/. New images needed then.
+- **Done when:** the band shows below the team on /team/ in both themes,
+  every photo carries its credit, and no placeholder boxes are visible.
+
+---
+
+## Phase N: one page for news and events
+
+Martin, 1 Nov 2026: /news/ and /events/ show almost the same list, so they
+become one page with tabs by type of post. More types will follow (news,
+events, project updates, insights and so on); Martin will bring the
+categories used on social media so the two can line up later (H36). Build
+with the types in use now. Prototype:
+https://claude.ai/artifact/BBuRw4RbqB7dD6PizjM72t (file
+`news-and-events.html`).
+
+This phase replaces the events page in P3.1. The event fields from P3.1
+(`event_start`, `event_end`, `location`, `format`, `register_url`,
+`materials`) stay exactly as specified there, and the backfill in P3.1 is
+part of this phase. P3.2 ("Coming up" on the homepage) reuses the include
+from N3.
+
+### N1 Post types in one data file
+
+- **New file:** `_data/post_types.yml`, one entry per type, in tab order:
+
+  ```yaml
+  - slug: event        # value of `type:` in the post
+    label: Event       # shown on a card
+    plural: Events     # shown on the tab
+    hash: events       # /news/#events
+  - slug: project
+    label: Project update
+    plural: Project updates
+    hash: project-updates
+  - slug: output
+    label: Publication
+    plural: Publications
+    hash: publications
+  - slug: opening
+    label: Open position
+    plural: Open positions
+    hash: open-positions
+  ```
+
+- Adding a type later is one entry here; no template changes. Do not add
+  types that no post uses yet (no "Insights" until there is one).
+- `docs-check.py`: every post's `type` must be a `slug` in this file; a post
+  with `type: event` and `published` not false must have `event_start`, or be
+  listed in H8 (warn, do not fail, so the six existing posts can be
+  backfilled step by step).
+- `newslist.html` and the homepage "Latest" show `label` instead of the raw
+  `type` value ("Project update", not "project").
+- `docs/03` § 8: document the file and the rule.
+
+### N2 The page
+
+- **File:** `news.md`, title and h1 "News and events", lede "What we
+  published, where we spoke, and what changed in our projects."
+- **Order on the page:** page head, "Coming up" (N3), tab row with the
+  filter field on the right (below the tabs on a phone), card grid.
+- **Tabs:** "All" plus one tab per type in `post_types.yml` order, each with
+  its count in a small muted number ("Events 6"). A type with no published
+  post has no tab. Built at build time from `site.posts`; the script only
+  switches. Tabs are buttons with `role="tab"` and `aria-selected`, in a row
+  that scrolls sideways on a phone without a visible scrollbar. Reuse
+  `setupTabs` in `ui.js` if it fits; otherwise extend it rather than adding a
+  second tab script.
+- **Links:** each tab has its own hash (`/news/#events`); opening the page
+  with a hash selects that tab, and choosing a tab updates the hash with
+  `history.replaceState` (no new history entries).
+- **Filter:** the existing `filter.html` field, applied within the chosen
+  tab. "Nothing matches" line when the result is empty.
+- **Without JavaScript:** all posts show in one grid, newest first, and the
+  tab row is hidden.
+- **Years:** no year breaks in the grid; the date on each card is enough.
+
+### N3 "Coming up"
+
+- **New include:** `_includes/comingup.html`, used here and by P3.2 on the
+  homepage.
+- Lists events whose `event_end` (or `event_start`) is today or later,
+  soonest first, at most three, as cards side by side (stacked on a phone).
+  Each shows a date block (day and month; month and year only when the day
+  is not known), the title without "Upcoming:", the place and one short line,
+  and "Register" when `register_url` is set.
+- Staleness as in P3.1: render with `data-end` and let `ui.js` hide items
+  whose end has passed. Hide the whole strip when it is empty.
+- Shown on the "All" and "Events" tabs only.
+- On a `--surface` band, like the prototype.
+
+### N4 Cards
+
+- **New include** (or a rework of `newslist.html`): a grid of cards, three
+  columns on desktop, two on a tablet, one on a phone.
+- Each card: image (16:9; 21:9 on a phone), then type label and post date in
+  one line (`.eyebrow` style for the label), title, summary clamped to three
+  lines. The whole card is the link.
+- **Image:** the post's `hero` when set. Otherwise a tile in the CI
+  gradient with the type label in white capitals at the bottom left, the same
+  tile style as L13. Each type has its own direction or stop on the gradient
+  so the grid does not look uniform (prototype: project updates navy, events
+  navy to purple, publications purple to magenta). Event tiles also carry
+  the event date (large day, small month and year) at the bottom right.
+- **Featured:** a post with `featured: true` leads the "All" tab at full
+  width, image left and text right on desktop. In the other tabs and while
+  filtering it is an ordinary card. For events, `featured` only counts while
+  the event is upcoming (P3.2).
+- Light and dark themes from the tokens; no new colours.
+
+### N5 Old URL, navigation and homepage
+
+- **/events/:** `events.md` becomes a redirect to `/news/#events`: a page
+  with `layout: null`, `<meta http-equiv="refresh" content="0;
+  url=/news/#events">`, `<link rel="canonical" href="/news/">`, `<meta
+  name="robots" content="noindex">` and a plain link for anyone without
+  refresh. No new plugin (keep the GitHub Pages plugin list as it is).
+  Leave `sitemap: false` on it.
+- **Navigation** (`_config.yml`): under Media, one item "News and events"
+  to `/news/`. Search the site for other links to `/events/` and point them
+  to `/news/#events`.
+- **Homepage "Latest":** same card style as N4 (three cards, featured
+  first), with "All news and events →" to `/news/`.
+- **Feed:** `jekyll-feed` stays as it is.
+
+### N6 Backfill
+
+- Add the P3.1 fields to the six event posts from their bodies: IGBC
+  (26 Nov 2026, Mumbai), Brussels (21 Oct 2026, Brussels), Beijing
+  (22 Sep 2026, Beijing), India webinar (1 Jul 2026, online), Cape Town
+  (25 Jun 2026, Cape Town). COP31: the body gives the conference (9 to
+  20 Nov 2026, Antalya, Türkiye) but not the session's day; set
+  `location: Antalya, Türkiye`, leave `event_start` empty until H8, and
+  show it in "Coming up" as "Nov 2026" with "session date to be confirmed".
+- Drop "Upcoming:" from the IGBC title; "Coming up" already says it.
+- Set `hero` for posts whose commented-out image already exists in
+  `assets/img/posts/`; leave the rest to the type tile.
+
+- **Done when:** /news/ shows the tabs that have posts, `/news/#events`
+  opens on Events, /events/ lands there, "Coming up" lists only future
+  events (and disappears when there are none), the page works on a phone at
+  390 px without sideways scroll in both themes, and `docs-check` passes.
+
 ---
 
 ## Human input
@@ -1456,7 +1700,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H5 | Zuhaib | Draft by Martin in progress. Needed: approval of the text, portrait, links; EPFL clearance if required | P2.1 |
 | H6 | Martin | Date from which Nicole and Zuhaib are RISE employees, if and when that happens | P2.1 label |
 | H7 | Martin or Barbara | Run `fetch-abstracts.py --write` and review the diff | P2.6 |
-| H8 | Martin | Dates, places and registration links for event posts that lack them, starting with the COP31 session | P3.1 |
+| H8 | Martin | Dates, places and registration links for event posts that lack them, starting with the COP31 session | P3.1, N6 |
 | H9 | Martin | ~~Standing text for `/join/`~~ Drafted 29 Oct and live on the page as "Other ways in": theses, visiting researchers, fellowships. Reword freely | P1.7, P3.4 |
 | H10 | Martin | Consent from Bárbara Rodríguez Droguett to publish her quote | P3.5 |
 | H11 | Martin | Own photos with permission to publish | P4.1 |
@@ -1482,6 +1726,9 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H31 | Martin | ~~"With RISE or GBDI" filter~~ Answered 31 Oct: no; removed in M1 | E3, M1 |
 | H32 | Martin | ~~Pick one fact per perspective~~ Answered 31 Oct: combined picks, texts in `_data/facts.yml` | F1 |
 | H33 | Martin | ~~New lede for the facts band~~ Answered 31 Oct: text in F1 | F1 |
+| H34 | Martin | ~~Climate Lab permission~~ Answered 2 Nov: Martin decided to publish both Climate Lab photos with credits "Climate Lab / Fetz" and "Climate Lab", at his own risk | T1 |
+| H35 | Martin | ~~Own photos, consent, credit~~ Answered 2 Nov: supplied; all six in the team photo consented; team photo by Rue Munemo | T1 |
+| H36 | Martin | The post categories used on social media, so the types in `_data/post_types.yml` can match them | N1 |
 
 ---
 

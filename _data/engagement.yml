@@ -1,78 +1,104 @@
-# The four ways work with RISE actually starts.
+# The six ways work with RISE starts.
 #
 # One source for two places: the "Work with us" band on the home page and the
 # end of /expertise/. Written here rather than in either page, so the two
 # cannot drift apart.
 #
 #   id        the anchor, and nothing else; keep it stable
-#   title     the name of the way in, as it reads in the sentence
-#   action    what the card's link says, and the subject line it prefills.
-#             `title` names the reader's situation ("You hold building data");
-#             `action` names what happens next ("Join a data programme"). A
-#             button has to say what it does, and a subject line has to sort
-#             the inbox, so neither can be the situation.
+#   label     small line above the title: the strand of /approach/ the card
+#             belongs to, or "Research partnership", which runs across all three
+#   label_url optional link for the label (the strand's heading on /approach/)
+#   title     the reader's situation, in their words ("You ...")
+#   action    what the card's link says, and the subject line it prefills
 #   subject   the mail subject, normally the same as `action`
-#   body      the description
-#   examples  project slugs, two per card. They render as "For example: …",
-#             each linked to its project page under its `short_title`.
+#   body      one sentence
+#   examples  project slugs, two per card, no project on two cards. They
+#             render as "For example: …" under each project's `short_title`.
 #             docs-check.py fails a slug with no project behind it.
 #
-# The point of `examples` is that no card describes a service RISE has not
-# done. Every one of these has at least two projects on this site behind it,
-# so a visitor can check the claim in one click. If a card ever has no
-# example to give, that is a reason to question the card, not to drop the
-# line.
-#
-# These four replace an earlier set (commissioned work, research partnership,
-# independent review, teaching and facilitation) which described four generic
-# consulting modes. Two of them had no project on the site behind them, and
-# the two ways most current work actually begins - a funder backing a
-# programme RISE designs and runs, and a country or data initiative joining a
-# shared data programme - were missing entirely. Wording from the review of
-# 29 October 2026.
-#
-# The order here is the order both pages render, and it runs from the most
-# self-contained engagement to the most open-ended.
+# Revised 1 Nov 2026 (W6, Martin): six cards in a 3 x 2 grid, which echoes the
+# six facts at the top of the page. Two new ways in (policy advice, research
+# partnership) and one for the deep strand (trying something new). Training,
+# workshops and speaking moved to the line under the grid.
 
-- id: commission
-  title: "You need a number you can defend"
+- id: numbers
+  label: "Scaling up"
+  label_url: /approach/#scaling-up
+  title: "You need numbers you can trust"
   action: "Commission a study"
   subject: "Commission a study"
   body: >-
     Commission a baseline, benchmark, limit value or scenario study.
   examples:
     - supporting-the-development-of-a
+    - towards-embodied-carbon-benchmarks-for
+
+- id: rules
+  label: "Scaling up"
+  label_url: /approach/#scaling-up
+  title: "You are (re-)writing the rules"
+  action: "Ask for policy advice"
+  subject: "Policy advice"
+  body: >-
+    Bring us in for targets, methods and roadmaps, from first draft to impact
+    assessment.
+  examples:
+    - global-status-report-for-buildings
+    - agora-leitmaerkte-embodied-carbon
+
+- id: project
+  label: "Research partnership"
+  title: "You are developing a project"
+  action: "Partner with us"
+  subject: "Research partnership"
+  body: >-
+    Bring us in as partner or work package lead: life cycle cost, carbon and
+    impacts, from single buildings to global stocks.
+  examples:
+    - global-whole-life-carbon-tracker
     - analysis-of-life-cycle-greenhouse
 
-- id: fund
-  title: "You want change that outlasts a project"
-  # "initiative", not "programme" (Martin, 1 Nov 2026). The `id` is `fund`
-  # and is untouched: it is the anchor, and the comment at the top of this
-  # file asks for it to stay stable.
+- id: lasting-change
+  label: "Scaling wide"
+  label_url: /approach/#scaling-wide
+  title: "You want change that lasts"
+  # "initiative", not "programme". The W6 pack of 1 Nov says "programme";
+  # Martin asked for "initiative" in chat later the same evening, after the
+  # pack was assembled, so the later instruction stands. The card below it
+  # still says "Join a data programme", which is a different way in and was
+  # not part of that instruction. Revert these three lines if the pack was
+  # the newer decision.
   action: "Fund an initiative"
   subject: "Fund an initiative"
   body: >-
-    Fund an initiative that builds shared data and capacity, from pilot to self-sustaining.
+    Fund an initiative that builds shared data and capacity, from pilot to
+    self-sustaining.
   examples:
     - indicate
     - global-building-data-initiative
 
-- id: join-data
-  title: "You hold building data"
+- id: data
+  label: "Scaling wide"
+  label_url: /approach/#scaling-wide
+  title: "You want to put data to work"
   action: "Join a data programme"
   subject: "Join a data programme"
   body: >-
-    Join a data programme and publish comparable whole life carbon data for your country.
+    Join a data programme: collect, harmonise and use comparable whole life
+    carbon data to set benchmarks and policy in your country.
   examples:
     - indicate-life
     - chile-wlc-data-harmonisation
 
-- id: research-advice
-  title: "You are building a consortium or a curriculum"
-  action: "Research and advice"
-  subject: "Research and advice"
+- id: new
+  label: "Scaling deep"
+  label_url: /approach/#scaling-deep
+  title: "You are trying something new"
+  action: "Test it with us"
+  subject: "Test it with us"
   body: >-
-    Bring us in for research, advice, keynotes or training.
+    Renovation first, shared housing, bio-based materials: we measure what it
+    saves, and what it would take to scale.
   examples:
-    - iea-ebc-annex-72
-    - global-status-report-for-buildings
+    - reliving-scaling-renovation
+    - collaborative-carbon

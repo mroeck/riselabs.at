@@ -1,5 +1,5 @@
 {%- comment -%}
-  The four ways work starts, from _data/engagement.yml.
+  The six ways work starts, from _data/engagement.yml (W6, 1 Nov 2026).
 
     include.style = "list"  the findings list used on /expertise/
     include.style = "cards" the home page cards, each with a mail link whose
@@ -23,6 +23,15 @@
 <ul class="engage">
   {%- for m in site.data.engagement -%}
   <li id="work-{{ m.id }}">
+    {%- comment -%}
+      The label names the strand of /approach/ a card belongs to, or
+      "Research partnership" for the one that runs across all three. It is
+      linked where `label_url` is given, which is for the strands; the
+      partnership label has nowhere of its own to point at and stays plain.
+    {%- endcomment -%}
+    {%- if m.label %}
+    <p class="engage-label">{% if m.label_url %}<a href="{{ m.label_url | relative_url }}">{{ m.label }}</a>{% else %}{{ m.label }}{% endif %}</p>
+    {%- endif %}
     <h3>{{ m.title }}</h3>
     <p>{{ m.body }}</p>
     {%- if m.examples.size > 0 %}
@@ -43,7 +52,7 @@
 <div class="findings">
   <ul>
     {%- for m in site.data.engagement -%}
-    <li><strong>{{ m.title }}.</strong> {{ m.body }}
+    <li>{% if m.label %}<span class="engage-label">{{ m.label }}</span> {% endif %}<strong>{{ m.title }}.</strong> {{ m.body }}
       {%- if m.examples.size > 0 %} <span class="engage-eg">For example:
         {%- for slug in m.examples -%}
           {%- assign p = site.projects | where: "slug", slug | first -%}

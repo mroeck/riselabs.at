@@ -573,24 +573,43 @@ inaccurate and requires a new section, usually a cookie banner too.
 
 All three are in `_data/`, not pages.
 
-**`_data/engagement.yml`** - the four ways work with RISE actually starts.
-Each entry has an `id` (used only for the anchor; keep it stable), a `title`,
-a `body`, a `subject` that prefills the mail link on the home page card, and
-`examples`: two project slugs.
+**`_data/engagement.yml`** - the six ways work with RISE actually starts.
+Each entry has an `id` (used only for the anchor; keep it stable), a `label`,
+an optional `label_url`, a `title`, a `body`, an `action`, a `subject` that
+prefills the mail link, and `examples`: two project slugs.
+
+| Field | Required | Notes |
+|---|---|---|
+| `id` | yes | The anchor (`#work-<id>`) and nothing else. Keep it stable |
+| `label` | yes | The strand of `/approach/` this way in belongs to, or "Research partnership" for the one that crosses all three. Shown small and uppercase above the title |
+| `label_url` | no | Where the label links. The strands have a heading on `/approach/` to point at; "Research partnership" has nowhere of its own and stays plain |
+| `title` | yes | The reader's situation, in their words ("You …") |
+| `action` | yes | What the link says, and what the mail subject says if `subject` is absent |
+| `subject` | yes | The mail subject. A button has to say what it does and a subject line has to sort an inbox, so neither can be the situation |
+| `body` | yes | One sentence |
+| `examples` | yes | Exactly two project slugs, and no project on two cards |
 
 `examples` is the part that matters. Each card names two projects that began
 that way, linked to their pages under their `short_title`, so a visitor can
 check the claim in one click. `docs-check.py` fails a slug with no project
-behind it, and notes a card with fewer than two. **If a card has no examples
-to give, question the card, not the line** - the four here replaced an older
-set in which two modes had nothing on the site behind them.
+behind it, fails a card with fewer than two, and fails a project used on two
+cards. **If a card has no examples to give, question the card, not the line** -
+the six here replaced an older set in which some modes had nothing on the
+site behind them.
 
 One file, two places: the "Work with us" band on the home page renders them
-as cards, `/expertise/` renders the same four as a findings list, both through
-`_includes/engagement.html` with `style="cards"` or `style="list"`. The
-wording used to live on the expertise page alone, which let the home page say
+as cards in a 3 x 2 grid, `/expertise/` renders the same six as a findings
+list, both through `_includes/engagement.html` with `style="cards"` or
+`style="list"`. The two lines under the grid are
+`_includes/engagement-more.html`, shared for the same reason. The wording
+used to live on the expertise page alone, which let the home page say
 something vaguer and let the two drift. **Edit the data file, never the
 pages.**
+
+That second line says "the eight questions we answer", counting the fields in
+`_data/expertise.yml`. W6 specifies the sentence word for word, so the number
+is written out rather than computed, and `docs-check.py` compares the two so
+it cannot go stale when a field is added or dropped.
 
 **`_data/services.yml`** - each block has `title`, `strand` (`up`, `wide` or
 `deep`, which links back to the Approach page), `lede`, a list of `includes`,

@@ -157,9 +157,13 @@ for s in svc:
 # none, and nobody would notice.
 eng = yaml.safe_load((SITE / "_data/engagement.yml").read_text()) or []
 _eng_ids = set()
+_eng_examples = set()
 for e in eng:
     where = f"entry '{e.get('title', '?')}'"
-    for key in ("id", "title", "action", "subject", "body"):
+    # `label` is required since W6 (1 Nov 2026): it names the strand of
+    # /approach/ the card belongs to, and a card without one sits in the grid
+    # with a gap where its neighbours have a line.
+    for key in ("id", "label", "title", "action", "subject", "body"):
         if not e.get(key):
             P("data", "_data/engagement.yml", f"{where} has no `{key}`")
     if e.get("id") in _eng_ids:
@@ -172,10 +176,19 @@ for e in eng:
             P("xref", "_data/engagement.yml",
               f"{where} gives the example '{ex}', which has no file in _projects/")
     if len(exs) < 2:
-        N("_data/engagement.yml",
-          f"{where} has {len(exs)} worked example(s). The card is meant to "
-          "name two projects that started this way; if there are not two, the "
-          "card may be describing something RISE does not actually do.")
+        P("data", "_data/engagement.yml",
+          f"{where} has {len(exs)} worked example(s) and W6 requires two. "
+          "A card that describes a way of working and shows two projects "
+          "that began that way is a claim a visitor can check.")
+    # No project on two cards (W6). Six cards sharing a pool of fifteen
+    # projects can repeat without anyone noticing, and a project offered as
+    # the example of two different ways in says neither clearly.
+    for ex in exs:
+        if ex in _eng_examples:
+            P("data", "_data/engagement.yml",
+              f"{where} gives '{ex}', which another card already uses. W6 "
+              "asks for a different pair on every card.")
+        _eng_examples.add(ex)
 
 # The six homepage facts (F1). Each figure on that band is a claim about the
 # world with a paper behind it, and the whole point of the band is that a
@@ -865,6 +878,21 @@ if not _tone_users:
       "no project sets `hero_tone`, so the picture-treatment opt-out is "
       "carried but unused. Keep it for the next diagram hero, or remove it "
       "from projectgrid.html and the two `.no-tone` rules in style.css.")
+
+# "the eight questions we answer" in _includes/engagement-more.html counts
+# the fields in _data/expertise.yml. W6 specifies that sentence word for
+# word, so the number is written out rather than computed, and this is what
+# stops it going stale when a field is added or dropped.
+_more = SITE / "_includes/engagement-more.html"
+if _more.exists():
+    _words = {"four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+              "nine": 9, "ten": 10, "eleven": 11, "twelve": 12}
+    _m = re.search(r"See the (\w+) questions we answer", _more.read_text())
+    _fields = len(yaml.safe_load((SITE / "_data/expertise.yml").read_text()) or [])
+    if _m and _words.get(_m.group(1)) != _fields:
+        P("data", "_includes/engagement-more.html",
+          f"says \"{_m.group(1)} questions\" but _data/expertise.yml has "
+          f"{_fields} fields.")
 
 # ------------------------------------------------------ compound `where_exp`
 # GitHub Pages runs Jekyll 3.10 on Liquid 4.0.4, whose `where_exp` takes one

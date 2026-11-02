@@ -332,19 +332,47 @@ permalink: /
   The lede names who, not what. The projects band near the top of this page
   already shows what.
 {%- endcomment -%}
+{%- comment -%}
+  W6, 1 Nov 2026. "Work with us", which is what the hero button says; the
+  band used to be called "Start with the problem", so the button landed
+  somewhere with a different name. Six cards in a 3 x 2 grid, which echoes
+  the six facts at the top of the page.
+
+  The two lines under the grid take the overflow: training, workshops and
+  speaking used to be a card of their own, and the second line sends a
+  reader who does not recognise their situation to the questions on
+  /expertise/ rather than leaving them to pick the nearest card.
+
+  The last row is two blocks: the newsletter, and a way in for people who
+  want to work here rather than with us. Which one the second shows depends
+  on whether an opening is actually posted, so the band cannot advertise a
+  job that does not exist.
+{%- endcomment -%}
 <section class="band cta-band" id="work-with-us">
   <div class="wrap">
-    <h2>Start with the problem</h2>
-    <p class="band-lede">We would rather hear the problem than the brief. Tell
-    us what you need to decide, and we will tell you what evidence would
-    help.</p>
+    <h2>Work with us</h2>
+    <p class="band-lede">We would rather hear the problem than the brief. We
+    cover the whole life cycle, from cost and carbon to environmental and,
+    increasingly, social impacts, and every scale from a single building to
+    national and global building stocks. Tell us the decision in front of
+    you, and we will tell you what evidence would hold up.</p>
     {% include engagement.html style="cards" %}
-    <p class="muted small">Or write to
-    <a href="mailto:{{ site.email }}">{{ site.email }}</a> if none of those
-    quite fits.</p>
+    {% include engagement-more.html %}
 
-    <div class="home-news">
-      {% include newsletter.html %}
+    {%- assign openings = site.posts | where: "type", "opening" -%}
+    <div class="engage-last">
+      <div class="home-news">
+        {% include newsletter.html %}
+      </div>
+      <div class="engage-join">
+        <h3>Join us</h3>
+        {%- if openings.size > 0 %}
+        <p>We are growing, and hiring in Vienna.</p>
+        <p class="more"><a href="{{ '/join/' | relative_url }}">Open positions &rarr;</a></p>
+        {%- else %}
+        <p class="more"><a href="{{ '/join/' | relative_url }}">Other ways in: theses, visiting researchers &rarr;</a></p>
+        {%- endif %}
+      </div>
     </div>
   </div>
 </section>

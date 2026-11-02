@@ -1,0 +1,35 @@
+# The place shown under "Where we work" on /team/ (T1).
+# A move (e.g. to dieHauswirtschaft) is a change to this file, not to a template.
+# `focus` is the CSS object-position used when the image is cropped to its slot.
+# Every image carries its credit.
+# Climate Lab's two photos: Martin decided on 2 Nov 2026 to publish them (H34).
+name: Climate Lab Vienna
+text:
+  - "Our on-site team is based at Climate Lab, an innovation centre for the climate transition at Spittelau on the Donaukanal. It is run by Impact Hub Vienna in premises provided by Wien Energie, beside the waste-to-energy plant designed by Friedensreich Hundertwasser."
+  - "We share it with start-ups, companies and researchers working on the energy transition, sustainable building and the circular economy."
+address:
+  - Climate Lab
+  - Spittelauer Lände 45, 1090 Vienna
+  - U4 and U6 Spittelau
+link:
+  label: climatelab.at
+  url: https://climatelab.at/
+images:
+  - src: /assets/img/place/climate-lab-event.jpg
+    slot: wide            # 16:9
+    focus: "50% 70%"
+    alt: "People talking at standing tables on the Climate Lab floor, beside a Climate Lab banner"
+    caption: "Climate Lab, Spittelau."
+    credit: "Climate Lab / Fetz"
+  - src: /assets/img/place/rise-desks.jpg
+    slot: small           # 3:2
+    focus: "40% 50%"
+    alt: "Our desks at Climate Lab: white tables with monitors by a long window, and two armchairs"
+    caption: "Our desks at Climate Lab."
+    credit: "Climate Lab"       
+  - src: /assets/img/place/team-sbc-summit-2026.jpg
+    slot: small           # 3:2
+    focus: "50% 80%"
+    alt: "Six members of the team standing together in the foyer of the Sustainable Buildings and Construction Summit"
+    caption: "The team at the Sustainable Buildings and Construction Summit, Lausanne, April 2026."
+    credit: "Rue Munemo"   # everyone shown has consented
