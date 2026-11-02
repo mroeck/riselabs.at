@@ -2763,9 +2763,11 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   background: #fff; color: #001730;
   border: 1px solid var(--tile-edge);
 }
+/* The same magenta as the post tile: the two placeholders were aligned on
+   2 Nov and splitting them again over one colour would undo that. */
 .cite-tile-kind {
-  font-size: .68rem; font-weight: 600; letter-spacing: .06em;
-  text-transform: uppercase; color: #52616f;
+  font-size: .68rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: #be208b;
 }
 .cite-tile-year {
   font-size: 1.05rem; font-weight: 700; color: #001730;
@@ -2979,9 +2981,14 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   background: #fff; color: #001730;
   border: 1px solid var(--tile-edge);
 }
+/* Magenta, for some flavour on an otherwise plain card (Martin, 2 Nov 2026).
+   #be208b, not the CI's #f92d84: the tile is white in both themes, and
+   #f92d84 on white is 3.66:1, under the 4.5 that small text needs. #be208b
+   is the magenta the light theme already uses for exactly this reason, a
+   blend of the CI magenta and purple, and measures 5.57:1 here. */
 .pcard-kind {
   font-size: .72rem; letter-spacing: .09em; text-transform: uppercase;
-  font-weight: 700; color: #52616f;
+  font-weight: 700; color: #be208b;
 }
 .pcard-big {
   font-size: 1.9rem; font-weight: 700; line-height: .9; text-align: right;
