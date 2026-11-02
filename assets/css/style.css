@@ -2582,11 +2582,44 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
    what the flat grid wants, because its cards carry a job title beside a
    thumbnail and need 21rem to do it; a stood-up card is as wide as its
    portrait and wants a fixed count instead. */
-/* "Where we work" on /team/ borrows the expertise field's two-column shape.
-   That layout alternates which side the picture sits on, by `nth-child`, so
-   the one here would swap sides the moment anything is added above it. It is
-   pinned instead: there is one of these and it reads left to right. */
-#where-we-work .xfield-img { order: 0; }
+/* ---------- "Where we work" on /team/ (T1) ----------
+
+   Text left, pictures right from 56rem; pictures under the text below that,
+   which is where a phone wants them: the address and the link are what
+   someone on a phone is usually after.
+
+   Its own rules rather than the expertise field's, which this borrowed at
+   first: that layout alternates the picture's side by `nth-child`, so it
+   would have flipped the moment anything was added above. */
+.place { display: grid; gap: 1.6rem; align-items: start; }
+@media (min-width: 56rem) {
+  .place { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 2.6rem; }
+}
+/* With no pictures in the data the text takes the whole band rather than
+   half of it beside an empty column. */
+.place-notext { grid-template-columns: minmax(0, 1fr) !important; }
+.place-body h3 { margin: 0 0 .6rem; font-size: 1.15rem; }
+.place-body p { margin: 0 0 .8rem; }
+.place-address { color: var(--ink-soft); font-size: .92rem; line-height: 1.5; }
+.place-body .more { margin: 0; }
+
+/* One wide picture, then two side by side beneath it. On a narrow phone the
+   two drop under each other, because a 3:2 photograph at half a phone's
+   width is a stamp. */
+.place-shots {
+  display: grid; gap: .9rem;
+  grid-template-columns: 1fr 1fr;
+}
+.place-wide { grid-column: 1 / -1; }
+@media (max-width: 26rem) { .place-shots { grid-template-columns: 1fr; } }
+.place-shot { margin: 0; }
+.place-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* The frame is on the image, not the figure: the figure also holds the
+   caption, and `overflow: hidden` on an aspect-ratio box would clip it. */
+.place-wide img { aspect-ratio: 16 / 9; }
+.place-small img { aspect-ratio: 3 / 2; }
+.place-shot .tone { border: 1px solid var(--rule); background: var(--surface); }
+.place-shot figcaption { margin-top: .4rem; line-height: 1.4; }
 
 .people.stacked {
   grid-template-columns: repeat(3, 1fr);

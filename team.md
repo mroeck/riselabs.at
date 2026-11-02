@@ -61,48 +61,59 @@ positions &rarr;</a></p>
 </section>
 
 {%- comment -%}
-  Where we work (Martin, 1 Nov 2026). The team is distributed and the page
-  said nothing about that, which left a reader to guess whether "a growing
-  team in Vienna" meant a room in Vienna.
+  T1, "Where we work", below the team. Everything shown here comes from
+  _data/place.yml, so a move is a change to that file and not to this page;
+  the work order prepares the dieHauswirtschaft text for early 2027, and it
+  is deliberately not on the page until Martin says so.
 
-  Every fact here is one the site already holds or Martin stated: the
-  registered address in _data/impressum.yml is Climate Lab, Spittelauer
-  Lände 45, 1090 Wien, and what Climate Lab is comes from climatelab.at.
-  Nothing is said about how many people work there or how often the team
-  meets beyond "regularly", because neither is known here.
+  Text left, pictures right from 56rem, pictures under the text on a phone.
+  One wide picture at 16:9 and two at 3:2 beneath it. Each is cropped with
+  `object-fit: cover` and the `focus` value from the data as its
+  `object-position`, because the three files are 3:2, 4:3 and 3:2 and the
+  interesting part of each is not in the middle.
 
-  NOT mentioned, on purpose: the possible move to dieHauswirtschaft. Martin
-  put it at early 2027 and called it an update to make then. A page that
-  announces a move that has not happened is wrong twice if it does not.
+  Every caption ends with its credit. The two Climate Lab photographs are
+  published on Martin's decision of 2 Nov (H34); the team photograph is by
+  Rue Munemo and everyone in it has consented (H35).
 
-  The photograph is the R11 placeholder. Climate Lab's own photographs are
-  theirs, not ours to publish, and a stock picture of some other coworking
-  space standing in for our office would be the same error docs/06 forbids
-  for portraits. Replace `image` below once there is a photograph RISE took
-  or has permission to use, and add `image_credit` if it is someone else's.
+  With no images in the data the text runs full width, so the band never
+  shows an empty box.
 {%- endcomment -%}
+{%- assign place = site.data.place -%}
 <section class="band alt" id="where-we-work">
 <div class="wrap">
   <h2>Where we work</h2>
-  <div class="xfield">
-    <figure class="xfield-img">
-      <span class="tone"><img src="{{ '/assets/img/placeholders/placeholder-project.webp' | relative_url }}" alt="" loading="lazy"></span>
-      <figcaption class="muted small">A photograph of the office is still to
-      come.</figcaption>
-    </figure>
-    <div class="xfield-body">
-      <p class="xlede">We work mostly remotely, and meet in person regularly:
-      at team retreats, at partner workshops, and around the projects
-      themselves.</p>
-      <p>Our on-site team is based at <a href="https://climatelab.at/">Climate
-      Lab</a> in Vienna, an innovation centre for the climate transition run
-      by Impact Hub Vienna. It brings together organisations working on the
-      energy transition, sustainable building and the circular economy, which
-      is to say the people our work is for are in the building.</p>
-      <p class="muted small">Climate Lab, Spittelauer Lände 45, 1090 Vienna,
-      Austria. It is also our registered address; see the
-      <a href="{{ '/impressum/' | relative_url }}">Impressum</a>.</p>
+  <p class="band-lede">We work mostly remotely, with colleagues in Austria,
+  Switzerland and South Africa, and come together for team retreats and
+  regular in-person meetings.</p>
+
+  <div class="place{% if place.images.size == 0 %} place-notext{% endif %}">
+    <div class="place-body">
+      <h3>{{ place.name }}</h3>
+      {%- for para in place.text %}
+      <p>{{ para }}</p>
+      {%- endfor %}
+      <p class="place-address">
+        {%- for line in place.address -%}
+        {{ line }}{% unless forloop.last %}<br>{% endunless %}
+        {%- endfor -%}
+      </p>
+      {%- if place.link %}
+      <p class="more"><a href="{{ place.link.url }}">{{ place.link.label }} &rarr;</a></p>
+      {%- endif %}
     </div>
+
+    {%- if place.images.size > 0 %}
+    <div class="place-shots">
+      {%- for im in place.images -%}
+      <figure class="place-shot place-{{ im.slot }}">
+        <span class="tone"><img src="{{ im.src | relative_url }}" alt="{{ im.alt }}"
+          loading="lazy"{% if im.focus %} style="object-position: {{ im.focus }}"{% endif %}></span>
+        <figcaption class="muted small">{{ im.caption }}{% if im.credit %} Photo: {{ im.credit | strip }}.{% endif %}</figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+    {%- endif %}
   </div>
 </div>
 </section>

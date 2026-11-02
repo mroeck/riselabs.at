@@ -573,6 +573,20 @@ inaccurate and requires a new section, usually a cookie banner too.
 
 All three are in `_data/`, not pages.
 
+**`_data/place.yml`** - the place shown under "Where we work" on `/team/`.
+`name`, `text` (one entry per paragraph), `address` (one entry per line),
+`link` (`label` and `url`) and `images`.
+
+Each image has `src`, `slot` (`wide` for the 16:9 picture, `small` for the
+two 3:2 ones), `focus` (the CSS `object-position` used when it is cropped),
+`alt`, `caption` and `credit`. The credit is appended to the caption as
+"Photo: …", and a photograph without one should not be on the site.
+
+A move is a change to this file, not to the page: swap `name`, `text`,
+`address`, `link` and `images` and the band follows. The work order has the
+dieHauswirtschaft wording ready for early 2027. With no `images` at all the
+text runs the full width, so the band never shows an empty box.
+
 **`_data/engagement.yml`** - the six ways work with RISE actually starts.
 Each entry has an `id` (used only for the anchor; keep it stable), a `label`,
 an optional `label_url`, a `title`, a `body`, an `action`, a `subject` that
