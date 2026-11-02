@@ -62,9 +62,13 @@ positions &rarr;</a></p>
 
 {%- comment -%}
   T1, "Where we work", below the team. Everything shown here comes from
-  _data/place.yml, so a move is a change to that file and not to this page;
-  the work order prepares the dieHauswirtschaft text for early 2027, and it
-  is deliberately not on the page until Martin says so.
+  _data/place.yml, so a move is a change to that file and not to this page.
+
+  Two places since 2 Nov 2026: Climate Lab today, and dieHausWirtschaft from
+  2027. Both are in the data file's `places` list and the page loops it, so
+  when the move happens it is a reordering of that list and the labels above
+  the names, with nothing to change here. Climate Lab stays on the page after
+  the move: the membership and the events continue.
 
   Text left, pictures right from 56rem, pictures under the text on a phone.
   One wide picture at 16:9 and two at 3:2 beneath it. Each is cropped with
@@ -88,20 +92,15 @@ positions &rarr;</a></p>
   regular in-person meetings.</p>
 
   <div class="place{% if place.images.size == 0 %} place-notext{% endif %}">
-    <div class="place-body">
-      <h3>{{ place.name }}</h3>
-      {%- for para in place.text %}
-      <p>{{ para }}</p>
-      {%- endfor %}
-      <p class="place-address">
-        {%- for line in place.address -%}
-        {{ line }}{% unless forloop.last %}<br>{% endunless %}
-        {%- endfor -%}
-      </p>
-      {%- if place.link %}
-      <p class="more"><a href="{{ place.link.url }}">{{ place.link.label }} &rarr;</a></p>
-      {%- endif %}
-    </div>
+    {%- comment -%}
+      The first place takes the text column beside the photographs. The
+      photographs are of the team and of the desks it works at now, so they
+      belong to that one; anything after it spans the full width underneath,
+      where there is no picture column to leave half empty.
+    {%- endcomment -%}
+    {%- for p in place.places limit:1 -%}
+    {% include placeblock.html p=p wrap="place-body" %}
+    {%- endfor %}
 
     {%- if place.images.size > 0 %}
     <div class="place-shots">
@@ -114,6 +113,10 @@ positions &rarr;</a></p>
       {%- endfor -%}
     </div>
     {%- endif %}
+
+    {%- for p in place.places offset:1 -%}
+    {% include placeblock.html p=p wrap="place-next" %}
+    {%- endfor %}
   </div>
 </div>
 </section>

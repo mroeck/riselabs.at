@@ -1534,16 +1534,49 @@ both tasks (open it on a phone and on a desktop).
   - Photos follow R7 (duotone in both themes); captions sit below, never on
     the image.
   - Put the place in `_data/place.yml` (name, text, address, link, images
-    with credit), so a move is a data change, not a template change.
-- **Prepared for a move (early 2027, only when Martin says so):** replace
-  the Climate Lab block with "dieHauswirtschaft", text: "Our on-site team is
-  based at dieHauswirtschaft in Vienna's Nordbahnviertel, a cooperatively
-  run house where people live and work under one roof, with coworking,
-  workshop rooms and a hall for events. It is a low-energy building with its
-  own solar power." Address: Bruno-Marek-Allee 5/1, 1020 Vienna. Link:
-  https://diehauswirtschaft.at/. New images needed then.
+    with credit), so a move is a data change, not a template change. T2
+    turned that into a list of places on 2 Nov 2026.
 - **Done when:** the band shows below the team on /team/ in both themes,
   every photo carries its credit, and no placeholder boxes are visible.
+
+### T2 The 2027 move, on the page now
+
+Martin, 2 Nov 2026: add dieHausWirtschaft and keep Climate Lab. The move is
+not a swap. RISE keeps its Climate Lab membership and stays in that
+community and its events, and the new house is on the page a year early so
+that anyone considering applying can weigh up where they would live while
+they are still deciding.
+
+- **Files:** `_data/place.yml`, `team.md`, `_includes/placeblock.html` (new),
+  `assets/css/style.css`, `docs-check.py`, `docs/03`
+- **Change:** `_data/place.yml` becomes a `places` list rather than one
+  place, with `when` as the label above each name ("Today", "From 2027").
+  `images` stays outside the list: the photographs are of the team and of
+  the desks it works at now. The page loops the list, so the move itself is
+  a reordering of two entries and two labels.
+- **Layout:** the first place keeps the text column beside the photographs.
+  Every place after it spans the full width underneath, with a rule above
+  and its paragraphs in two columns from 56rem. Stacked in the text column
+  instead, the second place left about 550 px of empty surface beside it,
+  because all three photographs belong to the first.
+- **Text:** the wording prepared in T1 is used as drafted, plus the
+  cooperative's own two halves of the house and the housing line. Checked
+  against diehauswirtschaft.at on 2 Nov 2026: the cooperative, the
+  Nordbahnviertel, "Arbeiten und Wohnen nehmen jeweils 50 Prozent der Fläche
+  ein", the low-energy building with its own photovoltaics (the coworking
+  page), tram O stopping at the door, and the members designing the house
+  with einszueins architektur, who are RISE's partners in
+  CollaborativeCarbon. No count of people or flats is quoted: that site
+  gives 200 and 250 people in different places, and 46 and 48 homes, and
+  rule 2 is not satisfied by picking one.
+- **Housing:** the flats are let by the cooperative. The page says so and
+  sends the question there, because RISE has nothing to do with letting them
+  and must not read as though it had.
+- **Still needed:** pictures of the new house, which are H39. Until they
+  exist the band shows the Climate Lab photographs only, which is honest:
+  RISE does not work there yet.
+- **Done when:** /team/ shows both places in both themes, no sideways scroll
+  at 390 px, and `docs-check` passes.
 
 ---
 
@@ -1731,6 +1764,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H36 | Martin | The post categories used on social media, so the types in `_data/post_types.yml` can match them | N1 |
 | H37 | Martin | More imagery from RISE projects and activities for the home hero carousel. It runs on three pictures today, one per brand pillar, and the same three on every visit. Wanted: photographs of the work and the people doing it, roughly 2.2:1 or croppable to it, each with the pillar it belongs to, who took it, and whether it may be published | C1 |
 | H38 | Martin | A pass over the 15 projects one by one: the description, the visual assets, and the reports and other outputs to link. Gaps found so far are listed in C2. Needed per project: whether the summary and body still read correctly, a photograph where the picture is currently a diagram, and the URL of every public report, dataset or tool that belongs to it | C2 |
+| H39 | Martin | Photographs of dieHausWirtschaft, once RISE is there or has permission to publish the cooperative's own. One 16:9 and two 3:2, with the credit for each, as in T1. Also: is "dieHausWirtschaft" the spelling to use? Their English page writes it that way, their German pages write "die HausWirtschaft", and the work order wrote "dieHauswirtschaft" | T2 |
 
 ---
 

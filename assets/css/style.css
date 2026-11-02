@@ -2598,10 +2598,40 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
 /* With no pictures in the data the text takes the whole band rather than
    half of it beside an empty column. */
 .place-notext { grid-template-columns: minmax(0, 1fr) !important; }
-.place-body h3 { margin: 0 0 .6rem; font-size: 1.15rem; }
-.place-body p { margin: 0 0 .8rem; }
+.place-one h3 { margin: 0 0 .6rem; font-size: 1.15rem; }
+/* Two places since 2 Nov 2026: Climate Lab today, beside the photographs,
+   and the 2027 move spanning the full width under them. Full width because
+   the pictures are all of the first place: stacked in the text column the
+   second one left half a screen of empty surface to its right.
+
+   A rule above it, so it does not read as more paragraphs of the first, and
+   the date label above each name carries which is which. */
+.place-next {
+  grid-column: 1 / -1;
+  margin-top: .4rem; padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+}
+/* Its paragraphs in two columns on a wide screen. Full-width prose here runs
+   to about 140 characters a line, which is roughly twice what anyone reads
+   comfortably. One column below 56rem, where the band is single-column
+   anyway. `break-inside` keeps a paragraph whole rather than splitting one
+   across the gap. */
+@media (min-width: 56rem) {
+  .place-next .place-text { columns: 2; column-gap: 2.6rem; }
+  .place-next .place-text p { break-inside: avoid; margin-top: 0; }
+  /* The address follows the columns, so it needs the space the last
+     paragraph's own margin cannot give it across a column break. */
+  .place-next .place-address { margin-top: .4rem; }
+}
+.place-when {
+  margin: 0 0 .3rem !important;
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent);
+}
+.place-one p { margin: 0 0 .8rem; }
 .place-address { color: var(--ink-soft); font-size: .92rem; line-height: 1.5; }
-.place-body .more { margin: 0; }
+.place-one .more { margin: 0; }
 
 /* One wide picture, then two side by side beneath it. On a narrow phone the
    two drop under each other, because a 3:2 photograph at half a phone's

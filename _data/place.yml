@@ -1,19 +1,50 @@
-# The place shown under "Where we work" on /team/ (T1).
-# A move (e.g. to dieHauswirtschaft) is a change to this file, not to a template.
-# `focus` is the CSS object-position used when the image is cropped to its slot.
-# Every image carries its credit.
+# The places shown under "Where we work" on /team/ (T1).
+#
+# `places` is a list, in the order they appear on the page, so the 2027 move is
+# a reordering here and nothing else: when dieHausWirtschaft becomes the office,
+# put it first, change its `when` to "Our office" and give Climate Lab a `when`
+# of "Members since 2024" or similar. No template change either way.
+#
+# `when` is the small label above the name. Leave it out and nothing is shown.
+# `images` belong to the band, not to one place, because the pictures are of
+# the team and its current desks. `focus` is the CSS object-position used when
+# the image is cropped to its slot. Every image carries its credit.
 # Climate Lab's two photos: Martin decided on 2 Nov 2026 to publish them (H34).
-name: Climate Lab Vienna
-text:
-  - "Our on-site team is based at Climate Lab, an innovation centre for the climate transition at Spittelau on the Donaukanal. It is run by Impact Hub Vienna in premises provided by Wien Energie, beside the waste-to-energy plant designed by Friedensreich Hundertwasser."
-  - "We share it with start-ups, companies and researchers working on the energy transition, sustainable building and the circular economy."
-address:
-  - Climate Lab
-  - Spittelauer Lände 45, 1090 Vienna
-  - U4 and U6 Spittelau
-link:
-  label: climatelab.at
-  url: https://climatelab.at/
+places:
+  - name: Climate Lab Vienna
+    when: Today
+    text:
+      - "Our on-site team is based at Climate Lab, an innovation centre for the climate transition at Spittelau on the Donaukanal. It is run by Impact Hub Vienna in premises provided by Wien Energie, beside the waste-to-energy plant designed by Friedensreich Hundertwasser."
+      - "We share it with start-ups, companies and researchers working on the energy transition, sustainable building and the circular economy."
+      - "We stay members after the office move, and keep taking part in the community and the events here."
+    address:
+      - Climate Lab
+      - Spittelauer Lände 45, 1090 Vienna
+      - U4 and U6 Spittelau
+    link:
+      label: climatelab.at
+      url: https://climatelab.at/
+
+  # Martin, 2 Nov 2026: on the page now rather than from 2027, so that anyone
+  # thinking of applying can weigh it up while they are still deciding where to
+  # live. Facts from diehauswirtschaft.at: the cooperative, the Nordbahnviertel,
+  # the half-and-half split of homes and workspace, the low-energy building with
+  # its own photovoltaics, and tram O at the door. The people and apartment
+  # counts on that site contradict each other (200 vs 250 people, 46 vs 48
+  # homes), so no number is quoted here.
+  - name: dieHausWirtschaft
+    when: From 2027
+    text:
+      - "Our office moves to dieHausWirtschaft in Vienna's Nordbahnviertel, a cooperatively run house where people live and work under one roof, with coworking, workshop rooms and a hall for events. It is a low-energy building with its own solar power, designed by its members together with einszueins architektur, who are also our partners in CollaborativeCarbon."
+      - "Roughly half the house is homes and half is workspace. If you are thinking of applying to RISE and wondering where you would live, the flats are worth knowing about: they are let by the cooperative and not by us, so any question about them goes to dieHausWirtschaft."
+    address:
+      - dieHausWirtschaft
+      - Bruno-Marek-Allee 5/1, 1020 Vienna
+      - Tram O Bruno-Marek-Allee
+    link:
+      label: diehauswirtschaft.at
+      url: https://diehauswirtschaft.at/
+
 images:
   - src: /assets/img/place/climate-lab-event.jpg
     slot: wide            # 16:9
@@ -26,7 +57,7 @@ images:
     focus: "40% 50%"
     alt: "Our desks at Climate Lab: white tables with monitors by a long window, and two armchairs"
     caption: "Our desks at Climate Lab."
-    credit: "Climate Lab"       
+    credit: "Climate Lab"
   - src: /assets/img/place/team-sbc-summit-2026.jpg
     slot: small           # 3:2
     focus: "50% 80%"
