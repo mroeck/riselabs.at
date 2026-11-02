@@ -130,14 +130,20 @@ nav:
         url: /projects/
       - title: Publications
         url: /publications/
+      # Into the publications page on its Data and tools tab, rather than the
+      # separate /tools/ page (Martin, 1 Nov 2026). The datasets were always
+      # the same files as the publications; two destinations for them meant
+      # two places to keep right. /tools/ is still built and still works, so
+      # nothing already linked to it breaks; it is simply no longer in the
+      # menu. Decide whether it stays before the next round of edits.
       - title: Data & tools
-        url: /tools/
+        url: /publications/#data
   - title: Media
     items:
-      - title: News
+      # One entry since 2 Nov 2026 (N5): /news/ and /events/ became one
+      # page with tabs, and /events/ is a redirect into it.
+      - title: News and events
         url: /news/
-      - title: Events
-        url: /events/
 
 markdown: kramdown
 kramdown:

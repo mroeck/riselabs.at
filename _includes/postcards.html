@@ -1,0 +1,44 @@
+{%- comment -%}
+  Posts as cards (N4). Three columns on a desktop, two on a tablet, one on a
+  phone. Expects: include.posts. include.featured="true" lets the first post
+  with `featured: true` lead at full width, which is the "All" tab only;
+  inside a tab or while filtering it is an ordinary card.
+
+  Each card is one link. The picture is the post's `hero` where it has one,
+  otherwise a tile in the CI gradient carrying the type's label, with a
+  different gradient per type so a grid of tiles does not read as one block.
+  Event tiles also carry the event date.
+
+  The label comes from _data/post_types.yml, so a card says "Project update"
+  rather than the raw `project`, and a new type is an entry in that file
+  rather than a change here.
+{%- endcomment -%}
+{%- assign types = site.data.post_types -%}
+<ul class="pcards">
+  {%- for post in include.posts -%}
+  {%- assign t = types | where: "slug", post.type | first -%}
+  {%- assign lead = false -%}
+  {%- if include.featured == "true" and post.featured -%}{%- assign lead = true -%}{%- endif -%}
+  <li class="pcard{% if lead %} pcard-lead{% endif %}" data-type="{{ post.type }}"
+      data-text="{{ post.title | append: ' ' | append: post.summary | downcase | strip_html | escape }}">
+    <a href="{{ post.url | relative_url }}">
+      {%- if post.hero -%}
+      <span class="pcard-shot"><img src="{{ post.hero | relative_url }}" alt="" loading="lazy"></span>
+      {%- else -%}
+      <span class="pcard-tile tile-{{ post.type }}" aria-hidden="true">
+        <span class="pcard-kind">{{ t.label | default: post.type }}</span>
+        {%- if post.type == "event" and post.event_start -%}
+        <span class="pcard-big">{{ post.event_start | date: "%-d" }}<span>{{ post.event_start | date: "%b %Y" }}</span></span>
+        {%- endif -%}
+      </span>
+      {%- endif -%}
+      <span class="pcard-meta">
+        {%- if t %}<span class="pcard-chip">{{ t.label }}</span>{% endif -%}
+        <span>{{ post.date | date: "%-d %B %Y" }}</span>
+      </span>
+      <span class="pcard-title">{{ post.title }}</span>
+      {%- if post.summary %}<span class="pcard-sum">{{ post.summary }}</span>{% endif -%}
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>

@@ -157,6 +157,176 @@
     });
   }
 
+  /* ---------- publication kind tabs ---------- */
+
+  /* One button per kind section on /publications/. Clicking one shows that
+     section and hides the rest; "All" shows everything.
+
+     It hides sections rather than entries, because on this page the sections
+     are the kinds. That also keeps it out of the way of the other two
+     controls: the filter box and the sort select act on the entries inside
+     whatever is visible, so the three compose instead of fighting.
+
+     A section with no entries is never rendered and never gets a button, so
+     unlike the theme bar there is no dead button to prune here. */
+
+  function setupKinds(bar) {
+    var sections = Array.prototype.slice.call(
+      document.querySelectorAll("#publist .pubkind"));
+    if (!sections.length) return;
+
+    bar.hidden = false;
+
+    function show(want) {
+      Array.prototype.forEach.call(bar.querySelectorAll("button"), function (b) {
+        b.classList.toggle("on", b.getAttribute("data-kind-filter") === want);
+      });
+      sections.forEach(function (s) {
+        s.hidden = want !== "" && s.getAttribute("data-kind") !== want;
+      });
+    }
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-kind-filter]") : null;
+      if (!btn) return;
+      var want = btn.getAttribute("data-kind-filter");
+      show(want);
+      // the address bar follows the tab, so the state can be linked to and
+      // the back button steps through the tabs rather than leaving the page
+      if (history.replaceState) {
+        history.replaceState(null, "", want ? "#" + want : location.pathname);
+      }
+    });
+
+    /* A kind in the fragment opens on that tab. This is how the navigation
+       reaches data and tools: /publications/#data rather than a page of its
+       own. Only a fragment that names a section counts, so an ordinary
+       anchor elsewhere on the page is left alone.
+
+       The browser has already scrolled to the section by the time this runs,
+       which is the right place to be looking. */
+    function fromHash() {
+      var want = (location.hash || "").replace(/^#/, "");
+      if (!want) return;
+      var known = sections.some(function (s) {
+        return s.getAttribute("data-kind") === want;
+      });
+      if (known) show(want);
+    }
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+  }
+
+  /* ---------- news and events: tabs, filter, staleness ---------- */
+
+  /* One page, one set of cards, three controls over them (N2).
+
+     The tabs choose a type, the filter box narrows within that choice, and
+     the featured card only leads while neither is in use: a full-width card
+     at the top of a filtered list is just a card that is wider than its
+     neighbours for no reason.
+
+     "Coming up" is shown on All and Events only, because it is a strip of
+     events and has nothing to say under Publications.
+
+     Each tab has its own hash, so /news/#events opens on Events and a link
+     can point at a tab. Choosing a tab replaces the hash rather than pushing
+     one, so the back button leaves the page instead of walking the tabs. */
+
+  function setupNews(bar) {
+    var list = document.getElementById("newslist");
+    if (!list) return;
+    var cards = Array.prototype.slice.call(list.querySelectorAll(".pcard"));
+    if (!cards.length) return;
+    var buttons = Array.prototype.slice.call(bar.querySelectorAll("[data-news-filter]"));
+    var empty = document.querySelector("[data-news-empty]");
+    var soon = document.querySelector("[data-comingup]");
+    var box = bar.querySelector("[data-filter]");
+    var want = "";
+
+    bar.hidden = false;
+
+    function byHash(h) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].getAttribute("data-hash") === h) return buttons[i];
+      }
+      return null;
+    }
+
+    function apply() {
+      var q = box && box.value ? box.value.trim().toLowerCase() : "";
+      var shown = 0;
+      cards.forEach(function (c) {
+        var ok = (!want || c.getAttribute("data-type") === want) &&
+                 (!q || (c.getAttribute("data-text") || "").indexOf(q) > -1);
+        c.hidden = !ok;
+        // the lead card is only a lead on the unfiltered All tab
+        c.classList.toggle("pcard-lead",
+          ok && !want && !q && c.hasAttribute("data-lead"));
+        if (ok) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+      // The strip belongs to All and Events, but only while it still has an
+      // event ahead. setupComingUp marks it empty once the last one has
+      // passed, and this must not put it back: the two controls both own
+      // `hidden` on that element, and whichever ran last used to win.
+      if (soon) {
+        soon.hidden = soon.hasAttribute("data-empty") ||
+                      !(want === "" || want === "event");
+      }
+      buttons.forEach(function (b) {
+        var on = b.getAttribute("data-news-filter") === want;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+      });
+    }
+
+    // remember which card was the lead before the class starts moving
+    cards.forEach(function (c) {
+      if (c.classList.contains("pcard-lead")) c.setAttribute("data-lead", "");
+    });
+
+    bar.addEventListener("click", function (e) {
+      var btn = e.target.closest ? e.target.closest("[data-news-filter]") : null;
+      if (!btn) return;
+      want = btn.getAttribute("data-news-filter");
+      var h = btn.getAttribute("data-hash");
+      if (history.replaceState) {
+        history.replaceState(null, "", h ? "#" + h : location.pathname);
+      }
+      apply();
+    });
+    if (box) box.addEventListener("input", apply);
+
+    function fromHash() {
+      var b = byHash((location.hash || "").replace(/^#/, ""));
+      if (b) { want = b.getAttribute("data-news-filter"); apply(); }
+    }
+    fromHash();
+    window.addEventListener("hashchange", fromHash);
+    apply();
+  }
+
+  /* An event whose end has passed should leave "Coming up" even if nobody
+     has pushed to the repository since. The page is built once and may sit
+     for weeks, so the split cannot be made at build time alone. */
+
+  function setupComingUp(strip) {
+    var items = Array.prototype.slice.call(strip.querySelectorAll("li[data-end]"));
+    var today = new Date().toISOString().slice(0, 10);
+    var left = 0;
+    items.forEach(function (li) {
+      var end = li.getAttribute("data-end");
+      var past = end && end < today;
+      li.hidden = past;
+      if (!past) left++;
+    });
+    if (!left) {
+      strip.hidden = true;
+      strip.setAttribute("data-empty", "");
+    }
+  }
+
   /* ---------- navigation ---------- */
 
   /* One markup structure serves both layouts. On a wide screen the groups sit
@@ -646,6 +816,9 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
     Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
     Array.prototype.forEach.call(document.querySelectorAll("[data-reel]"), setupReel);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-kindbar]"), setupKinds);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-comingup]"), setupComingUp);
+    Array.prototype.forEach.call(document.querySelectorAll("[data-newsbar]"), setupNews);
     Array.prototype.forEach.call(document.querySelectorAll("[data-pubcontrols]"), setupPubControls);
   }
 

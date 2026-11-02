@@ -1,6 +1,20 @@
 ---
 layout: post
 type: event
+# Event fields (N6, 2 Nov 2026), read from this post's own body.
+# event_start: waiting on H8, the session's day within COP31.
+# event_month is the fallback for a date known only to the month: the body
+# gives the conference as 9 to 20 November 2026, so the month is a fact and
+# the day is not. "Coming up" shows it as "Nov 2026, session date to be
+# confirmed" and sorts it on the first of that month. Delete this line when
+# event_start is known.
+event_month: 2026-11
+# The conference itself ends on 20 November, which the body states, so the
+# session cannot be ahead after that date even though its day is unknown.
+# This is what drops it out of "Coming up" on the 21st.
+event_end: 2026-11-20
+location: "Antalya, Türkiye"
+format: in person
 projects:
   - global-building-data-initiative
 people:

@@ -157,9 +157,13 @@ for s in svc:
 # none, and nobody would notice.
 eng = yaml.safe_load((SITE / "_data/engagement.yml").read_text()) or []
 _eng_ids = set()
+_eng_examples = set()
 for e in eng:
     where = f"entry '{e.get('title', '?')}'"
-    for key in ("id", "title", "action", "subject", "body"):
+    # `label` is required since W6 (1 Nov 2026): it names the strand of
+    # /approach/ the card belongs to, and a card without one sits in the grid
+    # with a gap where its neighbours have a line.
+    for key in ("id", "label", "title", "action", "subject", "body"):
         if not e.get(key):
             P("data", "_data/engagement.yml", f"{where} has no `{key}`")
     if e.get("id") in _eng_ids:
@@ -172,10 +176,19 @@ for e in eng:
             P("xref", "_data/engagement.yml",
               f"{where} gives the example '{ex}', which has no file in _projects/")
     if len(exs) < 2:
-        N("_data/engagement.yml",
-          f"{where} has {len(exs)} worked example(s). The card is meant to "
-          "name two projects that started this way; if there are not two, the "
-          "card may be describing something RISE does not actually do.")
+        P("data", "_data/engagement.yml",
+          f"{where} has {len(exs)} worked example(s) and W6 requires two. "
+          "A card that describes a way of working and shows two projects "
+          "that began that way is a claim a visitor can check.")
+    # No project on two cards (W6). Six cards sharing a pool of fifteen
+    # projects can repeat without anyone noticing, and a project offered as
+    # the example of two different ways in says neither clearly.
+    for ex in exs:
+        if ex in _eng_examples:
+            P("data", "_data/engagement.yml",
+              f"{where} gives '{ex}', which another card already uses. W6 "
+              "asks for a different pair on every card.")
+        _eng_examples.add(ex)
 
 # The six homepage facts (F1). Each figure on that band is a claim about the
 # world with a paper behind it, and the whole point of the band is that a
@@ -411,6 +424,26 @@ for p, t in all_text:
         elif target not in pages:
             P("link", str(p.relative_to(SITE)), f"links to {target}, which no page produces")
 
+# The ids a nav fragment may point at. Most are written literally in a page
+# or an include; the kind sections on /publications/ are not, because
+# publist.html gives each one id="<kind>" from the data, so those are added
+# from the publications themselves. Computed once, on first use.
+_anchor_cache = None
+
+
+def _anchors():
+    global _anchor_cache
+    if _anchor_cache is None:
+        ids = set()
+        for _f in list(SITE.glob("*.md")) + list(SITE.glob("*.html")) + \
+                list((SITE / "_includes").glob("*.html")) + \
+                list((SITE / "_layouts").glob("*.html")):
+            ids |= set(re.findall(r'id="([^"{]+)"', _f.read_text()))
+        ids |= {pb.get("kind") for _s, (pb, _b, _f) in coll["publications"].items()}
+        _anchor_cache = {i for i in ids if i}
+    return _anchor_cache
+
+
 # nav entries. An entry is either a link (`url`) or a group (`items`); a
 # group's children are links. Both shapes are checked, and a group with no
 # children is flagged, because the header silently skips it.
@@ -426,8 +459,19 @@ def _check_nav(entry, parent=None):
         for kid in kids:
             _check_nav(kid, entry.get("title"))
     elif "url" in entry:
-        if entry["url"] not in pages:
+        # A nav url may carry a fragment: "Data & tools" points at
+        # /publications/#data, which opens that page on its Data and tools
+        # tab rather than being a page of its own (1 Nov 2026). The page and
+        # the anchor are checked separately, because a fragment that names
+        # nothing lands the reader at the top of the page with no sign that
+        # anything was meant to happen.
+        _url, _, _frag = entry["url"].partition("#")
+        if _url not in pages:
             P("config", "_config.yml", f"{where} points at {entry['url']}, no such page")
+        elif _frag and _frag not in _anchors():
+            P("config", "_config.yml",
+              f"{where} points at {entry['url']}, and nothing on the site "
+              f"renders an #{_frag} to land on")
     else:
         P("config", "_config.yml", f"{where} has neither a url nor items")
 
@@ -834,6 +878,50 @@ if not _tone_users:
       "no project sets `hero_tone`, so the picture-treatment opt-out is "
       "carried but unused. Keep it for the next diagram hero, or remove it "
       "from projectgrid.html and the two `.no-tone` rules in style.css.")
+
+# "the eight questions we answer" in _includes/engagement-more.html counts
+# the fields in _data/expertise.yml. W6 specifies that sentence word for
+# word, so the number is written out rather than computed, and this is what
+# stops it going stale when a field is added or dropped.
+_more = SITE / "_includes/engagement-more.html"
+if _more.exists():
+    _words = {"four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+              "nine": 9, "ten": 10, "eleven": 11, "twelve": 12}
+    _m = re.search(r"See the (\w+) questions we answer", _more.read_text())
+    _fields = len(yaml.safe_load((SITE / "_data/expertise.yml").read_text()) or [])
+    if _m and _words.get(_m.group(1)) != _fields:
+        P("data", "_includes/engagement-more.html",
+          f"says \"{_m.group(1)} questions\" but _data/expertise.yml has "
+          f"{_fields} fields.")
+
+# ---------------------------------------------------------------- post types
+# Every post's `type` has to be a slug in _data/post_types.yml (N1). The
+# tabs, the card labels and the tile colours all read that file, so a post
+# with a type nobody declared gets no tab, no label and a blank tile, and
+# none of that shows up as an error.
+_types = yaml.safe_load((SITE / "_data/post_types.yml").read_text()) or []
+_slugs = {t.get("slug") for t in _types}
+for _t in _types:
+    for _k in ("slug", "label", "plural", "hash"):
+        if not _t.get(_k):
+            P("data", "_data/post_types.yml",
+              f"type '{_t.get('slug', '?')}' has no `{_k}`")
+for _slug, (_pb, _body, _f) in posts.items():
+    _ty = _pb.get("type")
+    if not _ty:
+        P("data", f"_posts/{_slug}.md", "has no `type`")
+    elif _ty not in _slugs:
+        P("data", f"_posts/{_slug}.md",
+          f"`type: {_ty}` is not a slug in _data/post_types.yml "
+          f"({', '.join(sorted(s for s in _slugs if s))}).")
+    # An event with no date cannot be placed in "Coming up" or carry a date
+    # on its tile. A warning, not a failure: the COP31 session is waiting on
+    # H8 for its day and has `event_month` instead, which is the honest
+    # halfway house rather than a made-up date.
+    if _ty == "event" and not (_pb.get("event_start") or _pb.get("event_month")):
+        N(f"_posts/{_slug}.md",
+          "is an event with no `event_start` and no `event_month`, so it "
+          "cannot appear in \"Coming up\" and its tile carries no date.")
 
 # ------------------------------------------------------ compound `where_exp`
 # GitHub Pages runs Jekyll 3.10 on Liquid 4.0.4, whose `where_exp` takes one

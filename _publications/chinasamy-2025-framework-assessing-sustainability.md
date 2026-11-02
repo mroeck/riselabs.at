@@ -1,6 +1,6 @@
 ---
 title: "Framework for Assessing the Sustainability of Innovative Building Technology"
-kind: article
+kind: conference
 authors: "Chinasamy D, Windapo AO, Emuze FA, Pomponi F"
 year: 2025
 journal: "CIB Conferences"

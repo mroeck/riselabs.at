@@ -1,6 +1,10 @@
 ---
 layout: post
 type: event
+# Event fields (N6, 2 Nov 2026), read from this post's own body.
+event_start: 2026-11-26
+location: "Mumbai, India"
+format: in person
 projects:
   - gbdi-china-and-india-cooperation
 people:
@@ -13,7 +17,7 @@ partners:
 # image once it has happened. Until then the event artwork would do.
 # hero: /assets/img/posts/igbc-congress-2026.jpg
 # hero_caption: ""
-title: "Upcoming: Leadership Panel at IGBC Green Building Congress 2026, Mumbai"
+title: "Leadership Panel at IGBC Green Building Congress 2026, Mumbai"
 summary: "Martin Röck joins the opening Leadership Panel on global pathways to green, resilient and net-zero built environments, 26 November in Mumbai."
 ---
 

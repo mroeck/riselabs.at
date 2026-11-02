@@ -214,7 +214,7 @@ partners:
 | Field | Required | Notes |
 |---|---|---|
 | `title` | yes | |
-| `kind` | yes | `article`, `report`, `data` or `book` |
+| `kind` | yes | `article`, `conference`, `report`, `book` or `data`. It picks the section and the tab on /publications/, and a kind with nothing in it renders neither. Use `conference` where the venue is a conference, a congress or a proceedings series, even where the series calls itself a journal |
 | `authors` | yes | One string, `Surname I` format, comma-separated, **in the published order**. `Röck M` is underlined automatically |
 | `year` | yes | A number, unquoted. Sorting depends on it |
 | `journal` | no | Journal, publisher or repository |
@@ -430,7 +430,13 @@ The body of the post.
 | Field | Required | Notes |
 |---|---|---|
 | `layout` | yes | Always `post` |
-| `type` | yes | `output`, `event`, `project` or `opening`. Shown as a small label |
+| `type` | yes | A `slug` from `_data/post_types.yml`: `event`, `project`, `output` or `opening`. The card shows that type's `label` ("Project update", not `project`), the tab shows its `plural`, and `docs-check.py` fails a type the file does not declare |
+| `event_start` | events | `YYYY-MM-DD`. Puts the event in "Coming up" and the date on its tile |
+| `event_end` | no | Defaults to `event_start`. What "Coming up" uses to decide the event has passed |
+| `event_month` | no | `YYYY-MM`, for a date known only to the month. "Coming up" shows the month and "session date to be confirmed". Delete it once `event_start` is known |
+| `location` | events | "Brussels, Belgium" or "Online" |
+| `format` | events | `in person`, `online` or `hybrid` |
+| `register_url` | no | Shown in "Coming up" until the event has passed |
 | `title` | yes | |
 | `summary` | yes | What appears in lists |
 | `featured` | no | `true` pushes it to the front of the home page's three. Use sparingly - one at a time |
@@ -476,6 +482,39 @@ attribute. Without JavaScript the build-time filter stands, so the page can be
 a few days out of date but never badly wrong.
 
 ---
+
+### The types, and the one page they share
+
+`/news/` and `/events/` became one page on 2 November 2026. `/news/` carries
+tabs by type; `/events/` is a redirect to `/news/#events`, so anything linked
+to the old address still arrives.
+
+**`_data/post_types.yml`** holds the types, in tab order. Each has a `slug`
+(what a post's `type:` says), a `label` (what a card calls it), a `plural`
+(what the tab calls it) and a `hash` (`/news/#events`).
+
+Adding a type later is one entry in that file and nothing else: the tabs, the
+card labels and the tile colours all read it. **Do not add a type no post uses
+yet.** A tab with nothing behind it is a promise the page does not keep, and
+the page hides it anyway, so the entry would simply be dead.
+
+Every tab has its own address. `/news/#events` opens on Events, and choosing
+a tab updates the address without adding a history entry, so the back button
+leaves the page rather than walking back through the tabs.
+
+Without JavaScript the tabs are hidden and every post shows in one grid,
+newest first.
+
+### "Coming up"
+
+The strip above the tabs lists events still ahead, soonest first, at most
+three. An event is ahead while its `event_end` (or `event_start`, or the
+first of its `event_month`) is today or later.
+
+GitHub Pages rebuilds only when something is pushed, so a page built in
+October would still be calling a November event "coming up" in December. Each
+item carries its end date in the markup and the script hides the ones that
+have passed, and the strip hides itself when they all have.
 
 ## 9. Images
 
@@ -573,24 +612,57 @@ inaccurate and requires a new section, usually a cookie banner too.
 
 All three are in `_data/`, not pages.
 
-**`_data/engagement.yml`** - the four ways work with RISE actually starts.
-Each entry has an `id` (used only for the anchor; keep it stable), a `title`,
-a `body`, a `subject` that prefills the mail link on the home page card, and
-`examples`: two project slugs.
+**`_data/place.yml`** - the place shown under "Where we work" on `/team/`.
+`name`, `text` (one entry per paragraph), `address` (one entry per line),
+`link` (`label` and `url`) and `images`.
+
+Each image has `src`, `slot` (`wide` for the 16:9 picture, `small` for the
+two 3:2 ones), `focus` (the CSS `object-position` used when it is cropped),
+`alt`, `caption` and `credit`. The credit is appended to the caption as
+"Photo: …", and a photograph without one should not be on the site.
+
+A move is a change to this file, not to the page: swap `name`, `text`,
+`address`, `link` and `images` and the band follows. The work order has the
+dieHauswirtschaft wording ready for early 2027. With no `images` at all the
+text runs the full width, so the band never shows an empty box.
+
+**`_data/engagement.yml`** - the six ways work with RISE actually starts.
+Each entry has an `id` (used only for the anchor; keep it stable), a `label`,
+an optional `label_url`, a `title`, a `body`, an `action`, a `subject` that
+prefills the mail link, and `examples`: two project slugs.
+
+| Field | Required | Notes |
+|---|---|---|
+| `id` | yes | The anchor (`#work-<id>`) and nothing else. Keep it stable |
+| `label` | yes | The strand of `/approach/` this way in belongs to, or "Research partnership" for the one that crosses all three. Shown small and uppercase above the title |
+| `label_url` | no | Where the label links. The strands have a heading on `/approach/` to point at; "Research partnership" has nowhere of its own and stays plain |
+| `title` | yes | The reader's situation, in their words ("You …") |
+| `action` | yes | What the link says, and what the mail subject says if `subject` is absent |
+| `subject` | yes | The mail subject. A button has to say what it does and a subject line has to sort an inbox, so neither can be the situation |
+| `body` | yes | One sentence |
+| `examples` | yes | Exactly two project slugs, and no project on two cards |
 
 `examples` is the part that matters. Each card names two projects that began
 that way, linked to their pages under their `short_title`, so a visitor can
 check the claim in one click. `docs-check.py` fails a slug with no project
-behind it, and notes a card with fewer than two. **If a card has no examples
-to give, question the card, not the line** - the four here replaced an older
-set in which two modes had nothing on the site behind them.
+behind it, fails a card with fewer than two, and fails a project used on two
+cards. **If a card has no examples to give, question the card, not the line** -
+the six here replaced an older set in which some modes had nothing on the
+site behind them.
 
 One file, two places: the "Work with us" band on the home page renders them
-as cards, `/expertise/` renders the same four as a findings list, both through
-`_includes/engagement.html` with `style="cards"` or `style="list"`. The
-wording used to live on the expertise page alone, which let the home page say
+as cards in a 3 x 2 grid, `/expertise/` renders the same six as a findings
+list, both through `_includes/engagement.html` with `style="cards"` or
+`style="list"`. The two lines under the grid are
+`_includes/engagement-more.html`, shared for the same reason. The wording
+used to live on the expertise page alone, which let the home page say
 something vaguer and let the two drift. **Edit the data file, never the
 pages.**
+
+That second line says "the eight questions we answer", counting the fields in
+`_data/expertise.yml`. W6 specifies the sentence word for word, so the number
+is written out rather than computed, and `docs-check.py` compares the two so
+it cannot go stale when a field is added or dropped.
 
 **`_data/services.yml`** - each block has `title`, `strand` (`up`, `wide` or
 `deep`, which links back to the Approach page), `lede`, a list of `includes`,

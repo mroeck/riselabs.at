@@ -252,25 +252,53 @@ permalink: /
 {%- endcomment -%}
 <section class="band">
   <div class="wrap">
+    {%- comment -%}
+      Publications left this split on 1 Nov 2026 and took the band below.
+      They are cards now, three across, and three cards do not fit in half a
+      page: at 1200px that column is about 480px, which would have given
+      150px cards with titles running long and thin.
+
+      "Latest" keeps the split's markup and simply fills it. One column in a
+      two-column grid stretches to the full width, which is what a list of
+      three news items wants anyway.
+    {%- endcomment -%}
     <div class="home-split">
       <div>
         <h2>Latest</h2>
+        {%- comment -%}
+          The same cards as /news/ since 2 Nov 2026 (N5), so the home page
+          and the listing page show one thing in one shape. Featured first,
+          then by date, three of them.
+        {%- endcomment -%}
         {%- assign featured = site.posts | where: "featured", true -%}
         {%- assign others = site.posts | where_exp: "p", "p.featured != true" -%}
         {%- assign latest = featured | concat: others | slice: 0, 3 -%}
-        {% include newslist.html posts=latest %}
-        <p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
-      </div>
-      <div>
-        <h2>Recent publications</h2>
-        <p class="band-note">We publish our methods, data and code openly
-        wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
-        learn more.</p>
-        {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 3 -%}
-        {% include publist.html pubs=recent %}
-        <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
+        {% include postcards.html posts=latest %}
+        <p class="more"><a href="{{ '/news/' | relative_url }}">All news and events →</a></p>
       </div>
     </div>
+  </div>
+</section>
+
+{%- comment -%}
+  Recent publications, in its own band since 1 Nov 2026 so the cards get the
+  width the three-column grid needs. It is `.alt` because the band above it
+  is `--bg`, and the partners band below flipped from `.alt` to plain for the
+  same reason: THE RULE at the top of this file is that two adjacent bands
+  never share a background, and adding a band here moves every one after it.
+
+  Three publications, the most recent by year, which is the same selection
+  the split carried.
+{%- endcomment -%}
+<section class="band alt">
+  <div class="wrap">
+    <h2>Recent publications</h2>
+    <p class="band-note">We publish our methods, data and code openly
+    wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
+    learn more.</p>
+    {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 3 -%}
+    {% include publist.html pubs=recent %}
+    <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
   </div>
 </section>
 
@@ -278,9 +306,14 @@ permalink: /
   Partners and the quotes on one surface band: both are other people vouching
   for the work, and they were two separate full-width bands doing the same job.
 {%- endcomment -%}
-<section class="band alt">
+{%- comment -%}
+  Plain, not `.alt`, since 1 Nov 2026: the publications band above it took
+  the `.alt` surface when it was split out, and two `.alt` bands in a row
+  merge into one long stretch.
+{%- endcomment -%}
+<section class="band">
   <div class="wrap">
-    <h2>Who relies on our evidence</h2>
+    <h2>Who we work with</h2>
     <p class="band-note">The European Commission, UN agencies, national
     governments, research institutes and philanthropic funders use our work to
     set targets, write rules and fund change.</p>
@@ -304,19 +337,47 @@ permalink: /
   The lede names who, not what. The projects band near the top of this page
   already shows what.
 {%- endcomment -%}
+{%- comment -%}
+  W6, 1 Nov 2026. "Work with us", which is what the hero button says; the
+  band used to be called "Start with the problem", so the button landed
+  somewhere with a different name. Six cards in a 3 x 2 grid, which echoes
+  the six facts at the top of the page.
+
+  The two lines under the grid take the overflow: training, workshops and
+  speaking used to be a card of their own, and the second line sends a
+  reader who does not recognise their situation to the questions on
+  /expertise/ rather than leaving them to pick the nearest card.
+
+  The last row is two blocks: the newsletter, and a way in for people who
+  want to work here rather than with us. Which one the second shows depends
+  on whether an opening is actually posted, so the band cannot advertise a
+  job that does not exist.
+{%- endcomment -%}
 <section class="band cta-band" id="work-with-us">
   <div class="wrap">
-    <h2>Start with the problem</h2>
-    <p class="band-lede">We would rather hear the problem than the brief. Tell
-    us what you need to decide, and we will tell you what evidence would
-    help.</p>
+    <h2>Work with us</h2>
+    <p class="band-lede">We would rather hear the problem than the brief. We
+    cover the whole life cycle, from cost and carbon to environmental and,
+    increasingly, social impacts, and every scale from a single building to
+    national and global building stocks. Tell us the decision in front of
+    you, and we will tell you what evidence would hold up.</p>
     {% include engagement.html style="cards" %}
-    <p class="muted small">Or write to
-    <a href="mailto:{{ site.email }}">{{ site.email }}</a> if none of those
-    quite fits.</p>
+    {% include engagement-more.html %}
 
-    <div class="home-news">
-      {% include newsletter.html %}
+    {%- assign openings = site.posts | where: "type", "opening" -%}
+    <div class="engage-last">
+      <div class="home-news">
+        {% include newsletter.html %}
+      </div>
+      <div class="engage-join">
+        <h3>Join us</h3>
+        {%- if openings.size > 0 %}
+        <p>We are growing, and hiring in Vienna.</p>
+        <p class="more"><a href="{{ '/join/' | relative_url }}">Open positions &rarr;</a></p>
+        {%- else %}
+        <p class="more"><a href="{{ '/join/' | relative_url }}">Other ways in: theses, visiting researchers &rarr;</a></p>
+        {%- endif %}
+      </div>
     </div>
   </div>
 </section>

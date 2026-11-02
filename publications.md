@@ -10,9 +10,15 @@ permalink: /publications/
   RISE team and our collaborations.</p>
 </div>
 
+{%- comment -%}
+  The wide wrap since 1 Nov 2026. This band was `narrow` when the entries
+  were rows of text and a reading measure was the right constraint. They are
+  cards now, and three of them across 40rem is 182px each, which is narrower
+  than the same card on a phone.
+{%- endcomment -%}
 <main id="content">
 <section class="band">
-<div class="wrap narrow">
+<div class="wrap">
 
 <!-- Nothing here is edited by hand. Each publication is a file in
      _publications/ and gets its own page. -->
@@ -54,6 +60,32 @@ Open access or available on request.</p>
   </p>
 </div>
 
+
+{%- comment -%}
+  The kind tabs (Martin, 1 Nov 2026). One button per section, built from the
+  same list publist.html uses, so a kind with nothing in it never gets a tab
+  and a new kind gets one without anyone editing this page.
+
+  Hidden until the script runs, like the theme bar on /projects/: a filter
+  that cannot filter should not be on the page, and without JavaScript every
+  section is shown, which is the whole list and a complete page.
+
+  These hide whole sections rather than individual entries, because the
+  sections are the kinds. The filter box and the sort control below act on
+  the entries inside whatever is shown, so the three compose: filter by
+  author within reports, sorted by citations.
+{%- endcomment -%}
+{%- assign kinds = "article,conference,report,book,data" | split: "," -%}
+{%- assign names = "Journal articles,Conference papers,Reports,Books and chapters,Data and tools" | split: "," -%}
+<div class="themebar kindbar" data-kindbar hidden>
+  <button type="button" class="on" data-kind-filter="">All</button>
+  {%- for k in kinds -%}
+  {%- assign group = site.publications | where: "kind", k -%}
+  {%- if group.size > 0 -%}
+  <button type="button" data-kind-filter="{{ k }}">{{ names[forloop.index0] }}</button>
+  {%- endif -%}
+  {%- endfor -%}
+</div>
 
 <div class="entrylist" id="publist">
 {% include publist.html pubs=site.publications sections="true" %}

@@ -1,6 +1,6 @@
 ---
 title: "The Global Building Data Initiative (GBDI): Open Data Methods and Tools for Whole Life Carbon Decarbonization"
-kind: article
+kind: conference
 authors: "Di Santo N, Batra Z, de Courten-Serikoff L, Röck M, Scrivener K"
 year: 2026
 journal: "Proceedings of the 7th fib Congress, Lisbon 2026 (fib)"

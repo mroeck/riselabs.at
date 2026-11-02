@@ -1,6 +1,10 @@
 ---
 layout: post
 type: event
+# Event fields (N6, 2 Nov 2026), read from this post's own body.
+event_start: 2026-10-21
+location: "Brussels, Belgium"
+format: in person
 featured: false
 projects:
   - indicate-life

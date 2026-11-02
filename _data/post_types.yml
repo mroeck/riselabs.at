@@ -1,0 +1,29 @@
+# The kinds of post, in tab order on /news/ (N1, 2 Nov 2026).
+#
+#   slug    the value of `type:` in a post's front matter
+#   label   what a card calls it ("Project update", not "project")
+#   plural  what the tab calls it
+#   hash    the fragment that opens that tab, /news/#events
+#
+# Adding a type later is one entry here and nothing else: the tabs, the card
+# labels and the tile colours all read this file. Do NOT add a type no post
+# uses yet - an empty tab is a promise the page does not keep, and the page
+# hides a tab with no posts behind it anyway, so the entry would simply be
+# dead. H36 is open: Martin is bringing the categories used on social media
+# so these can line up with them.
+- slug: event
+  label: Event
+  plural: Events
+  hash: events
+- slug: project
+  label: Project update
+  plural: Project updates
+  hash: project-updates
+- slug: output
+  label: Publication
+  plural: Publications
+  hash: publications
+- slug: opening
+  label: Open position
+  plural: Open positions
+  hash: open-positions

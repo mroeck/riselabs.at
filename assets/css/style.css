@@ -1577,15 +1577,50 @@ body.surfaces-gradient .cta-band {
 /* The four ways of working, on the home page. Cards rather than a list,
    because each one is a different conversation to start and the mail link at
    the foot of each is the point of the band. */
+/* Three by two from 64rem since W6 (1 Nov 2026), which is six cards and
+   echoes the six facts at the top of the page. Two columns from 40rem, one
+   below. A fixed count rather than auto-fit: the descriptions are uneven
+   enough that letting the columns find their own width makes the longest
+   card tower over the rest. */
 .engage {
   list-style: none; padding: 0; margin: 1.8rem 0 1.4rem;
   display: grid; gap: 1rem;
-  /* Two by two, not auto-fit: four cards across a 64rem container left a
-     three-plus-one orphan, and the four descriptions are uneven enough that
-     narrow columns made the longest one tower over the rest. */
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 }
-@media (max-width: 46rem) { .engage { grid-template-columns: 1fr; } }
+@media (max-width: 64rem) { .engage { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 40rem) { .engage { grid-template-columns: 1fr; } }
+
+/* The strand a card belongs to, above its title. Small, uppercase and in the
+   accent, the same shape as the fact labels on the home page, so the two
+   bands that bracket the page read as a pair. It is a link where the strand
+   has a heading on /approach/ to point at. */
+.engage-label {
+  margin: 0 0 .35rem !important;
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .09em; text-transform: uppercase;
+  color: var(--accent) !important;
+}
+.engage-label a { color: inherit; text-decoration: none; }
+.engage-label a:hover { text-decoration: underline; }
+/* In the list shape on /expertise/ the label runs inline before the title,
+   so it needs none of the block spacing above. */
+.findings .engage-label { display: inline; margin: 0 !important; }
+
+/* The two lines under the grid, and the last row. */
+.engage-more { margin: .6rem 0 0; font-size: .92rem; color: var(--ink-soft); }
+.engage-more + .engage-more { margin-top: .3rem; }
+.engage-last {
+  display: grid; gap: 1.6rem;
+  margin-top: 2.6rem; padding-top: 1.8rem;
+  border-top: 1px solid var(--rule);
+}
+@media (min-width: 40rem) { .engage-last { grid-template-columns: 1fr 1fr; gap: 2.4rem; } }
+/* The newsletter block already carries this rule from its own band; inside
+   the last row the row draws the line instead, once, for both blocks. */
+.engage-last .home-news { margin-top: 0; padding-top: 0; border-top: 0; }
+.engage-join h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+.engage-join p { margin: 0 0 .4rem; font-size: .92rem; color: var(--ink-soft); }
+.engage-join .more { margin: 0; }
 .engage li {
   margin: 0; padding: 1.15rem 1.2rem 1rem;
   background: var(--bg);
@@ -2499,33 +2534,101 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
 }
 @media (prefers-reduced-motion: reduce) { .reel .people { scroll-behavior: auto; } }
 
-/* The card in the row is the same card, stood up: the portrait fills the
-   width as a 1:1 crop and the text sits under it, as in the prototype. In
-   the grid on /team/ the portrait is a thumbnail beside the text, which is
-   right for a dense list and wrong for a row where each card is most of the
-   screen. Same markup, same classes, different shape. */
-.reel .people > li {
+/* The card stood up: the portrait fills the width as a 1:1 crop and the text
+   sits under it. Two places use it, and they are listed together so the two
+   cannot drift: the home page reel, where each card is most of the screen,
+   and the grid on /team/ since 1 Nov 2026, where it matches the project and
+   publication cards and gives the portraits room.
+
+   The flat card is still the right shape elsewhere - a thumbnail beside the
+   text suits a dense list - so this is a variant rather than the default. */
+.reel .people > li,
+.people.stacked > li {
   background: none; border: 0; border-radius: 0; padding: 0;
 }
-.reel .people > li:hover { border-color: transparent; }
-.reel .people a {
+.reel .people > li:hover,
+.people.stacked > li:hover { border-color: transparent; }
+.reel .people a,
+.people.stacked a {
   display: block;
   padding: 0; gap: 0;
   background: none; border: 0; border-radius: 0;
 }
-.reel .people .pc-face {
+.reel .people .pc-face,
+.people.stacked .pc-face {
   width: 100%; height: auto; aspect-ratio: 1 / 1;
   border-radius: var(--radius-img);
   display: block;
 }
-.reel .people .pc-initials { display: grid; place-items: center; font-size: 2rem; }
-.reel .people .person-txt { display: block; margin-top: .7rem; }
-.reel .people .who { font-weight: 700; line-height: 1.25; }
-.reel .people .what { margin-top: .2rem; }
-.reel .people .where { margin-top: .35rem; }
-/* The contact row belongs on a card you are reading, not on one you are
-   swiping past; the whole card is already a link to the person's page. */
+.reel .people .pc-initials,
+.people.stacked .pc-initials { display: grid; place-items: center; font-size: 2rem; }
+.reel .people .person-txt,
+.people.stacked .person-txt { display: block; margin-top: .7rem; }
+.reel .people .who,
+.people.stacked .who { font-weight: 700; line-height: 1.25; }
+.reel .people .what,
+.people.stacked .what { margin-top: .2rem; }
+.reel .people .where,
+.people.stacked .where { margin-top: .35rem; }
+/* In the reel the contact row belongs on a card you are reading, not on one
+   you are swiping past, and the whole card is already a link to the person's
+   page. On /team/ the row stays: that page is where someone goes to write to
+   a colleague, which is the one thing a portrait grid cannot do for them. */
 .reel .people .pc-links { display: none; }
+.people.stacked .pc-links { margin: .5rem 0 0; }
+
+/* Three across on a desktop, two on a phone, the same count and the same
+   floor as the projects and the publications. `auto-fill` with a minimum is
+   what the flat grid wants, because its cards carry a job title beside a
+   thumbnail and need 21rem to do it; a stood-up card is as wide as its
+   portrait and wants a fixed count instead. */
+/* ---------- "Where we work" on /team/ (T1) ----------
+
+   Text left, pictures right from 56rem; pictures under the text below that,
+   which is where a phone wants them: the address and the link are what
+   someone on a phone is usually after.
+
+   Its own rules rather than the expertise field's, which this borrowed at
+   first: that layout alternates the picture's side by `nth-child`, so it
+   would have flipped the moment anything was added above. */
+.place { display: grid; gap: 1.6rem; align-items: start; }
+@media (min-width: 56rem) {
+  .place { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 2.6rem; }
+}
+/* With no pictures in the data the text takes the whole band rather than
+   half of it beside an empty column. */
+.place-notext { grid-template-columns: minmax(0, 1fr) !important; }
+.place-body h3 { margin: 0 0 .6rem; font-size: 1.15rem; }
+.place-body p { margin: 0 0 .8rem; }
+.place-address { color: var(--ink-soft); font-size: .92rem; line-height: 1.5; }
+.place-body .more { margin: 0; }
+
+/* One wide picture, then two side by side beneath it. On a narrow phone the
+   two drop under each other, because a 3:2 photograph at half a phone's
+   width is a stamp. */
+.place-shots {
+  display: grid; gap: .9rem;
+  grid-template-columns: 1fr 1fr;
+}
+.place-wide { grid-column: 1 / -1; }
+@media (max-width: 26rem) { .place-shots { grid-template-columns: 1fr; } }
+.place-shot { margin: 0; }
+.place-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* The frame is on the image, not the figure: the figure also holds the
+   caption, and `overflow: hidden` on an aspect-ratio box would clip it. */
+.place-wide img { aspect-ratio: 16 / 9; }
+.place-small img { aspect-ratio: 3 / 2; }
+.place-shot .tone { border: 1px solid var(--rule); background: var(--surface); }
+.place-shot figcaption { margin-top: .4rem; line-height: 1.4; }
+
+.people.stacked {
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 2rem 1.4rem;
+}
+@media (max-width: 62rem) { .people.stacked { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 46rem) { .people.stacked { gap: 1.5rem 1.1rem; } }
+@media (max-width: 22rem) { .people.stacked { grid-template-columns: 1fr; } }
 
 /* Arrows, added by the script and only under a fine pointer, so a phone
    never carries a control it cannot use. Centred on the portraits rather
@@ -2583,42 +2686,44 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
    in four rules.
 
    The class names are `cite-`, not `pub-`: see _includes/pubitem.html. */
-.pubs { list-style: none; margin: 0; padding: 0; }
-.pubs li {
-  display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
-  grid-template-areas:
-    "thumb   title"
-    "authors authors"
-    "meta    meta";
-  column-gap: 1rem; row-gap: .45rem;
-  padding: 1.1rem 0; border-top: 1px solid var(--rule);
-  align-items: start;
-}
-.pubs li:first-child { border-top: 0; }
-@media (min-width: 40rem) {
-  .pubs li {
-    grid-template-columns: 96px minmax(0, 1fr);
-    grid-template-areas:
-      "thumb title"
-      "thumb authors"
-      "thumb meta";
-    column-gap: 1.25rem;
-  }
-}
+/* Cards, not rows (Martin, 1 Nov 2026), the same shape as the project grid:
+   picture on top, then the title, the authors, and the venue and year last.
 
+   Three columns on a desktop, two on a phone, one only under 22rem, which is
+   the breakpoint the facts and the projects both use. A row layout put the
+   thumbnail beside the text and gave each entry the full width of the page;
+   sixty-four of those is a very long page, and the title pages never had
+   room to be looked at.
+
+   The markup did not change. The entry was already a thumbnail, a title, an
+   authors line and a meta line in one <li>, placed by grid areas; this lays
+   the same four out in a column instead. Sort and filter keep working for
+   the same reason: both act on the <li> in place and neither knows or cares
+   how it is drawn. */
+.pubs {
+  list-style: none; margin: 1.4rem 0 0; padding: 0;
+  display: grid; gap: 2rem 1.4rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 62rem) { .pubs { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 46rem) { .pubs { gap: 1.5rem 1.1rem; } }
+@media (max-width: 22rem) { .pubs { grid-template-columns: 1fr; } }
+.pubs li { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+
+/* 3/4 upright, which is what every thumbnail already is: all sixty-four are
+   600x800, so nothing is cropped and a title page is shown whole. */
 .cite-thumb {
-  grid-area: thumb;
-  display: block; aspect-ratio: 3 / 4; max-width: 100%;
+  display: block; width: 100%; aspect-ratio: 3 / 4;
+  margin-bottom: .75rem;
   text-decoration: none;   /* the drawn tile's own text is not a link label */
   background: var(--surface);
   border: 1px solid var(--rule);
   overflow: hidden;
 }
 .cite-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pubs li:hover .cite-thumb { border-color: var(--accent); }
 
 .cite-title {
-  grid-area: title;
   font-weight: 700; line-height: 1.3;
   color: var(--ink); text-decoration: none;
   min-width: 0; overflow-wrap: anywhere;
@@ -2626,13 +2731,16 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
 .cite-title:hover { color: var(--accent); text-decoration: underline; }
 
 .cite-authors {
-  grid-area: authors; margin: 0;
+  margin: .35rem 0 0;
   font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
   min-width: 0; overflow-wrap: anywhere;
 }
+/* The venue and year sit at the foot of the card whatever the title's
+   length, so the row reads along one line rather than stepping up and down
+   with each title. */
 .cite-meta {
-  grid-area: meta; margin: 0;
-  font-size: .88rem; line-height: 1.45; color: var(--ink-soft);
+  margin: .35rem 0 0; padding-top: .35rem; margin-top: auto;
+  font-size: .85rem; line-height: 1.45; color: var(--ink-soft);
   min-width: 0; overflow-wrap: anywhere;
 }
 
@@ -2809,3 +2917,130 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   letter-spacing: .05em; text-transform: uppercase;
   color: var(--ink-soft);
 }
+
+/* ---------- news and events (Phase N) ----------
+
+   One page for both, so the controls stack: a tab row with the filter box
+   beside it, then a grid of cards. The tab row reuses `.themebar` from
+   /projects/ rather than inventing a second set of pills. */
+.newsbar {
+  display: flex; flex-wrap: wrap; gap: .8rem 1.2rem;
+  align-items: center; justify-content: space-between;
+  padding-bottom: 1.1rem; border-bottom: 1px solid var(--rule);
+}
+.newsbar .themebar { margin: 0; flex: 1 1 auto; }
+.newsbar .filter { margin: 0; flex: 1 1 14rem; max-width: 22rem; }
+/* The count beside a tab's name. Quiet, and tabular so the numbers do not
+   jiggle the labels as they change. */
+.kindbar small {
+  font-size: .78rem; font-weight: 400; margin-left: .3rem;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.kindbar .on small { color: inherit; opacity: .75; }
+
+.pcards {
+  list-style: none; margin: 1.6rem 0 0; padding: 0;
+  display: grid; gap: 1.8rem 1.4rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 62rem) { .pcards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 40rem) { .pcards { grid-template-columns: 1fr; gap: 1.5rem; } }
+.pcard { margin: 0; min-width: 0; }
+.pcard a {
+  display: grid; gap: .55rem;
+  text-decoration: none; color: inherit;
+}
+
+/* The picture, or a tile where there is none. Every post could carry a
+   `hero`; none does yet, so the tile is what the page actually shows. */
+.pcard-shot, .pcard-tile {
+  display: block; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius-img); overflow: hidden;
+}
+@media (max-width: 40rem) { .pcard-shot, .pcard-tile { aspect-ratio: 21 / 9; } }
+.pcard-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pcard-tile {
+  position: relative;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: .9rem 1rem; color: #fff;
+}
+/* A direction or a stop per type, so a grid of tiles reads as a set of
+   different things rather than one block of navy. */
+.tile-event   { background: linear-gradient(120deg, #001730 10%, #751094); }
+.tile-project { background: linear-gradient(120deg, #001730, #16325a); }
+.tile-output  { background: linear-gradient(120deg, #751094, #f92d84); }
+.tile-opening { background: linear-gradient(120deg, #f92d84, #ff8fbd); }
+.pcard-kind {
+  font-size: .76rem; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 700;
+}
+.pcard-big {
+  font-size: 2.2rem; font-weight: 700; line-height: .9; text-align: right;
+}
+.pcard-big span {
+  display: block; margin-top: .25rem;
+  font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
+  font-weight: 500;
+}
+
+.pcard-meta {
+  display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap;
+  font-size: .82rem; color: var(--ink-soft);
+}
+.pcard-chip {
+  font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+  font-weight: 700; color: var(--accent);
+}
+.pcard-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+.pcard a:hover .pcard-title { color: var(--accent); }
+/* Three lines, so a long summary cannot make one card twice the height of
+   its neighbours. */
+.pcard-sum {
+  color: var(--ink-soft); font-size: .92rem; line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* The lead card on the unfiltered All tab: full width, picture beside the
+   text. It goes back to an ordinary card inside a tab or under a filter. */
+.pcard-lead { grid-column: 1 / -1; }
+@media (min-width: 40rem) {
+  .pcard-lead a {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    column-gap: 1.6rem; align-content: center;
+  }
+  .pcard-lead .pcard-shot, .pcard-lead .pcard-tile { grid-row: 1 / span 3; align-self: start; }
+  .pcard-lead .pcard-title { font-size: 1.45rem; }
+}
+
+/* ---------- "Coming up" ---------- */
+.soon { background: var(--surface); padding: 1.6rem 0 1.8rem; }
+.soon h2 {
+  margin: 0 0 .8rem;
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent);
+}
+.soon ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+@media (min-width: 48rem) { .soon ul { grid-template-columns: 1fr 1fr; } }
+.soon li { margin: 0; background: var(--bg); border-radius: var(--radius-ui); }
+.soon li a {
+  display: grid; grid-template-columns: 4.2rem minmax(0, 1fr);
+  gap: 1rem; align-items: center;
+  text-decoration: none; color: inherit; padding: .7rem .9rem;
+}
+.cal {
+  display: grid; place-items: center; text-align: center;
+  border-radius: var(--radius-ui); padding: .45rem 0; line-height: 1;
+  background: linear-gradient(135deg, #001730, #751094); color: #fff;
+}
+.cal b { display: block; font-size: 1.5rem; font-weight: 700; }
+.cal span {
+  display: block; margin-top: .2rem;
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+}
+/* A date known only to the month sets the month where the day would be, so
+   it needs the smaller size or it overruns the tile. */
+.cal.tbc b { font-size: .95rem; }
+.soon .t { display: block; font-weight: 700; line-height: 1.3; }
+.soon .w { display: block; margin-top: .15rem; font-size: .86rem; color: var(--ink-soft); }
+.soon-reg { margin: 0; padding: 0 .9rem .7rem; font-size: .88rem; }

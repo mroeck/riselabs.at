@@ -184,11 +184,18 @@ global_south:
 <section class="band cta-band" id="work-with-us">
   <div class="wrap">
     <h2>Work with us</h2>
-    <p class="band-lede">We would rather hear the problem than the brief.</p>
+    <p class="band-lede">We would rather hear the problem than the brief. We
+    cover the whole life cycle, from cost and carbon to environmental and,
+    increasingly, social impacts, and every scale from a single building to
+    national and global building stocks. Tell us the decision in front of
+    you, and we will tell you what evidence would hold up.</p>
     {% include engagement.html style="cards" %}
-    <p class="muted small">Or write to
-    <a href="mailto:{{ site.email }}">{{ site.email }}</a> if none of those
-    quite fits.</p>
+    {%- comment -%}
+      The same six cards and the same two lines as the home page, from the
+      same two includes. No newsletter and no Join row here: W6 keeps those
+      on the home page, and this page ends on an enquiry.
+    {%- endcomment -%}
+    {% include engagement-more.html %}
   </div>
 </section>
 
