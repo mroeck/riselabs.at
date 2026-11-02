@@ -1729,6 +1729,67 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H34 | Martin | ~~Climate Lab permission~~ Answered 2 Nov: Martin decided to publish both Climate Lab photos with credits "Climate Lab / Fetz" and "Climate Lab", at his own risk | T1 |
 | H35 | Martin | ~~Own photos, consent, credit~~ Answered 2 Nov: supplied; all six in the team photo consented; team photo by Rue Munemo | T1 |
 | H36 | Martin | The post categories used on social media, so the types in `_data/post_types.yml` can match them | N1 |
+| H37 | Martin | More imagery from RISE projects and activities for the home hero carousel. It runs on three pictures today, one per brand pillar, and the same three on every visit. Wanted: photographs of the work and the people doing it, roughly 2.2:1 or croppable to it, each with the pillar it belongs to, who took it, and whether it may be published | C1 |
+| H38 | Martin | A pass over the 15 projects one by one: the description, the visual assets, and the reports and other outputs to link. Gaps found so far are listed in C2. Needed per project: whether the summary and body still read correctly, a photograph where the picture is currently a diagram, and the URL of every public report, dataset or tool that belongs to it | C2 |
+
+---
+
+## Phase C: imagery and project content
+
+Martin, 2 Nov 2026: two content jobs rather than build jobs. Both are
+blocked on material only Martin can supply, so neither is a thing the
+implementer can start alone. The gaps are counted here so the asking is
+specific.
+
+### C1 More pictures in the home hero
+
+`_data/hero.yml` holds three entries, one per brand pillar (System change,
+We are nature, Stronger together), and the hero crossfades between them.
+Three is the minimum that makes a carousel rather than a still, and all
+three are the same on every visit.
+
+- Martin supplies photographs from projects and activities (H37). Each needs
+  the pillar it illustrates, the credit line, and clearance to publish.
+- **Then:** add them to `_data/hero.yml` in pillar order, cropped to roughly
+  2.2:1 as the file's own comment requires, and check the hero at 390 px and
+  on desktop in both themes.
+- No change to `_includes/hero.html` is expected: it already loops the file.
+  If the list grows past about six, revisit whether every image should load
+  on first paint.
+- `assets/img/hero/` still holds three unused files named after the pillars
+  (`system-change.jpg`, `we-are-nature.jpg`, `stronger-together.jpg`), the
+  earlier set, all 16:9 rather than the 2.2:1 the hero wants. They are not
+  RISE's own pictures. Delete them once the real ones arrive, so the folder
+  does not read as if the carousel had six.
+
+### C2 Project-by-project content pass
+
+Fifteen projects in `_projects/`. What the files look like today, counted on
+2 Nov 2026:
+
+- **Outputs:** 5 of 15 carry an `outputs:` list (Agora Leitmärkte, the EU
+  life-cycle GHG analysis, CollaborativeCarbon, PEF4Buildings, RELIVING).
+  The other 10 link nothing: GBDI, GBDI China and India, the Global Status
+  Report, the Global WLC Tracker, Annex 72, INDICATE, INDICATE-LIFE, the
+  Chile harmonisation, the modelling framework, and the EU embodied-carbon
+  benchmarks.
+- **Hero pictures:** all 15 have one, but 9 are diagrams or charts rather
+  than photographs (the `.png` heroes, plus the GBDI platform screenshot).
+  That is honest, and for some projects a figure is the right picture, but it
+  means the project grid reads as a wall of charts.
+- **Captions:** 13 of 15 have `hero_caption:`. CollaborativeCarbon and
+  PEF4Buildings do not.
+- **Descriptions:** body length runs from 29 lines to 161. The short ones
+  are the older entries.
+
+Work, once Martin has been through them (H38): correct the summary and body
+where he marks them, swap in photographs where he supplies them, fill the
+two missing captions, and add `outputs:` entries with real titles and URLs.
+Rule 2 of §0 still holds: no invented titles, numbers or DOIs, so a project
+gets an outputs list only when Martin gives the links.
+
+- **Done when:** every project Martin has signed off reads as he left it,
+  `docs-check` passes, and no project links an output that does not resolve.
 
 ---
 
