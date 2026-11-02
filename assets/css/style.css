@@ -2917,3 +2917,130 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   letter-spacing: .05em; text-transform: uppercase;
   color: var(--ink-soft);
 }
+
+/* ---------- news and events (Phase N) ----------
+
+   One page for both, so the controls stack: a tab row with the filter box
+   beside it, then a grid of cards. The tab row reuses `.themebar` from
+   /projects/ rather than inventing a second set of pills. */
+.newsbar {
+  display: flex; flex-wrap: wrap; gap: .8rem 1.2rem;
+  align-items: center; justify-content: space-between;
+  padding-bottom: 1.1rem; border-bottom: 1px solid var(--rule);
+}
+.newsbar .themebar { margin: 0; flex: 1 1 auto; }
+.newsbar .filter { margin: 0; flex: 1 1 14rem; max-width: 22rem; }
+/* The count beside a tab's name. Quiet, and tabular so the numbers do not
+   jiggle the labels as they change. */
+.kindbar small {
+  font-size: .78rem; font-weight: 400; margin-left: .3rem;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums;
+}
+.kindbar .on small { color: inherit; opacity: .75; }
+
+.pcards {
+  list-style: none; margin: 1.6rem 0 0; padding: 0;
+  display: grid; gap: 1.8rem 1.4rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 62rem) { .pcards { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 40rem) { .pcards { grid-template-columns: 1fr; gap: 1.5rem; } }
+.pcard { margin: 0; min-width: 0; }
+.pcard a {
+  display: grid; gap: .55rem;
+  text-decoration: none; color: inherit;
+}
+
+/* The picture, or a tile where there is none. Every post could carry a
+   `hero`; none does yet, so the tile is what the page actually shows. */
+.pcard-shot, .pcard-tile {
+  display: block; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius-img); overflow: hidden;
+}
+@media (max-width: 40rem) { .pcard-shot, .pcard-tile { aspect-ratio: 21 / 9; } }
+.pcard-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pcard-tile {
+  position: relative;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding: .9rem 1rem; color: #fff;
+}
+/* A direction or a stop per type, so a grid of tiles reads as a set of
+   different things rather than one block of navy. */
+.tile-event   { background: linear-gradient(120deg, #001730 10%, #751094); }
+.tile-project { background: linear-gradient(120deg, #001730, #16325a); }
+.tile-output  { background: linear-gradient(120deg, #751094, #f92d84); }
+.tile-opening { background: linear-gradient(120deg, #f92d84, #ff8fbd); }
+.pcard-kind {
+  font-size: .76rem; letter-spacing: .1em; text-transform: uppercase;
+  font-weight: 700;
+}
+.pcard-big {
+  font-size: 2.2rem; font-weight: 700; line-height: .9; text-align: right;
+}
+.pcard-big span {
+  display: block; margin-top: .25rem;
+  font-size: .76rem; letter-spacing: .08em; text-transform: uppercase;
+  font-weight: 500;
+}
+
+.pcard-meta {
+  display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap;
+  font-size: .82rem; color: var(--ink-soft);
+}
+.pcard-chip {
+  font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+  font-weight: 700; color: var(--accent);
+}
+.pcard-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+.pcard a:hover .pcard-title { color: var(--accent); }
+/* Three lines, so a long summary cannot make one card twice the height of
+   its neighbours. */
+.pcard-sum {
+  color: var(--ink-soft); font-size: .92rem; line-height: 1.5;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* The lead card on the unfiltered All tab: full width, picture beside the
+   text. It goes back to an ordinary card inside a tab or under a filter. */
+.pcard-lead { grid-column: 1 / -1; }
+@media (min-width: 40rem) {
+  .pcard-lead a {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    column-gap: 1.6rem; align-content: center;
+  }
+  .pcard-lead .pcard-shot, .pcard-lead .pcard-tile { grid-row: 1 / span 3; align-self: start; }
+  .pcard-lead .pcard-title { font-size: 1.45rem; }
+}
+
+/* ---------- "Coming up" ---------- */
+.soon { background: var(--surface); padding: 1.6rem 0 1.8rem; }
+.soon h2 {
+  margin: 0 0 .8rem;
+  font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent);
+}
+.soon ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+@media (min-width: 48rem) { .soon ul { grid-template-columns: 1fr 1fr; } }
+.soon li { margin: 0; background: var(--bg); border-radius: var(--radius-ui); }
+.soon li a {
+  display: grid; grid-template-columns: 4.2rem minmax(0, 1fr);
+  gap: 1rem; align-items: center;
+  text-decoration: none; color: inherit; padding: .7rem .9rem;
+}
+.cal {
+  display: grid; place-items: center; text-align: center;
+  border-radius: var(--radius-ui); padding: .45rem 0; line-height: 1;
+  background: linear-gradient(135deg, #001730, #751094); color: #fff;
+}
+.cal b { display: block; font-size: 1.5rem; font-weight: 700; }
+.cal span {
+  display: block; margin-top: .2rem;
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+}
+/* A date known only to the month sets the month where the day would be, so
+   it needs the smaller size or it overruns the tile. */
+.cal.tbc b { font-size: .95rem; }
+.soon .t { display: block; font-weight: 700; line-height: 1.3; }
+.soon .w { display: block; margin-top: .15rem; font-size: .86rem; color: var(--ink-soft); }
+.soon-reg { margin: 0; padding: 0 .9rem .7rem; font-size: .88rem; }

@@ -894,6 +894,35 @@ if _more.exists():
           f"says \"{_m.group(1)} questions\" but _data/expertise.yml has "
           f"{_fields} fields.")
 
+# ---------------------------------------------------------------- post types
+# Every post's `type` has to be a slug in _data/post_types.yml (N1). The
+# tabs, the card labels and the tile colours all read that file, so a post
+# with a type nobody declared gets no tab, no label and a blank tile, and
+# none of that shows up as an error.
+_types = yaml.safe_load((SITE / "_data/post_types.yml").read_text()) or []
+_slugs = {t.get("slug") for t in _types}
+for _t in _types:
+    for _k in ("slug", "label", "plural", "hash"):
+        if not _t.get(_k):
+            P("data", "_data/post_types.yml",
+              f"type '{_t.get('slug', '?')}' has no `{_k}`")
+for _slug, (_pb, _body, _f) in posts.items():
+    _ty = _pb.get("type")
+    if not _ty:
+        P("data", f"_posts/{_slug}.md", "has no `type`")
+    elif _ty not in _slugs:
+        P("data", f"_posts/{_slug}.md",
+          f"`type: {_ty}` is not a slug in _data/post_types.yml "
+          f"({', '.join(sorted(s for s in _slugs if s))}).")
+    # An event with no date cannot be placed in "Coming up" or carry a date
+    # on its tile. A warning, not a failure: the COP31 session is waiting on
+    # H8 for its day and has `event_month` instead, which is the honest
+    # halfway house rather than a made-up date.
+    if _ty == "event" and not (_pb.get("event_start") or _pb.get("event_month")):
+        N(f"_posts/{_slug}.md",
+          "is an event with no `event_start` and no `event_month`, so it "
+          "cannot appear in \"Coming up\" and its tile carries no date.")
+
 # ------------------------------------------------------ compound `where_exp`
 # GitHub Pages runs Jekyll 3.10 on Liquid 4.0.4, whose `where_exp` takes one
 # comparison and nothing more. Joining two with `and` raises

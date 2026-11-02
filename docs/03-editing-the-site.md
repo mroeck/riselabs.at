@@ -430,7 +430,13 @@ The body of the post.
 | Field | Required | Notes |
 |---|---|---|
 | `layout` | yes | Always `post` |
-| `type` | yes | `output`, `event`, `project` or `opening`. Shown as a small label |
+| `type` | yes | A `slug` from `_data/post_types.yml`: `event`, `project`, `output` or `opening`. The card shows that type's `label` ("Project update", not `project`), the tab shows its `plural`, and `docs-check.py` fails a type the file does not declare |
+| `event_start` | events | `YYYY-MM-DD`. Puts the event in "Coming up" and the date on its tile |
+| `event_end` | no | Defaults to `event_start`. What "Coming up" uses to decide the event has passed |
+| `event_month` | no | `YYYY-MM`, for a date known only to the month. "Coming up" shows the month and "session date to be confirmed". Delete it once `event_start` is known |
+| `location` | events | "Brussels, Belgium" or "Online" |
+| `format` | events | `in person`, `online` or `hybrid` |
+| `register_url` | no | Shown in "Coming up" until the event has passed |
 | `title` | yes | |
 | `summary` | yes | What appears in lists |
 | `featured` | no | `true` pushes it to the front of the home page's three. Use sparingly - one at a time |
@@ -476,6 +482,39 @@ attribute. Without JavaScript the build-time filter stands, so the page can be
 a few days out of date but never badly wrong.
 
 ---
+
+### The types, and the one page they share
+
+`/news/` and `/events/` became one page on 2 November 2026. `/news/` carries
+tabs by type; `/events/` is a redirect to `/news/#events`, so anything linked
+to the old address still arrives.
+
+**`_data/post_types.yml`** holds the types, in tab order. Each has a `slug`
+(what a post's `type:` says), a `label` (what a card calls it), a `plural`
+(what the tab calls it) and a `hash` (`/news/#events`).
+
+Adding a type later is one entry in that file and nothing else: the tabs, the
+card labels and the tile colours all read it. **Do not add a type no post uses
+yet.** A tab with nothing behind it is a promise the page does not keep, and
+the page hides it anyway, so the entry would simply be dead.
+
+Every tab has its own address. `/news/#events` opens on Events, and choosing
+a tab updates the address without adding a history entry, so the back button
+leaves the page rather than walking back through the tabs.
+
+Without JavaScript the tabs are hidden and every post shows in one grid,
+newest first.
+
+### "Coming up"
+
+The strip above the tabs lists events still ahead, soonest first, at most
+three. An event is ahead while its `event_end` (or `event_start`, or the
+first of its `event_month`) is today or later.
+
+GitHub Pages rebuilds only when something is pushed, so a page built in
+October would still be calling a November event "coming up" in December. Each
+item carries its end date in the markup and the script hides the ones that
+have passed, and the strip hides itself when they all have.
 
 ## 9. Images
 

@@ -1,0 +1,78 @@
+{%- comment -%}
+  "Coming up": the events still ahead, soonest first, at most three (N3).
+  Used on /news/ and, through P3.2, on the home page.
+
+  An event counts as ahead when its `event_end` (or `event_start`, or the
+  first of its `event_month`) is today or later. Dates are compared as
+  YYYYMMDD integers, which sorts and compares correctly and avoids Liquid's
+  date arithmetic entirely.
+
+  `event_month` is for a date known only to the month, which is the COP31
+  session: the conference dates are published, the session's day is not
+  (H8). It shows as the month and year with a line saying the date is to be
+  confirmed, and sorts on the first of the month.
+
+  Staleness: GitHub Pages rebuilds only on push, so a build-time split goes
+  out of date the moment nobody pushes for a week. Every item carries
+  `data-end`, and ui.js hides the ones whose end has passed. The strip hides
+  itself when all of them have.
+{%- endcomment -%}
+{%- assign today = site.time | date: "%Y%m%d" | plus: 0 -%}
+{%- assign events = site.posts | where: "type", "event" -%}
+
+{%- comment -%} sortable key per event, so the strip is in date order {%- endcomment -%}
+{%- assign keyed = "" -%}
+{%- for e in events -%}
+  {%- if e.event_end -%}{%- assign endkey = e.event_end | date: "%Y%m%d" | plus: 0 -%}
+  {%- elsif e.event_start -%}{%- assign endkey = e.event_start | date: "%Y%m%d" | plus: 0 -%}
+  {%- elsif e.event_month -%}{%- assign endkey = e.event_month | append: "-01" | date: "%Y%m%d" | plus: 0 -%}
+  {%- else -%}{%- assign endkey = 0 -%}{%- endif -%}
+  {%- if endkey >= today -%}
+    {%- assign keyed = keyed | append: endkey | append: "|" | append: forloop.index0 | append: "," -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- comment -%}
+  Ruby's `split` drops a trailing empty field and Python's keeps it, so a
+  list built with a trailing separator renders differently in Jekyll and in
+  a local renderer. The empty row is skipped explicitly below rather than
+  trusting either: the count is kept by hand for the same reason, since
+  `limit:` would spend one on the empty.
+{%- endcomment -%}
+{%- assign rows = keyed | split: "," | sort -%}
+
+{%- if rows.size > 0 %}
+<section class="soon" aria-labelledby="comingup-h" data-comingup>
+  <div class="wrap">
+    <h2 id="comingup-h">Coming up</h2>
+    <ul>
+      {%- assign shown = 0 -%}
+      {%- for row in rows -%}
+      {%- if row == "" or shown >= 3 -%}{%- continue -%}{%- endif -%}
+      {%- assign shown = shown | plus: 1 -%}
+      {%- assign idx = row | split: "|" | last | plus: 0 -%}
+      {%- assign e = events[idx] -%}
+      {%- assign endval = e.event_end | default: e.event_start -%}
+      <li data-end="{% if endval %}{{ endval | date: '%Y-%m-%d' }}{% elsif e.event_month %}{{ e.event_month }}-28{% endif %}">
+        <a href="{{ e.url | relative_url }}">
+          {%- if e.event_start -%}
+          <span class="cal"><b>{{ e.event_start | date: "%-d" }}</b><span>{{ e.event_start | date: "%b" }}</span></span>
+          {%- else -%}
+          <span class="cal tbc"><b>{{ e.event_month | append: "-01" | date: "%b" }}</b><span>{{ e.event_month | append: "-01" | date: "%Y" }}</span></span>
+          {%- endif -%}
+          <span class="soon-txt">
+            <span class="t">{{ e.title | remove: "Upcoming: " }}</span>
+            <span class="w">
+              {%- if e.location %}{{ e.location }}{% endif -%}
+              {%- unless e.event_start %}{% if e.location %} &middot; {% endif %}session date to be confirmed{% endunless -%}
+            </span>
+          </span>
+        </a>
+        {%- if e.register_url %}
+        <p class="soon-reg"><a href="{{ e.register_url }}">Register &rarr;</a></p>
+        {%- endif %}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+{%- endif -%}

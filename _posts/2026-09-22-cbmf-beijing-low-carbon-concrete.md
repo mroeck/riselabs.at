@@ -1,6 +1,10 @@
 ---
 layout: post
 type: event
+# Event fields (N6, 2 Nov 2026), read from this post's own body.
+event_start: 2026-09-22
+location: "Beijing, China"
+format: in person
 projects:
   - global-building-data-initiative
   - gbdi-china-and-india-cooperation

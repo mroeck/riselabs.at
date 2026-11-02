@@ -265,11 +265,16 @@ permalink: /
     <div class="home-split">
       <div>
         <h2>Latest</h2>
+        {%- comment -%}
+          The same cards as /news/ since 2 Nov 2026 (N5), so the home page
+          and the listing page show one thing in one shape. Featured first,
+          then by date, three of them.
+        {%- endcomment -%}
         {%- assign featured = site.posts | where: "featured", true -%}
         {%- assign others = site.posts | where_exp: "p", "p.featured != true" -%}
         {%- assign latest = featured | concat: others | slice: 0, 3 -%}
-        {% include newslist.html posts=latest %}
-        <p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
+        {% include postcards.html posts=latest %}
+        <p class="more"><a href="{{ '/news/' | relative_url }}">All news and events →</a></p>
       </div>
     </div>
   </div>

@@ -1,38 +1,29 @@
 ---
-layout: default
-title: Events
+layout: null
 permalink: /events/
+sitemap: false
 ---
+<!doctype html>
+<!-- /events/ became part of /news/ on 2 Nov 2026 (N5). The two pages showed
+     almost the same list, so they are one page with tabs, and this stays
+     behind so nothing already linked to /events/ breaks.
 
-<div class="page-head wrap narrow">
-  <h1>Events</h1>
-  <p class="lede">Talks, panels, workshops and seminars - where the work gets
-  argued about in public.</p>
-</div>
-
-<main id="content">
-<section class="band">
-<div class="wrap narrow">
-
-{%- comment -%}
-  Everything here comes from _posts. A post appears on this page when its
-  front matter says `type: event`; it also stays in the full News list, which
-  is the one place everything appears together.
-{%- endcomment -%}
-{%- assign events = site.posts | where: "type", "event" -%}
-
-{% include filter.html target="#eventlist" placeholder="Filter events…" %}
-
-<div id="eventlist">
-{% if events.size > 0 %}
-  {% include newslist.html posts=events years="true" %}
-{% else %}
-  <p class="muted">Nothing here yet.</p>
-{% endif %}
-</div>
-
-<p class="more"><a href="{{ '/news/' | relative_url }}">All news →</a></p>
-
-</div>
-</section>
-</main>
+     A meta refresh rather than a plugin: GitHub Pages runs a fixed plugin
+     list and jekyll-redirect-from is not in this site's, so adding it would
+     mean changing the build for one page. `canonical` points at /news/ and
+     `noindex` keeps this page out of search results, which is what a
+     redirect page is for. The link below is for anyone whose browser does
+     not follow the refresh. -->
+<html lang="{{ site.lang | default: "en" }}">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url={{ '/news/#events' | relative_url }}">
+<link rel="canonical" href="{{ '/news/' | absolute_url }}">
+<meta name="robots" content="noindex">
+<title>Events have moved to News and events</title>
+</head>
+<body>
+<p>Events are now part of
+<a href="{{ '/news/#events' | relative_url }}">News and events</a>.</p>
+</body>
+</html>

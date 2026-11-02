@@ -1,6 +1,10 @@
 ---
 layout: post
 type: event
+# Event fields (N6, 2 Nov 2026), read from this post's own body.
+event_start: 2026-07-01
+location: "Online"
+format: online
 projects:
   - global-building-data-initiative
   - gbdi-china-and-india-cooperation

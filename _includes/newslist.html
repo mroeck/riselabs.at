@@ -19,7 +19,14 @@
     {%- endif -%}
   <li>
     <p class="meta">
-      {%- if post.type %}<span class="type">{{ post.type }}</span>{% endif -%}
+      {%- comment -%}
+        The label from _data/post_types.yml, not the raw slug: "Project
+        update", not "project" (N1).
+      {%- endcomment -%}
+      {%- if post.type -%}
+      {%- assign pt = site.data.post_types | where: "slug", post.type | first -%}
+      <span class="type">{{ pt.label | default: post.type }}</span>
+      {%- endif -%}
       <span class="date">{{ post.date | date: "%d %B %Y" }}</span>
       {%- if post.featured %}<span class="pin">Featured</span>{% endif -%}
     </p>

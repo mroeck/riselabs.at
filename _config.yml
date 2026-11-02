@@ -140,10 +140,10 @@ nav:
         url: /publications/#data
   - title: Media
     items:
-      - title: News
+      # One entry since 2 Nov 2026 (N5): /news/ and /events/ became one
+      # page with tabs, and /events/ is a redirect into it.
+      - title: News and events
         url: /news/
-      - title: Events
-        url: /events/
 
 markdown: kramdown
 kramdown:
