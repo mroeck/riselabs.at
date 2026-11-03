@@ -64,9 +64,23 @@ layout: default
     <dt>Apply by</dt>
     <dd><time datetime="{{ page.deadline | date: '%Y-%m-%d' }}">{{ page.deadline | date: "%d %B %Y" }}</time></dd>
     {%- endif -%}
+    {%- if page.position_id %}
+    <dt>Position ID</dt>
+    <dd>{{ page.position_id }}</dd>
+    {%- endif -%}
+    {%- comment -%}
+      The subject line is the Position ID where there is one, not the title.
+      The adverts say an application without the ID in the subject may not be
+      considered, so a mail link that prefills the headline instead would be
+      quietly working against the reader.
+    {%- endcomment -%}
     {%- if page.apply %}
     <dt>Applications to</dt>
-    <dd><a href="mailto:{{ page.apply }}?subject={{ page.title | uri_escape }}">{{ page.apply }}</a></dd>
+    <dd><a href="mailto:{{ page.apply }}?subject={{ page.position_id | default: page.title | uri_escape }}">{{ page.apply }}</a></dd>
+    {%- endif -%}
+    {%- if page.pdf %}
+    <dt>Full advert</dt>
+    <dd><a href="{{ page.pdf | relative_url }}" download>PDF, including what we offer and how we work</a></dd>
     {%- endif -%}
   </dl>
 </aside>

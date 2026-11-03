@@ -20,7 +20,14 @@ description: Open positions at RISE, and how to hear about future ones.
   because Liquid's comparison operators are not dependable on strings.
 {%- endcomment -%}
 {%- assign today = 'now' | date: "%Y%m%d" | plus: 0 -%}
-{%- assign openings = site.posts | where: "type", "opening" | sort: "deadline" -%}
+{%- comment -%}
+  Sorted by Position ID rather than by deadline since 4 Nov 2026.
+  Positions are advertised in batches with the same closing date, and a
+  tie left the order to the build: three openings came out Senior,
+  Junior, Lead. The ID carries the order they were written in, and every
+  item prints its own deadline anyway.
+{%- endcomment -%}
+{%- assign openings = site.posts | where: "type", "opening" | sort: "position_id" -%}
 
 <div class="page-head wrap narrow">
   <h1>Join us</h1>
@@ -64,6 +71,72 @@ description: Open positions at RISE, and how to hear about future ones.
 </section>
 
 {%- comment -%}
+  What is true of every position, 4 Nov 2026. It lives here rather than in
+  each advert because it is the same text three times over, and a reader
+  comparing two positions should not have to read it twice to find out they
+  are identical. Each advert's PDF carries its own copy for anyone who prints
+  one.
+
+  Everything here is from the adverts of 4 November 2026. Nothing is added:
+  what the appendix does not state, this does not claim.
+{%- endcomment -%}
+<section class="band alt">
+<div class="wrap narrow">
+
+  <h2>How we work, and what we offer</h2>
+
+  <p>Hybrid in Vienna: office days are Tuesday to Thursday, Monday and Friday
+  are home-office days by default, and the office is open all week. Our
+  working language is English. We publish methods, data and code openly
+  wherever licences allow.</p>
+
+  <p>All positions are based in Vienna. In 2027 we plan to move our offices to
+  <a href="https://diehauswirtschaft.at/">Die HausWirtschaft</a>,
+  Bruno-Marek-Allee 5, 1020 Vienna, in the 2nd district, and we keep our
+  <a href="https://climatelab.at/">Climate Lab</a> membership afterwards.
+  <strong>If you are looking for housing, take the new location into
+  account.</strong> Vienna's rental market is competitive, so plan ahead; we
+  help you find housing.</p>
+
+  <div class="findings">
+    <ul>
+      <li><strong>Coming from abroad.</strong> Relocation support, help
+        finding housing, a contribution to German lessons, and career support
+        for partners of mid-career and senior scientists through our research
+        and industry network in Vienna. Moving from the EU or EEA needs no
+        work permit: you register your address and residence after
+        arrival.</li>
+      <li><strong>Pay and social security.</strong> Salary following the
+        Research collective agreement, paid 14 times a year with summer and
+        winter holiday payments, plus employer social security
+        contributions.</li>
+      <li><strong>Time.</strong> Five weeks of annual leave plus Austrian
+        public holidays, part-time arrangements, hybrid by default, up to 100
+        telework days within Austria, paid parental leave, and consultancy
+        leave for research scholars.</li>
+      <li><strong>Development.</strong> Up to two trainings a year and six
+        days in total, longer by agreement; a framework for career
+        progression; regular performance and development reviews; and
+        international collaboration and exchange for early-career and
+        postdoctoral researchers.</li>
+      <li><strong>The building.</strong> Die HausWirtschaft is a cooperative
+        house for working, living, leisure and culture, with an active
+        community of small businesses and creatives, fresh organic lunch three
+        times a week, and a low-energy building with its own solar power, by
+        the Freie Mitte park. The Climate Lab membership continues: 24/7
+        access, meeting and event spaces, community events, and three days a
+        year of coworking at Impact Hubs anywhere in the world.</li>
+    </ul>
+  </div>
+
+  <p class="muted small">Every advert states its own extent, contract length
+  and minimum salary. The PDF of each position carries this section in full,
+  along with what we offer and how to find us.</p>
+
+</div>
+</section>
+
+{%- comment -%}
   The standing section (H9). Most people who reach this page will not match an
   advertised post, and the three routes below are how RISE actually takes
   people on in between. Deliberately worded as an invitation rather than a
@@ -96,6 +169,16 @@ description: Open positions at RISE, and how to hear about future ones.
 
   <p>For any of these, or to hear about future openings, write to
   <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+
+  {%- comment -%}
+    The talent pool, from the adverts of 4 Nov 2026. Two years is what they
+    say, and saying it here is the honest version: a file kept without a
+    stated period is a file nobody can ask about.
+  {%- endcomment -%}
+  <p>No open position that fits? Send an unsolicited application to
+  <a href="mailto:{{ site.email }}?subject=RISE%20Talent%20-%20%5Byour%20field%5D">{{ site.email }}</a>
+  with the subject line <strong>RISE Talent - [your field]</strong>. We review
+  it and may keep your details on file for up to two years.</p>
 
 </div>
 </section>

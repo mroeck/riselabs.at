@@ -455,6 +455,28 @@ for p, t in all_text:
         elif target not in pages:
             P("link", str(p.relative_to(SITE)), f"links to {target}, which no page produces")
 
+# The same check for links written plainly rather than through `relative_url`:
+# `[text](/news/2026/…)` in a post body, or a literal `href="/join/"`. Those
+# were never checked, and a post body is exactly where they are written by
+# hand. `baseurl` is empty, so a root-relative link is the whole URL.
+#
+# Skipped: anything with Liquid in it, assets, and bare fragments.
+_plain_link = re.compile(r"\]\((/[^)\s]*)\)|href=\"(/[^\"{}]*)\"")
+for p, t in all_text:
+    for m in _plain_link.finditer(t):
+        target = (m.group(1) or m.group(2)).split("#")[0].split("?")[0]
+        if not target or target.startswith("/assets/"):
+            continue
+        if not target.endswith("/"):
+            target += "/"
+        if target in hidden_pages:
+            N("links", f"{p.relative_to(SITE)} links to {target}, a page that is "
+                       "currently unpublished - fine if the link is behind a flag")
+        elif target not in pages:
+            P("link", str(p.relative_to(SITE)),
+              f"links to {target}, which no page produces (written as a plain "
+              "link rather than through `relative_url`)")
+
 # The ids a nav fragment may point at. Most are written literally in a page
 # or an include; the kind sections on /publications/ are not, because
 # publist.html gives each one id="<kind>" from the data, so those are added
@@ -758,6 +780,21 @@ for _slug, (_fm, _body, _f) in posts.items():
     if "x,xxx" in str(_fm.get("pay_min", "")):
         P("opening", f"_posts/{_slug}.md",
           "`pay_min` is still the placeholder from the template (H15)")
+    # The PDF is the version an applicant prints and reads on a train. A link
+    # to a file that is not in the repository is worse than no link: it looks
+    # like the advert exists and cannot be opened.
+    if _fm.get("pdf"):
+        _pdf = SITE / str(_fm["pdf"]).lstrip("/")
+        if not _pdf.exists():
+            P("opening", f"_posts/{_slug}.md",
+              f"`pdf` points at {_fm['pdf']}, which is not in the repository")
+    # Austrian job adverts carry a Position ID here, and the adverts
+    # themselves say an application without it in the subject line may not be
+    # considered. The layout builds the mail subject from it.
+    if not _fm.get("position_id"):
+        N(f"_posts/{_slug}.md",
+          "published opening has no `position_id`, so its mail link falls back "
+          "to the headline as the subject line")
 
 # ------------------------------------------------------------- social preview
 # jekyll-seo-tag reads `image`, not `hero`. A page that sets a hero without an

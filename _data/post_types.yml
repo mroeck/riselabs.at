@@ -11,6 +11,15 @@
 # hides a tab with no posts behind it anyway, so the entry would simply be
 # dead. H36 is open: Martin is bringing the categories used on social media
 # so these can line up with them.
+# `news` added 4 Nov 2026 for the hiring announcement. The page is called
+# "News and events" and had no News tab: anything that was neither an event,
+# a project update, a publication nor a position itself had nowhere to go.
+# An announcement about three openings is not an opening, and typing it as
+# one would have put it on /join/ as a fourth position.
+- slug: news
+  label: News
+  plural: News
+  hash: news
 - slug: event
   label: Event
   plural: Events
