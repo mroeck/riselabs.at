@@ -297,6 +297,21 @@ permalink: /
   inside the newest year, which on 3 Nov put a wider-team paper above six of
   RISE's own. The tier order lives in publist.html and the cut now happens
   after it.
+
+  Martin, 3 Nov 2026: this band shows only publications he co-authored, for
+  now. `people` is what carries that: every one of the 41 entries listing
+  `martin-roeck` has "Röck M" in its author string and every one that has
+  "Röck M" lists him, checked the same day, so the two say the same thing and
+  the field is the one to filter on.
+
+  "For now" is Martin's word. The band is the whole team's work in principle,
+  and this narrows it while the team's own lists are still being confirmed
+  (H30). Removing the filter is removing one `where_exp`.
+
+  It does not change which six show today: all seven 2026 papers with
+  `rise_tier: core` are his, so the filter removes nothing from the newest
+  year. The seventh is on the page because it is featured, not because of
+  this line.
 {%- endcomment -%}
 <section class="band alt">
   <div class="wrap">
@@ -304,7 +319,8 @@ permalink: /
     <p class="band-note">We publish our methods, data and code openly
     wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
     learn more.</p>
-    {% include publist.html pubs=site.publications limit=6 %}
+    {%- assign ours = site.publications | where_exp: "p", "p.people contains 'martin-roeck'" -%}
+    {% include publist.html pubs=ours limit=6 %}
     <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
   </div>
 </section>

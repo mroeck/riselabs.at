@@ -984,6 +984,38 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
               "cannot parse that and the whole Pages build fails. Chain one "
               "`where_exp` per comparison instead.")
 
+# ------------------------------------- the home page's "co-authored by Martin"
+# Since 3 Nov 2026 the home page band shows only publications Martin
+# co-authored, and it decides that from `people`. That holds only while
+# `people` and the author string agree: on the day it was written, all 41
+# entries listing `martin-roeck` had "Röck M" in `authors` and all 41 with
+# "Röck M" listed him. A note rather than a failure, because an entry where
+# he contributed without being a named author is possible and legitimate; it
+# just means the band's description no longer matches what it shows.
+_m_person = {s for s, (fm, _b, _f) in coll["publications"].items()
+             if "martin-roeck" in (fm.get("people") or [])}
+_m_author = {s for s, (fm, _b, _f) in coll["publications"].items()
+             if re.search(r"R[öo]ck M", fm.get("authors") or "")}
+for _s in sorted(_m_person - _m_author):
+    N(f"_publications/{_s}.md",
+      "lists `martin-roeck` in `people` but no \"Röck M\" in `authors`, so the "
+      "home page shows it under a band described as his co-authored work")
+for _s in sorted(_m_author - _m_person):
+    N(f"_publications/{_s}.md",
+      "has \"Röck M\" in `authors` but does not list `martin-roeck` in "
+      "`people`, so the home page band leaves it out")
+
+# ------------------------------------------------------- featured publications
+# `featured: true` decides which publications survive the home page's cut. It
+# only acts where a list is cut, so featuring more than the band holds makes
+# the band a fixed list and recency stops reaching it at all.
+_feat = [s for s, (fm, _b, _f) in coll["publications"].items()
+         if fm.get("featured") is True]
+if len(_feat) > 3:
+    N("_publications/", f"{len(_feat)} publications are `featured`, and the "
+      "home page band holds six. Past three, the band stops being recent work "
+      f"and becomes a fixed list: {', '.join(sorted(_feat))}")
+
 # ------------------------------------------- cutting publications before order
 # publist.html orders by year and then, inside a year, by tier: RISE's own work
 # before the wider team's before what people published before joining. A caller
