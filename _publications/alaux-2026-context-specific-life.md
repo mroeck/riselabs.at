@@ -5,6 +5,13 @@ authors: "Alaux N, Bechstedt N, Zhong X, Mastrucci A, Ramon D, Steinberger-Maier
 year: 2026
 journal: "Nature Communications"
 doi: "10.1038/s41467-026-73433-1"
+# Martin, 3 Nov 2026: this one on the home page. Seven of the 2026 papers are
+# `core` and six fit the grid, and which one dropped off was decided by the
+# build's order inside the year rather than by anyone: these files carry a
+# year and no month, and that order put this paper last. `featured` counts
+# only where a list is cut, so it changes the home page and leaves
+# /publications/ in plain date order.
+featured: true
 people:
   - martin-roeck
 partners:

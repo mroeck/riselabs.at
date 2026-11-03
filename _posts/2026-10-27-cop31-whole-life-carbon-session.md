@@ -2,25 +2,21 @@
 layout: post
 type: event
 # Event fields (N6, 2 Nov 2026), read from this post's own body.
-# event_start: waiting on H8, the session's day within COP31.
-# event_month is the fallback for a date known only to the month: the body
-# gives the conference as 9 to 20 November 2026, so the month is a fact and
-# the day is not. "Coming up" shows it as "Nov 2026, session date to be
-# confirmed" and sorts it on the first of that month. Delete this line when
-# event_start is known.
-event_month: 2026-11
-# The conference itself ends on 20 November, which the body states, so the
-# session cannot be ahead after that date even though its day is unknown.
-# This is what drops it out of "Coming up" on the 21st.
-event_end: 2026-11-20
+# H8 answered by Martin on 3 Nov 2026: both sessions are on 16 November, and
+# there are two of them rather than one. `event_month` and its "date to be
+# confirmed" line are gone with it, and `event_end` is the day itself rather
+# than the end of the conference: the post is about these two hours, not
+# about COP31.
+event_start: 2026-11-16
+event_end: 2026-11-16
 location: "Antalya, Türkiye"
 format: in person
 projects:
   - global-building-data-initiative
 people:
   - martin-roeck
-title: "Turning Whole Life Carbon Data and Evidence into Climate Action - at COP31"
-summary: "A COP31 session on the gap between measuring carbon and managing it, and on what it takes to make whole life carbon evidence usable for policy, finance and procurement - particularly in rapidly urbanising and Global South markets."
+title: "Two whole life carbon sessions at COP31, 16 November"
+summary: "Better data in the morning, what to do with it in the afternoon: two COP31 sessions on the gap between measuring carbon and managing it, the second presenting CLEAR."
 # A header image would help: the CLEAR identity, or a figure showing how
 # building-level evidence connects to stock-level baselines.
 # hero: /assets/img/posts/cop31-clear-session.jpg
@@ -29,12 +25,24 @@ summary: "A COP31 session on the gap between measuring carbon and managing it, a
 
 The **31st UN Climate Change Conference** runs from **9 to 20 November 2026**
 in **Antalya, Türkiye**, under the Türkiye–Australia partnership modalities.
-Among the built environment sessions is one on what happens after the
-measuring stops: **"Turning Whole Life Carbon Data and Evidence into Climate
-Action"**, which will present the work of
-[CLEAR](/news/2026/clear-coalition-launch/), the Coalition for Life Cycle
-Emissions Alignment and Reporting, of which the Global Building Data
-Initiative is a founding member.
+Two sessions there take up whole life carbon, both on **Monday 16 November**,
+and between them they split the problem in half: better data in the morning,
+what to do with it in the afternoon.
+
+<div class="findings" markdown="1">
+
+- **10:00 to 11:00, Finland Pavilion. "Accelerating Solutions Through Better
+  Whole Life Carbon Data and Better Decisions"**, convened by GlobalABC and
+  RICS.
+- **14:00 to 15:00. "Turning Whole Life Carbon Data and Evidence into Climate
+  Action"**, convened by RICS, WBCSD, the Global Building Data Initiative and
+  GlobalABC, presenting [CLEAR](/news/2026/clear-coalition-launch/), the
+  Coalition for Life Cycle Emissions Alignment and Reporting, of which GBDI is
+  a founding member.
+
+</div>
+
+The rest of this post is about the afternoon session.
 
 <h2>The argument</h2>
 
@@ -94,5 +102,5 @@ practitioners; data and technology providers; and anyone working on national
 building decarbonisation strategies - particularly in emerging and Global
 South markets.
 
-<p class="muted small">The session's exact time, venue and speaker
-line-up will be confirmed closer to the conference.</p>
+<p class="muted small">The venue for the afternoon session and the speaker
+line-up for both will be confirmed closer to the conference.</p>

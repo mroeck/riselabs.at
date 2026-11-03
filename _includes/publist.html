@@ -1,7 +1,8 @@
 {%- comment -%}
   A list of publications, newest first. Expects: include.pubs
   include.sections="true" breaks them into kind sections.
-  include.limit="6" keeps the first N after ordering.
+  include.limit="6" keeps the first N after ordering, and turns on
+  `featured: true` as the way of deciding what makes that cut.
 
   `limit` exists so a caller that wants a few cannot take them before the
   ordering below has run. The home page used to do exactly that
@@ -35,10 +36,31 @@
   the right kind, produced by a `where` that matches nothing: Jekyll's Liquid
   has no literal for one.
 {%- endcomment -%}
-{%- assign by_year = include.pubs | sort: "year" | reverse -%}
+{%- comment -%}
+  `featured: true` decides what survives a cut, and only that. It applies
+  when the caller passes a `limit`, which is the home page and nothing else
+  today, and it is ignored on the full listing: a paper jumping its year on
+  /publications/ would read as a sorting bug rather than a choice.
+
+  It exists because the cut is otherwise arbitrary in a way nothing on the
+  page admits. Seven of the 2026 papers are `core`, six fit, and which one
+  falls off the end is decided by the build's order inside the year, since
+  these files carry a year and no month. Checked against the live site on
+  3 Nov 2026: that order is the reverse of the alphabet, so alaux-2026 was
+  last of the seven and never appeared. `featured` is how that is settled
+  deliberately, exactly as it already is for projects and posts.
+{%- endcomment -%}
+{%- if include.limit -%}
+  {%- assign lead = include.pubs | where: "featured", true -%}
+  {%- assign tail = include.pubs | where_exp: "p", "p.featured != true" -%}
+{%- else -%}
+  {%- assign lead = include.pubs | where: "__never__", "__never__" -%}
+  {%- assign tail = include.pubs -%}
+{%- endif -%}
+{%- assign by_year = tail | sort: "year" | reverse -%}
 {%- assign years = by_year | map: "year" | uniq -%}
 {%- assign tiers = "core,extended,prior" | split: "," -%}
-{%- assign pubs = include.pubs | where: "__never__", "__never__" -%}
+{%- assign pubs = lead | sort: "year" | reverse -%}
 {%- for y in years -%}
   {%- assign in_year = by_year | where: "year", y -%}
   {%- for t in tiers -%}
