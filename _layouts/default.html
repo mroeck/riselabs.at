@@ -32,35 +32,28 @@
     into the other. This has to be inline and early; a deferred script runs
     too late to prevent the flash.
 
-    Two steps, in this order. A choice the visitor made here wins, because
-    they made it. Failing that, the operating system's setting is followed,
-    so someone who runs their machine light gets a light site without having
-    to ask. Failing both, the markup's dark stands.
+    One step. A choice the visitor made with the toggle wins, because they
+    made it. Everything else is dark, which is the markup's own value and
+    needs no script to arrive at.
 
-    `prefers-color-scheme: light` is tested rather than inferred from the dark
-    query being false: a browser that does not support the feature at all
-    answers false to both, and that case must land on the default, not on
-    light.
+    Martin, 3 Nov 2026: dark by default, full stop. Until then the operating
+    system's setting was read first, so anyone running a light machine, which
+    is most people, met a light site and never saw the dark one unless they
+    went looking for the toggle. That is not a default. The site is dark now
+    and the toggle is how a visitor changes it, once, for as long as their
+    browser keeps the choice.
 
-    Storage can throw - private windows, blocked site data - and an old
-    browser may not know `matchMedia`, so each is wrapped separately: a
-    failure in one must not cost the other. If everything fails the page is
-    dark, which is the default rather than a fallback.
+    Storage can throw - private windows, blocked site data - so the read is
+    wrapped. If it fails the page is dark, which is the default rather than a
+    fallback.
   {%- endcomment -%}
   <script>
     (function () {
-      var el = document.documentElement, t = null;
+      var t = null;
       try { t = localStorage.getItem("rise-theme"); } catch (e) {}
-      if (t !== "light" && t !== "dark") {
-        t = null;
-        try {
-          if (window.matchMedia &&
-              window.matchMedia("(prefers-color-scheme: light)").matches) {
-            t = "light";
-          }
-        } catch (e) {}
+      if (t === "light" || t === "dark") {
+        document.documentElement.setAttribute("data-theme", t);
       }
-      if (t) { el.setAttribute("data-theme", t); }
     })();
   </script>
   {%- seo title=false -%}
