@@ -1,0 +1,20 @@
+# One path per line. Every page type at least once, plus the pages Q1 fixes.
+/
+/team/
+/team/martin-roeck/
+/approach/
+/expertise/
+/projects/
+/projects/indicate-life/
+/projects/reliving-scaling-renovation/
+/publications/
+/publications/steinbergermaierhofer-2026-biogenic-carbon-dioxide/
+/news/
+/news/#events
+/partners/
+/partners/bpie/
+/join/
+/tools/
+/impressum/
+/datenschutz/
+/404.html

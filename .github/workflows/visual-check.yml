@@ -1,0 +1,179 @@
+# Phase Q: prove a refactoring step changed nothing a visitor can see.
+#
+# The work order has this run locally, with `bundle exec jekyll serve` and two
+# `visual-check.mjs shoot` runs. That is not possible from the implementer's
+# environment: rubygems.org answers 403 through its proxy, so Jekyll cannot be
+# installed, let alone run. The same two shoots happen here instead, where the
+# github-pages gem installs normally, and the report lands on the pull request
+# rather than being pasted into it by hand.
+#
+# It builds the base commit and the head commit with the same Jekyll, serves
+# each in turn, shoots all 19 pages at both widths in both themes, and
+# compares. The report is a job summary, a comment on the pull request, and an
+# artifact holding every screenshot and every diff image.
+name: Visual check
+
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: "Ref to compare against (default: the default branch)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  pull-requests: write
+
+# One run per branch. A new push cancels the run in flight rather than
+# queueing a second one behind it.
+concurrency:
+  group: visual-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Work out what to compare
+        id: refs
+        run: |
+          if [ -n "${{ github.event.pull_request.base.sha }}" ]; then
+            echo "base=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            echo "head=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            BASE="${{ github.event.inputs.base }}"
+            [ -z "$BASE" ] && BASE="origin/${{ github.event.repository.default_branch }}"
+            echo "base=$(git rev-parse "$BASE")" >> "$GITHUB_OUTPUT"
+            echo "head=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install the checker
+        working-directory: visual-check
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      # Both builds use this checkout's Gemfile, so the two sites differ only
+      # by their own content and never by a gem version.
+      - name: Build both commits
+        run: |
+          set -e
+          git worktree add /tmp/base "${{ steps.refs.outputs.base }}"
+          git worktree add /tmp/head "${{ steps.refs.outputs.head }}"
+          BUNDLE_GEMFILE="$GITHUB_WORKSPACE/Gemfile" bundle exec jekyll build \
+            -s /tmp/base -d /tmp/site-base --trace
+          BUNDLE_GEMFILE="$GITHUB_WORKSPACE/Gemfile" bundle exec jekyll build \
+            -s /tmp/head -d /tmp/site-head --trace
+
+      # Rule 5: same URLs, same feed, same sitemap. Diffed before the pixels,
+      # because a changed permalink is a worse failure than a moved pixel and
+      # the screenshots would not show it.
+      - name: Compare the feed, the sitemap and the page list
+        run: |
+          set +e
+          for f in feed.xml sitemap.xml; do
+            if ! diff -u "/tmp/site-base/$f" "/tmp/site-head/$f" > "/tmp/$f.diff"; then
+              echo "### \`$f\` differs" >> "$GITHUB_STEP_SUMMARY"
+              echo '```diff' >> "$GITHUB_STEP_SUMMARY"
+              head -60 "/tmp/$f.diff" >> "$GITHUB_STEP_SUMMARY"
+              echo '```' >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+          (cd /tmp/site-base && find . -name '*.html' | sort) > /tmp/pages-base.txt
+          (cd /tmp/site-head && find . -name '*.html' | sort) > /tmp/pages-head.txt
+          if ! diff -u /tmp/pages-base.txt /tmp/pages-head.txt > /tmp/pages.diff; then
+            echo "### The set of pages differs" >> "$GITHUB_STEP_SUMMARY"
+            echo '```diff' >> "$GITHUB_STEP_SUMMARY"
+            cat /tmp/pages.diff >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Shoot both
+        run: |
+          set -e
+          shoot () {   # $1 = built site, $2 = output folder
+            python3 -m http.server 4000 --directory "$1" > /dev/null 2>&1 &
+            SERVER=$!
+            for i in $(seq 1 30); do
+              curl -sf http://localhost:4000/ > /dev/null && break || sleep 1
+            done
+            node visual-check/visual-check.mjs shoot http://localhost:4000 "$2"
+            kill $SERVER
+          }
+          shoot /tmp/site-base .visual/base
+          shoot /tmp/site-head .visual/head
+
+      - name: Compare
+        id: compare
+        run: |
+          set +e
+          node visual-check/visual-check.mjs compare .visual/base .visual/head .visual/report
+          echo "changed=$?" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Visual check"
+            echo
+            echo "Base \`${{ steps.refs.outputs.base }}\` against head \`${{ steps.refs.outputs.head }}\`."
+            echo
+            cat .visual/report/report.md
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-check
+          path: |
+            .visual/report
+            .visual/base
+            .visual/head
+          retention-days: 14
+
+      # One comment per pull request, rewritten on every run, so a branch with
+      # six pushes does not leave six reports to read through.
+      - name: Say so on the pull request
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const mark = "<!-- visual-check -->";
+            let body = mark + "\n## Visual check\n\n";
+            try {
+              body += fs.readFileSync(".visual/report/report.md", "utf8");
+            } catch (e) {
+              body += "The check did not produce a report; see the job log.\n";
+            }
+            body += "\n\nEvery screenshot and diff image is in the **visual-check** artifact on this run.\n";
+            if (body.length > 65000) body = body.slice(0, 65000) + "\n\n…truncated; see the artifact.\n";
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const mine = (await github.rest.issues.listComments({ owner, repo, issue_number }))
+              .data.find((c) => c.body && c.body.startsWith(mark));
+            if (mine) await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body });
+            else await github.rest.issues.createComment({ owner, repo, issue_number, body });
+
+      # The check reports; it does not block. Q1 changes pages on purpose, and
+      # a red tick there would be noise rather than a signal. What matters is
+      # that the report is on the pull request and someone reads it.
+      - name: Note the outcome
+        run: |
+          if [ "${{ steps.compare.outputs.changed }}" = "0" ]; then
+            echo "No visual or text differences."
+          else
+            echo "Differences found; see the summary and the artifact."
+          fi
