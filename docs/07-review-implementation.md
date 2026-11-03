@@ -1870,6 +1870,28 @@ Without it the browser draws its own furniture in the system's scheme, which
 on a dark default is a light-grey select on a navy page. This was missing
 before the reversal too; the dark default is what made it visible.
 
+### The system setting is no longer read (Martin, 3 November)
+
+The 31 October reversal left one step in front of the default: a visitor
+with no stored choice got their operating system's `prefers-color-scheme`,
+and only fell through to dark if that said dark or said nothing. Most people
+run their machines light, so most first visits were light. The site had a
+dark default that almost nobody met.
+
+Martin, 3 November: dark by default, full stop. The `matchMedia` branch is
+gone from the inline `<head>` script, which now reads the stored choice and
+nothing else, and the script is six lines shorter for it. Everything else
+stands: `data-theme="dark"` in the markup, the toggle, the `rise-theme` key,
+the before-paint read that stops the flash, and the Datenschutz section that
+discloses the one word stored.
+
+What this costs is worth writing down rather than discovering later. A
+system set to light is a statement about how someone reads, sometimes a
+medical one, and this site now ignores it on the first visit and asks them
+to find a button in the bottom-right corner instead. The toggle has to stay
+visible and reachable for that reason; it is no longer a convenience but the
+only way to light. Both themes still get checked on every change.
+
 ### H24, Circular: the files supplied on 29 October do not cover this site
 
 Four files arrived with the pack: `CircularXXWeb-Medium` and

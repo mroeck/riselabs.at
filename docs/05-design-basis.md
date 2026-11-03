@@ -107,17 +107,23 @@ card on navy is a deliberate surface, not an oversight.
 turn replaced "dark is primary".) Neither is a second-class rendering: every
 change is checked in both, and the contrast figures above are met in both.
 
-What a visitor actually gets, in order: a theme they chose here before, else
-their operating system's `prefers-color-scheme`, else dark. The markup ships
-`data-theme="dark"`, so that is also what anyone with JavaScript off sees.
-The toggle sits in the bottom-right corner and flips `data-theme` on `<html>`.
+What a visitor actually gets: a theme they chose here before, else dark.
+Nothing else is consulted. The markup ships `data-theme="dark"`, so that is
+also what anyone with JavaScript off sees. The toggle sits in the
+bottom-right corner and flips `data-theme` on `<html>`.
 
-The `prefers-color-scheme` test is written for `light`, not negated from
-`dark`: a browser too old to know the feature answers false to both queries,
-and that visitor has to land on the default rather than on light. Each theme
-block also carries `color-scheme`, which is what makes the browser's own
-furniture - the sort select on /publications/, text inputs, scrollbars, the
-focus ring - follow the theme instead of staying in the system's.
+**The operating system's `prefers-color-scheme` is not read** (Martin, 3
+November 2026). It used to be, between the dark default and that date, and
+the effect was that most visitors, who run their machines light, met a light
+site: the stated default was reaching almost nobody. Dark is the brand, the
+toggle is how a visitor who wants light says so, and that choice is then
+kept. The cost is named rather than hidden: someone who sets their system
+light has said something about how they like to read, and this site now
+makes them say it again here.
+
+Each theme block carries `color-scheme`, which is what makes the browser's
+own furniture - the sort select on /publications/, text inputs, scrollbars,
+the focus ring - follow the theme instead of staying in the system's.
 
 The choice is remembered in `localStorage` under `rise-theme` - one word, set
 only when the visitor presses the button, never transmitted. An inline script
