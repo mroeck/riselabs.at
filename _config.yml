@@ -11,6 +11,21 @@ url: "https://riselabs.at"
 baseurl: ""
 lang: en
 
+# Without this Jekyll works in UTC, and "today" on the site is an hour or two
+# behind today in Vienna. Jekyll does not publish a post dated in the future
+# (`future: false` is its default), so the four posts dated 4 November 2026
+# were built on 3 November at 23:46 UTC and every one of them vanished: the
+# three open positions and the announcement. /join/ said "There are no open
+# positions at the moment" while the files sat in the repository.
+#
+# It would have fixed itself at 01:00 Vienna time, but only on the next push,
+# since GitHub Pages rebuilds on push and nothing else. Anything written and
+# pushed late in a Vienna evening would have done the same thing again.
+#
+# This also makes the deadline tests on /join/ and in "Coming up" compare
+# against the Vienna date, which is the date the deadlines were written in.
+timezone: Europe/Vienna
+
 email: office@riselabs.at
 linkedin: "https://www.linkedin.com/company/riseregenerate/"
 bluesky: "https://bsky.app/profile/riselabs.at"
