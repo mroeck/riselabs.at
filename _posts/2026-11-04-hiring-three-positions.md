@@ -4,11 +4,6 @@ type: news
 featured: true
 title: "We are hiring: three positions in Vienna"
 summary: "A Global Partnerships and Programmes Lead, a Senior Scientist and a Junior Scientist for whole life carbon and LCA. Applications until 4 December 2026, interviews from 18 November."
-partners:
-  - bpie
-  - ku-leuven
-  - worldgbc
-  - smith-innovation
 people:
   - martin-roeck
 ---
@@ -18,8 +13,8 @@ Institute for Regenerative Spatial Systems Science, we model materials,
 buildings and building stocks to show which options fit within the carbon
 budget. Together with the
 [Global Building Data Initiative](/projects/global-building-data-initiative/)
-and the INDICATE network, our work informs policy and markets in Europe, Asia
-and Africa.
+and the [INDICATE network](https://indicatedata.com), our work informs policy
+and markets in Europe, Asia and Africa.
 
 We are now growing the team.
 
@@ -67,8 +62,3 @@ Not the right fit, but interested in the work? Send an unsolicited application
 to [office@riselabs.at](mailto:office@riselabs.at?subject=RISE%20Talent%20-%20%5Byour%20field%5D)
 with the subject line **RISE Talent - [your field]**, and we may keep your
 details on file for up to two years.
-
-We work with partners including RICS, WBCSD,
-[BPIE](/partners/bpie/), [KU Leuven](/partners/ku-leuven/),
-the [World Green Building Council](/partners/worldgbc/) and
-[Smith Innovation](/partners/smith-innovation/).
