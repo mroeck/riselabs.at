@@ -455,6 +455,28 @@ for p, t in all_text:
         elif target not in pages:
             P("link", str(p.relative_to(SITE)), f"links to {target}, which no page produces")
 
+# The same check for links written plainly rather than through `relative_url`:
+# `[text](/news/2026/…)` in a post body, or a literal `href="/join/"`. Those
+# were never checked, and a post body is exactly where they are written by
+# hand. `baseurl` is empty, so a root-relative link is the whole URL.
+#
+# Skipped: anything with Liquid in it, assets, and bare fragments.
+_plain_link = re.compile(r"\]\((/[^)\s]*)\)|href=\"(/[^\"{}]*)\"")
+for p, t in all_text:
+    for m in _plain_link.finditer(t):
+        target = (m.group(1) or m.group(2)).split("#")[0].split("?")[0]
+        if not target or target.startswith("/assets/"):
+            continue
+        if not target.endswith("/"):
+            target += "/"
+        if target in hidden_pages:
+            N("links", f"{p.relative_to(SITE)} links to {target}, a page that is "
+                       "currently unpublished - fine if the link is behind a flag")
+        elif target not in pages:
+            P("link", str(p.relative_to(SITE)),
+              f"links to {target}, which no page produces (written as a plain "
+              "link rather than through `relative_url`)")
+
 # The ids a nav fragment may point at. Most are written literally in a page
 # or an include; the kind sections on /publications/ are not, because
 # publist.html gives each one id="<kind>" from the data, so those are added

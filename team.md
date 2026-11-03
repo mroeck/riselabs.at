@@ -112,7 +112,7 @@ positions &rarr;</a></p>
   T1, "Where we work", below the team. Everything shown here comes from
   _data/place.yml, so a move is a change to that file and not to this page.
 
-  Two places since 2 Nov 2026: Climate Lab today, and dieHausWirtschaft from
+  Two places since 2 Nov 2026: Climate Lab today, and Die HausWirtschaft from
   2027. Both are in the data file's `places` list and the page loops it, so
   when the move happens it is a reordering of that list and the labels above
   the names, with nothing to change here. Climate Lab stays on the page after

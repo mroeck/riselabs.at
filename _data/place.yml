@@ -1,7 +1,7 @@
 # The places shown under "Where we work" on /team/ (T1).
 #
 # `places` is a list, in the order they appear on the page, so the 2027 move is
-# a reordering here and nothing else: when dieHausWirtschaft becomes the office,
+# a reordering here and nothing else: when Die HausWirtschaft becomes the office,
 # put it first, change its `when` to "Our office" and give Climate Lab a `when`
 # of "Members since 2024" or similar. No template change either way.
 #
@@ -32,13 +32,13 @@ places:
   # its own photovoltaics, and tram O at the door. The people and apartment
   # counts on that site contradict each other (200 vs 250 people, 46 vs 48
   # homes), so no number is quoted here.
-  - name: dieHausWirtschaft
+  - name: Die HausWirtschaft
     when: From 2027
     text:
-      - "Our office moves to dieHausWirtschaft in Vienna's Nordbahnviertel, a cooperatively run house where people live and work under one roof, with coworking, workshop rooms and a hall for events. It is a low-energy building with its own solar power, designed by its members together with einszueins architektur, who are also our partners in CollaborativeCarbon."
-      - "Roughly half the house is homes and half is workspace. If you are thinking of applying to RISE and wondering where you would live, the flats are worth knowing about: they are let by the cooperative and not by us, so any question about them goes to dieHausWirtschaft."
+      - "Our office moves to Die HausWirtschaft in Vienna's Nordbahnviertel, a cooperatively run house where people live and work under one roof, with coworking, workshop rooms and a hall for events. It is a low-energy building with its own solar power, designed by its members together with einszueins architektur, who are also our partners in CollaborativeCarbon."
+      - "Roughly half the house is homes and half is workspace. If you are thinking of applying to RISE and wondering where you would live, the flats are worth knowing about: they are let by the cooperative and not by us, so any question about them goes to Die HausWirtschaft."
     address:
-      - dieHausWirtschaft
+      - Die HausWirtschaft
       - Bruno-Marek-Allee 5/1, 1020 Vienna
       - Tram O Bruno-Marek-Allee
     link:
