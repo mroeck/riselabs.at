@@ -984,6 +984,28 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
               "cannot parse that and the whole Pages build fails. Chain one "
               "`where_exp` per comparison instead.")
 
+# ------------------------------------------- cutting publications before order
+# publist.html orders by year and then, inside a year, by tier: RISE's own work
+# before the wider team's before what people published before joining. A caller
+# that takes a few publications first and passes those in has cut the list on
+# year alone, and `sort: "year"` says nothing about order inside a year. The
+# home page did that from 1 Nov to 3 Nov 2026 and showed a wider-team paper
+# above six of RISE's own, which is precisely what the tier order is for.
+#
+# Pass the whole collection with `limit=N` instead; publist slices last.
+for _f in sorted(SITE.glob("*.md")) + sorted(SITE.glob("*.html")) + sorted(SITE.glob("_includes/*.html")):
+    if _f.name == "publist.html":
+        continue            # the one place the cut belongs
+    _t = _f.read_text()
+    for _m in re.finditer(r"\{%-?(.*?)-?%\}|\{\{-?(.*?)-?\}\}", _t, re.S):
+        _tag = _m.group(1) or _m.group(2) or ""
+        if "site.publications" in _tag and re.search(r"\|\s*slice\b", _tag):
+            P("liquid", str(_f.relative_to(SITE)),
+              "slices `site.publications` before publist.html can order it by "
+              "tier. Pass the collection and `limit=N` instead, so the cut "
+              "happens after the ordering.")
+            break
+
 # ------------------------------------------------------- stylesheet structure
 # One stray brace puts every rule after it out of the cascade, and CSS fails
 # silently: the browser drops what it cannot parse and renders the rest, so

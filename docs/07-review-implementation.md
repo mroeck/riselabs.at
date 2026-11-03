@@ -1987,6 +1987,38 @@ to find a button in the bottom-right corner instead. The toggle has to stay
 visible and reachable for that reason; it is no longer a convenience but the
 only way to light. Both themes still get checked on every change.
 
+### The home page cut its publications before they were ordered (3 November)
+
+Martin asked for six publications on the home page instead of three, 3x2 on
+a desktop and 2x3 on a phone. The count was the ask; the order was the bug
+found on the way.
+
+The band read `site.publications | sort: "year" | reverse | slice: 0, 3`.
+That sorts on year and nothing else, so inside the newest year it took
+whichever three the build emitted first. On 3 November that was
+`alaux-2026`, then `batra-2026`, which is a wider-team paper, and only then
+`disanto-2026`: a wider-team paper above six of RISE's own, which is exactly
+what E3's tier order exists to prevent. The tier order lives in
+`publist.html` and was never reached, because the list had already been cut
+before it got there. The publications page was always right; only the home
+page was cutting first.
+
+`publist.html` takes `limit` now, applied after the year-and-tier rebuild,
+and the home page passes the whole collection with `limit=6`. The six that
+render are all 2026 and all `core`.
+
+Two things worth knowing about that selection. Seven 2026 papers are
+`core`, so one of them is not on the page, and which one is decided by the
+build's order inside the year, not by anything meaningful: these files carry
+a year and no month, as `publist.html` has said all along, so there is no
+recency to sort on and nothing invents one. If a particular paper has to be
+on the home page, that needs a `featured` flag or real dates, and both are
+Martin's call rather than something to assume.
+
+`docs-check` now fails any page that slices `site.publications` outside
+`publist.html`, because this is a silent failure: it renders six perfectly
+good cards in the wrong order, and nothing looks broken.
+
 ### H24, Circular: the files supplied on 29 October do not cover this site
 
 Four files arrived with the pack: `CircularXXWeb-Medium` and
