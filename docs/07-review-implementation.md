@@ -1719,6 +1719,345 @@ from N3.
 
 ---
 
+## Phase Q: fix the faults, then refactor without visible change
+
+Martin, 3 Nov 2026: fix the faults found in the review of 2 November, then
+refactor the code so that the site looks and reads exactly as it does now.
+The design concept from that review (new grid, type scale, navigation, home
+order) is **not** part of this phase; it waits for Martin's decisions. Source:
+fresh-eyes review and concept, https://claude.ai/artifact/6YxdEuMy4bJ8WX496WxY3j
+(sections 2, 7 and 8). Line numbers below are from commit 94b2457 and will
+drift; search for the quoted code.
+
+### Rules for this phase
+
+These add to §0 and override rule 4 where they differ.
+
+1. **Q1 is the only step that may change what a visitor sees.** Every other
+   step must leave the site pixel for pixel and word for word as it was.
+2. **Prove it with the visual check.** `visual-check/visual-check.mjs` (supplied
+   with this phase, see Q0) takes full-page screenshots of 19 pages at 1440
+   and 390 px in dark and light (76 shots) and records each page's title,
+   description, Open Graph tags, canonical link and visible text. Shoot
+   `main` before the step and the branch after it, run `compare`, and attach
+   `report.md` to the pull request. A step passes when the report lists no
+   differences, or for Q1 only the intended ones.
+3. **One pull request per step** (Q1, Q2, … Q9), titled `Review Q<n>: <topic>`,
+   merged in order. Q1 may be split into one pull request per fault.
+4. **Where two variants look different, do not choose.** If merging two
+   templates, classes or scripts would change how either looks, keep both,
+   and add the pair to the list under "Differences left for the design phase"
+   at the end of this phase. Choosing between them is a design decision.
+5. **Same URLs, same feed, same sitemap.** No permalink, anchor id, RSS
+   entry or sitemap entry may change. Check `/feed.xml` and `/sitemap.xml`
+   by diffing the built files before and after.
+6. **GitHub Pages must still build.** The repository keeps the
+   `github-pages` gem and its plugin set. After each merge, confirm the Pages
+   build succeeded before starting the next step.
+7. **Out of scope:** Phase C content work, Circular licensing (H24), and
+   anything in the design concept. If a step tempts you into a visual
+   improvement, write it down instead.
+
+### Q0 Baseline and the visual check
+
+- **Files:** new folder `visual-check/` with `visual-check.mjs`,
+  `visual-pages.txt`, `package.json` and `README.md` (supplied in
+  `riselabs-q-visual-check-2026-11-03.zip`); `_config.yml`; `.gitignore`.
+- Add `visual-check` to `exclude:` in `_config.yml`, like the other tools,
+  so it is never published, and add `.visual/` and
+  `visual-check/node_modules/` to `.gitignore`. (`.visual/` starts with a dot,
+  so Jekyll skips it anyway.)
+- Run `npm install` in `visual-check/` (Playwright, pixelmatch and pngjs,
+  versions pinned), then `npx playwright install chromium` if no browser is
+  present. Serve `main` locally with `bundle exec jekyll serve` and run
+  `node visual-check/visual-check.mjs shoot http://localhost:4000 .visual/main`.
+  Keep this baseline until Q1 is merged, then shoot a new one: Q1 changes
+  the baseline on purpose.
+- Before Q4 and Q7, also save `_site/feed.xml`, `_site/sitemap.xml` and the
+  `<head>` of every page in the list, for rule 5.
+- **Done when:** the tool runs, the baseline exists, and a compare of
+  `main` against itself reports no differences.
+
+### Q1 Fix the live faults (visible, intended)
+
+Each fix is small. After it, the visual check should show changes on the
+named pages only.
+
+1. **Partner facts box.** Two different components share the class
+   `.facts`: the `<dl class="facts">` label and value list
+   (`_layouts/partner.html`, `_layouts/publication.html`, CSS at
+   `style.css:879`) and the home page evidence list `<ul class="facts">`
+   (`index.md:72`, CSS at `style.css:2875`). The later rule wins, so every
+   partner page lays its labels and values across three columns ("Type, think
+   tank, City / Brussels, Country, Belgium"). Rename the home list to
+   `.evidence` in `index.md` and in its CSS block, and leave `.facts` to the
+   `<dl>`. Expected change: the 44 partner pages show one label and value
+   per row; publication pages and the home page unchanged.
+2. **Card class collision.** Project cards (`_includes/projectgrid.html`,
+   CSS `style.css:2228–2238`) and post cards (`_includes/postcards.html`,
+   CSS `style.css:3033–3045`) both use `.pcard-meta`, `.pcard-title` and
+   `.pcard-sum`; the post-card rules come later and silently restyle project
+   cards. Give post cards their own names (for example `.post-card-meta`,
+   `-title`, `-sum`) in the include and the CSS. Then make the project-card
+   rules say explicitly what project cards inherit from the post-card rules
+   today, so the project grid does not change. Expected change: none (check
+   `/projects/` and the home page).
+3. **News search count.** On `/news/` the search box sits inside the
+   `[data-newsbar]` (`news.md:60`), so `init` attaches both `setupFilter` and
+   `setupNews` to it (`ui.js:817` and `:821`). On the Events tab, typing
+   "carbon" shows 5 posts while the count says "9 of 11". Let one script own
+   the input: the count must count what is visible in the active tab
+   ("5 of 6"). Expected change: the count on `/news/` only.
+4. **Partner table search.** `setupFilter` selects `li, tr` (`ui.js:54`
+   and `:75`), which includes the header row: the count reads "of 45" for 44
+   partners, and the header disappears when a search does not match it.
+   Select `li, tbody tr`. Expected change: `/partners/` count and header.
+5. **Hero button in the light theme.** The hero always sits on a dark photo,
+   but in the light theme `--btn-bg` is navy (`style.css:291`), so "Work with
+   us" is navy on a navy-tinted picture and reads as plain text. Inside
+   `.hero-full`, set the button tokens to the dark-theme values in both
+   themes (magenta `#f92d84`, navy text `#001730`, 4.9:1; hover `#ff6ba6`),
+   as tokens, not as hex values in the component rule. Expected change: the
+   home hero in the light theme only.
+6. **Page titles from `name`.** Partner files have `name:` but no `title:`,
+   so Jekyll makes one from the file name: the tab title of `/partners/bpie/`
+   is "Bpie · RISE", and `og:title` is the same. Add `title:` with the exact
+   `name` value to every partner file (a script, not by hand), check whether
+   people and any other collection have the same gap, and make
+   `docs-check.py` require `title` to equal `name` where both exist.
+   Expected change: `<title>` and `og:title` on partner pages; nothing on the
+   page itself.
+
+- **Done when:** the visual check lists changes only on the pages named
+  above, each matches the expected change, and `docs-check` passes.
+
+### Q2 Make the checker trustworthy and run it on every pull request
+
+- **File:** `docs-check.py`, new `.github/workflows/check.yml`.
+- **Fix:**
+  - The partner-logo check never runs. It sits after a `continue` at the end
+    of the `_want_pics` loop and uses stale `slug` and `logo` variables, so
+    no logo is ever marked as referenced and 43 of the 52 "not referenced"
+    notes are false. Move it into the partner loop above it (the one that
+    notes "has no logo").
+  - Scan `_config.yml` for asset paths too (`rise-default.png` is reported
+    as unused although `_config.yml` uses it).
+  - The message that names `_data/services.yml` (a file that no longer
+    exists) should name the file it actually reads.
+  - Remove the slug check that cannot fire (audit note: around line 244).
+- **Add** (problems unless marked as notes):
+  - An allowed-fields list per collection; an unknown or misspelled
+    front-matter field is a problem.
+  - Closed vocabularies: publication `kind`, post `type` (from
+    `_data/post_types.yml`), project `status`, and partner `type` (move the
+    14 values in use today into a new `_data/partner_types.yml`; the values
+    and how they print stay as they are).
+  - Images over 300 KB, and `<img>` without `width` and `height`, as notes.
+  - CSS classes that nothing uses, and classes in markup that no CSS or
+    script uses, as notes (they feed Q3).
+- **Workflow:** on every pull request, check out, set up Python 3, `pip
+  install pyyaml`, run `python3 docs-check.py`. The checker already exits
+  with 1 on problems, so a problem fails the check. Make it a required check
+  on `main` (repository settings, Martin or Mel).
+- **Done when:** the workflow runs on a test pull request, the false logo
+  notes are gone, a misspelled field in a test file fails the check, and the
+  visual check shows no differences.
+
+### Q3 Delete dead code and files
+
+Delete only what the Q2 checker and a search of every template, markdown
+file, data file and script prove unused. Expected visual change: none.
+
+- **CSS:** the `.svc-*` and `.service` block (about 85 lines), `.lessons`,
+  `.cols .num`, `.projects .role`, `.facts-cite`, `.person-also`,
+  `.themebar-label`, `.tile`, `.pcard-img-empty`, `.xfield-img-empty`,
+  `#teamlist h2` and `#teamlist h2 + .muted`, and the `.findings .engage-*`
+  rules. Confirm each with a search first.
+- **Templates:** the unused "list" branch of `_includes/engagement.html`
+  (both callers pass `style="cards"`), the empty
+  `{% if page.type == "opening" %}{% endif %}` in `_layouts/post.html`, the
+  unused `all_projects` assign in `_layouts/partner.html`, and the double
+  count in `_includes/partnerstats.html`.
+- **Markup classes with no CSS and no script:** remove them, after checking
+  `ui.js` for each.
+- **Config and data:** `site.author_cite` if nothing reads it; `layout:` in
+  the 11 posts (the defaults in `_config.yml` already set it).
+- **Images:** the unreferenced files the checker lists, for example
+  `assets/img/indicate-life-hero.jpg`, `assets/img/photos/project-gbdi-pilot.jpg`,
+  `assets/img/projects/building-greenery.webp`,
+  `assets/img/projects/embodied-carbon-world.png`. **Keep** the three files
+  in `assets/img/hero/` named after the pillars: C1 deletes them when the
+  new hero pictures arrive.
+- **Keep** the post field `format` (P3.1 defines it, even though nothing
+  prints it yet) and `hero_tone` (the checker notes it as unused, but it is a
+  deliberate opt-out).
+- **Done when:** the visual check shows no differences, `docs-check` passes,
+  and the pull request lists what was removed and the bytes saved.
+
+### Q4 Split the stylesheet into Sass layers
+
+- **Files:** `assets/css/style.css` → `assets/css/style.scss` (front matter
+  `---` / `---`, then `@import` lines) and partials in `_sass/`; `_config.yml`.
+- **Layers, in this order:** `_tokens` (custom properties, both themes),
+  `_fonts`, `_base` (reset, type, focus, skip link), `_layout` (wrap, band,
+  grid, article), `_components/*` (one partial per component: card, people,
+  partners, facts, figure, filter, tabs, reel, hero, footer, nav, cite, map
+  …), `_pages/*` (home, expertise, approach, team, partners, news), `_utilities`,
+  `_print`.
+- **Keep the cascade.** Move rules without reordering them across files
+  where the order matters: when two rules of equal specificity set the same
+  property, the one that wins today must still come later. Fix nothing while
+  moving; Q1 has already fixed the known collisions.
+- **Tokens only.** Replace the 27 hex values and 26 `rgba()` values written
+  outside `:root` with existing tokens where the value is identical, or a new
+  token where it is not. The value on screen must not change.
+- **Output:** set `sass: { style: compressed }` in `_config.yml`. The
+  comments stay in the partials, where they are useful, and drop out of what
+  visitors download (114 KB to about 60 KB). Keep the `?v=` cache-busting
+  query in `_layouts/default.html` pointing at `/assets/css/style.css`.
+- **Watch the Sass version.** GitHub Pages compiles with an old Sass
+  (LibSass through `jekyll-sass-converter` 1.x), which can misread CSS's own
+  `max()`, `min()` and `clamp()` (used 18 times, for example
+  `max(16px, env(safe-area-inset-left, 0px))`) as Sass functions. Wrap any it
+  rejects in `unquote("…")`, and compare the compiled CSS with the old file.
+- **Done when:** the visual check shows no differences, the compiled CSS is
+  smaller, the Pages build succeeds, and `docs-check`'s CSS checks (brace
+  balance, duplicated runs) read the partials.
+
+### Q5 Shared includes where the output is the same
+
+Replace copies with one include wherever the HTML they produce is the same,
+or differs only in ways no visitor can see. Expected visual change: none.
+
+- `_includes/more-link.html` for the 28 "more" links (the arrow written once,
+  in CSS or in the include, instead of "→" ×19 and `&rarr;` ×9 in the
+  sources; the arrow a visitor sees must stay the same character).
+- `_includes/back-link.html` for the five back links; move their inline
+  `style="margin-top:2.5rem"` into a class.
+- `_includes/date.html` with the formats in use today (long, short, tile),
+  each producing exactly today's text. Note that `%d` and `%-d` both occur
+  today; keep each where it is used, or list the difference under the
+  design phase.
+- `_includes/page-head.html` for the 13 narrow and 2 wide page heads,
+  producing the same markup. Move the page head inside `<main id="content">`
+  so the "skip to content" link lands on the page title; check that the
+  move changes nothing on screen.
+- Vocabularies read from `_data/` instead of being typed into templates:
+  publication kinds (`publications.md` and `publist.html`), strand names
+  (`expertise.html`, `approach.md`, `engagement.yml`), theme and post-type
+  lookups (three copies each), city and country formatting (three copies).
+- Project pages compute publications, posts and related projects once
+  (today twice, in `_layouts/project.html`). The hand-built related tabs on
+  project pages and `_includes/related.html` differ in panel names, heading
+  level and labels: keep both and list the pair (rule 4).
+- **Done when:** the visual check shows no differences, and the pull request
+  lists every include added and every copy it replaced.
+
+### Q6 One script for filters and tabs
+
+- **Files:** `assets/js/ui.js` → `_includes/js/*.js`, joined by a new
+  `assets/js/ui.js` with front matter that includes them in today's order.
+- Split by job: `core`, `nav`, `theme`, `filter`, `tabs`, `collapse`,
+  `staleness` (coming up and openings), `reel`, `hero`, `map`, `cite`,
+  `external-links`.
+- Replace the four controllers that each show one value and hide the rest
+  (`setupTabs`, `setupKinds`, `setupNews`, `setupThemes`) and the text filter
+  with one controller that each page configures through data attributes. It
+  must reproduce today's behaviour on each page exactly: which buttons
+  exist, which is active on load, hash in the address bar, counts, the empty
+  message, and the ARIA states each page has now. Where the four differ
+  today (full tab roles on one, `class="on"` on others, hash on some), keep
+  each page's current behaviour and list the difference (rule 4).
+- The two date-based hiders (`setupComingUp`, `setupOpenings`) become one.
+- The team reel: one resize handler instead of two plus a ResizeObserver;
+  same movement.
+- Without JavaScript every page must look as it does today with JavaScript
+  off.
+- **Done when:** the visual check shows no differences with JavaScript on,
+  a second run with JavaScript off (Playwright `javaScriptEnabled: false`)
+  matches a baseline taken the same way, and every filter, tab and search is
+  tried by hand on `/news/`, `/publications/`, `/projects/`, `/partners/`,
+  `/team/` and a project page.
+
+### Q7 One data schema
+
+- **Files:** a one-time `migrate-fields.py` at the root (excluded in
+  `_config.yml` like the other scripts, deleted after the merge); every collection; the
+  templates that read the renamed fields; `docs-check.py`; `docs/03`.
+- **Renames** (same meaning, new name; the script does all files at once):
+
+  | Collection | Today | After |
+  | --- | --- | --- |
+  | people | `portrait` | `image` |
+  | publications | `thumbnail`, `thumbnail_credit` | `image`, `image_credit` |
+  | partners | `logo` (file name only) | `logo` as the full path |
+  | projects | `hero` where it equals `image` (14 of 15) | removed; `image` is used. Where they differ, `hero` stays as an override |
+  | projects | `years` ("2024–2026", sorted as text) | `start_year`, `end_year` (numbers); the page prints exactly today's text |
+  | all | `hero_caption`, `image_credit`, `thumbnail_credit`, `credit` | one `image_credit` and one `image_caption` per item |
+
+- Where two fields may not mean the same thing (people `summary` and
+  `tagline`; people `affil` and `org`), do not merge them: list them for
+  Martin.
+- **One change that is not visible on the page but is visible elsewhere:**
+  jekyll-seo-tag reads `image`. Renaming publication `thumbnail` to `image`
+  gives every publication page an `og:image` (its title page) where today
+  link previews show the site default. Ask Martin before merging (H40); if
+  he says no, set the publication pages' Open Graph image explicitly so it
+  stays as it is.
+- Sorting must not change: compare the order of `/projects/`,
+  `/publications/` and the home page bands before and after.
+- After the migration, `docs-check` refuses the old field names.
+- **Done when:** the visual check shows no differences, the text check shows
+  only the approved `og:image` change (or none), and `docs/03` documents the
+  new names.
+
+### Q8 Lighter images
+
+- Re-encode the 11 images over 300 KB (largest:
+  `assets/img/projects/eu-stock-by-country.png`, 2.4 MB) as WebP at 200 KB or
+  less, at the same pixel size. Keep the originals out of the repository
+  only after Martin confirms he holds them elsewhere.
+- Add `width` and `height` to every `<img>` in the templates, from the file's
+  real size, so pages stop shifting while they load.
+- Re-encoding moves pixels slightly. For this step only, the visual check
+  may show small differences inside pictures; look at each diff image and
+  confirm that only picture areas changed, never text or layout.
+- `srcset` for large pictures is left for the design phase.
+- **Done when:** no image is over 300 KB, the checker's image notes are
+  gone, and the diff images show changes inside pictures only.
+
+### Q9 Docs that match the code
+
+- Rewrite `docs/02-site-map-and-structure.md`, `docs/03-editing-the-site.md`
+  and `docs/05-design-basis.md` from the code as it now is. Known drift: the
+  team page described as hidden, counts of 38 publications and one person,
+  `services.md` and `_data/services.yml` (gone), `tags` instead of `themes`,
+  "only `current` projects reach the home page", fonts listed as Figtree
+  only, "nothing is stored on the device" (the theme choice is), and
+  `.tile`, which no longer exists.
+- Let `docs-check.py` write the counts (projects, publications, people,
+  partners, posts) and the repository tree into a marked block of `docs/02`,
+  so they cannot drift again.
+- Move the long design reasoning out of the CSS comments into `docs/05`
+  where it explains a rule, and keep a one-line pointer in the partial.
+- **Done when:** a new implementer could follow `docs/03` to add a project,
+  a publication, a person and a post without reading the templates.
+
+### Differences left for the design phase
+
+Fill this list during Q4 to Q7 (rule 4): each pair of variants that look or
+behave differently, where they are used, and how they differ. It becomes the
+input for the design phase. Known so far:
+
+- Project-page related tabs vs `_includes/related.html` (panel names,
+  heading level, labels).
+- The four filter and tab controllers (ARIA roles, active-state class, hash).
+- Date formats `%d` and `%-d`.
+- Eight card types, seven image fallbacks, five button styles (review,
+  section 7).
+
+---
+
 ## Human input
 
 Items the implementer cannot resolve. Ask, and do not guess.
@@ -1765,6 +2104,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H37 | Martin | More imagery from RISE projects and activities for the home hero carousel. It runs on three pictures today, one per brand pillar, and the same three on every visit. Wanted: photographs of the work and the people doing it, roughly 2.2:1 or croppable to it, each with the pillar it belongs to, who took it, and whether it may be published | C1 |
 | H38 | Martin | A pass over the 15 projects one by one: the description, the visual assets, and the reports and other outputs to link. Gaps found so far are listed in C2. Needed per project: whether the summary and body still read correctly, a photograph where the picture is currently a diagram, and the URL of every public report, dataset or tool that belongs to it | C2 |
 | H39 | Martin | Photographs of dieHausWirtschaft, once RISE is there or has permission to publish the cooperative's own. One 16:9 and two 3:2, with the credit for each, as in T1. Also: is "dieHausWirtschaft" the spelling to use? Their English page writes it that way, their German pages write "die HausWirtschaft", and the work order wrote "dieHauswirtschaft" | T2 |
+| H40 | Martin | Publication pages get an Open Graph image (their title page) when `thumbnail` becomes `image` in Q7; today link previews show the site default. Yes, or keep the default? | Q7 |
 
 ---
 
