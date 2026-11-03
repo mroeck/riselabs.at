@@ -61,6 +61,54 @@ positions &rarr;</a></p>
 </section>
 
 {%- comment -%}
+  Open positions, 4 Nov 2026. The team page is where someone looks when they
+  are wondering whether there is room for them, so the live openings are
+  named here rather than only on /join/.
+
+  The band hides itself when nothing is open, so the page never carries an
+  empty "we are hiring" heading.
+
+  The deadline test is the same one join.html runs, written out a second time
+  rather than shared: the two lists look different enough that one include
+  with a style switch would be a worse trade than two short loops. Listed
+  under differences for the design phase, which is where Q5 will decide.
+{%- endcomment -%}
+{%- assign today = 'now' | date: "%Y%m%d" | plus: 0 -%}
+{%- assign all_openings = site.posts | where: "type", "opening" | sort: "position_id" -%}
+{%- assign open_count = 0 -%}
+{%- for post in all_openings -%}
+  {%- assign close = post.deadline | date: "%Y%m%d" | plus: 0 -%}
+  {%- if close >= today %}{% assign open_count = open_count | plus: 1 %}{% endif -%}
+{%- endfor -%}
+{%- if open_count > 0 %}
+<section class="band" id="open-positions">
+<div class="wrap narrow">
+  <h2>Open positions</h2>
+  <p class="band-lede">We are hiring. The full advert for each position,
+  including what we offer and how we work, is on its own page and as a PDF.</p>
+
+  <ul class="openings">
+    {%- for post in all_openings -%}
+    {%- assign close = post.deadline | date: "%Y%m%d" | plus: 0 -%}
+    {%- if close >= today %}
+    <li>
+      <p class="meta">
+        <span class="date">Apply by {{ post.deadline | date: "%d %B %Y" }}</span>
+        {%- if post.location %}<span class="funder">{{ post.location }}</span>{% endif -%}
+      </p>
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      {%- if post.summary %}<p class="sum">{{ post.summary }}</p>{% endif -%}
+    </li>
+    {%- endif -%}
+    {%- endfor -%}
+  </ul>
+
+  <p class="more"><a href="{{ '/join/' | relative_url }}">How to apply, and other ways in →</a></p>
+</div>
+</section>
+{%- endif %}
+
+{%- comment -%}
   T1, "Where we work", below the team. Everything shown here comes from
   _data/place.yml, so a move is a change to that file and not to this page.
 

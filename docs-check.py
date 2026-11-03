@@ -758,6 +758,21 @@ for _slug, (_fm, _body, _f) in posts.items():
     if "x,xxx" in str(_fm.get("pay_min", "")):
         P("opening", f"_posts/{_slug}.md",
           "`pay_min` is still the placeholder from the template (H15)")
+    # The PDF is the version an applicant prints and reads on a train. A link
+    # to a file that is not in the repository is worse than no link: it looks
+    # like the advert exists and cannot be opened.
+    if _fm.get("pdf"):
+        _pdf = SITE / str(_fm["pdf"]).lstrip("/")
+        if not _pdf.exists():
+            P("opening", f"_posts/{_slug}.md",
+              f"`pdf` points at {_fm['pdf']}, which is not in the repository")
+    # Austrian job adverts carry a Position ID here, and the adverts
+    # themselves say an application without it in the subject line may not be
+    # considered. The layout builds the mail subject from it.
+    if not _fm.get("position_id"):
+        N(f"_posts/{_slug}.md",
+          "published opening has no `position_id`, so its mail link falls back "
+          "to the headline as the subject line")
 
 # ------------------------------------------------------------- social preview
 # jekyll-seo-tag reads `image`, not `hero`. A page that sets a hero without an
