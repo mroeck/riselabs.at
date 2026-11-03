@@ -2055,6 +2055,12 @@ input for the design phase. Known so far:
 - Date formats `%d` and `%-d`.
 - Eight card types, seven image fallbacks, five button styles (review,
   section 7).
+- The home page evidence band's hairlines and type size (Q1.1, 4 Nov 2026).
+  That band has a 1px rule above and below it and is set at `.93rem`, and
+  neither was ever written for it: it took all three from the key-facts
+  `<dl>` while it shared that class. The rename would have dropped them, so
+  `.evidence` now sets them itself and the band looks exactly as it did.
+  Whether it should keep them is a design question, not a refactoring one.
 
 ---
 
