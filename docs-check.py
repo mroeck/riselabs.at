@@ -984,6 +984,23 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
               "cannot parse that and the whole Pages build fails. Chain one "
               "`where_exp` per comparison instead.")
 
+# ----------------------------------------------- `.facts` belongs to the `<dl>`
+# Q1.1, 4 Nov 2026: two unrelated components shared this class, and the one
+# written later in the stylesheet silently restyled the other. Every partner
+# page laid its labels and values across three columns for as long as that
+# lasted, and nothing said so: the page still rendered, it just rendered
+# wrong. The home page list is `.evidence` now, and this keeps `.facts` to the
+# element it was coined for.
+for _f in sorted(SITE.glob("_layouts/*.html")) + sorted(SITE.glob("_includes/*.html")) + \
+          sorted(SITE.glob("*.md")) + sorted(SITE.glob("*.html")):
+    for _m in re.finditer(r"<(\w+)[^>]*\bclass=\"([^\"]*)\"", _f.read_text()):
+        if "facts" in _m.group(2).split() and _m.group(1) != "dl":
+            P("css", str(_f.relative_to(SITE)),
+              f"<{_m.group(1)} class=\"facts\"> - `.facts` is the key-facts "
+              "`<dl>`. Another component under the same class takes whichever "
+              "rules are written later in the stylesheet, which is how the "
+              "partner pages ended up in three columns.")
+
 # ------------------------------------- the home page's "co-authored by Martin"
 # Since 3 Nov 2026 the home page band shows only publications Martin
 # co-authored, and it decides that from `people`. That holds only while
