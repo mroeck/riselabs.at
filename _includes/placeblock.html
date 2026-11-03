@@ -1,0 +1,30 @@
+{%- comment -%}
+  One place under "Where we work" (T1). Called twice from team.md: once for
+  the first entry in _data/place.yml, which sits in the text column beside
+  the photographs, and once per entry after it, which spans the full width
+  under them. The markup is the same either way; only the wrapper differs,
+  so the two never drift apart.
+
+  Takes `p` (one entry of place.places) and `wrap` (the wrapper class).
+{%- endcomment -%}
+<div class="{{ include.wrap }} place-one">
+  {%- if include.p.when %}<p class="place-when">{{ include.p.when }}</p>{% endif %}
+  <h3>{{ include.p.name }}</h3>
+  {%- if include.p.text.size > 0 %}
+  <div class="place-text">
+    {%- for para in include.p.text %}
+    <p>{{ para }}</p>
+    {%- endfor %}
+  </div>
+  {%- endif %}
+  {%- if include.p.address.size > 0 %}
+  <p class="place-address">
+    {%- for line in include.p.address -%}
+    {{ line }}{% unless forloop.last %}<br>{% endunless %}
+    {%- endfor -%}
+  </p>
+  {%- endif %}
+  {%- if include.p.link %}
+  <p class="more"><a href="{{ include.p.link.url }}">{{ include.p.link.label }} &rarr;</a></p>
+  {%- endif %}
+</div>

@@ -190,6 +190,37 @@ for e in eng:
               "asks for a different pair on every card.")
         _eng_examples.add(ex)
 
+# "Where we work" (T1). Since 2 Nov 2026 the band shows two places, Climate
+# Lab today and dieHausWirtschaft from 2027, and the page loops `places`. The
+# old shape put name/text/address/link at the top level, so a file left half
+# converted would render a band with a heading and nothing under it; that is
+# the first thing checked. The images stayed at the top level, because they
+# belong to the band rather than to one place.
+_place = yaml.safe_load((SITE / "_data/place.yml").read_text()) or {}
+if not _place.get("places"):
+    P("data", "_data/place.yml",
+      "no `places` list. /team/ loops `places` since 2 Nov 2026; the old "
+      "shape with `name` and `text` at the top level renders an empty band.")
+for _pl in _place.get("places") or []:
+    _pw = f"place '{_pl.get('name', '?')}'"
+    for key in ("name", "text", "address", "link"):
+        if not _pl.get(key):
+            P("data", "_data/place.yml", f"{_pw} has no `{key}`")
+    _lk = _pl.get("link") or {}
+    if _lk and not (_lk.get("label") and _lk.get("url")):
+        P("data", "_data/place.yml", f"{_pw} has a `link` without both `label` and `url`")
+# Every photograph of a place carries its credit: these are other people's
+# pictures of other people's rooms, and R7 says a photograph without one
+# should not be on the site.
+for _im in _place.get("images") or []:
+    for key in ("src", "slot", "alt", "caption", "credit"):
+        if not _im.get(key):
+            P("data", "_data/place.yml",
+              f"image '{_im.get('src', '?')}' has no `{key}`")
+    if _im.get("slot") not in (None, "wide", "small"):
+        P("data", "_data/place.yml",
+          f"image '{_im.get('src')}' has slot '{_im['slot']}'; T1 has `wide` (16:9) and `small` (3:2)")
+
 # The six homepage facts (F1). Each figure on that band is a claim about the
 # world with a paper behind it, and the whole point of the band is that a
 # visitor can follow any number to the work it came from. A `publication` slug
