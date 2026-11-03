@@ -287,8 +287,16 @@ permalink: /
   same reason: THE RULE at the top of this file is that two adjacent bands
   never share a background, and adding a band here moves every one after it.
 
-  Three publications, the most recent by year, which is the same selection
-  the split carried.
+  Six publications since 3 Nov 2026, not three. Three filled a row and a bit:
+  two across on a phone and three on a desktop, so the band ended on a single
+  card beside a gap. Six fills the grid either way, 3x2 on a desktop and 2x3
+  on a phone, and shows more of the year's work for it.
+
+  The whole collection goes in with a limit rather than three sliced off
+  here. Slicing here sorted on year alone and took the build's own order
+  inside the newest year, which on 3 Nov put a wider-team paper above six of
+  RISE's own. The tier order lives in publist.html and the cut now happens
+  after it.
 {%- endcomment -%}
 <section class="band alt">
   <div class="wrap">
@@ -296,8 +304,7 @@ permalink: /
     <p class="band-note">We publish our methods, data and code openly
     wherever licensing allows. <a href="#work-with-us">Get in touch</a> to
     learn more.</p>
-    {%- assign recent = site.publications | sort: "year" | reverse | slice: 0, 3 -%}
-    {% include publist.html pubs=recent %}
+    {% include publist.html pubs=site.publications limit=6 %}
     <p class="more"><a href="{{ '/publications/' | relative_url }}">All publications →</a></p>
   </div>
 </section>

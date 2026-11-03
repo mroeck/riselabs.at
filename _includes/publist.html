@@ -1,6 +1,15 @@
 {%- comment -%}
   A list of publications, newest first. Expects: include.pubs
   include.sections="true" breaks them into kind sections.
+  include.limit="6" keeps the first N after ordering.
+
+  `limit` exists so a caller that wants a few cannot take them before the
+  ordering below has run. The home page used to do exactly that
+  (`sort: "year" | reverse | slice: 0, 3`), which sorts on year alone and so
+  took whichever three the build happened to emit first inside the newest
+  year. On 3 Nov 2026 that was a wider-team paper sitting above six of
+  RISE's own, which is the thing the tier order exists to prevent. Pass the
+  whole collection and a limit, and the cut happens last.
 {%- endcomment -%}
 {%- comment -%}
   Order: newest first, and within one year by tier - RISE's own work, then the
@@ -52,6 +61,15 @@
   {%- assign rest = in_year | where_exp: "x", "x.rise_tier != 'core'" | where_exp: "x", "x.rise_tier != 'extended'" | where_exp: "x", "x.rise_tier != 'prior'" -%}
   {%- assign pubs = pubs | concat: rest -%}
 {%- endfor -%}
+{%- comment -%}
+  The cut, after the ordering and before anything is rendered. `plus: 0`
+  because an include argument arrives as a string when it is quoted and as a
+  number when it is not, and `slice` wants a number either way.
+{%- endcomment -%}
+{%- if include.limit -%}
+  {%- assign lim = include.limit | plus: 0 -%}
+  {%- if lim > 0 -%}{%- assign pubs = pubs | slice: 0, lim -%}{%- endif -%}
+{%- endif -%}
 {%- if include.sections == "true" -%}
   {%- comment -%}
     The kinds, in the order the sections and the tab bar both use. A kind with
