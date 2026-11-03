@@ -1733,7 +1733,7 @@ Items the implementer cannot resolve. Ask, and do not guess.
 | H5 | Zuhaib | Draft by Martin in progress. Needed: approval of the text, portrait, links; EPFL clearance if required | P2.1 |
 | H6 | Martin | Date from which Nicole and Zuhaib are RISE employees, if and when that happens | P2.1 label |
 | H7 | Martin or Barbara | Run `fetch-abstracts.py --write` and review the diff | P2.6 |
-| H8 | Martin | Dates, places and registration links for event posts that lack them, starting with the COP31 session | P3.1, N6 |
+| H8 | Martin | ~~Dates, places and registration links for event posts that lack them, starting with the COP31 session~~ Answered 3 Nov for COP31: two sessions, both 16 Nov, 10:00-11:00 at the Finland Pavilion (GlobalABC and RICS) and 14:00-15:00 (RICS, WBCSD, GBDI, GlobalABC, presenting CLEAR). Still open for other posts, and no registration links yet | P3.1, N6 |
 | H9 | Martin | ~~Standing text for `/join/`~~ Drafted 29 Oct and live on the page as "Other ways in": theses, visiting researchers, fellowships. Reword freely | P1.7, P3.4 |
 | H10 | Martin | Consent from Bárbara Rodríguez Droguett to publish her quote | P3.5 |
 | H11 | Martin | Own photos with permission to publish | P4.1 |
@@ -2018,6 +2018,43 @@ Martin's call rather than something to assume.
 `docs-check` now fails any page that slices `site.publications` outside
 `publist.html`, because this is a silent failure: it renders six perfectly
 good cards in the wrong order, and nothing looks broken.
+
+### The home page band: Martin's own work, and a featured flag (3 November)
+
+Two changes to the six publications on the home page, both from Martin the
+evening the six went live.
+
+**Only publications he co-authored, for now.** The filter reads `people`,
+which is safe to use for this: on the day it was written, all 41 entries
+listing `martin-roeck` carried "Röck M" in `authors` and all 41 carrying
+"Röck M" listed him. `docs-check` notes any entry where the two stop
+agreeing, as a note rather than a failure, because an entry where he
+contributed without being a named author is legitimate and only means the
+band's description no longer matches what it shows. "For now" is Martin's
+word: removing the filter is removing one `where_exp`.
+
+**The filter does not do what it was expected to do.** Martin asked for it
+expecting it would bring the Alaux pathways paper back into the six. It does
+not, and it cannot: all seven of the 2026 `core` papers are his, so the
+filter removes nothing from the newest year and the same six render either
+way. What kept that paper off the page was never authorship. Seven papers
+fit six slots, and the one that fell off was decided by the build's order
+inside the year, which the live site confirmed on 3 Nov to be the reverse of
+the alphabet, putting `alaux-` last of seven.
+
+So the paper is on the page by `featured: true`, which is how `featured`
+already works for projects and posts on this same page. It applies only
+where a list is cut, which today is the home page and nowhere else: on
+/publications/ a paper jumping its year would read as a sorting bug rather
+than a choice, and that page is unchanged, with Alaux still fourth among the
+2026 articles. Verified in both places.
+
+A featured publication leads the band rather than keeping its date position,
+which follows the projects precedent. The alternative, where featuring only
+guarantees survival, is a few lines away if Martin prefers it.
+
+`docs-check` notes when more than three publications are featured: past
+that, a band of six stops being recent work and becomes a fixed list.
 
 ### H24, Circular: the files supplied on 29 October do not cover this site
 
