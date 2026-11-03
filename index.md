@@ -69,7 +69,16 @@ permalink: /
     {%- endcomment -%}
     <h2>What the evidence says</h2>
 
-    <ul class="facts">
+    {%- comment -%}
+      `.evidence`, not `.facts` (Q1.1, 4 Nov 2026). Two different components
+      carried the same class: this list, and the `<dl>` that states the key
+      facts of a partner, a publication, a project or an opening. This block
+      is written later in the stylesheet, so it won the cascade and gave
+      every partner page its labels and values in three columns: "Type,
+      think tank, City / Brussels, Country, Belgium". The `<dl>` keeps
+      `.facts`, since it is the one the name was coined for.
+    {%- endcomment -%}
+    <ul class="evidence">
       {%- for f in site.data.facts %}
       <li>
         <p class="fact-perspective">{{ f.perspective }}</p>

@@ -2849,18 +2849,40 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
    boxes, because several sentences continue the value and do not start a new
    one: "50-107 million homes could be created within Europe's existing
    buildings". Splitting them would break the sentence in half. */
-.facts {
+/* `.evidence`, renamed from `.facts` on 4 Nov 2026 (Q1.1). The `<dl>` at the
+   top of this file, which states the key facts of a partner, a publication,
+   a project or an opening, had the same class. This block is written later,
+   so it won: every partner page laid its labels and values out in three
+   columns, because `grid-template-columns: repeat(3, 1fr)` below replaced
+   the `8rem 1fr` meant for them. Only partner pages showed it, and only on a
+   wide screen: the other three `<dl>`s sit inside `.article-side`, whose own
+   rule is more specific, and under 34rem everything falls to one column. */
+.evidence {
   list-style: none; padding: 0; margin: 1.8rem 0 1.4rem;
   display: grid; gap: 2rem 2.4rem;
   grid-template-columns: repeat(3, 1fr);
+  /* These three were never written for this list. It took them from the
+     `<dl>` rules above while it shared their class, because that block sets
+     them and this one did not override them, and the band has looked like
+     this ever since. The visual check caught the home page changing when the
+     class was renamed: 95px of band became 125px, with the two hairlines
+     gone and the text a size larger.
+
+     They are carried over as they were rather than reconsidered. Whether a
+     rule above and below this band is wanted, and at what size it should be
+     set, is a design decision, and Phase Q does not make those. Listed for
+     the design phase. */
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: .93rem;
 }
-@media (max-width: 64rem) { .facts { grid-template-columns: repeat(2, 1fr); gap: 1.8rem 2rem; } }
+@media (max-width: 64rem) { .evidence { grid-template-columns: repeat(2, 1fr); gap: 1.8rem 2rem; } }
 /* The order says "1 under 30rem" but also asks for 2 x 3 at 390px, and 390px
    is under 30rem. The acceptance test wins, so the single column starts at
    22rem instead: two columns hold down to 360px, one below that. */
-@media (max-width: 22rem) { .facts { grid-template-columns: 1fr; gap: 1.6rem; } }
-@media (max-width: 46rem) { .facts { gap: 1.5rem 1.3rem; } }
-.facts li { margin: 0; min-width: 0; }
+@media (max-width: 22rem) { .evidence { grid-template-columns: 1fr; gap: 1.6rem; } }
+@media (max-width: 46rem) { .evidence { gap: 1.5rem 1.3rem; } }
+.evidence li { margin: 0; min-width: 0; }
 
 .fact-perspective {
   margin: 0 0 .45rem;
