@@ -1,0 +1,11 @@
+{
+  "name": "riselabs-visual-check",
+  "private": true,
+  "type": "module",
+  "description": "Before/after screenshots and text snapshots for refactoring riselabs.at without visible change (Phase Q).",
+  "dependencies": {
+    "playwright": "1.47.2",
+    "pixelmatch": "5.3.0",
+    "pngjs": "7.0.0"
+  }
+}

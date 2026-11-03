@@ -4,8 +4,13 @@ _site/
 .jekyll-metadata
 .sass-cache/
 
-# Local preview output — generated, never published
+# Local preview output - generated, never published
 _preview/
+
+# Phase Q visual check: screenshots and the report it writes, plus its
+# dependencies. `.visual/` starts with a dot, so Jekyll skips it anyway.
+.visual/
+visual-check/node_modules/
 
 # Ruby
 Gemfile.lock
