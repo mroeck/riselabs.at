@@ -17,7 +17,8 @@ partners:
   - polimi
 projects:
   - analysis-of-life-cycle-greenhouse
-thumbnail: /assets/img/pubs/stocker-2025-analysis-life-cycle.webp
+thumbnail: /assets/img/pubs/stocker-2025-analysis-life-cycle-title.webp
+thumbnail_credit: "Cover © European Union, CC-BY licence"
 rise_tier: core
 ---
 

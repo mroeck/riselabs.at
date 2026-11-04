@@ -9,7 +9,8 @@ people:
   - zuhaib-batra
 partners:
   - bpie
-thumbnail: /assets/img/pubs/pato-2021-priority-areas-implementation.webp
+thumbnail: /assets/img/pubs/pato-2021-priority-areas-implementation-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 1
 citations_source: OpenAlex

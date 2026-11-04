@@ -9,7 +9,8 @@ people:
   - darmarajan-chinasamy
 partners:
   - uct
-thumbnail: /assets/img/pubs/windapo-2026-promoting-regenerative-construction.webp
+thumbnail: /assets/img/pubs/windapo-2026-promoting-regenerative-construction-title.webp
+thumbnail_credit: "Title page © Journal of the Association of Professional Women Builders of Nigeria, CC-BY-SA licence"
 rise_tier: extended
 citations: 0
 citations_source: OpenAlex

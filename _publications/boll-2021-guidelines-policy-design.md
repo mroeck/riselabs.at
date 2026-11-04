@@ -9,7 +9,8 @@ people:
   - zuhaib-batra
 partners:
   - bpie
-thumbnail: /assets/img/pubs/boll-2021-guidelines-policy-design.webp
+thumbnail: /assets/img/pubs/boll-2021-guidelines-policy-design-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 2
 citations_source: OpenAlex

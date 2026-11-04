@@ -9,7 +9,8 @@ people:
   - nicole-di-santo
 partners:
   - polimi
-thumbnail: /assets/img/pubs/disanto-2023-holistic-approach-assessing.webp
+thumbnail: /assets/img/pubs/disanto-2023-holistic-approach-assessing-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 35
 citations_source: OpenAlex

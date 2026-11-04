@@ -15,6 +15,7 @@ projects:
   - global-building-data-initiative
 people:
   - martin-roeck
+short_title: "Two whole life carbon sessions at COP31"
 title: "Two whole life carbon sessions at COP31, 16 November"
 summary: "Better data in the morning, what to do with it in the afternoon: two COP31 sessions on the gap between measuring carbon and managing it, the second presenting CLEAR."
 # A header image would help: the CLEAR identity, or a figure showing how

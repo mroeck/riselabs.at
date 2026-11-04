@@ -9,7 +9,8 @@ people:
   - zuhaib-batra
 partners:
   - bpie
-thumbnail: /assets/img/pubs/elnagar-2024-creating-comprehensive-framework.webp
+thumbnail: /assets/img/pubs/elnagar-2024-creating-comprehensive-framework-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 18
 citations_source: OpenAlex

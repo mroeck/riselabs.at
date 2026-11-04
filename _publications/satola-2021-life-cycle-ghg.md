@@ -11,7 +11,8 @@ projects:
   - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
-thumbnail: /assets/img/pubs/satola-2021-life-cycle-ghg.webp
+thumbnail: /assets/img/pubs/satola-2021-life-cycle-ghg-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 28
 citations_source: OpenAlex

@@ -9,7 +9,8 @@ people:
   - darmarajan-chinasamy
 partners:
   - uct
-thumbnail: /assets/img/pubs/ngoy-2026-comparative-performance-alternative.webp
+thumbnail: /assets/img/pubs/ngoy-2026-comparative-performance-alternative-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY-NC licence"
 rise_tier: extended
 citations: 0
 citations_source: OpenAlex
