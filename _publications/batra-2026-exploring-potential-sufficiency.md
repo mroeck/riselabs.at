@@ -7,7 +7,8 @@ journal: "Energy and Buildings"
 doi: "10.1016/j.enbuild.2025.116727"
 people:
   - zuhaib-batra
-thumbnail: /assets/img/pubs/batra-2026-exploring-potential-sufficiency.webp
+thumbnail: /assets/img/pubs/batra-2026-exploring-potential-sufficiency-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: extended
 citations: 4
 citations_source: OpenAlex

@@ -9,7 +9,8 @@ people:
   - zuhaib-batra
 partners:
   - bpie
-thumbnail: /assets/img/pubs/salom-2021-evaluation-framework-sustainable.webp
+thumbnail: /assets/img/pubs/salom-2021-evaluation-framework-sustainable-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 59
 citations_source: OpenAlex

@@ -10,7 +10,8 @@ people:
 partners:
   - polimi
   - tu-graz
-thumbnail: /assets/img/pubs/dejaco-2020-combining-lca-lcc.webp
+thumbnail: /assets/img/pubs/dejaco-2020-combining-lca-lcc-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 ---
 
