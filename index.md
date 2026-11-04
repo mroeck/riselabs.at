@@ -301,11 +301,31 @@ permalink: /
       across as everywhere else now.
 
       Featured first, then by date.
+
+      Six since 4 Nov 2026, not three, and the reason is arithmetic. The grid
+      is three columns on a desktop, two below 62rem and one below 40rem.
+      Three cards fill the first of those and orphan one in the second: two
+      and then a single card on a line of its own, which is what Martin saw
+      in a narrow window. Six divides by three and by two, so every row is
+      full at every width. It is the same count, and the same reasoning, as
+      the publications band below.
+
+      Openings are left out (Martin, 4 Nov 2026). The three adverts are the
+      three newest posts, so taking six without filtering would have made
+      half of "Latest" job adverts and pushed both COP31 sessions off it.
+      They are already carried by "Coming up" at the top of this page and by
+      /join/, which is also why the announcement post came down. They stay
+      in /news/, where a reader is looking for everything.
+
+      Two `where_exp` filters rather than one with `and`: Liquid's
+      `where_exp` takes a single comparison, and a compound one is a parse
+      error that breaks the build rather than a filter that returns nothing.
     {%- endcomment -%}
     <h2>Latest</h2>
-    {%- assign featured = site.posts | where: "featured", true -%}
-    {%- assign others = site.posts | where_exp: "p", "p.featured != true" -%}
-    {%- assign latest = featured | concat: others | slice: 0, 3 -%}
+    {%- assign newsish = site.posts | where_exp: "p", "p.type != 'opening'" -%}
+    {%- assign featured = newsish | where: "featured", true -%}
+    {%- assign others = newsish | where_exp: "p", "p.featured != true" -%}
+    {%- assign latest = featured | concat: others | slice: 0, 6 -%}
     {% include postcards.html posts=latest %}
     <p class="more"><a href="{{ '/news/' | relative_url }}">All news and events →</a></p>
   </div>
