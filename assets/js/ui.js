@@ -346,12 +346,23 @@
       return;
     }
 
-    /* The row advances itself (Martin, 4 Nov 2026), but only when there is
-       something off-screen to advance to: three items on a wide screen fit,
-       and a row that slides when nothing is hidden is motion for its own
-       sake. It stops while the pointer is in it, while anything inside has
-       focus, and while the tab is in the background, and it never starts at
-       all for a visitor who asked for less movement. */
+    /* The row carousels, and it loops (Martin, 4 Nov 2026): the first card
+       comes round again on the right rather than the row stopping at its
+       end. Every item that is still ahead is in it; there is no cap.
+
+       How the loop works: the live items are cloned onto the end until the
+       row holds at least one viewport more than the originals. Scrolling
+       past the width of the originals then subtracts that width with
+       smooth scrolling turned off for the one frame, which lands on an
+       identical card, so nothing is seen to jump. The clones carry
+       aria-hidden and are taken out of the tab order, because they are the
+       same three items a second time and a reader going through the page
+       should meet them once.
+
+       It stops while the pointer is in the strip, while anything inside has
+       focus and while the tab is in the background, waits after a drag or a
+       flick rather than yanking the row back, and never starts at all for a
+       visitor who asked for less movement. */
     var list = strip.querySelector("ul");
     if (!list) return;
 
@@ -359,30 +370,63 @@
                   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
 
+    var live = items.filter(function (li) { return !li.hidden; });
+    if (!live.length) return;
+
+    function originalsWidth() {
+      var last = live[live.length - 1];
+      return last.offsetLeft + last.offsetWidth - live[0].offsetLeft + 13;  // + one gap
+    }
+
+    // Nothing to loop through if it all fits.
+    if (list.scrollWidth - list.clientWidth < 8) return;
+
+    var width = originalsWidth();
+    var guard = 0;
+    while (list.scrollWidth < width + list.clientWidth && guard < 12) {
+      live.forEach(function (li) {
+        var c = li.cloneNode(true);
+        c.setAttribute("aria-hidden", "true");
+        c.setAttribute("data-clone", "");
+        Array.prototype.forEach.call(c.querySelectorAll("a"), function (a) {
+          a.setAttribute("tabindex", "-1");
+        });
+        list.appendChild(c);
+      });
+      guard++;
+    }
+
     var paused = false;
     strip.addEventListener("mouseenter", function () { paused = true; });
     strip.addEventListener("mouseleave", function () { paused = false; });
     strip.addEventListener("focusin", function () { paused = true; });
     strip.addEventListener("focusout", function () { paused = false; });
-    // A drag or a flick is the visitor steering; leave it alone for a while
-    // afterwards rather than yanking the row out from under them.
     var touched = 0;
     list.addEventListener("pointerdown", function () { touched = Date.now(); });
     list.addEventListener("wheel", function () { touched = Date.now(); }, { passive: true });
 
+    // Normalise after the scrolling settles, not during it: moving the row
+    // mid-animation is the one thing that would be visible.
+    var settle;
+    list.addEventListener("scroll", function () {
+      clearTimeout(settle);
+      settle = setTimeout(function () {
+        if (list.scrollLeft >= width) {
+          var was = list.style.scrollBehavior;
+          list.style.scrollBehavior = "auto";
+          list.scrollLeft = list.scrollLeft - width;
+          list.offsetHeight;                       // apply before restoring
+          list.style.scrollBehavior = was;
+        }
+      }, 120);
+    }, { passive: true });
+
     setInterval(function () {
       if (paused || document.hidden) return;
       if (Date.now() - touched < 8000) return;
-      var slack = list.scrollWidth - list.clientWidth;
-      if (slack < 8) return;                       // everything already fits
-      var shown = items.filter(function (li) { return !li.hidden; });
-      if (!shown.length) return;
-      var step = shown[0].getBoundingClientRect().width + 13;   // card + gap
-      var next = list.scrollLeft + step;
-      list.scrollLeft = next > slack - 4 ? 0 : next;            // wrap round
+      list.scrollBy({ left: live[0].offsetWidth + 13, behavior: "smooth" });
     }, 5000);
   }
-
   /* ---------- navigation ---------- */
 
   /* One markup structure serves both layouts. On a wide screen the groups sit

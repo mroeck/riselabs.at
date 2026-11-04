@@ -3131,21 +3131,46 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   overflow-x: auto; scroll-snap-type: x mandatory;
   scrollbar-width: none; -ms-overflow-style: none;
   scroll-behavior: smooth;
+  /* The card at the right edge is cut by the row, which is how a carousel
+     says there is more. Fading the last few millimetres makes that read as
+     intended rather than as a card that ran out of room. A browser without
+     mask-image simply shows the hard edge, which is what it showed before. */
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+          mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
 }
 .soon ul::-webkit-scrollbar { display: none; }
 .soon li {
   margin: 0; background: var(--bg); border-radius: var(--radius-ui);
   scroll-snap-align: start;
-  /* Three across on a wide screen, one and a glimpse of the next on a
-     phone, so it is obvious the row goes on. */
-  flex: 0 0 calc((100% - 1.6rem) / 3);
+  /* Just under three across on a wide screen since 4 Nov 2026, not three
+     exactly. Three exactly filled the row to the pixel: nothing to scroll,
+     so the carousel had nothing to do and the first card could never come
+     round again on the right. Sizing them a shade wider makes the row
+     overflow by part of a card, which is both the signal that it goes on and
+     the thing that lets it loop. Narrower would have been worse than either:
+     three cards would have left a gap at the right instead. */
+  flex: 0 0 calc((100% - 1.6rem) / 2.8);
   min-width: 0;
 }
-@media (max-width: 64rem) { .soon li { flex-basis: calc((100% - .8rem) / 2); } }
+@media (max-width: 64rem) { .soon li { flex-basis: calc((100% - .8rem) / 1.9); } }
 @media (max-width: 40rem) { .soon li { flex-basis: 86%; } }
 /* Stationary for anyone who asked for less movement; the row still scrolls
    by hand. */
 @media (prefers-reduced-motion: reduce) { .soon ul { scroll-behavior: auto; } }
+
+/* The applications card, picked out in the brand magenta (Martin, 4 Nov
+   2026). The chip is filled rather than the whole card: a magenta card
+   beside two plain ones would read as a different kind of thing, and these
+   are all the same kind of thing with one of them more urgent. Navy on
+   magenta is 4.92:1, the same pair the buttons use. */
+.soon li.soon-apply .cal {
+  background: var(--magenta);
+  border-color: var(--magenta);
+  color: var(--navy);
+}
+.soon li.soon-apply .cal span { color: var(--navy); }
+.soon li.soon-apply .t { color: var(--accent); }
+
 .soon li a {
   display: grid; grid-template-columns: 4.2rem minmax(0, 1fr);
   gap: 1rem; align-items: center;
