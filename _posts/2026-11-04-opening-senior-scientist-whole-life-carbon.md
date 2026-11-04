@@ -36,6 +36,9 @@ together with the person we hire, based on their strengths, interests and our
 project needs. We value initiative: if you see a better way to contribute,
 tell us.
 
+
+<p class="lede"><a href="/assets/jobs/RISE-Team-2611-02-senior-scientist-whole-life-carbon.pdf" download>Read the full advert as a PDF</a>: the role, what you bring, how we work, what we offer, relocation and housing, and how to apply, in one document.</p>
+
 <h2>What you will do</h2>
 
 <div class="findings" markdown="1">
@@ -63,12 +66,8 @@ tell us.
 
 <div class="findings" markdown="1">
 
-- **Essential.** Experience with scaling up building LCA, material flow
-  analysis, building stock modelling or scenario analysis, ideally including
-  carbon budgets and sufficiency-first strategies (avoid, shift, improve).
-- **Essential.** A publication record in peer-reviewed journals and experience
-  leading or contributing to research proposals or grants. Tell us which funds
-  you helped raise and what your role was.
+- Essential: experience with scaling up building LCA, material flow analysis, building stock modelling or scenario analysis, ideally including carbon budgets and sufficiency-first strategies (avoid, shift, improve).
+- Essential: a publication record in peer-reviewed journals and experience leading or contributing to research proposals or grants. Tell us which funds you helped raise and what your role was.
 - A PhD, or a Master's degree with at least 3 years of relevant research
   experience, in industrial ecology, environmental or civil engineering,
   architecture or a closely related field.

@@ -22,18 +22,9 @@ We are now growing the team.
 
 <div class="findings" markdown="1">
 
-- **[Global Partnerships and Programmes Lead](/news/2026/opening-global-partnerships-and-programmes-lead/)**,
-  80 to 100%, RISE-Team-2611-01. Grow our cooperation in Asia (India, China)
-  and Africa (South Africa, Kenya, Nigeria, Ethiopia), connect it to EU
-  policy, and turn partnerships into funded programmes.
-- **[Senior Scientist: whole life carbon and LCA of materials, buildings and
-  building stocks](/news/2026/opening-senior-scientist-whole-life-carbon/)**
-  (Lead), 80 to 100%, RISE-Team-2611-02. Lead our scientific work on WLCA
-  methods, emission factors and data for GBDI and INDICATE.
-- **[Junior Scientist: whole life carbon and LCA of materials, buildings and
-  building stocks](/news/2026/opening-junior-scientist-whole-life-carbon/)**,
-  60 to 100%, RISE-Team-2611-03. Build the data and models behind this work.
-  The position can be combined with a PhD.
+- [Global Partnerships and Programmes Lead](/news/2026/opening-global-partnerships-and-programmes-lead/), 80 to 100%, RISE-Team-2611-01. Grow our cooperation in Asia (India, China) and Africa (South Africa, Kenya, Nigeria, Ethiopia), connect it to EU policy, and turn partnerships into funded programmes. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-01-global-partnerships-and-programmes-lead.pdf)
+- [Senior Scientist: whole life carbon and LCA of materials, buildings and building stocks](/news/2026/opening-senior-scientist-whole-life-carbon/) (Lead), 80 to 100%, RISE-Team-2611-02. Lead our scientific work on WLCA methods, emission factors and data for GBDI and INDICATE. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-02-senior-scientist-whole-life-carbon.pdf)
+- [Junior Scientist: whole life carbon and LCA of materials, buildings and building stocks](/news/2026/opening-junior-scientist-whole-life-carbon/), 60 to 100%, RISE-Team-2611-03. Build the data and models behind this work. The position can be combined with a PhD. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-03-junior-scientist-whole-life-carbon.pdf)
 
 </div>
 
@@ -55,8 +46,10 @@ requirement. If you meet the essential ones and the work excites you, apply.
 We especially encourage applications from women, people from the Global South
 and others underrepresented in our field, and we value non-linear careers.
 
-The full descriptions, what we offer, and how to apply are on
-[Join us](/join/). Each position is also there as a PDF.
+**Each position has a full advert as a PDF**, linked above and on its own
+page. It is the best overview of the three: the role, what you bring, how we
+work, what we offer, relocation and housing, and how to apply, all in one
+document. [Join us](/join/) lists every position with the same links.
 
 Not the right fit, but interested in the work? Send an unsolicited application
 to [office@riselabs.at](mailto:office@riselabs.at?subject=RISE%20Talent%20-%20%5Byour%20field%5D)

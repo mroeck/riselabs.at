@@ -34,6 +34,9 @@ together with the person we hire, based on their strengths, interests and our
 project needs. We value initiative: if you see a better way to contribute,
 tell us.
 
+
+<p class="lede"><a href="/assets/jobs/RISE-Team-2611-01-global-partnerships-and-programmes-lead.pdf" download>Read the full advert as a PDF</a>: the role, what you bring, how we work, what we offer, relocation and housing, and how to apply, in one document.</p>
+
 <h2>What you will do</h2>
 
 <div class="findings" markdown="1">
@@ -62,11 +65,8 @@ tell us.
 
 <div class="findings" markdown="1">
 
-- **Essential.** Experience building partnerships and coalitions with
-  government, industry, research and philanthropy, ideally across countries
-  and regions.
-- **Essential.** Strong writing and presentation skills, and confidence in
-  representing an organisation at high-level policy and industry fora.
+- Essential: experience building partnerships and coalitions with government, industry, research and philanthropy, ideally across countries and regions.
+- Essential: strong writing and presentation skills, and confidence in representing an organisation at high-level policy and industry fora.
 - A Master's degree with at least 3 years of relevant professional experience,
   or a PhD, in the built environment, sustainability, climate policy,
   international development or a related field.

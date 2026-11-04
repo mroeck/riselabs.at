@@ -36,6 +36,9 @@ together with the person we hire, based on their strengths, interests and our
 project needs. We value initiative: if you see a better way to contribute,
 tell us.
 
+
+<p class="lede"><a href="/assets/jobs/RISE-Team-2611-03-junior-scientist-whole-life-carbon.pdf" download>Read the full advert as a PDF</a>: the role, what you bring, how we work, what we offer, relocation and housing, and how to apply, in one document.</p>
+
 <h2>What you will do</h2>
 
 <div class="findings" markdown="1">
@@ -59,12 +62,8 @@ tell us.
 
 <div class="findings" markdown="1">
 
-- **Essential.** Knowledge of life cycle assessment and material flow
-  analysis, ideally applied to buildings, and an interest in carbon budgets
-  and sufficiency-first strategies.
-- **Essential.** Demonstrated coding experience in Python (pandas, numpy and
-  the like) and in working with large datasets. Name the tools and packages
-  you have worked with.
+- Essential: knowledge of life cycle assessment and material flow analysis, ideally applied to buildings, and an interest in carbon budgets and sufficiency-first strategies.
+- Essential: demonstrated coding experience in Python (pandas, numpy and the like) and in working with large datasets. Name the tools and packages you have worked with.
 - A Master's degree in industrial ecology, environmental or civil engineering,
   architecture, geoinformatics, data science or a related field.
 - An independent, careful and structured way of working, and the wish to grow
