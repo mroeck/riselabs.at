@@ -1,7 +1,7 @@
 ---
 layout: post
 type: opening
-title: "Senior Scientist: whole life carbon and LCA of materials, buildings and building stocks (Lead)"
+title: "Senior Scientist: Whole life carbon and LCA of materials, buildings and building stocks (Lead)"
 summary: "Lead our scientific work on whole life assessment of buildings, materials and building stocks, and the methods and data that make it comparable worldwide. Two years, Vienna, 80 to 100%."
 
 # Opening fields (docs/03 §8). Figures from the advert of 4 Nov 2026,

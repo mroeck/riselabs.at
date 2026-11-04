@@ -23,8 +23,8 @@ We are now growing the team.
 <div class="findings" markdown="1">
 
 - [Global Partnerships and Programmes Lead](/news/2026/opening-global-partnerships-and-programmes-lead/), 80 to 100%, RISE-Team-2611-01. Grow our cooperation in Asia (India, China) and Africa (South Africa, Kenya, Nigeria, Ethiopia), connect it to EU policy, and turn partnerships into funded programmes. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-01-global-partnerships-and-programmes-lead.pdf)
-- [Senior Scientist: whole life carbon and LCA of materials, buildings and building stocks](/news/2026/opening-senior-scientist-whole-life-carbon/) (Lead), 80 to 100%, RISE-Team-2611-02. Lead our scientific work on WLCA methods, emission factors and data for GBDI and INDICATE. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-02-senior-scientist-whole-life-carbon.pdf)
-- [Junior Scientist: whole life carbon and LCA of materials, buildings and building stocks](/news/2026/opening-junior-scientist-whole-life-carbon/), 60 to 100%, RISE-Team-2611-03. Build the data and models behind this work. The position can be combined with a PhD. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-03-junior-scientist-whole-life-carbon.pdf)
+- [Senior Scientist: Whole life carbon and LCA of materials, buildings and building stocks](/news/2026/opening-senior-scientist-whole-life-carbon/) (Lead), 80 to 100%, RISE-Team-2611-02. Lead our scientific work on WLCA methods, emission factors and data for GBDI and INDICATE. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-02-senior-scientist-whole-life-carbon.pdf)
+- [Junior Scientist: Whole life carbon and LCA of materials, buildings and building stocks](/news/2026/opening-junior-scientist-whole-life-carbon/), 60 to 100%, RISE-Team-2611-03. Build the data and models behind this work. The position can be combined with a PhD. [Full advert (PDF)](/assets/jobs/RISE-Team-2611-03-junior-scientist-whole-life-carbon.pdf)
 
 </div>
 

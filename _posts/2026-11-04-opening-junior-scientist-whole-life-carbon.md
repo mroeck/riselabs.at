@@ -1,7 +1,7 @@
 ---
 layout: post
 type: opening
-title: "Junior Scientist: whole life carbon and LCA of materials, buildings and building stocks"
+title: "Junior Scientist: Whole life carbon and LCA of materials, buildings and building stocks"
 summary: "Build the data and models behind our work on whole life carbon of buildings, materials and building stocks. One year, Vienna, 60 to 100%, and it can be combined with a PhD."
 
 # Opening fields (docs/03 §8). Figures from the advert of 4 Nov 2026,
