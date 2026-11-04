@@ -271,7 +271,13 @@ if m:
         if k.strip() not in coll["partners"]:
             P("xref", "index.md", f"partner tile '{k.strip()}' has no file in _partners/")
 
-# partner files need a slug field, since templates filter on it
+# Partner files do not need a `slug` field: Jekyll derives one from the
+# filename, which is what every `where: "slug", key` lookup in the templates
+# finds. What this catches is a file that sets `slug:` to something else,
+# because front matter overrides the derived value. Such a partner would
+# disappear from the tiles, from the partner names in a facts box and from
+# its own cross-references, with nothing printed anywhere. No file sets it
+# today, so this is silent - silent, not dead.
 for slug, (fm, body, f) in coll["partners"].items():
     if fm.get("slug") and fm["slug"] != slug:
         P("data", f"_partners/{slug}.md", f"`slug` says '{fm['slug']}' but the filename says '{slug}'")
@@ -1162,7 +1168,10 @@ ALLOWED = {
     },
 }
 POST_FIELDS = {
-    "layout", "type", "title", "summary", "featured", "published",
+    # `short_title` is the card wording: "Coming up" and the news tiles prefer
+    # it over `title`, which carries the date and the place for the page's own
+    # heading and for a search result.
+    "layout", "type", "title", "short_title", "summary", "featured", "published",
     "people", "projects", "partners", "hero", "hero_caption", "figures",
     # events
     "event_start", "event_end", "event_month", "location", "format",
