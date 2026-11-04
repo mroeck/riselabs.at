@@ -1,4 +1,5 @@
 ---
+title: "Energy Foundation China"
 name: "Energy Foundation China"
 city: "Beijing"
 country: "China"

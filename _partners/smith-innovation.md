@@ -1,4 +1,5 @@
 ---
+title: "Smith Innovation"
 name: "Smith Innovation"
 city: "Copenhagen"
 country: "Denmark"

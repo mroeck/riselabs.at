@@ -1,5 +1,6 @@
 ---
 wip: true   # draft: awaiting this person's own words and approval
+title: "Darmarajan (Norman) Chinasamy"
 name: "Darmarajan (Norman) Chinasamy"
 role: "Intern, WLCA Emerging Markets"
 cite: "Chinasamy D"

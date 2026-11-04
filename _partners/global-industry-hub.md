@@ -1,4 +1,5 @@
 ---
+title: "Global Industry Hub"
 name: "Global Industry Hub"
 city: "Seoul"
 country: "South Korea"

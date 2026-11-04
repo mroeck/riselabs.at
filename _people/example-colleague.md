@@ -1,5 +1,6 @@
 ---
 published: false
+title: "Full Name"
 name: "Full Name"
 role: "Researcher"
 group: rise   # or: collaborator, with an `org` line

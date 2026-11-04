@@ -1,4 +1,5 @@
 ---
+title: "China Building Materials Federation"
 name: "China Building Materials Federation"
 city: "Beijing"
 country: "China"

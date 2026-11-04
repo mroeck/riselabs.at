@@ -1,5 +1,6 @@
 ---
 wip: true   # draft: awaiting this person's own words and approval
+title: "Dr. Zuhaib Batra"
 name: "Dr. Zuhaib Batra"
 role: "Senior Scientist, Global Policy Lead: Energy and Emissions"
 cite: "Batra Z"

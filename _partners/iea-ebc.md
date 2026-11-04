@@ -1,4 +1,5 @@
 ---
+title: "IEA Energy in Buildings and Communities Programme"
 name: "IEA Energy in Buildings and Communities Programme"
 city: "Paris"
 country: "France"

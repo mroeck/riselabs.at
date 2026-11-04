@@ -1,4 +1,5 @@
 ---
+title: "Alliance for an Energy Efficient Economy"
 name: "Alliance for an Energy Efficient Economy"
 city: "New Delhi"
 country: "India"

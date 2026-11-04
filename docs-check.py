@@ -1021,6 +1021,56 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
               "cannot parse that and the whole Pages build fails. Chain one "
               "`where_exp` per comparison instead.")
 
+# ------------------------------------------ two card types, one set of names
+# Q1.2, 4 Nov 2026. Project cards and post cards both used `pcard-meta`,
+# `pcard-title` and `pcard-sum`. Each block then styled the other's cards
+# with whatever the other did not set, in both directions, and the page still
+# looked plausible, so nobody saw it.
+#
+# The two includes may not share a class again. A name in both is either a
+# deliberate shared component, which belongs in one place, or this bug.
+_SHARED_OK = {"pcards"}          # the grid itself is shared on purpose
+def _classes(path):
+    out = set()
+    for m in re.finditer(r'class="([^"{}]*)"', (SITE / path).read_text()):
+        out.update(m.group(1).split())
+    return out
+_proj_cls = _classes("_includes/projectgrid.html")
+_post_cls = _classes("_includes/postcards.html")
+for _c in sorted(_proj_cls & _post_cls):
+    if _c in _SHARED_OK:
+        continue
+    P("css", "_includes/postcards.html",
+      f"`{_c}` is used by projectgrid.html as well. Two card types under one "
+      "class name means each is styled by the other's rules, in whichever "
+      "direction the stylesheet happens to be written.")
+
+# --------------------------------------------------- `title` matches `name`
+# Q1.6, 4 Nov 2026. A collection document with no `title` gets one from
+# Jekyll, built out of its file name: /partners/bpie/ was "Bpie - RISE" in
+# the tab and in og:title, and /team/martin-roeck/ was "Martin Roeck", umlaut
+# and all. The page itself was right, because it reads `name`; only the title
+# and the link preview were wrong, which is why it lasted - a browser tab and
+# a shared link are the two places nobody looks while building a page.
+#
+# So where a file has a `name`, it must have a `title`, and the two must say
+# the same thing. `add-titles.py` writes them; this keeps them together.
+for _coll in ("partners", "people"):
+    for _slug, (_fm, _b, _f) in sorted(coll[_coll].items()):
+        _where = f"_{_coll}/{_slug}.md"
+        if not _fm.get("name"):
+            continue
+        if not _fm.get("title"):
+            P("meta", _where,
+              "has `name` but no `title`, so Jekyll builds one from the file "
+              "name and the browser tab and og:title show that instead. Run "
+              "`python3 add-titles.py`.")
+        elif str(_fm["title"]).strip() != str(_fm["name"]).strip():
+            P("meta", _where,
+              f"`title` is {_fm['title']!r} and `name` is {_fm['name']!r}. The "
+              "page shows the name and the tab shows the title, so they have "
+              "to agree.")
+
 # ----------------------------------------------- `.facts` belongs to the `<dl>`
 # Q1.1, 4 Nov 2026: two unrelated components shared this class, and the one
 # written later in the stylesheet silently restyled the other. Every partner

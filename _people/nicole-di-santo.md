@@ -1,5 +1,6 @@
 ---
 wip: true   # draft: awaiting this person's own words and approval
+title: "Dr. Nicole Di Santo"
 name: "Dr. Nicole Di Santo"
 role: "Senior Scientist, WLCA and Digital Integrations Lead"
 cite: "Di Santo N"

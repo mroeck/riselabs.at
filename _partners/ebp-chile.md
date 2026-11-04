@@ -1,4 +1,5 @@
 ---
+title: "EBP Chile"
 name: "EBP Chile"
 city: "Santiago"
 country: "Chile"

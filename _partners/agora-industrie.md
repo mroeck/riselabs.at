@@ -1,4 +1,5 @@
 ---
+title: "Agora Industrie"
 name: "Agora Industrie"
 city: "Berlin"
 country: "Germany"

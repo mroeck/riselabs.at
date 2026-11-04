@@ -1,4 +1,5 @@
 ---
+title: "Dr. Martin Röck"
 name: "Dr. Martin Röck"
 role: "Founding Director and Lead Scientist"
 tagline: "Building decarbonisation is not a mere technical problem. It's a challenge of changing the system of spatial production and use towards regenerative practices."

@@ -1,4 +1,5 @@
 ---
+title: "EU LIFE Programme"
 name: "EU LIFE Programme"
 city: "Brussels"
 country: "Belgium"

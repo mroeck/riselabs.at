@@ -47,12 +47,12 @@
         {%- endif -%}
       </span>
       {%- endif -%}
-      <span class="pcard-meta">
+      <span class="post-card-meta">
         {%- if t %}<span class="pcard-chip">{{ t.label }}</span>{% endif -%}
         <span>{{ post.date | date: "%-d %B %Y" }}</span>
       </span>
-      <span class="pcard-title">{{ post.title }}</span>
-      {%- if post.summary %}<span class="pcard-sum">{{ post.summary }}</span>{% endif -%}
+      <span class="post-card-title">{{ post.title }}</span>
+      {%- if post.summary %}<span class="post-card-sum">{{ post.summary }}</span>{% endif -%}
     </a>
   </li>
   {%- endfor -%}

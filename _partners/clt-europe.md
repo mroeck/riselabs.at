@@ -1,4 +1,5 @@
 ---
+title: "European Community Land Trust Network"
 name: "European Community Land Trust Network"
 city: "Brussels"
 country: "Belgium"

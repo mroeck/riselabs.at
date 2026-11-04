@@ -1,4 +1,5 @@
 ---
+title: "VITO - Flemish Institute for Technological Research"
 name: "VITO - Flemish Institute for Technological Research"
 city: "Mol"
 country: "Belgium"

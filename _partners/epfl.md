@@ -1,4 +1,5 @@
 ---
+title: "EPFL"
 name: "EPFL"
 city: "Lausanne"
 country: "Switzerland"

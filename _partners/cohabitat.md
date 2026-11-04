@@ -1,4 +1,5 @@
 ---
+title: "CoHabitat"
 name: "CoHabitat"
 city: "Geneva"
 country: "Switzerland"
