@@ -1,5 +1,6 @@
 ---
 layout: post
+published: false        # taken down 4 Nov 2026, see the note below
 type: news
 featured: true
 title: "We are hiring: three positions in Vienna"
@@ -7,6 +8,21 @@ summary: "A Global Partnerships and Programmes Lead, a Senior Scientist and a Ju
 people:
   - martin-roeck
 ---
+
+<!-- Taken down on 4 November 2026, hours after it went up. Martin: /join/
+     does the job, and it does: it lists the three positions with their
+     deadline, links each advert and each PDF, and carries the terms that are
+     the same across all three. This post said the same things a second time,
+     in a place that goes stale the moment a position closes.
+
+     Kept rather than deleted, because the text is the LinkedIn copy in the
+     site's voice and is worth having if a future round of hiring wants a
+     post. `published: false` is how the repo parks a post; the file still
+     builds nothing and the URL is gone.
+
+     If it comes back, check two things: the `news` type is in
+     _data/post_types.yml for this post alone, and `featured: true` makes it
+     lead /news/ and the home page's Latest band. -->
 
 How can we build what people need within planetary limits? At RISE, the
 Institute for Regenerative Spatial Systems Science, we model materials,
