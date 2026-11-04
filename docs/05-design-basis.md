@@ -102,24 +102,27 @@ card on navy is a deliberate surface, not an oversight.
 
 ## Themes
 
-**Dark is the default; light must work equally well.** (Decided 31 October
-2026 by Martin, replacing R1's "light is the default" of 29 October, which in
-turn replaced "dark is primary".) Neither is a second-class rendering: every
-change is checked in both, and the contrast figures above are met in both.
+**Light is the default; dark must work equally well.** (Martin, 4 November
+2026.) Neither is a second-class rendering: every change is checked in both,
+and the contrast figures above are met in both.
 
-What a visitor actually gets: a theme they chose here before, else dark.
-Nothing else is consulted. The markup ships `data-theme="dark"`, so that is
-also what anyone with JavaScript off sees. The toggle sits in the
-bottom-right corner and flips `data-theme` on `<html>`.
+What a visitor actually gets, in order: a theme they chose here before, else
+their operating system's `prefers-color-scheme`, else light. The markup ships
+`data-theme="light"`, so that is also what anyone with JavaScript off sees.
+The toggle sits in the bottom-right corner and flips `data-theme` on `<html>`.
 
-**The operating system's `prefers-color-scheme` is not read** (Martin, 3
-November 2026). It used to be, between the dark default and that date, and
-the effect was that most visitors, who run their machines light, met a light
-site: the stated default was reaching almost nobody. Dark is the brand, the
-toggle is how a visitor who wants light says so, and that choice is then
-kept. The cost is named rather than hidden: someone who sets their system
-light has said something about how they like to read, and this site now
-makes them say it again here.
+This has moved four times, so the history is here rather than in four
+commits: light until 29 October, dark from 31 October, dark without reading
+the system from 3 November, and light reading the system again from 4
+November. Anyone tempted to change it again should know that the stylesheet
+does not care: `:root` carries the dark values and `[data-theme="light"]`
+overrides them, so the default is set by the markup and the script, not by
+the token blocks.
+
+The `prefers-color-scheme` test is written for the theme it selects, `dark`,
+not negated from `light`: a browser too old to know the feature answers false
+to every such query, and that visitor has to land on the default rather than
+on the other one.
 
 Each theme block carries `color-scheme`, which is what makes the browser's
 own furniture - the sort select on /publications/, text inputs, scrollbars,

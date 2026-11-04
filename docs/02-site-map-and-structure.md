@@ -207,11 +207,9 @@ Worth knowing about, rarely worth changing:
 
 ### Themes
 
-Dark is the default for everyone; a toggle in the bottom corner switches to
-light and the choice is remembered on that device. The system's
-`prefers-color-scheme` is not read (Martin, 3 November 2026): it used to be,
-and most visitors run light machines, so the dark default was reaching
-almost nobody.
+Light is the default (Martin, 4 November 2026); a visitor whose system is set
+to dark gets dark without asking, and a toggle in the bottom corner switches
+either way, remembered on that device.
 Colour lives in two layers at the top of `assets/css/style.css`: brand
 constants that never change, and semantic tokens the theme swaps. Changing
 the palette means editing those tokens, nothing else.
