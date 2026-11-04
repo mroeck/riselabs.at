@@ -51,7 +51,10 @@
     if (!target) return;
 
     var count = input.parentNode.querySelector("[data-count]");
-    var rows = Array.prototype.slice.call(target.querySelectorAll("li, tr"))
+    // `tbody tr`, not `tr` (Q1.4): a table's header row is a <tr> as well, so
+    // it joined the count - "of 45" for 44 partners - and vanished whenever
+    // the search text did not appear in the words it holds.
+    var rows = Array.prototype.slice.call(target.querySelectorAll("li, tbody tr"))
       .filter(function (el) { return !el.classList.contains("year-break"); });
 
     // headings are hidden when every row beneath them is filtered out
@@ -72,8 +75,8 @@
       groups.forEach(function (g) {
         var el = g.nextElementSibling, any = false;
         while (el && !/^(H2|H3)$/.test(el.tagName) && !el.classList.contains("year-break")) {
-          if (el.matches("li, tr") && !el.hidden) { any = true; break; }
-          if (el.querySelector && el.querySelector("li:not([hidden]), tr:not([hidden])")) { any = true; break; }
+          if (el.matches("li, tbody tr") && !el.hidden) { any = true; break; }
+          if (el.querySelector && el.querySelector("li:not([hidden]), tbody tr:not([hidden])")) { any = true; break; }
           el = el.nextElementSibling;
         }
         g.hidden = q ? !any : false;
@@ -242,9 +245,15 @@
     var empty = document.querySelector("[data-news-empty]");
     var soon = document.querySelector("[data-comingup]");
     var box = bar.querySelector("[data-filter]");
+    var count = bar.querySelector("[data-count]");
     var want = "";
 
     bar.hidden = false;
+    // The box ships hidden so it never shows as a control that does nothing,
+    // and setupFilter used to be what revealed it. Since Q1.3 that script
+    // does not touch this input, so this one has to: without it the search
+    // box on /news/ is there and invisible.
+    if (box && box.closest(".filter")) box.closest(".filter").hidden = false;
 
     function byHash(h) {
       for (var i = 0; i < buttons.length; i++) {
@@ -266,6 +275,16 @@
         if (ok) shown++;
       });
       if (empty) empty.hidden = shown > 0;
+      // "5 of 6": what is visible, out of what this tab holds. The total is
+      // the tab's own, not the whole archive's, or the number would not be
+      // the one the reader can see.
+      if (count) {
+        var inTab = 0;
+        cards.forEach(function (c) {
+          if (!want || c.getAttribute("data-type") === want) inTab++;
+        });
+        count.textContent = q ? shown + " of " + inTab : "";
+      }
       // The strip belongs to All and Events, but only while it still has an
       // event ahead. setupComingUp marks it empty once the last one has
       // passed, and this must not put it back: the two controls both own
@@ -851,7 +870,15 @@
     setupExternalLinks();
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);
     Array.prototype.forEach.call(document.querySelectorAll("[data-tabs]"), setupTabs);
-    Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), setupFilter);
+    // Not the one inside the news bar (Q1.3): setupNews already filters those
+    // cards by tab and by text, and setupFilter attaching to the same input
+    // meant two scripts setting `hidden` on the same <li> and two different
+    // ideas of what the count meant. On the Events tab, typing "carbon"
+    // showed five posts under a count that read "9 of 11".
+    Array.prototype.forEach.call(document.querySelectorAll("[data-filter]"), function (el) {
+      if (el.closest && el.closest("[data-newsbar]")) return;
+      setupFilter(el);
+    });
     Array.prototype.forEach.call(document.querySelectorAll("[data-reel]"), setupReel);
     Array.prototype.forEach.call(document.querySelectorAll("[data-kindbar]"), setupKinds);
     Array.prototype.forEach.call(document.querySelectorAll("[data-comingup]"), setupComingUp);
