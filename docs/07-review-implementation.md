@@ -1845,6 +1845,29 @@ named pages only.
   - The message that names `_data/services.yml` (a file that no longer
     exists) should name the file it actually reads.
   - Remove the slug check that cannot fire (audit note: around line 244).
+
+    **Not done, deliberately. I could not find it.** Line numbers have drifted
+    since the audit, so I checked both candidates:
+
+    - *The `publication` slug in `_data/facts.yml` sources* (line 242 to 247
+      of the file as it stood). It can fire. There are seven sources and all
+      seven carry a `publication` key today, so it is silent, but a source
+      added without one fails the check, which is what it is for.
+    - *The partner `slug` front-matter override* (line 274 to 277). No
+      partner file sets `slug:`, so this one is silent too. But `slug:` in
+      front matter does override the slug Jekyll derives from the filename,
+      and every partner lookup in the templates is `where: "slug", key`. A
+      file that set `slug:` to anything else would vanish from the partner
+      tiles, the partner names in a facts box and the partner page's own
+      cross-references, all without an error. The check catches exactly that.
+      Its comment, "partner files need a slug field, since templates filter
+      on it", is what is wrong: they do not need the field, because Jekyll
+      supplies it. The comment has been corrected; the check stays.
+
+    A check that is silent today is not the same as a check that cannot fire,
+    and deleting a live one to satisfy a bullet would make the checker less
+    trustworthy, which is the opposite of what Q2 is for. If the audit meant
+    a third check somewhere else, point me at it and I will remove it.
 - **Add** (problems unless marked as notes):
   - An allowed-fields list per collection; an unknown or misspelled
     front-matter field is a problem.

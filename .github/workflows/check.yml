@@ -1,0 +1,51 @@
+# Runs docs-check.py on every pull request, and on every push to main.
+#
+# Why both. On a pull request it is a gate: the checker exits 1 when it finds
+# a problem, which fails the check and shows up on the pull request before
+# anyone merges. On a push to main it is a record: if something is merged
+# through a path that skipped the gate - an edit made in the GitHub web
+# interface, a merge with the check not yet required - main itself still
+# says whether it is clean.
+#
+# This does not build the site. Jekyll cannot run here for the same reason it
+# cannot run locally: rubygems.org is unreachable through the proxy. The
+# before-and-after screenshots are visual-check.yml's job, and that one does
+# install Jekyll from the GitHub Pages gem on the runner, where the network
+# is not restricted. This workflow reads the files as text, which is what the
+# checker does, and needs nothing but Python and PyYAML.
+name: Site check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A second push to the same branch cancels the first run: the only answer
+# that matters is the one for the current head.
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # PyYAML is the only import docs-check.py has beyond the standard
+      # library. Pinned, so a new release cannot change what the checker
+      # reads out of a data file on a day nobody touched the data file.
+      - run: pip install pyyaml==6.0.2
+
+      # The notes are printed too, and they are the useful part of the log:
+      # a run that passes still lists what is worth looking at. Only the
+      # problems set the exit status.
+      - name: docs-check
+        run: python3 docs-check.py
