@@ -5,6 +5,19 @@ permalink: /404.html
 sitemap: false
 ---
 
+{%- comment -%}
+  Tell Plausible that this was a 404, so a broken link shows up as something
+  countable rather than as a page view like any other. The goal named `404`
+  in the dashboard is what turns these into a number worth reading; without
+  it the events are still recorded and simply not summarised.
+
+  Production only, for the same reason as the snippet itself, and after the
+  queue in the snippet exists so the call survives the script still loading.
+{%- endcomment -%}
+{%- if jekyll.environment == "production" -%}
+<script>document.addEventListener('DOMContentLoaded', function () { plausible('404'); });</script>
+{%- endif -%}
+
 <div class="page-head wrap narrow">
   <h1>Page not found</h1>
   <p class="lede">That address does not exist, or the page has moved.</p>
