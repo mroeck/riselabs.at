@@ -14,12 +14,16 @@ description: >-
   inside <main> and <section>, and kramdown does not parse markdown inside
   block-level HTML.
 
-  This describes what the site actually does as built - no cookies, no
-  analytics, self-hosted fonts, one external processor for the newsletter,
-  and one stored preference (the theme). If that changes, this page has to
-  change with it. In particular, adding any embed (a video, a map, a social
-  widget) or any analytics tool means a new section here, and usually a
-  consent banner too.
+  This describes what the site actually does as built - no cookies,
+  cookieless audience measurement with Plausible, self-hosted fonts, one
+  external processor for the newsletter, and one stored preference (the
+  theme). If that changes, this page has to change with it. In particular,
+  adding any embed (a video, a map, a social widget) means a new section
+  here, and usually a consent banner too.
+
+  The Reichweitenmessung section below went live with the Plausible snippet
+  on 4 November 2026 (R10, H25). The two belong together: the script must
+  never be on the site while this page says there is no analytics.
 {%- endcomment -%}
 
 <div class="page-head wrap narrow">
@@ -34,7 +38,7 @@ description: >-
 
 <p class="muted small">Legal text under Austrian and EU law; the German
 wording is the operative one, with an English rendering of each heading in
-brackets. Stand: {{ site.data.privacy_updated | default: "12. Oktober 2026" }}.</p>
+brackets. Stand: {{ site.data.privacy_updated | default: "4. November 2026" }}.</p>
 
 <h2>Verantwortlicher <span class="gloss">[controller]</span></h2>
 
@@ -49,10 +53,12 @@ Voraussetzungen des Art. 37 DSGVO nicht vorliegen.</p>
 
 <h2>Grundsatz <span class="gloss">[in short]</span></h2>
 
-<p>Diese Website setzt keine Cookies, verwendet keine Webanalyse und bindet
-keine Werbe- oder Social-Media-Dienste ein. Schriftarten werden lokal von
-diesem Server ausgeliefert und nicht von Dritten nachgeladen. Personenbezogene
-Daten werden nur in den unten beschriebenen Fällen verarbeitet.</p>
+<p>Diese Website setzt keine Cookies und bindet keine Werbe- oder
+Social-Media-Dienste ein. Schriftarten werden lokal von diesem Server
+ausgeliefert und nicht von Dritten nachgeladen. Zur Reichweitenmessung wird
+ein cookiefreies Verfahren eingesetzt, das unten beschrieben ist.
+Personenbezogene Daten werden nur in den unten beschriebenen Fällen
+verarbeitet.</p>
 
 <h2>Gespeicherte Einstellung <span class="gloss">[stored preference]</span></h2>
 
@@ -74,6 +80,67 @@ erforderlich (§ 165 Abs. 3 TKG 2021).</p>
 Ihrem Browser entfernen. Wird die Speicherung durch Ihre Browser-Einstellungen
 unterbunden, funktioniert die Umschaltung weiterhin - die Auswahl gilt dann
 nur für die aktuelle Seite.</p>
+
+<h2>Reichweitenmessung <span class="gloss">[audience measurement]</span></h2>
+
+<p>Wir messen die Nutzung dieser Website mit <strong>Plausible
+Analytics</strong>, einem Dienst der Plausible Insights OÜ, Estland. Die
+Verarbeitung findet auf Servern innerhalb der Europäischen Union statt. Eine
+Übermittlung in Drittstaaten erfolgt nicht.</p>
+
+<p>Das Verfahren arbeitet ohne Cookies und ohne Speicherung oder Auslesen von
+Informationen auf Ihrem Endgerät. Es werden keine gerätebezogenen Kennungen
+vergeben und keine Profile gebildet. Ihre IP-Adresse wird nicht gespeichert:
+sie fließt zusammen mit einem täglich wechselnden Zufallswert, der Domain
+dieser Website und Ihrer Browser-Kennung in einen Hashwert ein, aus dem sich
+die IP-Adresse nicht zurückrechnen lässt. Der Zufallswert wird alle 24 Stunden
+gelöscht, sodass eine Wiedererkennung über den Tag hinaus oder über andere
+Websites hinweg nicht möglich ist.</p>
+
+<p>Erhoben werden dabei:</p>
+
+<ul>
+  <li>die aufgerufene Seite sowie Datum und Uhrzeit des Aufrufs;</li>
+  <li>die verweisende Website, sofern Sie über einen Link gekommen sind;</li>
+  <li>das Herkunftsland, abgeleitet aus der IP-Adresse, die dabei nicht
+      gespeichert wird;</li>
+  <li>Gerätetyp, Browser und Betriebssystem in gröberer Form;</li>
+  <!-- This last bullet is only true while "Outbound links" and "File
+       downloads" are enabled in the Plausible dashboard for riselabs.at.
+       With the current snippet the features are set there, not in the
+       script's file name, so nothing in this repository can check it. If
+       either is turned off, shorten this bullet to match; if both are, delete
+       it. Declaring more than is collected is not a breach, but it is wrong,
+       and a privacy page that is wrong in one place is not trusted in the
+       others. -->
+  <li>Klicks auf Links zu anderen Websites sowie Downloads von Dateien, etwa
+      der Stellenausschreibungen als PDF.</li>
+</ul>
+
+<p>Diese Angaben lassen für sich genommen und in Verbindung miteinander keinen
+Rückschluss auf Ihre Person zu. Wir verwenden sie ausschließlich in
+zusammengefasster Form, um zu verstehen, welche Inhalte gelesen werden und
+über welche Wege Besucherinnen und Besucher zu uns finden.</p>
+
+<p>Rechtsgrundlage ist unser berechtigtes Interesse an einer datensparsamen
+Reichweitenmessung gemäß Art. 6 Abs. 1 lit. f DSGVO. Unser Interesse besteht
+darin, die Website auf Grundlage tatsächlicher Nutzung zu verbessern. Da keine
+Cookies gesetzt, keine Kennungen vergeben und keine personenbezogenen Daten
+gespeichert werden, überwiegen Ihre schutzwürdigen Interessen nach unserer
+Einschätzung nicht.</p>
+
+<p>Plausible Insights OÜ ist für uns als Auftragsverarbeiterin tätig. Die
+Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO ist Bestandteil der
+Nutzungsbedingungen des Dienstes.</p>
+
+<p>Wenn Sie nicht gezählt werden möchten, können Sie in Ihrem Browser unter
+<em>localStorage</em> für diese Website den Schlüssel
+<code>plausible_ignore</code> auf <code>true</code> setzen; Besuche von diesem
+Browser werden dann nicht mehr erfasst. Da keine personenbezogenen Daten
+verarbeitet werden, ist darüber hinaus kein Widerspruch erforderlich.</p>
+
+<p class="muted small">Weitere Angaben des Anbieters zum Datenschutz:
+<a href="https://plausible.io/data-policy">plausible.io/data-policy</a>.</p>
 
 <h2>Hosting und Server-Logs <span class="gloss">[hosting and server logs]</span></h2>
 

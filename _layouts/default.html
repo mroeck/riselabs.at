@@ -67,6 +67,17 @@
       if (t) { el.setAttribute("data-theme", t); }
     })();
   </script>
+  {%- comment -%}
+    Visitor analytics (R10), in production only. GitHub Pages builds with
+    JEKYLL_ENV=production, so a local build and anything served from a
+    branch send nothing: the guard is what keeps a preview out of the
+    numbers, and it matters more with this snippet than with the older one,
+    which carried the domain and ignored localhost by itself.
+
+    This is the one third-party script the site loads. docs/05 names the
+    exception.
+  {%- endcomment -%}
+  {%- if jekyll.environment == "production" -%}{%- include analytics.html -%}{%- endif -%}
   {%- seo title=false -%}
   {%- feed_meta -%}
 </head>

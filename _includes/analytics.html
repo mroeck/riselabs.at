@@ -1,0 +1,23 @@
+{%- comment -%}
+  The Plausible snippet, exactly as Plausible gave it to Martin on
+  4 November 2026. Do not rewrite it, do not self-host it, do not "tidy" it:
+  the script's address carries the site's identifier, and the few lines below
+  it are the queue that lets `plausible(...)` be called before the script has
+  finished loading.
+
+  Note for anyone comparing this with R10 in docs/07: the snippet described
+  there is the older form, a `script.js` with `data-domain` and the enabled
+  features spelled out in the file name. Plausible has moved to one script
+  per site with the features set in the dashboard, so the file name no longer
+  says what is being measured. Settings is where to look.
+
+  This is the only third-party script the site loads (docs/05), and it runs
+  in production only. The guard is in default.html rather than here, so that
+  a reader of the layout can see it.
+{%- endcomment -%}
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-yDox0cDNQrbYQQ9oWuapK.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
