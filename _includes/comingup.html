@@ -18,7 +18,36 @@
   itself when all of them have.
 {%- endcomment -%}
 {%- assign today = site.time | date: "%Y%m%d" | plus: 0 -%}
+{%- assign cap = include.limit | default: 3 | plus: 0 -%}
 {%- assign events = site.posts | where: "type", "event" -%}
+
+{%- comment -%}
+  Open positions, as one row rather than one per position (Martin, 4 Nov
+  2026). An application deadline is the same kind of fact as an event date,
+  a day something stops being possible, and it is the reason to want this
+  strip near the top of a page at all. But positions are advertised in
+  batches with one closing date, so a row each would read as three separate
+  deadlines and fill the strip with the same date three times.
+
+  `include.positions="true"` turns the row on. It is not on /news/, where
+  the Open positions tab already lists them.
+
+  The chip shows the soonest deadline and the row disappears after the last
+  one, which is why both ends are worked out here.
+{%- endcomment -%}
+{%- assign open_live = "" -%}
+{%- assign all_ops = site.posts | where: "type", "opening" | sort: "deadline" -%}
+{%- assign open_count = 0 -%}
+{%- for o in all_ops -%}
+  {%- assign close = o.deadline | date: "%Y%m%d" | plus: 0 -%}
+  {%- if close >= today -%}
+    {%- assign open_count = open_count | plus: 1 -%}
+    {%- if open_count == 1 %}{% assign first_close = o.deadline %}{% endif -%}
+    {%- assign last_close = o.deadline -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign show_positions = false -%}
+{%- if include.positions == "true" and open_count > 0 %}{% assign show_positions = true %}{% endif -%}
 
 {%- comment -%} sortable key per event, so the strip is in date order {%- endcomment -%}
 {%- assign keyed = "" -%}
@@ -40,14 +69,26 @@
 {%- endcomment -%}
 {%- assign rows = keyed | split: "," | sort -%}
 
-{%- if rows.size > 0 %}
+{%- if rows.size > 0 or show_positions %}
 <section class="soon" aria-labelledby="comingup-h" data-comingup>
   <div class="wrap">
     <h2 id="comingup-h">Coming up</h2>
     <ul>
       {%- assign shown = 0 -%}
+      {%- if show_positions -%}
+      {%- assign shown = 1 -%}
+      <li data-end="{{ last_close | date: '%Y-%m-%d' }}">
+        <a href="{{ '/join/' | relative_url }}">
+          <span class="cal"><b>{{ first_close | date: "%-d" }}</b><span>{{ first_close | date: "%b" }}</span></span>
+          <span class="soon-txt">
+            <span class="t">{% if open_count == 1 %}One open position{% else %}{{ open_count }} open positions{% endif %}</span>
+            <span class="w">Applications close &middot; Vienna, hybrid</span>
+          </span>
+        </a>
+      </li>
+      {%- endif -%}
       {%- for row in rows -%}
-      {%- if row == "" or shown >= 3 -%}{%- continue -%}{%- endif -%}
+      {%- if row == "" or shown >= cap -%}{%- continue -%}{%- endif -%}
       {%- assign shown = shown | plus: 1 -%}
       {%- assign idx = row | split: "|" | last | plus: 0 -%}
       {%- assign e = events[idx] -%}
