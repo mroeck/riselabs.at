@@ -44,6 +44,28 @@ permalink: /
 <main id="content">
 
 {%- comment -%}
+  "Coming up", directly under the hero (Martin, 4 Nov 2026). This is D2 in
+  the review's decision table: its recommended home page puts this band
+  second, and it was the only band of the eight that the page did not have
+  at all. It ran on /news/ and nowhere else.
+
+  What it carries: the open positions as one row, then the next events. A
+  deadline is the same kind of fact as an event date, a day something stops
+  being possible, and it is the reason to want a band like this near the
+  top. One row for all the positions rather than one each, because they are
+  advertised in batches with a single closing date.
+
+  It hides itself when nothing is ahead: the include renders no section, and
+  for a date that passes between pushes, ui.js hides the row and then the
+  strip. So an empty "Coming up" heading never reaches the page.
+
+  It does not disturb the band rhythm below it. `.soon` is `--surface` and
+  the band under it is `--bg`, so THE RULE still reads bg / surface / bg
+  from the top.
+{%- endcomment -%}
+{% include comingup.html positions="true" %}
+
+{%- comment -%}
   The evidence, before anything else. The page used to open on what RISE
   works on; it now opens on what the work found, with the figure, its unit
   and its source in the first line of each.
