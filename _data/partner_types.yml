@@ -1,0 +1,25 @@
+# The kinds of organisation a partner can be. A closed list since Q2,
+# 4 November 2026: before this, `type` was free text, and a typo or a new
+# wording invented a category that looked the same on the page and sorted,
+# grouped and read as something else.
+#
+# These are the fourteen values in use on the day the list was written, taken
+# from the files rather than invented, and they print exactly as they are
+# spelled here. Adding a kind is a line in this file; the checker fails a
+# partner whose `type` is not on it.
+#
+# Lower case, because the partner page sets them in a sentence ("a think tank
+# in Brussels") rather than as a label.
+- architecture practice
+- consultancy
+- design studio
+- engineering consultancy
+- foundation
+- industry
+- industry association
+- international organisation
+- network
+- public authority
+- research institute
+- think tank
+- university

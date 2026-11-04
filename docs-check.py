@@ -148,7 +148,7 @@ for s in svc:
           "mark. It is meant to be the question, not a restatement.")
     ex = s.get("example")
     if ex and ex not in coll["projects"]:
-        P("xref", "_data/services.yml", f"example '{ex}' has no file in _projects/")
+        P("xref", "_data/expertise.yml", f"example '{ex}' has no file in _projects/")
 
 # The four ways work starts. Each card claims a way of working and then names
 # projects that began that way, which is the only thing that keeps the card
@@ -314,6 +314,7 @@ asset_re = re.compile(r'(?:^|[\s"\'(:])(/assets/[A-Za-z0-9._/\-]+)')
 all_text = []
 for p in [f for f in SITE.glob("*.md") if f.name != "README.md"] + list(SITE.glob("_data/*.yml")) + \
          list(SITE.glob("_includes/*.html")) + list(SITE.glob("_layouts/*.html")) + \
+         [SITE / "_config.yml"] + \
          [f for c in coll.values() for (_, _, f) in c.values()] + \
          [f for (_, _, f) in posts.values()]:
     all_text.append((p, p.read_text()))
@@ -342,6 +343,16 @@ for slug, (fm, body, f) in coll["partners"].items():
     logo = fm.get("logo")
     if not logo:
         N("partners", f"{slug} has no logo")
+        continue
+    # Q2, 4 Nov 2026: these three lines used to sit at the end of the
+    # picture-coverage loop below, after its `continue`, reading whatever
+    # `slug` and `logo` this loop had left behind. They never ran, so no
+    # logo was ever marked as referenced and 43 of the 52 "not referenced"
+    # notes were about files the site uses on every partner page.
+    path = "/assets/img/partners/" + logo
+    referenced.add(path)
+    if not (SITE / path.lstrip("/")).exists():
+        P("asset", f"_partners/{slug}.md", f"logo file missing: {path}")
 
 # Every project, publication and post should carry at least one image: a
 # figure from the work for a project or paper, a photograph for an event.
@@ -395,11 +406,6 @@ for kind, (singular, wanted) in _want_pics.items():
         more = f", +{len(bare) - 6} more" if len(bare) > 6 else ""
         N("figures", f"{len(bare)} of {total} {kind} have no image - wanted: "
                      f"{wanted}\n      {shown}{more}")
-        continue
-    path = "/assets/img/partners/" + logo
-    referenced.add(path)
-    if not (SITE / path.lstrip("/")).exists():
-        P("asset", f"_partners/{slug}.md", f"logo file missing: {path}")
 
 for slug, (fm, body, f) in coll["people"].items():
     por = fm.get("portrait")
@@ -1026,6 +1032,149 @@ for _f in sorted(SITE.glob("**/*.html")) + sorted(SITE.glob("*.md")):
               f"`where_exp` joins comparisons with and/or: {_exp}. Liquid 4 "
               "cannot parse that and the whole Pages build fails. Chain one "
               "`where_exp` per comparison instead.")
+
+# ------------------------------------------------------ images, size and shape
+# Q2, 4 Nov 2026, both notes rather than problems: neither breaks a page.
+#
+# Weight: a hero at a megabyte is paid for by every visitor on a phone, and
+# nothing in the build warns about it. 300 KB is the line the order drew.
+#
+# Shape: an <img> without width and height leaves the browser no room to
+# reserve, so the page jumps as each picture arrives. The attributes are the
+# intrinsic pixel size; CSS still decides what is drawn.
+_BIG = 300 * 1024
+_heavy = []
+for _f in sorted((SITE / "assets").rglob("*")):
+    if _f.is_file() and _f.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp", ".gif"):
+        _kb = _f.stat().st_size
+        if _kb > _BIG:
+            _heavy.append((_kb, "/" + str(_f.relative_to(SITE))))
+if _heavy:
+    _heavy.sort(reverse=True)
+    N("images", f"{len(_heavy)} image(s) over {_BIG // 1024} KB, heaviest first:\n      "
+      + "\n      ".join(f"{k // 1024:5} KB  {p}" for k, p in _heavy[:8])
+      + (f"\n      ... and {len(_heavy) - 8} more" if len(_heavy) > 8 else ""))
+
+_IMG = re.compile(r"<img\b[^>]*>", re.I)
+_sizeless = []
+for _p, _t in all_text:
+    for _m in _IMG.finditer(_t):
+        _tag = _m.group(0)
+        if "width=" in _tag and "height=" in _tag:
+            continue
+        _src = re.search(r'src="([^"]*)"', _tag)
+        _sizeless.append(f"{_p.relative_to(SITE)}: {(_src.group(1) if _src else _tag)[:56]}")
+if _sizeless:
+    N("images", f"{len(_sizeless)} <img> without both width and height, so the "
+      "page shifts as each one loads:\n      " + "\n      ".join(sorted(_sizeless)[:8])
+      + (f"\n      ... and {len(_sizeless) - 8} more" if len(_sizeless) > 8 else ""))
+
+# ------------------------------------------------- classes nothing uses, both ways
+# Q2, 4 Nov 2026. Feeds Q3, which deletes what these find. Notes, because
+# neither direction is certain from text alone: a class may be built by
+# script, and a rule may exist for a state only a visitor reaches.
+_css_src = re.sub(r"/\*.*?\*/", "", (SITE / "assets/css/style.css").read_text(), flags=re.S)
+_css_classes = set(re.findall(r"\.([A-Za-z][\w-]*)", _css_src))
+_markup_classes = set()
+for _p, _t in all_text:
+    if _p.suffix not in (".html", ".md"):
+        continue
+    for _m in re.finditer(r'class="([^"{}]*)"', _t):
+        _markup_classes.update(_m.group(1).split())
+_js_src = "".join((SITE / "assets/js" / n).read_text()
+                  for n in ("ui.js",) if (SITE / "assets/js" / n).exists())
+_js_names = set(re.findall(r"[\"']([A-Za-z][\w-]*)[\"']", _js_src))
+
+_unused_css = sorted(_css_classes - _markup_classes - _js_names)
+if _unused_css:
+    N("classes", f"{len(_unused_css)} class(es) in the stylesheet that no markup "
+      "or script names:\n      " + ", ".join(_unused_css[:14])
+      + (f"\n      ... and {len(_unused_css) - 14} more" if len(_unused_css) > 14 else ""))
+
+_unstyled = sorted(_markup_classes - _css_classes - _js_names)
+if _unstyled:
+    N("classes", f"{len(_unstyled)} class(es) in markup that no rule and no script "
+      "uses:\n      " + ", ".join(_unstyled[:14])
+      + (f"\n      ... and {len(_unstyled) - 14} more" if len(_unstyled) > 14 else ""))
+
+# -------------------------------------- front matter: known fields, known values
+# Q2, 4 Nov 2026. Two failures that look identical on the page and are not:
+# a misspelled field, which is simply ignored and so does nothing, and a
+# value outside a closed set, which drops the item out of a filter or prints
+# a category nobody else uses.
+#
+# The lists are what the files carried on the day they were written, read off
+# the files rather than invented. Adding a field or a value is a line here,
+# which is the point: it is a decision, not a typo.
+ALLOWED = {
+    "projects": {
+        "title", "short_title", "project_title", "status", "years", "funder",
+        "role", "summary", "hero", "hero_caption", "hero_tone", "image",
+        "themes", "link", "outputs", "clients", "people", "partners",
+        "partners_note", "partners_omitted", "related", "figures", "featured",
+        "published",
+    },
+    "people": {
+        "title", "name", "role", "tagline", "group", "order", "email", "links",
+        "portrait", "summary", "affil", "org", "cite", "cite_also",
+        "rise_since", "works_on", "wip", "published",
+    },
+    "publications": {
+        "title", "authors", "year", "kind", "journal", "doi", "url_external",
+        "thumbnail", "thumbnail_credit", "people", "projects", "partners",
+        "themes", "rise_tier", "citations", "citations_date",
+        "citations_source", "featured", "note", "published",
+    },
+    "partners": {
+        "title", "name", "type", "city", "country", "coords", "logo",
+        "website", "published",
+    },
+}
+POST_FIELDS = {
+    "layout", "type", "title", "summary", "featured", "published",
+    "people", "projects", "partners", "hero", "hero_caption", "figures",
+    # events
+    "event_start", "event_end", "event_month", "location", "format",
+    "register_url", "materials",
+    # openings
+    "position_id", "deadline", "start", "duration", "hours", "pay_min",
+    "pay_unit", "pay_basis", "apply", "pdf",
+}
+for _coll, _allowed in ALLOWED.items():
+    for _slug, (_fm, _b, _f) in sorted(coll[_coll].items()):
+        for _k in sorted(set(_fm) - _allowed):
+            P("fields", f"_{_coll}/{_slug}.md",
+              f"`{_k}` is not a field this collection uses. A field the "
+              "templates do not read is ignored in silence, so a typo looks "
+              "exactly like a value that did not apply.")
+for _slug, (_fm, _b, _f) in sorted(posts.items()):
+    for _k in sorted(set(_fm) - POST_FIELDS):
+        P("fields", f"_posts/{_slug}.md",
+          f"`{_k}` is not a field a post uses")
+
+# Closed vocabularies. An unknown value does not fail to render; it renders
+# as itself and quietly stops matching anything that filters on it.
+_vocab = [
+    ("publications", "kind", {"article", "conference", "report", "book", "data"},
+     "the kinds publist.html renders sections for"),
+    ("projects", "status", {"current", "concluded"}, "current or concluded"),
+    ("partners", "type",
+     set(yaml.safe_load((SITE / "_data/partner_types.yml").read_text()) or []),
+     "_data/partner_types.yml"),
+]
+for _coll, _key, _ok, _src in _vocab:
+    for _slug, (_fm, _b, _f) in sorted(coll[_coll].items()):
+        _v = _fm.get(_key)
+        if _v and _v not in _ok:
+            P("vocab", f"_{_coll}/{_slug}.md",
+              f"`{_key}` is {_v!r}, which is not in {_src}")
+_post_types = {t["slug"] for t in (yaml.safe_load((SITE / "_data/post_types.yml").read_text()) or [])}
+for _slug, (_fm, _b, _f) in sorted(posts.items()):
+    _t = _fm.get("type")
+    if _t and _t not in _post_types:
+        P("vocab", f"_posts/{_slug}.md",
+          f"`type` is {_t!r}, which is not a slug in _data/post_types.yml, so "
+          "the post gets no tab and no card label")
 
 # ------------------------------------------ two card types, one set of names
 # Q1.2, 4 Nov 2026. Project cards and post cards both used `pcard-meta`,
