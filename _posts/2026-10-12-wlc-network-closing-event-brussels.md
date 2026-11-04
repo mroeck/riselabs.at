@@ -16,6 +16,7 @@ partners:
   - bpie
   - ramboll
   - ec-dg-env
+short_title: "Whole Life Carbon Network and INDICATE LIFE closing event"
 title: "Whole Life Carbon Network and INDICATE LIFE closing event, 21 October in Brussels"
 summary: "A day of roundtables and discussion on turning whole life carbon data into benchmarks, policy and investment decisions - and on what INDICATE LIFE leaves behind."
 ---

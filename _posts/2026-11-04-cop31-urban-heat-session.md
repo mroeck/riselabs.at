@@ -15,6 +15,7 @@ people:
 partners:
   - ku-leuven
   - tu-graz
+short_title: "Urban Heat: cooling strategies and clean air"
 title: "Urban Heat at COP31: context-specific pathways for EU buildings, 12 November"
 summary: "Martin presents the context-specific emissions pathways work in a shared 60-minute session on cooling and clean air, alongside submissions from Ecuador, India, Ethiopia and China."
 ---

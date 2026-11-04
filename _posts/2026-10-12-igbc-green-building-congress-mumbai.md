@@ -17,6 +17,7 @@ partners:
 # image once it has happened. Until then the event artwork would do.
 # hero: /assets/img/posts/igbc-congress-2026.jpg
 # hero_caption: ""
+short_title: "Leadership Panel at the IGBC Green Building Congress"
 title: "Leadership Panel at IGBC Green Building Congress 2026, Mumbai"
 summary: "Martin Röck joins the opening Leadership Panel on global pathways to green, resilient and net-zero built environments, 26 November in Mumbai."
 ---
