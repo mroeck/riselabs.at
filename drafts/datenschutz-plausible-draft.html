@@ -1,0 +1,99 @@
+<!-- DRAFT for H25. Not included anywhere; `drafts/` is excluded from the
+     build. This is the Datenschutz wording to add when Plausible goes live
+     (R10), written to match the voice of datenschutz.md.
+
+     IT HAS NOT BEEN REVIEWED BY A LAWYER. Martin or a lawyer approves it
+     before anything is merged, and the open question below is part of that
+     review. Nothing here is legal advice.
+
+     THE OPEN QUESTION, which is not the implementer's to settle:
+     whether § 165 Abs. 3 TKG 2021 requires consent for cookieless
+     measurement. The provision covers storing information on, or reading
+     information from, a visitor's device. Plausible stores nothing and
+     reads nothing, which is the argument that no consent is needed and is
+     the usual Austrian practice. The EDPB's Guidelines 2/2023 read the
+     equivalent EU rule more broadly, so the question is not settled. If the
+     reviewer concludes consent IS needed, stop: a banner changes the whole
+     page and is a separate decision, not a tweak to this text.
+
+     TWO FACTS TO CONFIRM AT SIGN-UP, because they were last checked on
+     29 October 2026 and are the provider's to change:
+       - the company name and seat of the provider;
+       - that the account is on EU infrastructure.
+     Both appear in Plausible's own terms and data processing agreement. -->
+
+<!-- 1. REPLACE the sentence in "Grundsatz". The current one says the site
+        uses no web analytics, which stops being true the moment the snippet
+        is live. -->
+
+<p>Diese Website setzt keine Cookies und bindet keine Werbe- oder
+Social-Media-Dienste ein. Schriftarten werden lokal von diesem Server
+ausgeliefert und nicht von Dritten nachgeladen. Zur Reichweitenmessung wird
+ein cookiefreies Verfahren eingesetzt, das unten beschrieben ist.
+Personenbezogene Daten werden nur in den unten beschriebenen Fällen
+verarbeitet.</p>
+
+
+<!-- 2. ADD this section after "Gespeicherte Einstellung". -->
+
+<h2>Reichweitenmessung <span class="gloss">[audience measurement]</span></h2>
+
+<p>Wir messen die Nutzung dieser Website mit <strong>Plausible
+Analytics</strong>, einem Dienst der Plausible Insights OÜ, Estland. Die
+Verarbeitung findet auf Servern innerhalb der Europäischen Union statt. Eine
+Übermittlung in Drittstaaten erfolgt nicht.</p>
+
+<p>Das Verfahren arbeitet ohne Cookies und ohne Speicherung oder Auslesen von
+Informationen auf Ihrem Endgerät. Es werden keine gerätebezogenen Kennungen
+vergeben und keine Profile gebildet. Ihre IP-Adresse wird nicht gespeichert:
+sie fließt zusammen mit einem täglich wechselnden Zufallswert, der Domain
+dieser Website und Ihrer Browser-Kennung in einen Hashwert ein, aus dem sich
+die IP-Adresse nicht zurückrechnen lässt. Der Zufallswert wird alle 24 Stunden
+gelöscht, sodass eine Wiedererkennung über den Tag hinaus oder über andere
+Websites hinweg nicht möglich ist.</p>
+
+<p>Erhoben werden dabei:</p>
+
+<ul>
+  <li>die aufgerufene Seite sowie Datum und Uhrzeit des Aufrufs;</li>
+  <li>die verweisende Website, sofern Sie über einen Link gekommen sind;</li>
+  <li>das Herkunftsland, abgeleitet aus der IP-Adresse, die dabei nicht
+      gespeichert wird;</li>
+  <li>Gerätetyp, Browser und Betriebssystem in gröberer Form;</li>
+  <li>Klicks auf Links zu anderen Websites sowie Downloads von Dateien, etwa
+      der Stellenausschreibungen als PDF.</li>
+</ul>
+
+<p>Diese Angaben lassen für sich genommen und in Verbindung miteinander keinen
+Rückschluss auf Ihre Person zu. Wir verwenden sie ausschließlich in
+zusammengefasster Form, um zu verstehen, welche Inhalte gelesen werden und
+über welche Wege Besucherinnen und Besucher zu uns finden.</p>
+
+<p><strong>Rechtsgrundlage</strong> ist unser berechtigtes Interesse an einer
+datensparsamen Reichweitenmessung gemäß Art. 6 Abs. 1 lit. f DSGVO. Unser
+Interesse besteht darin, die Website auf Grundlage tatsächlicher Nutzung zu
+verbessern. Da keine Cookies gesetzt, keine Kennungen vergeben und keine
+personenbezogenen Daten gespeichert werden, überwiegen Ihre schutzwürdigen
+Interessen nach unserer Einschätzung nicht.</p>
+
+<p>Plausible Insights OÜ ist für uns als <strong>Auftragsverarbeiterin</strong>
+tätig. Die Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO ist
+Bestandteil der Nutzungsbedingungen des Dienstes.</p>
+
+<p>Wenn Sie nicht gezählt werden möchten, können Sie in Ihrem Browser unter
+<code>localStorage</code> für diese Website den Schlüssel
+<code>plausible_ignore</code> auf <code>true</code> setzen; Besuche von diesem
+Browser werden dann nicht mehr erfasst. Da keine personenbezogenen Daten
+verarbeitet werden, ist darüber hinaus kein Widerspruch erforderlich.</p>
+
+<p class="muted small">Weitere Angaben des Anbieters zum Datenschutz:
+<a href="https://plausible.io/data-policy">plausible.io/data-policy</a>.</p>
+
+
+<!-- 3. ALSO UPDATE, when this goes in:
+       - `_data/privacy_updated` (or the default in datenschutz.md) to the
+         date the section goes live;
+       - the comment at the top of datenschutz.md, which still says the page
+         describes a site with no analytics;
+       - docs/05, where the "no third-party scripts" rule names this as its
+         one exception. -->

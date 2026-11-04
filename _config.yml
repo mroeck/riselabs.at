@@ -219,5 +219,6 @@ exclude:
   - fetch-abstracts.py  # pulls abstracts from Zotero/Crossref
   - add-logos.py        # downloads and normalises partner logos
   - logo-sources.txt    # the list it reads
+  - drafts              # text waiting for review; never part of the site
   - visual-check        # Phase Q before/after screenshots - tooling, not a page
   - .github             # the workflows that run those checks
