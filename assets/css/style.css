@@ -3066,23 +3066,57 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
   color: var(--accent);
 }
-.soon ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
-@media (min-width: 48rem) { .soon ul { grid-template-columns: 1fr 1fr; } }
-.soon li { margin: 0; background: var(--bg); border-radius: var(--radius-ui); }
+/* One row, always (Martin, 4 Nov 2026). Two columns meant three items came
+   out 2 + 1, with a hole where the fourth would be. A strip of what is
+   coming up should read as one line you run your eye along.
+
+   Items that do not fit scroll, and ui.js advances them on a timer. Scroll
+   snapping makes a dragged or nudged row land on an item rather than
+   halfway through one, and the scrollbar is hidden because the row moves by
+   itself and a bar under three cards is noise. */
+.soon ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; gap: .8rem;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.soon ul::-webkit-scrollbar { display: none; }
+.soon li {
+  margin: 0; background: var(--bg); border-radius: var(--radius-ui);
+  scroll-snap-align: start;
+  /* Three across on a wide screen, one and a glimpse of the next on a
+     phone, so it is obvious the row goes on. */
+  flex: 0 0 calc((100% - 1.6rem) / 3);
+  min-width: 0;
+}
+@media (max-width: 64rem) { .soon li { flex-basis: calc((100% - .8rem) / 2); } }
+@media (max-width: 40rem) { .soon li { flex-basis: 86%; } }
+/* Stationary for anyone who asked for less movement; the row still scrolls
+   by hand. */
+@media (prefers-reduced-motion: reduce) { .soon ul { scroll-behavior: auto; } }
 .soon li a {
   display: grid; grid-template-columns: 4.2rem minmax(0, 1fr);
   gap: 1rem; align-items: center;
   text-decoration: none; color: inherit; padding: .7rem .9rem;
 }
+/* The date chip, flat since 4 Nov 2026. It carried the navy-to-purple
+   duotone, which is the treatment Martin took off the placeholders on
+   2 November; it had no business surviving here. A date is a label, not
+   artwork: it sits on the band's own surface with a rule around it and the
+   accent on the month, so it reads at a glance and belongs to the theme
+   rather than to a gradient that only works on one. */
 .cal {
   display: grid; place-items: center; text-align: center;
-  border-radius: var(--radius-ui); padding: .45rem 0; line-height: 1;
-  background: linear-gradient(135deg, #001730, #751094); color: #fff;
+  border-radius: var(--radius-ui); padding: .5rem 0; line-height: 1;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule);
 }
 .cal b { display: block; font-size: 1.5rem; font-weight: 700; }
 .cal span {
-  display: block; margin-top: .2rem;
+  display: block; margin-top: .22rem;
   font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent);
 }
 /* A date known only to the month sets the month where the day would be, so
    it needs the smaller size or it overruns the tile. */
