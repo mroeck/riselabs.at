@@ -87,7 +87,7 @@
               falls back to the figure.
             {%- endcomment -%}
             {%- assign spelled = "zero,One,Two,Three,Four,Five,Six" | split: "," -%}
-            <span class="t">{% if open_count < 7 %}{{ spelled[open_count] }}{% else %}{{ open_count }}{% endif %} new open position{% unless open_count == 1 %}s{% endunless %} at RISE - Apply now!</span>
+            <span class="t">{% if open_count < 7 %}{{ spelled[open_count] }}{% else %}{{ open_count }}{% endif %} open position{% unless open_count == 1 %}s{% endunless %} at RISE - Apply now</span>
             <span class="w">Vienna, Austria</span>
           </span>
         </a>
@@ -112,7 +112,14 @@
           <span class="cal tbc"><b>{{ e.event_month | append: "-01" | date: "%b" }}</b><span>{{ e.event_month | append: "-01" | date: "%Y" }}</span></span>
           {%- endif -%}
           <span class="soon-txt">
-            <span class="t">{{ e.title | remove: "Upcoming: " }}</span>
+            {%- comment -%}
+              `short_title` when the post carries one (4 Nov 2026). The card
+              already shows the date in the chip and the place underneath, so
+              a headline ending ", 16 November" said the date twice and left
+              no room for the topic. The post keeps its full title, which is
+              read in lists and search results where neither is beside it.
+            {%- endcomment -%}
+            <span class="t">{{ e.short_title | default: e.title | remove: "Upcoming: " }}</span>
             <span class="w">
               {%- if e.location %}{{ e.location }}{% endif -%}
               {%- unless e.event_start %}{% if e.location %} &middot; {% endif %}session date to be confirmed{% endunless -%}

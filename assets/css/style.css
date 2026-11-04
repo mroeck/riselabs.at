@@ -3158,17 +3158,11 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
    by hand. */
 @media (prefers-reduced-motion: reduce) { .soon ul { scroll-behavior: auto; } }
 
-/* The applications card, picked out in the brand magenta (Martin, 4 Nov
-   2026). The chip is filled rather than the whole card: a magenta card
-   beside two plain ones would read as a different kind of thing, and these
-   are all the same kind of thing with one of them more urgent. Navy on
-   magenta is 4.92:1, the same pair the buttons use. */
-.soon li.soon-apply .cal {
-  background: var(--magenta);
-  border-color: var(--magenta);
-  color: var(--navy);
-}
-.soon li.soon-apply .cal span { color: var(--navy); }
+/* The applications card: the text is picked out, not the card (Martin,
+   4 Nov 2026). A filled chip made that card a different object beside the
+   others; every card now carries the same plain date chip, the same title
+   and the same place underneath, and the one that is urgent says so in the
+   colour of its title. */
 .soon li.soon-apply .t { color: var(--accent); }
 
 .soon li a {
