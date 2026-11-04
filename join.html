@@ -54,6 +54,14 @@ description: Open positions at RISE, and how to hear about future ones.
       {%- if post.pay_min %}
       <p class="muted small">From {{ post.pay_min }} gross per {{ post.pay_unit | default: "month" }}{% if post.hours %}, {{ post.hours }}{% endif %}</p>
       {%- endif -%}
+      {%- comment -%}
+        The PDF carries the whole advert, including what we offer and how to
+        find us, so it is offered next to the position rather than only on
+        the position's own page (Martin, 4 Nov 2026).
+      {%- endcomment -%}
+      {%- if post.pdf %}
+      <p class="muted small"><a href="{{ post.pdf | relative_url }}" download>Full advert (PDF)</a></p>
+      {%- endif -%}
     </li>
       {%- endif -%}
     {%- endfor -%}
