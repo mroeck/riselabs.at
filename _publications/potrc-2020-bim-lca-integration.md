@@ -11,7 +11,8 @@ projects:
   - iea-ebc-annex-72
 # projects:                      # one or more, by filename
 #   - project-filename
-thumbnail: /assets/img/pubs/potrc-2020-bim-lca-integration.webp
+thumbnail: /assets/img/pubs/potrc-2020-bim-lca-integration-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 289
 citations_source: OpenAlex

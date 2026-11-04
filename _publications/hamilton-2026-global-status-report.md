@@ -11,7 +11,8 @@ partners:
   - unep
 projects:
   - global-status-report-for-buildings
-thumbnail: /assets/img/pubs/hamilton-2026-global-status-report.webp
+thumbnail: /assets/img/pubs/hamilton-2026-global-status-report-title.webp
+thumbnail_credit: "Cover © UNEP, CC-BY-NC-ND 3.0 IGO licence"
 rise_tier: core
 citations: 6
 citations_source: OpenAlex

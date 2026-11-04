@@ -7,7 +7,8 @@ journal: "Journal of Physics: Conference Series"
 doi: "10.1088/1742-6596/3140/15/152003"
 people:
   - zuhaib-batra
-thumbnail: /assets/img/pubs/sommer-2025-beyond-efficiency-exploring.webp
+thumbnail: /assets/img/pubs/sommer-2025-beyond-efficiency-exploring-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: extended
 citations: 0
 citations_source: OpenAlex

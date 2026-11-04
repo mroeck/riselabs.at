@@ -11,7 +11,8 @@ projects:
   - pef4buildings
 # projects:                      # one or more, by filename
 #   - project-filename
-thumbnail: /assets/img/pubs/mirabella-2018-strategies-improve-energy.webp
+thumbnail: /assets/img/pubs/mirabella-2018-strategies-improve-energy-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 97
 citations_source: OpenAlex

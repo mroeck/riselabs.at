@@ -9,7 +9,8 @@ people:
   - darmarajan-chinasamy
 partners:
   - uct
-thumbnail: /assets/img/pubs/ngoy-2026-evaluation-sustainable-building.webp
+thumbnail: /assets/img/pubs/ngoy-2026-evaluation-sustainable-building-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: extended
 citations: 0
 citations_source: OpenAlex

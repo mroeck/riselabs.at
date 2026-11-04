@@ -8,7 +8,8 @@ people:
   - martin-roeck
 projects:
   - iea-ebc-annex-72
-thumbnail: /assets/img/pubs/frischknecht-2023-iea-ebc-annex.webp
+thumbnail: /assets/img/pubs/frischknecht-2023-iea-ebc-annex-title.webp
+thumbnail_credit: "Cover © the authors, CC-BY-NC-ND licence"
 rise_tier: core
 ---
 

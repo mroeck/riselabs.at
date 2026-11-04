@@ -7,7 +7,8 @@ journal: "Energy and Buildings"
 doi: "10.1016/j.enbuild.2025.116425"
 people:
   - nicole-di-santo
-thumbnail: /assets/img/pubs/disanto-2025-ensuring-excellent-indoor.webp
+thumbnail: /assets/img/pubs/disanto-2025-ensuring-excellent-indoor-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY-NC-ND licence"
 rise_tier: extended
 citations: 3
 citations_source: OpenAlex

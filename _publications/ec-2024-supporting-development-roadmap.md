@@ -13,7 +13,8 @@ partners:
   - bpie
 projects:
   - supporting-the-development-of-a
-thumbnail: /assets/img/pubs/ec-2024-supporting-development-roadmap.webp
+thumbnail: /assets/img/pubs/ec-2024-supporting-development-roadmap-title.webp
+thumbnail_credit: "Cover © European Union, CC-BY licence"
 rise_tier: core
 ---
 

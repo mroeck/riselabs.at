@@ -10,7 +10,8 @@ people:
 partners:
   - bpie
   - vito
-thumbnail: /assets/img/pubs/zuhaib-2022-next-generation-energy.webp
+thumbnail: /assets/img/pubs/zuhaib-2022-next-generation-energy-title.webp
+thumbnail_credit: "Title page © the authors, CC-BY licence"
 rise_tier: prior
 citations: 49
 citations_source: OpenAlex
