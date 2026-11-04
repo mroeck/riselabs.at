@@ -975,6 +975,12 @@ for _t in _types:
             P("data", "_data/post_types.yml",
               f"type '{_t.get('slug', '?')}' has no `{_k}`")
 for _slug, (_pb, _body, _f) in posts.items():
+    # A parked post is not on the site, so its type need not be a live one.
+    # The hiring announcement of 4 Nov 2026 is the case this was written for:
+    # it was taken down and its `news` type went with it, and a parked file
+    # should not hold a type open just by existing.
+    if _pb.get("published") is False:
+        continue
     _ty = _pb.get("type")
     if not _ty:
         P("data", f"_posts/{_slug}.md", "has no `type`")
