@@ -1,4 +1,5 @@
 ---
+title: "Tshwane University of Technology"
 name: "Tshwane University of Technology"
 city: "Pretoria"
 country: "South Africa"

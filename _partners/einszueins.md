@@ -1,4 +1,5 @@
 ---
+title: "einszueins architektur"
 name: "einszueins architektur"
 city: "Vienna"
 country: "Austria"

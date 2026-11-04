@@ -1,4 +1,5 @@
 ---
+title: "No Objectives"
 name: "No Objectives"
 country: "Denmark"
 type: "design studio"

@@ -179,6 +179,10 @@
   /* 1. brand constants, per the RISE CI Manual v1.2 */
   --navy:    #001730;
   --magenta: #f92d84;
+  /* The lighter magenta the dark theme uses for links and for button hover.
+     Named here, as a constant, because Q1.5 needs it in a third place: the
+     hero, which is on a dark photograph in both themes. */
+  --magenta-light: #ff6ba6;
   --purple:  #751094;   /* gradient only, per the manual */
   --blush:   #ffe1ee;
 
@@ -220,7 +224,7 @@
      one value passes on both beds, which is worth more than carrying the
      exact brand hex into link text. The CI magenta is untouched where it is a
      fill rather than text: the gradient, the hero, and the buttons below. */
-  --accent:      #ff6ba6;
+  --accent:      var(--magenta-light);
   --accent-hover:#ffa3c7;
   --rule:        rgba(255, 255, 255, 0.13);
   --surface-2:   rgba(255, 255, 255, 0.03);   /* row hover, code */
@@ -229,9 +233,9 @@
 
   /* buttons: white on magenta is only 3.7:1, which fails AA, so the
      dark theme sets navy on magenta (4.9:1) instead */
-  --btn-bg:      #f92d84;
-  --btn-ink:     #001730;
-  --btn-bg-hover:#ff6ba6;
+  --btn-bg:      var(--magenta);
+  --btn-ink:     var(--navy);
+  --btn-bg-hover:var(--magenta-light);
 
   /* Corner radius, two values and no more. Before this the stylesheet used
      1px, 2px, 3px and 4px in different places, which is not a choice anyone
@@ -1653,6 +1657,22 @@ body.surfaces-gradient .cta-band {
    constants, as docs/05 requires: those tokens already carry the contrast
    decision (navy on magenta in dark, white on the darker magenta in light),
    and writing the hex here would have been wrong in one of the two themes. */
+/* Q1.5, 4 Nov 2026. The hero sits on a dark photograph in BOTH themes, so
+   it is not a light surface and the light theme's button tokens do not
+   belong to it. Those are navy on navy-white, which on the hero's navy-tinted
+   picture reads as plain text: the primary action on the home page, all but
+   invisible, and now to every visitor who has not chosen dark.
+
+   The fix is the tokens, not the rule: the hero redefines the --btn-* set to
+   the values the dark theme uses, and the button below keeps reading them.
+   Nothing here is a hex. Measured on the hero bed: navy on magenta is 4.9:1,
+   which is AA for the button's weight and size. */
+.hero-full {
+  --btn-bg:      var(--magenta);
+  --btn-ink:     var(--navy);
+  --btn-bg-hover:var(--magenta-light);
+}
+
 /* `.hero-full a` sets every link in the hero to magenta and is the more
    specific selector, so a bare .hero-btn rendered as magenta text on a
    magenta button: a solid pink rectangle with the label invisible. Matching
@@ -2225,16 +2245,35 @@ table.listing td.t-partner .t-logo,
 }
 .pgrid a:hover .pcard-img { border-color: var(--accent); }
 
+/* Q1.2, 4 Nov 2026. These three rules now say what a project card actually
+   renders as. They did not before: the post-card block shared their class
+   names and is written later, so it won every property the two both set, and
+   the values below are what was reaching the page rather than what was
+   written here. Marked, because the difference is where the bug was:
+
+     display        block        -> flex, with the post block's gap and wrap
+     meta size      .78rem       -> .82rem
+     title weight   600          -> 700
+     title size     1.04rem      -> 1.05rem
+     summary size   .89rem       -> .92rem
+     summary        plain block  -> clamped to three lines
+
+   Whether a project card wants a three-line clamp is a design question and
+   not this phase's: the clamp is kept because it is what the grid has looked
+   like, and it is on the list for the design phase. */
 .pcard-meta {
-  display: block; margin: .75rem 0 .25rem;
-  font-size: .78rem; color: var(--ink-soft);
+  display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap;
+  margin: .75rem 0 .25rem;
+  font-size: .82rem; color: var(--ink-soft);
   text-transform: uppercase; letter-spacing: .05em;
 }
-.pcard-title { display: block; font-weight: 600; font-size: 1.04rem; line-height: 1.3; }
+.pcard-title { display: block; font-weight: 700; font-size: 1.05rem; line-height: 1.3; }
 .pgrid a:hover .pcard-title { color: var(--accent); }
 .pcard-sum {
-  display: block; margin-top: .35rem;
-  font-size: .89rem; line-height: 1.5; color: var(--ink-soft);
+  margin-top: .35rem;
+  font-size: .92rem; line-height: 1.5; color: var(--ink-soft);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .pcard-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .6rem; }
 .pcard-tags span {
@@ -3029,22 +3068,34 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
   font-weight: 600; color: #52616f;
 }
 
-.pcard-meta {
+/* Q1.2, 4 Nov 2026: `post-card-*`, not `pcard-*`. Project cards use the
+   same three names, and these rules are written later, so they quietly
+   restyled a grid they were never meant to touch. */
+.post-card-meta {
   display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap;
   font-size: .82rem; color: var(--ink-soft);
+  /* These three came from the project-card block while the two shared a
+     class name. That block is written earlier, so it lost every property
+     both set and kept the ones only it set - and these reached the page.
+     The uppercase is the visible one: a post card's date renders
+     "3 NOVEMBER 2026". Carried over so the cards do not move. */
+  margin: .75rem 0 .25rem;
+  text-transform: uppercase; letter-spacing: .05em;
 }
 .pcard-chip {
   font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
   font-weight: 700; color: var(--accent);
 }
-.pcard-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
-.pcard a:hover .pcard-title { color: var(--accent); }
+.post-card-title { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+.pcard a:hover .post-card-title { color: var(--accent); }
 /* Three lines, so a long summary cannot make one card twice the height of
    its neighbours. */
-.pcard-sum {
+.post-card-sum {
   color: var(--ink-soft); font-size: .92rem; line-height: 1.5;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
   overflow: hidden;
+  /* From the project-card block too, for the same reason. */
+  margin-top: .35rem;
 }
 
 /* The lead card on the unfiltered All tab: full width, picture beside the
@@ -3056,7 +3107,7 @@ body.photo-mono .pcard-img.no-tone::after { content: none; }
     column-gap: 1.6rem; align-content: center;
   }
   .pcard-lead .pcard-shot, .pcard-lead .pcard-tile { grid-row: 1 / span 3; align-self: start; }
-  .pcard-lead .pcard-title { font-size: 1.45rem; }
+  .pcard-lead .post-card-title { font-size: 1.45rem; }
 }
 
 /* ---------- "Coming up" ---------- */

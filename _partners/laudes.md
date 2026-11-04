@@ -1,4 +1,5 @@
 ---
+title: "Laudes Foundation"
 name: "Laudes Foundation"
 city: "Zug"
 country: "Switzerland"

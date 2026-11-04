@@ -1,4 +1,5 @@
 ---
+title: "KU Leuven"
 name: "KU Leuven"
 city: "Leuven"
 country: "Belgium"

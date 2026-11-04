@@ -2055,6 +2055,12 @@ input for the design phase. Known so far:
 - Date formats `%d` and `%-d`.
 - Eight card types, seven image fallbacks, five button styles (review,
   section 7).
+- The project card's three-line summary clamp (Q1.2, 4 Nov 2026). Project
+  cards are clamped to three lines and set a size larger than their own
+  rules said, because the post-card block shared their class names and won.
+  The values are now written in the project rules, so the grid looks exactly
+  as it did; whether a project card wants a clamp at all is a design
+  question.
 - The home page evidence band's hairlines and type size (Q1.1, 4 Nov 2026).
   That band has a 1px rule above and below it and is set at `.93rem`, and
   neither was ever written for it: it took all three from the key-facts
@@ -2427,6 +2433,44 @@ the token blocks stay as they are either way.
 Q1.5, the hero button in the light theme, matters more now than when it was
 written: the fault it describes is on the home page every visitor meets by
 default rather than only the ones who chose light.
+
+### Q1.2 to Q1.6, and what the measuring found (4 November)
+
+Five faults in one pull request. Three of them were worse or wider than the
+order described, and the measuring is what showed it.
+
+**Q1.2, the card classes, collided in both directions.** The order says the
+post-card rules silently restyle project cards, which they did: project
+cards rendered at 700 weight, 1.05rem titles and a three-line clamp that
+their own rules never asked for. But the project block is written first, so
+it kept every property the post block did not set, and post cards were
+taking `margin: .75rem 0 .25rem`, `text-transform: uppercase` and
+`letter-spacing: .05em` from it. The uppercase is the visible one: a post
+card's date reads "3 NOVEMBER 2026" because of a rule written for project
+years. Renaming alone would have changed both card types. Both blocks now
+state what they actually render, and all 434 computed properties of all six
+spans match before and after.
+
+**Q1.3 broke the search box on the way to fixing the count.** Taking
+setupFilter off the news input left nothing to reveal it: the box ships
+`hidden` so it never appears as a control that does nothing, and setupFilter
+was what cleared that. Caught by driving the page in a browser rather than
+reading the diff. setupNews reveals it now.
+
+**Q1.6 was not only the partners.** `_people` has the same gap, six files
+with `name` and no `title`, and there it costs more than a capital letter:
+/team/martin-roeck/ was "Martin Roeck" in the tab and in og:title, with the
+umlaut gone, because Jekyll was building the title out of the file name.
+`add-titles.py` writes `title` next to `name` in all fifty files and
+docs-check keeps the two equal.
+
+**Q1.5 is worth a figure.** The fault is not the label on the button, which
+was always fine; it is the button against the photograph. In the light theme
+the navy button on the hero's navy-tinted picture measured **1.30:1** at its
+own edge. It is 4.11:1 now, which clears the 3:1 that a UI component's
+boundary needs. The hero redefines the `--btn-*` tokens for its own scope
+rather than writing a hex in the rule, and `#ff6ba6` became
+`--magenta-light` so the third place that needs it does not copy it again.
 
 ### H24, Circular: the files supplied on 29 October do not cover this site
 

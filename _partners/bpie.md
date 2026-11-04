@@ -1,4 +1,5 @@
 ---
+title: "BPIE"
 name: "BPIE"
 city: "Brussels"
 country: "Belgium"

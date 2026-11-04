@@ -1,4 +1,5 @@
 ---
+title: "Durban University of Technology"
 name: "Durban University of Technology"
 city: "Durban"
 country: "South Africa"

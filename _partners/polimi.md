@@ -1,4 +1,5 @@
 ---
+title: "Politecnico di Milano"
 name: "Politecnico di Milano"
 city: "Milan"
 country: "Italy"

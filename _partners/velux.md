@@ -1,4 +1,5 @@
 ---
+title: "The VELUX Group"
 name: "The VELUX Group"
 city: "Hørsholm"
 country: "Denmark"

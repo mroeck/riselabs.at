@@ -1,4 +1,5 @@
 ---
+title: "University of Cape Town"
 name: "University of Cape Town"
 city: "Cape Town"
 country: "South Africa"

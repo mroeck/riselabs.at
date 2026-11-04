@@ -1,4 +1,5 @@
 ---
+title: "ClimateWorks Foundation"
 name: "ClimateWorks Foundation"
 city: "San Francisco"
 country: "United States"

@@ -1,4 +1,5 @@
 ---
+title: "TU Graz"
 name: "TU Graz"
 city: "Graz"
 country: "Austria"

@@ -1,4 +1,5 @@
 ---
+title: "ifeu - Institut für Energie- und Umweltforschung"
 name: "ifeu - Institut für Energie- und Umweltforschung"
 city: "Heidelberg"
 country: "Germany"

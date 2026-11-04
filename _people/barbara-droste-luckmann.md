@@ -1,5 +1,6 @@
 ---
 wip: true   # draft: awaiting this person's own words and approval
+title: "Barbara Droste-Luckmann"
 name: "Barbara Droste-Luckmann"
 role: "Head of Office, Stakeholder and Communications Manager"
 cite: "Droste-Luckmann B"
