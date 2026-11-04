@@ -2402,6 +2402,32 @@ guarantees survival, is a few lines away if Martin prefers it.
 `docs-check` notes when more than three publications are featured: past
 that, a band of six stops being recent work and becomes a fixed list.
 
+### Light is the default again (Martin, 4 November)
+
+The fourth setting of this switch, and the second in two days. The order,
+because four commits are worse than one paragraph: light until 29 October,
+dark from 31 October, dark without reading the system from 3 November, and
+now light with the system read again.
+
+What it does now: a stored choice wins, then `prefers-color-scheme: dark`,
+then the markup's light. `data-theme="light"` ships in the markup, so that is
+what a visitor without JavaScript sees, and the toggle button ships the state
+that goes with it rather than the one it replaced.
+
+Checked in Chromium across every system setting (light, dark, none) against
+every stored value (none, light, dark, junk), and with `localStorage`
+throwing outright under both system settings: fourteen cases, all landing
+where they should, no page errors.
+
+One thing to know before moving it a fifth time: the stylesheet is not what
+sets the default. `:root` carries the dark values and `[data-theme="light"]`
+overrides them, so the default lives in the markup and the inline script, and
+the token blocks stay as they are either way.
+
+Q1.5, the hero button in the light theme, matters more now than when it was
+written: the fault it describes is on the home page every visitor meets by
+default rather than only the ones who chose light.
+
 ### H24, Circular: the files supplied on 29 October do not cover this site
 
 Four files arrived with the pack: `CircularXXWeb-Medium` and

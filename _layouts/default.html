@@ -5,7 +5,7 @@
      is dark. The script below adjusts it to a remembered choice or to the
      operating system's preference; the toggle in the corner switches it
      afterwards. -->
-<html lang="{{ site.lang | default: "en" }}" data-theme="dark">
+<html lang="{{ site.lang | default: "en" }}" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,28 +32,39 @@
     into the other. This has to be inline and early; a deferred script runs
     too late to prevent the flash.
 
-    One step. A choice the visitor made with the toggle wins, because they
-    made it. Everything else is dark, which is the markup's own value and
-    needs no script to arrive at.
+    Two steps, in this order. A choice the visitor made with the toggle wins,
+    because they made it. Failing that, a machine set to dark gets the dark
+    site without having to ask. Failing both, the markup's light stands.
 
-    Martin, 3 Nov 2026: dark by default, full stop. Until then the operating
-    system's setting was read first, so anyone running a light machine, which
-    is most people, met a light site and never saw the dark one unless they
-    went looking for the toggle. That is not a default. The site is dark now
-    and the toggle is how a visitor changes it, once, for as long as their
-    browser keeps the choice.
+    Martin, 4 Nov 2026: light by default again, and the system setting is
+    read again, which reverses his own decision of 3 November. The short
+    history, so nobody has to dig: light was the default until 29 October,
+    dark from 31 October, dark without reading the system from 3 November,
+    and this.
 
-    Storage can throw - private windows, blocked site data - so the read is
-    wrapped. If it fails the page is dark, which is the default rather than a
-    fallback.
+    `prefers-color-scheme: dark` is tested rather than negated from `light`:
+    a browser too old to know the feature answers false to every such query,
+    and that visitor has to land on the default rather than on the other one.
+
+    Storage can throw - private windows, blocked site data - and an old
+    browser may not know `matchMedia`, so each is wrapped separately: a
+    failure in one must not cost the other. If everything fails the page is
+    light, which is the default rather than a fallback.
   {%- endcomment -%}
   <script>
     (function () {
-      var t = null;
+      var el = document.documentElement, t = null;
       try { t = localStorage.getItem("rise-theme"); } catch (e) {}
-      if (t === "light" || t === "dark") {
-        document.documentElement.setAttribute("data-theme", t);
+      if (t !== "light" && t !== "dark") {
+        t = null;
+        try {
+          if (window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            t = "dark";
+          }
+        } catch (e) {}
       }
+      if (t) { el.setAttribute("data-theme", t); }
     })();
   </script>
   {%- seo title=false -%}
@@ -233,9 +244,9 @@
   <p class="wip">Page in progress</p>
   {%- endif %}
   <button type="button" class="theme-toggle" data-theme-toggle hidden
-          aria-pressed="false" title="Switch to the light theme">
+          aria-pressed="true" title="Switch to the dark theme">
     <span class="tt-icon" aria-hidden="true"></span>
-    <span class="tt-label">Light</span>
+    <span class="tt-label">Dark</span>
   </button>
 </div>
 
