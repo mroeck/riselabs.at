@@ -81,8 +81,15 @@
         <a href="{{ '/join/' | relative_url }}">
           <span class="cal"><b>{{ first_close | date: "%-d" }}</b><span>{{ first_close | date: "%b" }}</span></span>
           <span class="soon-txt">
-            <span class="t">{% if open_count == 1 %}One open position{% else %}{{ open_count }} open positions{% endif %}</span>
-            <span class="w">Applications close &middot; Vienna, hybrid</span>
+            {%- comment -%}
+              Martin's wording, 4 Nov 2026. The count is spelled out rather
+              than set as a digit, which is how he wrote it and how the rest
+              of the site writes small numbers in a sentence; past six it
+              falls back to the figure.
+            {%- endcomment -%}
+            {%- assign spelled = "zero,One,Two,Three,Four,Five,Six" | split: "," -%}
+            <span class="t">{% if open_count < 7 %}{{ spelled[open_count] }}{% else %}{{ open_count }}{% endif %} new open position{% unless open_count == 1 %}s{% endunless %} at RISE - Apply now!</span>
+            <span class="w">Applications close &middot; Vienna, Austria</span>
           </span>
         </a>
       </li>

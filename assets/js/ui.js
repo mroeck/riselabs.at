@@ -324,7 +324,44 @@
     if (!left) {
       strip.hidden = true;
       strip.setAttribute("data-empty", "");
+      return;
     }
+
+    /* The row advances itself (Martin, 4 Nov 2026), but only when there is
+       something off-screen to advance to: three items on a wide screen fit,
+       and a row that slides when nothing is hidden is motion for its own
+       sake. It stops while the pointer is in it, while anything inside has
+       focus, and while the tab is in the background, and it never starts at
+       all for a visitor who asked for less movement. */
+    var list = strip.querySelector("ul");
+    if (!list) return;
+
+    var reduced = window.matchMedia &&
+                  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    var paused = false;
+    strip.addEventListener("mouseenter", function () { paused = true; });
+    strip.addEventListener("mouseleave", function () { paused = false; });
+    strip.addEventListener("focusin", function () { paused = true; });
+    strip.addEventListener("focusout", function () { paused = false; });
+    // A drag or a flick is the visitor steering; leave it alone for a while
+    // afterwards rather than yanking the row out from under them.
+    var touched = 0;
+    list.addEventListener("pointerdown", function () { touched = Date.now(); });
+    list.addEventListener("wheel", function () { touched = Date.now(); }, { passive: true });
+
+    setInterval(function () {
+      if (paused || document.hidden) return;
+      if (Date.now() - touched < 8000) return;
+      var slack = list.scrollWidth - list.clientWidth;
+      if (slack < 8) return;                       // everything already fits
+      var shown = items.filter(function (li) { return !li.hidden; });
+      if (!shown.length) return;
+      var step = shown[0].getBoundingClientRect().width + 13;   // card + gap
+      var next = list.scrollLeft + step;
+      list.scrollLeft = next > slack - 4 ? 0 : next;            // wrap round
+    }, 5000);
   }
 
   /* ---------- navigation ---------- */
