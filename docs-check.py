@@ -1075,23 +1075,54 @@ if _sizeless:
 # script, and a rule may exist for a state only a visitor reaches.
 _css_src = re.sub(r"/\*.*?\*/", "", (SITE / "assets/css/style.css").read_text(), flags=re.S)
 _css_classes = set(re.findall(r"\.([A-Za-z][\w-]*)", _css_src))
-_markup_classes = set()
+# A class attribute in this repo is often half Liquid:
+# `class="pcard{% if lead %} pcard-lead{% endif %}"`, or a name assembled in
+# an `assign` and dropped in later. Reading only the static attributes said
+# `pcard`, `people` and `place` were unused, which is the opposite of true
+# and exactly the kind of note that gets a live rule deleted in Q3.
+#
+# So: strip the Liquid out of each attribute first, and then take every
+# class-shaped token out of every quoted string in the file as well. That
+# over-collects, and deliberately: a name wrongly called used costs a
+# cleanup, a name wrongly called unused costs a bug.
+# Two sets, because the two directions need opposite kinds of error.
+#
+#   _attr_classes  what is actually written in a class attribute, with the
+#                  Liquid taken out first. Used for "markup names a class no
+#                  rule styles", where a wider net would sweep in every
+#                  ordinary word in a summary.
+#   _named         that, plus every class-shaped token in every quoted string
+#                  in the file, which catches a name assembled in an `assign`
+#                  and dropped in later. Used for "the stylesheet has a class
+#                  nobody names", where a name wrongly called used costs a
+#                  cleanup and a name wrongly called unused costs a bug.
+_attr_classes = set()
+_named = set()
+_CLASSY = re.compile(r"^[a-z][a-z0-9-]*$")
 for _p, _t in all_text:
     if _p.suffix not in (".html", ".md"):
         continue
-    for _m in re.finditer(r'class="([^"{}]*)"', _t):
-        _markup_classes.update(_m.group(1).split())
+    _plain = re.sub(r"\{\{.*?\}\}|\{%.*?%\}", " ", _t, flags=re.S)
+    for _m in re.finditer(r'class="([^"]*)"', _plain):
+        _attr_classes.update(_m.group(1).split())
+    for _m in re.finditer(r'"([^"\n]{1,120})"', _t):
+        for _tok in _m.group(1).split():
+            if _CLASSY.match(_tok):
+                _named.add(_tok)
+_named |= _attr_classes
 _js_src = "".join((SITE / "assets/js" / n).read_text()
                   for n in ("ui.js",) if (SITE / "assets/js" / n).exists())
 _js_names = set(re.findall(r"[\"']([A-Za-z][\w-]*)[\"']", _js_src))
 
-_unused_css = sorted(_css_classes - _markup_classes - _js_names)
+_unused_css = sorted(_css_classes - _named - _js_names)
 if _unused_css:
     N("classes", f"{len(_unused_css)} class(es) in the stylesheet that no markup "
-      "or script names:\n      " + ", ".join(_unused_css[:14])
+      "or script names. A name built out of data - `place-{{ im.slot }}` makes "
+      "`place-wide` - cannot be seen from the text, so confirm each by hand "
+      "before deleting it:\n      " + ", ".join(_unused_css[:14])
       + (f"\n      ... and {len(_unused_css) - 14} more" if len(_unused_css) > 14 else ""))
 
-_unstyled = sorted(_markup_classes - _css_classes - _js_names)
+_unstyled = sorted(_attr_classes - _css_classes - _js_names)
 if _unstyled:
     N("classes", f"{len(_unstyled)} class(es) in markup that no rule and no script "
       "uses:\n      " + ", ".join(_unstyled[:14])
@@ -1168,13 +1199,9 @@ for _coll, _key, _ok, _src in _vocab:
         if _v and _v not in _ok:
             P("vocab", f"_{_coll}/{_slug}.md",
               f"`{_key}` is {_v!r}, which is not in {_src}")
-_post_types = {t["slug"] for t in (yaml.safe_load((SITE / "_data/post_types.yml").read_text()) or [])}
-for _slug, (_fm, _b, _f) in sorted(posts.items()):
-    _t = _fm.get("type")
-    if _t and _t not in _post_types:
-        P("vocab", f"_posts/{_slug}.md",
-          f"`type` is {_t!r}, which is not a slug in _data/post_types.yml, so "
-          "the post gets no tab and no card label")
+# A post's `type` is checked against _data/post_types.yml further down, in
+# the block that also checks the file itself and skips parked posts. One
+# check, not two that can drift apart.
 
 # ------------------------------------------ two card types, one set of names
 # Q1.2, 4 Nov 2026. Project cards and post cards both used `pcard-meta`,
