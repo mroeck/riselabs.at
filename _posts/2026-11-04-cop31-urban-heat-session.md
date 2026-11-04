@@ -15,7 +15,7 @@ people:
 partners:
   - ku-leuven
   - tu-graz
-short_title: "Presenting at COP31: decarbonization pathways for EU buildings"
+short_title: "Presenting at COP31: context-specific emission pathways for EU buildings"
 title: "Urban Heat at COP31: context-specific pathways for EU buildings, 12 November"
 summary: "Martin presents the context-specific emissions pathways work in a shared 60-minute session on cooling and clean air, alongside submissions from Ecuador, India, Ethiopia and China."
 ---
