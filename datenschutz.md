@@ -38,7 +38,7 @@ description: >-
 
 <p class="muted small">Legal text under Austrian and EU law; the German
 wording is the operative one, with an English rendering of each heading in
-brackets. Stand: {{ site.data.privacy_updated | default: "4. November 2026" }}.</p>
+brackets. Stand: {{ site.data.privacy_updated | default: "11. November 2026" }}.</p>
 
 <h2>Verantwortlicher <span class="gloss">[controller]</span></h2>
 
@@ -56,9 +56,10 @@ Voraussetzungen des Art. 37 DSGVO nicht vorliegen.</p>
 <p>Diese Website setzt keine Cookies und bindet keine Werbe- oder
 Social-Media-Dienste ein. Schriftarten werden lokal von diesem Server
 ausgeliefert und nicht von Dritten nachgeladen. Zur Reichweitenmessung wird
-ein cookiefreies Verfahren eingesetzt, das unten beschrieben ist.
-Personenbezogene Daten werden nur in den unten beschriebenen Fällen
-verarbeitet.</p>
+ein cookiefreies Verfahren eingesetzt, das unten beschrieben ist. Auf einer
+einzelnen Unterseite wird eine externe Anwendung eingebunden; auch dies ist
+unten beschrieben. Personenbezogene Daten werden nur in den unten
+beschriebenen Fällen verarbeitet.</p>
 
 <h2>Gespeicherte Einstellung <span class="gloss">[stored preference]</span></h2>
 
@@ -141,6 +142,37 @@ verarbeitet werden, ist darüber hinaus kein Widerspruch erforderlich.</p>
 
 <p class="muted small">Weitere Angaben des Anbieters zum Datenschutz:
 <a href="https://plausible.io/data-policy">plausible.io/data-policy</a>.</p>
+
+<h2>Eingebundene Anwendung: WLC Scenario Explorer
+<span class="gloss">[embedded application]</span></h2>
+
+<p>Auf der Seite
+<a href="{{ '/tools/wlc-scenario-explorer/' | relative_url }}">/tools/wlc-scenario-explorer/</a>
+ist der <strong>WLC Scenario Explorer</strong> als Inline-Frame
+eingebunden. Die Anwendung wird nicht von uns, sondern von der
+<strong>Katholieke Universiteit Leuven</strong> (KU Leuven), Oude Markt 13,
+3000 Leuven, Belgien, unter der Adresse
+<code>ae-scenario-explorer.cloud.set.kuleuven.be</code> betrieben.</p>
+
+<p>Beim Aufruf dieser Unterseite stellt Ihr Browser eine direkte Verbindung
+zu diesem Server her. Dabei wird Ihre IP-Adresse an die KU Leuven
+übertragen, und zwar unabhängig davon, ob Sie die Anwendung anschließend
+benutzen. Die Übertragung erfolgt technisch bedingt beim Laden der Seite;
+ohne sie könnte die Anwendung nicht dargestellt werden. Welche weiteren
+Daten die KU Leuven dabei verarbeitet und wie lange sie diese speichert,
+liegt außerhalb unseres Einflussbereichs. Wir setzen
+<code>referrerpolicy="no-referrer"</code>, sodass die konkrete Seite, von
+der aus Sie kommen, nicht mitübertragen wird.</p>
+
+<p>Die Anwendung kann beim ersten Aufruf einen eigenen Hinweis
+(<em>Website Disclaimer</em>) anzeigen und dafür Daten in Ihrem Browser
+speichern. Diese Speicherung erfolgt durch die KU Leuven, nicht durch uns.</p>
+
+<p>Rechtsgrundlage ist unser berechtigtes Interesse gemäß Art. 6 Abs. 1
+lit. f DSGVO daran, die Ergebnisse unserer Forschung unmittelbar
+nachvollziehbar zu machen, statt nur auf sie zu verweisen. Wenn Sie diese
+Übertragung vermeiden möchten, rufen Sie die genannte Unterseite nicht auf.
+Alle übrigen Seiten dieser Website binden die Anwendung nicht ein.</p>
 
 <h2>Hosting und Server-Logs <span class="gloss">[hosting and server logs]</span></h2>
 

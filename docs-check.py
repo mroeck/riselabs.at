@@ -318,7 +318,15 @@ for cname, items in coll.items():
 # ------------------------------------------------------------------- assets
 asset_re = re.compile(r'(?:^|[\s"\'(:])(/assets/[A-Za-z0-9._/\-]+)')
 all_text = []
-for p in [f for f in SITE.glob("*.md") if f.name != "README.md"] + list(SITE.glob("_data/*.yml")) + \
+# Root-level .html pages belong here as much as the .md ones. They were
+# missing until 11 Nov 2026, which made expertise.html, projects.html,
+# join.html and 404.html invisible to every check that reads this list:
+# assets they reference were reported unused, classes they carry were
+# reported unstyled, and links they contain were never validated. The gap
+# surfaced when a new .html page's own image and CSS class were both
+# reported as unreferenced.
+for p in [f for f in SITE.glob("*.md") if f.name != "README.md"] + \
+         list(SITE.glob("*.html")) + list(SITE.glob("_data/*.yml")) + \
          list(SITE.glob("_includes/*.html")) + list(SITE.glob("_layouts/*.html")) + \
          [SITE / "_config.yml"] + \
          [f for c in coll.values() for (_, _, f) in c.values()] + \
@@ -928,7 +936,14 @@ for f in sorted(SITE.rglob("*.md")):
     if fm is None:
         continue
 
-    for i, line in enumerate(body.split("\n"), 1):
+    # Liquid comments are blanked first, keeping the line count, so that a
+    # note *about* markdown="1" is not reported as an indented markdown="1".
+    # Added 11 Nov 2026, when a comment explaining why a page avoids the
+    # construct failed the check for containing the words. A rule that fires
+    # on prose discussing it is the kind of false note Q2 removed.
+    _scan = re.sub(r"\{%-?\s*comment\s*-?%\}.*?\{%-?\s*endcomment\s*-?%\}",
+                   lambda m: re.sub(r"[^\n]", " ", m.group(0)), body, flags=re.S)
+    for i, line in enumerate(_scan.split("\n"), 1):
         if 'markdown="1"' in line and line[:1].isspace():
             P("markdown", str(rel),
               f"line {i}: <div markdown=\"1\"> is indented. kramdown only parses "
@@ -1161,6 +1176,14 @@ ALLOWED = {
         "thumbnail", "thumbnail_credit", "people", "projects", "partners",
         "themes", "rise_tier", "citations", "citations_date",
         "citations_source", "featured", "note", "published",
+        # The four below are read by `toollist.html` and show on the Data &
+        # tools cards. They were missing from this list until 11 Nov 2026,
+        # not because they were wrong but because the list was read off the
+        # files in use and no publication had set them yet. The first one to
+        # do so, the WLC Scenario Explorer, failed this check - which is the
+        # check working: it cannot tell a new field from a typo, so a new
+        # field is a line here.
+        "state", "repo", "link", "summary",
     },
     "partners": {
         "title", "name", "type", "city", "country", "coords", "logo",

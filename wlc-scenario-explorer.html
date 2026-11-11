@@ -1,0 +1,178 @@
+---
+layout: default
+title: WLC Scenario Explorer
+permalink: /tools/wlc-scenario-explorer/
+description: >-
+  Explore whole life carbon scenarios for the EU building stock to 2050:
+  predefined policy pathways, custom Avoid, Shift and Improve strategies,
+  broken down by country, building type, material and life cycle stage.
+image: /assets/img/tools/wlc-scenario-explorer-app.webp
+---
+
+{%- comment -%}
+  The tool's own page, live since 11 November 2026. It exists because
+  wlc-scenario-explorer.com is being retired and pointed here (Martin,
+  11 Nov 2026), and because the software paper's page is a citable record
+  rather than a place to use the thing. Two pages, two jobs:
+
+    /tools/wlc-scenario-explorer/     the working tool  (this page)
+    /publications/roeck-2025-wlc-scenario-explorer/   the paper, the DOI,
+                                      how to cite it, who wrote it
+
+  Each links to the other, and both link to the Alaux paper that the
+  scenario results come from.
+
+  THE EMBED. The app is served from KU Leuven and framed here directly,
+  loading with the page (Martin, 11 Nov 2026, choosing that over a
+  click-to-load placeholder). It is the one third-party embed on the site
+  and the second third-party request of any kind, after Plausible.
+
+  What that costs, so nobody has to rediscover it: every visitor to this
+  page contacts ae-scenario-explorer.cloud.set.kuleuven.be and hands it
+  their IP address, whether or not they touch the tool, and KU Leuven's own
+  "Website Disclaimer" dialog opens inside the frame on a first visit. Both
+  are disclosed in the Reichweitenmessung-neighbouring section of
+  /datenschutz/, added in the same pull request as this page. The rule from
+  the Plausible work holds here too: the embed must never be live while the
+  privacy page does not mention it.
+
+  Checked on 11 November 2026 before building this: the app sends no
+  `X-Frame-Options` and no `Content-Security-Policy`, so framing is allowed
+  rather than merely untested, and it serves https with HSTS, so there is no
+  mixed-content block. If the embed ever goes blank, check those two headers
+  first - a framing policy added upstream would look exactly like that.
+
+  `loading="lazy"` is deliberate even though the frame is near the top: it
+  holds the request until the frame is close to the viewport, which on a
+  phone is still a moment later than page load.
+{%- endcomment -%}
+
+<div class="page-head wrap">
+  <p class="post-date"><span class="post-type">tool</span> &nbsp;·&nbsp; 2025</p>
+  <h1>WLC Scenario Explorer</h1>
+  <p class="lede">Whole life carbon scenarios for the EU building stock to
+  2050, country by country.</p>
+</div>
+
+<main id="content">
+
+<section class="band">
+<div class="wrap">
+
+  <figure class="appframe">
+    <iframe src="https://ae-scenario-explorer.cloud.set.kuleuven.be/"
+            title="WLC Scenario Explorer, hosted by KU Leuven"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            allow="fullscreen"></iframe>
+    <figcaption class="muted small">
+      The explorer runs on
+      <a href="https://architectuur.kuleuven.be/architectural-engineering">KU
+      Leuven</a> infrastructure and is loaded into this page from there.
+      Opening this page contacts that server. If the frame stays blank, or
+      you would rather use the full window,
+      <a href="https://ae-scenario-explorer.cloud.set.kuleuven.be/">open the
+      explorer directly</a>.
+    </figcaption>
+  </figure>
+
+</div>
+</section>
+
+<section class="band alt">
+<div class="wrap narrow">
+
+<h2>What you are looking at</h2>
+
+<p>The explorer shows modelled greenhouse gas emissions of the European
+building stock from 2020 to 2050, counting the whole life cycle: the
+emissions of making and replacing the materials, of construction,
+renovation and demolition, and of operating the buildings. Six predefined
+policy scenarios are built in, and you can define your own.</p>
+
+{%- comment -%}
+  Written as HTML rather than as a markdown list in a `markdown="1"` div.
+  Every list on this page sits three levels inside raw HTML (main, section,
+  wrap), nothing else on the site nests a markdown island that deep, and
+  Jekyll cannot be run here to find out what kramdown does with it. The
+  rendered markup is the same either way, so the version that cannot
+  surprise anyone wins.
+{%- endcomment -%}
+<div class="findings">
+  <ul>
+    <li><strong>Pick a scenario.</strong> Six are predefined, from
+      business-as-usual to high diffusion of every strategy across all
+      Member States, with optimistic and conservative readings of current
+      and additional policy in between.</li>
+    <li><strong>Or build one.</strong> Custom scenarios set how far each
+      strategy package spreads, grouped as <em>Avoid</em> (circularity
+      measures, less space per capita), <em>Shift</em> (low-carbon and
+      bio-based solutions) and <em>Improve</em> (better materials, lower
+      operational emissions). Each has four setpoints: none, half and full
+      implementation of what a Member State is assessed as capable of, and
+      <code>max</code>, which assumes high diffusion everywhere
+      regardless.</li>
+    <li><strong>Compare two side by side.</strong> Any scenario against any
+      other.</li>
+    <li><strong>Break the result down.</strong> By country, EU region,
+      building type and subtype, element class, material class, stock
+      activity, life cycle stage or life cycle module.</li>
+    <li><strong>Change the indicator.</strong> Total, fossil, biogenic and
+      land-use global warming potential, or material mass, each as a total
+      or per square metre of floor area or per head of population.</li>
+    <li><strong>Take the result with you.</strong> Any view downloads as an
+      image or a spreadsheet, and the address bar carries the full state of
+      the view, so a particular comparison can be linked to.</li>
+  </ul>
+</div>
+
+<h2>Where the numbers come from</h2>
+
+<p>Not from this tool. The explorer is a way of reading results that were
+modelled elsewhere: building-level life cycle assessment from the SLiCE
+model and building stock projections from the PULSE model, combined into
+4096 scenarios covering the twenty-seven EU Member States. That modelling,
+and what it concludes, is published as
+<a href="/publications/alaux-2026-context-specific-life/">Context-specific
+life cycle emissions pathways for EU buildings and construction</a> in
+<em>Nature Communications</em>.</p>
+
+<p>That paper is the one to read if you want to know whether a number here
+is trustworthy, and the one to cite if you use the numbers. This page is
+where you look at them.</p>
+
+<p>Both came out of
+<a href="/projects/analysis-of-life-cycle-greenhouse/">Analysis of Life-cycle
+Greenhouse Gas Emissions and Removals of EU Buildings and Construction</a>,
+a study contracted by the European Commission, DG GROW, under
+GROW/2022/OP/0005, and carried out by Ramboll with BPIE, KU Leuven, TU Graz,
+Aalborg University, Politecnico di Milano and IIASA.</p>
+
+<h2>Using and reusing it</h2>
+
+<div class="findings">
+  <ul>
+    <li><strong>The tool is open source.</strong> Apache-2.0, at
+      <a href="https://github.com/mroeck/wlc-scenario-explorer">github.com/mroeck/wlc-scenario-explorer</a>.
+      It will read any scenario results following the SLiCE tabular format,
+      not only these, and it degrades gracefully: give it a dataset missing
+      some attributes and it offers fewer breakdowns rather than
+      failing.</li>
+    <li><strong>The software is citable in its own right.</strong> The paper
+      describing it, its DOI and the full author list are on its
+      <a href="{{ '/publications/roeck-2025-wlc-scenario-explorer/' | relative_url }}">publication
+      page</a>.</li>
+    <li><strong>It is a dashboard, built for a wide screen.</strong> On a
+      phone the frame above will be cramped; the tool is easier to use in a
+      full window.</li>
+  </ul>
+</div>
+
+<p class="muted small" style="margin-top:2.5rem;">
+  <a href="{{ '/tools/' | relative_url }}">← All data and tools</a>
+</p>
+
+</div>
+</section>
+
+</main>
