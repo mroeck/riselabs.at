@@ -18,9 +18,9 @@ partners:
 people:
   - martin-roeck
   - nicole-di-santo
-  - barbara-droste-luckmann
-# Nicole Di Santo is Technical Lead on this. Add `- nicole-di-santo` above once
-# her person page is finished and `published: false` is removed from it.
+# Nicole Di Santo is Technical Lead on this. (The note that used to sit here
+# asked for her to be added once her page was published; she has been listed
+# above since then, so the instruction was stale and is removed.)
 themes:
   - data-benchmarks
   - global-south

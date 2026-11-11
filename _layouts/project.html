@@ -104,8 +104,28 @@ layout: default
     The people, in the order asked for: our experts, then the collaborators
     we worked with, then the client who commissioned it. The #team anchor
     sits on the first of the three.
+
+    Within "our experts", the RISE core team comes before the extended team
+    (Martin, 11 Nov 2026). Until then this was a single `where_exp` over
+    `site.people`, which returns the collection in Jekyll's own order -
+    alphabetical by filename - so a project listing Martin and two people
+    employed elsewhere put one of them above him, by nothing more than the
+    first letter of a file name.
+
+    The idiom is the one /team/ and the home band already use: build the
+    master list in the right order first, `rise` then `collaborator`, each
+    by its own `order`, and only then filter it down to this project. A
+    filter preserves order, so the result keeps it. Doing it the other way
+    round - filtering first, then sorting - cannot work in Liquid, which has
+    no two-key sort.
+
+    `group: collaborator` is the internal key for what the cards call the
+    extended team; see peoplelist.html for why the key was not renamed.
   {%- endcomment -%}
-  {%- assign team = site.people | where_exp: "x", "page.people contains x.slug" -%}
+  {%- assign _rise = site.people | where: "group", "rise" | sort: "order" -%}
+  {%- assign _collab = site.people | where: "group", "collaborator" | sort: "order" -%}
+  {%- assign _everyone = _rise | concat: _collab -%}
+  {%- assign team = _everyone | where_exp: "x", "page.people contains x.slug" -%}
   {%- if team.size > 0 %}
   <h2 id="team">Our experts</h2>
   {% include peoplelist.html people=team %}

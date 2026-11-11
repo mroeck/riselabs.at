@@ -18,7 +18,6 @@ clients:
 people:
   - martin-roeck
   - zuhaib-batra
-  - barbara-droste-luckmann
 partners:
   - rise
   - bpie
