@@ -4,7 +4,7 @@ kind: data
 authors: "Röck M, Lesné B, Eissa S, Alaux N, Ramon D, Passer A, Allacker K"
 year: 2025
 journal: "Zenodo"
-doi: "10.5281/zenodo.13315281"
+doi: "10.5281/zenodo.13315280"
 # The three fields below are the ones `toollist.html` has always read and
 # nothing had ever set: they are what the Data & tools cards show. `link`
 # points at our own tool page rather than at KU Leuven, because that page
@@ -34,13 +34,14 @@ rise_tier: core
      where wlc-scenario-explorer.com now points. The two link to each
      other; neither repeats the other.
 
-     Note on the DOI. The Linktree that wlc-scenario-explorer.com used to
-     redirect to gives 10.5281/zenodo.13315280, and this file carries
-     ...281. Zenodo mints both: the concept DOI for all versions and a
-     version DOI for one deposit. Which of the two is which has not been
-     checked against Zenodo - the shell here cannot reach it - so the DOI
-     is left exactly as it was. Worth one look before this page is
-     advertised anywhere. -->
+     The DOI is the concept DOI, 10.5281/zenodo.13315280 (Martin,
+     11 Nov 2026), replacing the version DOI ...281 this file used to
+     carry. Zenodo mints both: the concept DOI always resolves to the
+     newest version of the software, the version DOI pins one deposit. For
+     a tool that will be released again, the concept DOI is the one to
+     publish and to cite, so that a citation does not quietly come to mean
+     an old release. Use the version DOI only where a specific release has
+     to be identified, such as reproducing a particular result. -->
 
 The **WLC Scenario Explorer** is an open source web tool for exploring whole
 life cycle greenhouse gas emission scenarios for buildings across Europe. It
