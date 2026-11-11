@@ -591,48 +591,6 @@
   // and adds a button to show the rest. The button is created here rather
   // than in the markup for the same reason: without a script it would be a
   // control that does nothing.
-  /* The embedded WLC Scenario Explorer, on /tools/wlc-scenario-explorer/.
-     One button, which grows the frame to nearly the whole window and back
-     again. "Nearly" is the point: the RISE header and footer stay on the
-     page above and below it rather than being hidden, which is what Martin
-     asked for over the browser's own fullscreen (11 Nov 2026).
-
-     The native Fullscreen API is deliberately not used. It would take over
-     the screen, drop our header and footer, and hand the escape route to
-     the browser rather than to the page.
-
-     On expanding, the frame is scrolled to the top of the window. Without
-     that, a frame that has just grown to the height of the window starts
-     off-screen and the page looks like it jumped.
-
-     Escape collapses it, because a control that fills the window should
-     have the way out people already expect. */
-  function setupAppframe(band) {
-    var btn = band.querySelector("[data-appframe-toggle]");
-    if (!btn) return;
-    btn.hidden = false;
-
-    function setWide(wide) {
-      band.classList.toggle("is-wide", wide);
-      btn.setAttribute("aria-pressed", wide ? "true" : "false");
-      btn.textContent = wide ? "Reduce" : "Expand";
-      if (wide && band.scrollIntoView) {
-        band.scrollIntoView({ block: "start", behavior: "smooth" });
-      }
-    }
-
-    btn.addEventListener("click", function () {
-      setWide(btn.getAttribute("aria-pressed") !== "true");
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && btn.getAttribute("aria-pressed") === "true") {
-        setWide(false);
-        btn.focus();
-      }
-    });
-  }
-
   function setupCollapse(panel) {
     var n = parseInt(panel.getAttribute("data-collapse"), 10);
     var list = panel.querySelector("ul, ol");
@@ -952,7 +910,6 @@
     Array.prototype.forEach.call(document.querySelectorAll("[data-citeas]"), setupCite);
     Array.prototype.forEach.call(document.querySelectorAll("[data-openings]"), setupOpenings);
     Array.prototype.forEach.call(document.querySelectorAll("[data-collapse]"), setupCollapse);
-    Array.prototype.forEach.call(document.querySelectorAll("[data-appframe]"), setupAppframe);
     Array.prototype.forEach.call(document.querySelectorAll("[data-themebar]"), setupThemes);
     setupExternalLinks();
     Array.prototype.forEach.call(document.querySelectorAll("[data-hero]"), setupHero);

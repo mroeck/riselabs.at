@@ -1050,26 +1050,43 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
    Hence a container of its own, wider than any prose on the site, rather
    than a taller frame.
 
-   `--appframe-max` is deliberately generous. The cap exists so the frame
-   does not stretch to absurd widths on a very wide monitor, not to hold it
-   near the collapse threshold.
+   THE CAP IS THE APP'S OWN. Measured in the running app on 11 Nov 2026:
+   its outer container is Tailwind's `max-w-screen-2xl`, 1536px, centred
+   with `mx-auto`, and its height is `max-content`, about 970px. So past
+   1536px wide the app adds white margins and nothing else, and past its
+   content height it adds white below. A frame larger than that is empty
+   space with a border around it, which is what an "expand" control here
+   produced and why there is no longer one (Martin, 11 Nov 2026).
 
-   The default size is 16:9, the shape of the monitors this is used on, as
-   asked. `min-height` keeps it usable where 16:9 would be too short to
-   show the controls and the chart at once - a window about 1000px wide
-   gives a 563px frame, which is not enough - and in that case the ratio
-   simply yields to the floor.
+   `--appframe-max` is therefore 99rem: 96rem of frame, which is exactly
+   1536px, plus the 3rem the band's own gutters take.
+
+   The ratio is 16:10 rather than 16:9. Both are common landscape monitor
+   shapes; this one is the app's. At the 1536px cap, 16:10 gives 960px,
+   which is the height the app's content actually wants, so the frame ends
+   where the app ends. 16:9 would give 864px and put a scrollbar inside the
+   frame for the last hundred pixels.
+
+   `min-height` keeps it usable where the ratio would be too short to show
+   the controls and the chart at once; there the ratio yields to the floor.
 
    The frame keeps a white backdrop in both themes. What loads into it is a
    light-themed application that knows nothing about ours, so a dark
    surface behind it would show as a rim around a white page while it
    loads.                                                                */
 .appframe-band {
-  --appframe-max: 112rem;
+  --appframe-max: 99rem;
   max-width: var(--appframe-max);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+/* The frame sits close under the page head. The site's standard band
+   padding is 6rem, which is right between two blocks of prose and far too
+   much between a heading and the thing the page exists to show (Martin,
+   11 Nov 2026). Only the top is reduced; the space below the frame still
+   separates it from the text that follows. */
+.band-flush { padding-top: 1.5rem; }
 
 .appframe {
   margin: 0 0 1.2rem;
@@ -1077,7 +1094,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 .appframe iframe {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   height: auto;
   min-height: 36rem;
   border: 1px solid var(--rule);
@@ -1086,45 +1103,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
 }
 .appframe figcaption {
   margin-top: .7rem;
-}
-
-/* The expand control sits above the frame, right-aligned, so it reads as
-   belonging to the frame rather than to the prose above it. */
-.appframe-bar {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0 .6rem;
-}
-.appframe-grow {
-  font: inherit;
-  font-size: .9rem;
-  font-weight: 600;
-  padding: .45rem .9rem;
-  color: var(--ink);
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-ui);
-  cursor: pointer;
-}
-.appframe-grow:hover { border-color: var(--accent); color: var(--accent); }
-
-/* Expanded: nearly the whole window, with the header and footer still on
-   the page above and below rather than hidden behind a native fullscreen
-   (Martin, 11 Nov 2026). `4.5rem` is headroom, not a measured header: the
-   script scrolls the frame to the top of the window when it expands, so
-   what the gap has to leave room for is a glimpse of the page, not the
-   header's exact height - which varies with the theme toggle and the
-   navigation wrapping.
-
-   The ratio is dropped here on purpose. In this state the height is the
-   point and the width follows the window. */
-.appframe-band.is-wide {
-  max-width: none;
-}
-.appframe-band.is-wide .appframe iframe {
-  aspect-ratio: auto;
-  height: calc(100vh - 4.5rem);
-  min-height: 30rem;
 }
 
 /* Below 80rem the frame goes edge to edge and gives up its side border and
@@ -1136,7 +1114,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
    against the window edge. */
 @media (max-width: 80rem) {
   .appframe-band { padding: 0; }
-  .appframe-bar, .appframe figcaption { padding: 0 1.5rem; }
+  .appframe figcaption { padding: 0 1.5rem; }
   .appframe iframe {
     border-left: 0; border-right: 0;
     border-radius: 0;
@@ -1148,7 +1126,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
    of the weight. It is not hidden: this page would have nothing else on it.
    The expand button is still useful here, and more so. */
 @media (max-width: 40rem) {
-  .appframe-bar, .appframe figcaption { padding: 0 1rem; }
+  .appframe figcaption { padding: 0 1rem; }
   .appframe iframe { aspect-ratio: auto; height: 80vh; min-height: 26rem; }
 }
 
