@@ -56,10 +56,28 @@ image: /assets/img/tools/wlc-scenario-explorer-app.webp
 
 <main id="content">
 
+{%- comment -%}
+  Not `.wrap`. The text columns on this site are 64rem at their widest, and
+  the explorer collapses its control panels below roughly 1000px: inside
+  `.wrap` the frame was about 976px and the app was hiding the scenario and
+  filter panels and asking for a scroll inside the frame (Martin, 11 Nov
+  2026). `.appframe-band` is a wider container of its own, used by nothing
+  else, so widening it cannot move any prose.
+{%- endcomment -%}
 <section class="band">
-<div class="wrap">
+<div class="appframe-band" data-appframe>
 
   <figure class="appframe">
+    {%- comment -%}
+      Hidden until the script runs, like every other control on the site: a
+      button that cannot do anything is worse than no button. Without
+      JavaScript the frame keeps its default landscape size, which is
+      usable on its own.
+    {%- endcomment -%}
+    <p class="appframe-bar">
+      <button type="button" class="appframe-grow" data-appframe-toggle hidden
+              aria-pressed="false">Expand</button>
+    </p>
     <iframe src="https://ae-scenario-explorer.cloud.set.kuleuven.be/"
             title="WLC Scenario Explorer, hosted by KU Leuven"
             loading="lazy"
@@ -69,8 +87,9 @@ image: /assets/img/tools/wlc-scenario-explorer-app.webp
       The explorer runs on
       <a href="https://architectuur.kuleuven.be/architectural-engineering">KU
       Leuven</a> infrastructure and is loaded into this page from there.
-      Opening this page contacts that server. If the frame stays blank, or
-      you would rather use the full window,
+      Opening this page contacts that server. <strong>Expand</strong> gives
+      it close to the whole window. If the frame stays blank, or you would
+      rather use the browser's own window,
       <a href="https://ae-scenario-explorer.cloud.set.kuleuven.be/">open the
       explorer directly</a>.
     </figcaption>
