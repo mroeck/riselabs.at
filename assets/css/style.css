@@ -1034,6 +1034,50 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
   .doc-bar { border-bottom: 1px solid var(--rule); border-radius: var(--radius-ui); }
 }
 
+/* ---------- a framed third-party application ----------
+
+   One user, the WLC Scenario Explorer at /tools/wlc-scenario-explorer/,
+   and deliberately its own component rather than a reuse of `.doc`: that
+   one wraps a PDF we host and hides itself on a phone, which would leave
+   this page empty of the thing it exists for.
+
+   The height is a viewport fraction with a floor, not an aspect ratio. The
+   explorer is a dashboard: a sidebar of controls beside a chart. Tie its
+   height to its width and a narrow window gets a frame too short to show
+   the controls and the chart at once, which is the one thing it has to do.
+   `min-height` keeps it usable on a short laptop screen; `max-height`
+   stops it growing past what a tall screen can show without scrolling the
+   page away from it.
+
+   The frame keeps a white backdrop in both themes. What loads into it is a
+   light-themed application that knows nothing about ours, so a dark
+   surface behind it would show as a rim around a white page while it
+   loads.                                                                */
+.appframe {
+  margin: 0 0 1.2rem;
+}
+.appframe iframe {
+  display: block;
+  width: 100%;
+  height: 78vh;
+  min-height: 34rem;
+  max-height: 56rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-ui);
+  background: #fff;
+}
+.appframe figcaption {
+  margin-top: .7rem;
+}
+
+/* A dashboard in a phone-width frame is cramped however tall it is, so the
+   frame gets more of the screen and the caption's "open it directly" link
+   carries more of the weight. It is not hidden: this page would have
+   nothing else on it. */
+@media (max-width: 40rem) {
+  .appframe iframe { height: 85vh; min-height: 28rem; }
+}
+
 .doc-line {
   padding: .7rem 0;
   border-top: 1px solid var(--rule);

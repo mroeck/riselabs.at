@@ -57,3 +57,18 @@ inform policy design.
 
 Abstract as published.
 {: .muted .small}
+
+<!-- Added 11 Nov 2026 (Martin): the two pages point at each other. The
+     software paper for the explorer states that the methodology and the
+     scenario results dataset are published separately, and this is that
+     publication - same nine authors, same order. So the link is recorded
+     in the sources rather than inferred from the subject matter. -->
+
+## Explore these scenarios
+
+The scenarios behind this paper can be examined directly in the
+[WLC Scenario Explorer](/tools/wlc-scenario-explorer/): pick a policy
+pathway or build one, compare two side by side, and break the result down by
+country, building type, material or life cycle stage. The tool is open
+source and [citable in its own
+right](/publications/roeck-2025-wlc-scenario-explorer/).
