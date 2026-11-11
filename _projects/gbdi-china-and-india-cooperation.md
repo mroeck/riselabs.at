@@ -19,7 +19,6 @@ people:
   - martin-roeck
   - nicole-di-santo
   - zuhaib-batra
-  - barbara-droste-luckmann
   - darmarajan-chinasamy
 partners:
   - rise
