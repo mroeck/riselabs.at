@@ -15,12 +15,40 @@ themes:
   - policy-regulation
 link: "https://c.ramboll.com/life-cycle-emissions-of-eu-building-and-construction"
 project_title: "Analysis of life-cycle greenhouse gas emissions and removals of EU buildings and construction"
+# The study's published deliverables, in the order the work ran, from the
+# project's own page at c.ramboll.com (read 13 November 2026). Titles are
+# that page's wording. The four EC document links go to ec.europa.eu
+# docsroom, which now forwards to CIRCABC; they resolve in a browser but
+# cannot be read from the build environment, which is why none of them has
+# a publication record here - see the note further down.
 outputs:
+- title: "Existing sources of whole life carbon data and data gaps"
+  note: "Deliverable · European Commission, 2024"
+  url: "https://ec.europa.eu/docsroom/documents/58194"
+- title: "Mapping of carbon reduction and removal strategies"
+  note: "Deliverable · European Commission"
+  url: "https://ec.europa.eu/docsroom/documents/58195"
+- title: "Quantitative baseline for whole life carbon and carbon removals"
+  note: "Deliverable · European Commission"
+  url: "https://ec.europa.eu/docsroom/documents/58196"
+- title: "Methodology for collecting and generating new data"
+  note: "Deliverable · European Commission"
+  url: "https://ec.europa.eu/docsroom/documents/58197"
+- title: "Quantitative figures for future scenarios"
+  note: "Deliverable D4.1 · 2025 · led from RISE and KU Leuven"
+  url: "https://c.ramboll.com/hubfs/RMC/Content/D4-1_Future-Scenarios.pdf"
+- title: "WLC Scenario Explorer"
+  note: "The open tool built from this study's stock model"
+  url: /tools/wlc-scenario-explorer/
+- title: "Future availability and generation of data"
+  note: "Deliverable D5.2 · 2025 · led by BPIE"
+  url: "https://c.ramboll.com/hubfs/RMC/Content/D5.2_Future%20availability%20and%20generation%20of%20data.pdf"
 - title: "Analysis of results and implications"
   note: "Final report · European Commission, 2025"
   url: "https://data.europa.eu/doi/10.2873/2247112"
   # thumb: /assets/img/outputs/dg-grow-report.jpg
-- title: "Scenario modelling tool and underlying data"
+- title: "The study's own project page"
+  note: "Ramboll, with the full consortium and contacts"
   url: "https://c.ramboll.com/life-cycle-emissions-of-eu-building-and-construction"
 # Add further published deliverables as blocks above: title, optional note,
 # and a url. Only outputs anyone may read belong here.
@@ -54,7 +82,34 @@ related:
 ---
 
 <!-- Concluded project, so the text runs Context then Insights, with a third
-     section for where the results actually landed. -->
+     section for where the results actually landed.
+
+     ON THE DELIVERABLES, 16 Nov 2026. Martin asked for every document the
+     project's own page links, plus a publication record for each one he
+     co-authored. The links are all in `outputs` above. The records are a
+     different matter, and only one could be made honestly:
+
+     - D4.1, quantitative figures for future scenarios. Title page read
+       directly: Martin is first author, with Ramon, Pristerà and Allacker
+       (KU Leuven), Alaux and Steinberger-Maierhofer (TU Graz), Mastrucci
+       and Zhong (IIASA). Recorded at
+       _publications/roeck-2025-future-scenarios-quantitative.md
+     - D5.2, future availability and generation of data. Title page read
+       directly: authored by Xerome Fernández Álvarez and Judit Kockat of
+       BPIE, reviewed by Ramboll and BPIE. Martin is not an author, so it is
+       linked as a project output and has no record of its own.
+     - The four 2023-2024 deliverables on ec.europa.eu. No record, because
+       authorship could not be established. Those links now forward to
+       CIRCABC, which this environment cannot reach by any route, and the EC
+       document page itself gives the author only as GROW.H.1, the
+       Commission unit. Rather than infer his authorship from the fact that
+       he led the analytical work, they are left as links. Send the four
+       PDFs, or confirm the author lists, and the records follow.
+
+     Eight further publications already carry `projects:
+     analysis-of-life-cycle-greenhouse` and appear on this page
+     automatically, so the journal papers are not repeated in `outputs`. -->
+
 
 <h2>Context</h2>
 
