@@ -392,7 +392,7 @@ permalink: /
     governments, research institutes and philanthropic funders use our work to
     set targets, write rules and fund change.</p>
     {%- comment -%} hand-picked, in this order; the full list is on /partners/ {%- endcomment -%}
-    {%- assign shown = "worldgbc,smith-innovation,bpie,iiasa,ec-dg-grow,unep,laudes,global-industry-hub,epfl,ku-leuven" | split: "," -%}
+    {%- assign shown = "worldgbc,smith-innovation,bpie,iiasa,ec-dg-grow,unep,laudes,epfl,ku-leuven" | split: "," -%}
     {% include partners.html keys=shown %}
     <p class="more"><a href="{{ '/partners/' | relative_url }}">All partners →</a></p>
 

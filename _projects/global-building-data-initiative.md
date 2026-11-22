@@ -3,7 +3,6 @@ title: "GBDI Global Building Data Initiative (Pilot)"
 short_title: "GBDI"
 status: "concluded"
 years: "2024–2025"
-funder: "ClimateWorks Foundation"
 role: "Principal Investigator"
 summary: "Launched an open global data commons on resource use and upfront embodied carbon of new buildings"
 hero: "/assets/img/projects/gbdi-platform.png"
@@ -13,8 +12,6 @@ themes:
   - data-benchmarks
   - whole-life-carbon
 link: "https://www.gbdi.io"
-clients:
-  - climateworks
 people:
   - martin-roeck
   - nicole-di-santo

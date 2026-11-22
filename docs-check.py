@@ -85,6 +85,18 @@ for slug, (fm, body, f) in posts.items():
         P("frontmatter", f"_posts/{slug}.md", "missing `title`")
 
 # ------------------------------------------------------------ cross-references
+def _unpub_partner_msg(key, v):
+    """An unpublished partner is a problem, not a note, unlike an unpublished
+    person. `_includes/partners.html` has no "skip it" branch: it falls
+    through to `<span class="unknown">{{ key }}</span>`, so the reference
+    prints the raw slug on the live page straight away, rather than waiting
+    quietly for the file to go live. Written 22 Nov 2026, when ClimateWorks
+    and the Global Industry Hub were taken off the site with their files
+    kept, which made this reachable for the first time."""
+    return (f"`{key}` names '{v}', whose file is `published: false` - the tile "
+            f"cannot render, so the page prints the bare slug instead")
+
+
 # which key in which collection points at which other collection
 XREF = [
     ("projects",     "people",    "people"),
@@ -113,9 +125,12 @@ for src, key, target in XREF:
             if target == "partners" and v == "rise":
                 continue
             if v in on_disk[target]:
-                N(f"_{src}/{slug}.md",
-                  f"`{key}` names {v}, whose file is still unpublished, so the "
-                  "link will appear on its own once that file goes live")
+                if target == "partners":
+                    P("xref", f"_{src}/{slug}.md", _unpub_partner_msg(key, v))
+                else:
+                    N(f"_{src}/{slug}.md",
+                      f"`{key}` names {v}, whose file is still unpublished, so the "
+                      "link will appear on its own once that file goes live")
             else:
                 P("xref", f"_{src}/{slug}.md",
                   f"`{key}` points at '{v}', which has no file in _{target}/")
@@ -127,7 +142,21 @@ for slug, (fm, body, f) in posts.items():
         if isinstance(vals, str):
             vals = [vals]
         for v in vals:
-            if v not in coll[target]:
+            if v in coll[target]:
+                continue
+            # Same distinction the collections loop above makes, which this
+            # loop was missing until 22 Nov 2026: a file that exists but is
+            # unpublished is not a file that is absent, and saying "has no
+            # file" about one sitting on disk sends the reader hunting for
+            # the wrong problem - which is the whole reason `on_disk` exists.
+            if v in on_disk[target]:
+                if target == "partners":
+                    P("xref", f"_posts/{slug}.md", _unpub_partner_msg(key, v))
+                else:
+                    N(f"_posts/{slug}.md",
+                      f"`{key}` names {v}, whose file is still unpublished, so the "
+                      "link will appear on its own once that file goes live")
+            else:
                 P("xref", f"_posts/{slug}.md",
                   f"`{key}` points at '{v}', which has no file in _{target}/")
 
@@ -270,6 +299,14 @@ if m:
     for k in m.group(1).split(","):
         if k.strip() not in coll["partners"]:
             P("xref", "index.md", f"partner tile '{k.strip()}' has no file in _partners/")
+
+# The home page's tile list is not a collection front-matter field, so the two
+# loops above do not see it. Same rule, same message.
+_unpub_partners = on_disk["partners"] - set(coll["partners"])
+if _unpub_partners and m:
+    for k in m.group(1).split(","):
+        if k.strip() in _unpub_partners:
+            P("xref", "index.md", _unpub_partner_msg("partner tile", k.strip()))
 
 # Partner files do not need a `slug` field: Jekyll derives one from the
 # filename, which is what every `where: "slug", key` lookup in the templates
