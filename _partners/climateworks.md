@@ -1,4 +1,8 @@
 ---
+# Temporarily off the site (Martin, 22 Nov 2026). The file stays so that
+# restoring is one line: delete this `published` line and put the references
+# back. Where they were is written down in docs/09-paused-partners.md.
+published: false
 title: "ClimateWorks Foundation"
 name: "ClimateWorks Foundation"
 city: "San Francisco"

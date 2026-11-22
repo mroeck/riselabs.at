@@ -3,7 +3,6 @@ title: "GBDI China and India Cooperation Incubator"
 short_title: "GBDI China and India"
 status: "current"
 years: "2026–2027"
-funder: "Global Industry Hub"
 role: "Principal Investigator"
 summary: "Extends the global building data work into the two markets that will add the most floor area this century"
 hero: "/assets/img/photos/project-gbdi-china-india.jpg"
@@ -13,8 +12,6 @@ themes:
   - global-south
   - data-benchmarks
 link: "https://www.gbdi.io"
-clients:
-  - global-industry-hub
 people:
   - martin-roeck
   - nicole-di-santo
